@@ -1,0 +1,283 @@
+<div class="sticky-bar ui sticky" sticky ng-cloak>
+	<div class="sticky-action-bar ui page grid">
+		<div class="column">
+			<button class="ui black button small" ng-click="goBackUser()" ng-show="showGoBack" translate>
+				tab_company_setting_goback
+			</button>
+			<button accessible-form ng-click="openModal('setting-add-company');newBusiness()" class="ui labeled green button small"
+			 translate ng-if="businesses.length <= 0"> tab_company_setting_add_company </button>
+			<button accessible-form ng-click="multiDelete('company-table', 'multi-delete-business', confirmDeleteBusiness);"
+			 class="ui labeled red button small" translate ng-if="showcompany && businesses.length > 0"> tab_company_setting_delete_companies </button>
+		</div>
+	</div>
+</div>
+
+<div class="ui page grid">
+	<div class="column">
+		<div ng-if="businesses.length>0">
+			<table class="ui compact table company-table segment">
+				<thead>
+					<tr>
+						<th class="one wide center check-box">
+							<div class="ui checkbox check-all" ng-click="checkAll('company-table')">
+								<input type="checkbox" name="select-all">
+								<label></label>
+							</div>
+						</th>
+						<th class="one wide center company-id" translate> tab_company_setting_id </th>
+						<th class="four wide center company-name" translate> tab_company_setting_company_name</th>
+						<th class="four wide center company-description" translate> tab_company_setting_company_desc </th>
+						<th class="three wide center company-description" translate> tab_company_setting_actions </th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="company-row" ng-repeat="business in businesses" href="/">
+						<td class="t-check-box">
+							<div class="ui checkbox">
+								<input type="checkbox" name="select-user">
+								<label></label>
+							</div>
+						</td>
+						<td class="t-id">
+							{{business.id}}
+						</td>
+						<td class="t-company-name">
+							<span title="{{business.name}}">
+								{{business.name | limitTo: 25}}<span ng-if="business.name.length > 25"></span>
+							</span>
+						</td>
+						<td class="t-company-description">
+							<span title="{{business.description}}">
+								{{business.description | limitTo: 25}}<span ng-if="business.description.length > 25">...</span>
+							</span>
+						</td>
+						<td>
+							<button class="ui button small basic" ng-click="openModal('setting-add-company');selectBusiness(business)"
+							 translate>
+								tab_company_setting_edit
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div>
+
+<div class="ui small modal" id="multi-delete-business">
+	<i class="close icon"></i>
+	<div class="header">
+		<h3 class="ui blue header" translate> tab_company_setting_delete_items </h3>
+	</div>
+	<div class="content">
+		<p> {{'tab_company_setting_delete_items_message' | translate}} {{itemDeleteCount}}
+			{{'tab_company_setting_delete_items_message2'| translate}} </p>
+	</div>
+	<div class="actions">
+		<div class="ui positive button" ng-click="closeModal()" translate>
+			tab_company_setting_yes
+		</div>
+		<div class="ui negative button" translate>
+			tab_company_setting_no
+		</div>
+	</div>
+</div>
+
+<div class="ui modal" id="setting-add-company">
+	<i class="close icon"></i>
+	<div class="header" translate>
+		tab_company_setting_add_edit_company
+	</div>
+	<div class="content">
+		<div class="ui fluid form company-form">
+			<div class="ui basic campaign-bg segment">
+				<div class="ui two column stackable grid">
+					<div class="five wide column">
+						<h3 class="ui header" translate>tab_company_setting_company_name </h3>
+					</div>
+
+					<div class="eleven wide column">
+
+						<div class="field">
+							<div class="ui corner labeled input">
+								<input type="text" name="company_name" ng-attr-placeholder="{{'tab_company_setting_company_name'| translate}}"
+								 ng-model="businessSelected.name" ng-keypress="saveBusinessInfoEnter($event)">
+								<div class="ui red corner label">
+									<i class=" asterisk icon"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="ui two column stackable grid">
+					<div class="five wide column">
+						<h3 class="ui header" translate> tab_company_setting_profile_image </h3>
+						<div class="file-info">
+							<p translate> tab_company_setting_imagetype </p>
+							<p translate> tab_company_setting_image_dimension </p>
+						</div>
+					</div>
+
+					<div class="eleven wide column">
+						<div class="center aligned wide column profileCompany" id="proSetCompImage">
+							<div class="profile-image-thumbnail ui imagePlace">
+								<img class="pp_placeholder" ng-hide="businessImage.length" src="images/placeholder-images/placeholder_profile_photo.png"
+								 ng-if="!businessImage.length" />
+								<img ng-src="{{server + '/image/campaign_profile/' + businessImage[0].path_external}}" ng-if="businessImage.length"
+								 imageonload />
+								<div class="ui dimmer">
+									<div class="content">
+										<div class="center">
+											<div class="ui small indicating progress upload-bar">
+												<div class="bar"></div>
+											</div>
+											<div class="ui loader download-loader"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="ui basic segment">
+								<thrinacia-file-upload upload-id="businessImageFile" upload-file="uploadBusinessImage" upload-translate="tab_company_setting_uploadimage"></thrinacia-file-upload>
+								<button class="ui red labeled icon button" ng-click="deleteBusinessImage(businessImage)">
+									<i class="remove icon"></i> {{'tab_company_setting_deleteimage'|translate}}
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="ui two column stackable grid">
+					<div class="five wide column">
+						<h3 class="ui header" translate> tab_company_setting_company_desc </h3>
+						<p class="small-desc" translate> tab_company_setting_company_desc_message </p>
+					</div>
+
+					<div class="eleven wide column">
+
+						<div class="ui fluid form">
+							<div class="field">
+								<textarea class="user-bio" maxlength="300" ng-model="businessSelected.description"></textarea>
+								<label> {{businessSelected.description.length}}/{{'tab_company_setting_max_character'|translate}} </label>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="ui two column stackable grid profilelinks-section">
+					<div class="five wide column">
+						<h3 class="ui header" translate> tab_company_setting_business_link </h3>
+						<p class="small-desc" translate> tab_company_setting_social_link </p>
+					</div>
+					<div class="eleven wide column">
+						<div class="ui fluid form">
+							<div class="ui stackable grid campaign-links" ng-repeat="link in businessLinks">
+								<div class="five wide column">
+									<input class="left" name="link_label" type="text" ng-model="link.uri_text" placeholder="{{'profile_setup_linkeg' | translate}}"
+									 onkeydown="if (event.keyCode == 13) return false;">
+								</div>
+								<div class="nine wide column">
+									<div class="url-input ui left labeled input fluid">
+										<div class="ui dropdown business-link-setup profile-link-protocol label">
+											<input name="profile_link_protocol" type="hidden">
+											<div class="text protocol_text" ng-if="!link.profile_link_default_protocol">{{profile_link_default_protocol.value}}</div>
+											<div class="text protocol_text" ng-if="link.profile_link_default_protocol">{{link.profile_link_default_protocol}}</div>
+											<div class="menu">
+												<div ng-repeat="protocol in profile_protocols" class="item" ng-class="{'active':link.profile_link_default_protocol == protocol.value}">{{protocol.value}}</div>
+											</div>
+											<i class="dropdown icon"></i>
+										</div>
+										<input maxlength="50" type="text" class="right" name="link_url" ng-model="link.uri" ng-class="{'has-error': customlinks[$index].uri_text.length && customlinks[$index].uri.length == 0}"
+										 type="text" placeholder="{{'profile_setup_linkegurl' | translate}}" onkeydown="if (event.keyCode == 13) return false;">
+									</div>
+								</div>
+								<div class="two wide column">
+									<button class="ui red icon button" ng-click="removeBusinessLink(link)">
+										<i class="remove icon"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+						<div class="add-btn-link">
+							<button ng-show="businessLinks.length < 5" class="ui green right labeled icon button" ng-click="addBusinessLink(businessLinks)">
+								<span translate>tab_company_setting_add_link </span><i class="add icon"></i></button>
+						</div>
+					</div>
+				</div>
+
+				<div class="ui two column stackable grid" ng-class="{'required-field': field.required, 'optional-field': !field.required}"
+				 ng-show="public_settings.site_campaign_business_section_custom.length >0" ng-repeat="field in bcustom">
+					<div class="five wide column">
+						<h3 class="ui header" translate>{{field.name}}</h3>
+					</div>
+
+					<div class="eleven wide column">
+						<div class="ui fluid form custom-field-form">
+							<div class="field">
+								<input type="text" name="{{field.name}}" ng-model="field.value" placeholder="{{field.placeholder}}" onkeydown="if (event.keyCode == 13) return false;">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="actions">
+		<div class="ui approve button green" ng-click="saveBusinessInfo()" translate>
+			tab_company_setting_save
+		</div>
+		<div class="ui button" translate>
+			tab_company_setting_cancel
+		</div>
+	</div>
+
+</div>
+
+<div class="ui modal" id="setting-add-company-image">
+	<i class="close icon"></i>
+	<div class="header" translate>
+		tab_company_setting_company_image_upload
+	</div>
+	<div class="content">
+
+		<div class="ui two column stackable grid">
+			<div class="five wide column">
+				<h3 class="ui header" translate> tab_company_setting_profile_image </h3>
+				<div class="file-info">
+					<p translate> tab_company_setting_imagetype </p>
+					<p translate> tab_company_setting_image_dimension </p>
+				</div>
+			</div>
+
+			<div class="eleven center aligned wide column">
+				<div class="twelve wide column" id="proSetCompImage">
+					<div class="profile-image-thumbnail ui imagePlace">
+						<img class="pp_placeholder" ng-hide="businessImage.length" src="images/placeholder-images/placeholder_profile_photo.png"
+						 ng-if="!businessImage.length" />
+						<img ng-src="{{server + '/image/campaign_profile/' + businessImage[0].path_external}}" ng-if="businessImage.length"
+						 imageonload />
+						<div class="ui dimmer">
+							<div class="content">
+								<div class="center">
+									<div class="ui small indicating progress upload-bar">
+										<div class="bar"></div>
+									</div>
+									<div class="ui loader download-loader"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="ui basic segment">
+						<thrinacia-file-upload upload-id="businessImageFile2" upload-file="uploadBusinessImage" upload-translate="tab_company_setting_uploadimage"></thrinacia-file-upload>
+						<button class="ui red labeled icon button" ng-click="deleteBusinessImage(businessImage)">
+							<i class="remove icon"></i> {{'tab_company_setting_deleteimage'|translate}}
+						</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+</div>

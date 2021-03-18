@@ -1,0 +1,70 @@
+<!-- edit cards -->
+<div class="ui small modal" id="setting-edit-card">
+  <i class="close icon"></i>
+  <div class="header" translate>
+    tab_managecard_edit_card
+  </div>
+  
+  <div class="credit-card-content content">
+    <div class="credit-card-wrap">
+      <div class="ui column">
+        <div id="credit-card-edit-info" class="ui fluid form">
+          <div class="field">
+            <div class="ui fluid left icon input">
+              <i class="payment icon"></i>
+              <input numbers-only type="text" ng-model="editCard.display_number" placeholder="{{'retry_card_card_number'| translate}}" name="card-number" disabled>
+            </div>
+          </div><!-- FIELD END -->
+
+          <div class="ui two column grid">
+
+            <div class="eight wide column date-wrap">
+              <div class="two fields date">
+                <div class="field month">
+                  <div class="ui left icon input">
+                    <i class="empty calendar icon"></i>
+                    <input numbers-only type="text" ng-model="editCard.exp_month" name="exp-month" placeholder="{{'retry_card_mm'| translate}}">
+                  </div>
+                </div><!-- FIELD END -->
+
+                <div class="field year">
+                  <div class="ui input">
+                    <input numbers-only type="text" ng-model="editCard.exp_year" name="exp-year" placeholder="{{'retry_card_yy'| translate}}">
+                  </div>
+                </div><!-- FIELD END -->
+              </div><!-- TWO FIELDS END -->
+            </div><!-- COLUMN END -->
+            
+            <div class="eight wide column cvc-wrap">
+              <div class="field cvc">
+                <div class="ui fluid left icon input">
+                  <i class="lock icon"></i>
+                  <input type="text" ng-model="editCard.cvc" placeholder="{{'retry_card_cvc'| translate}}" name="cvc" disabled>
+                </div>
+              </div><!-- FIELD END -->
+            </div><!-- COLUMN END -->
+
+          </div><!-- TWO COLUMN GRID -->
+          
+          <!-- <div class="field">
+            <div class="ui fluid left icon input">
+              <i class="user icon"></i>
+              <input type="text" ng-model="editCard.name" placeholder="{{'retry_card_name_card'| translate}}">
+            </div>
+          </div> --><!-- FIELD END -->
+
+        </div> <!-- CREDIT CARD INFO END -->
+      </div> <!-- UI COLUMN END -->
+    </div> 
+  </div> <!-- UI COLUMN END -->
+
+  <div class="actions">
+    <div class="ui approve button blue"  translate>
+      tab_managecard_update
+    </div>
+    <div class="ui button" translate>
+      tab_managecard_cancel
+    </div>
+  </div><!-- ACTIONS END -->
+
+</div><!-- UI MODAL END -->

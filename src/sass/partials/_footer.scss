@@ -1,0 +1,107 @@
+@import 'colors';
+
+///////////////////////////////////////////////
+// Social Media
+///////////////////////////////////////////////
+#socialicons-wrap {
+	padding: 2.5rem 0;
+	background: #f1f1f1;
+	border-top: 1px solid #eee;
+	margin: 0;
+
+	.social-media-blurb {
+		margin-bottom: 25px;
+	}
+	.social-icon {
+		margin-bottom: 0;
+
+		.social-link {
+			text-decoration: none;
+			color: #333;
+		}
+		.social-link:hover {
+			color: $main-color;
+			-webkit-transition: all 0.3s ease-in-out;
+			transition: all 0.3s ease-in-out;
+		}
+	}
+	
+	.social-media-divider {
+		width: 100px;
+		margin: 1rem auto;
+	}
+}
+
+///////////////////////////////////////////////
+// Footer
+///////////////////////////////////////////////
+#footer-wrap {
+	width: 100%;
+	margin: 0;
+	background: #333;
+	color: #fff;
+	
+	.footer-content {
+		max-width: 1600px;
+		width: 100%;
+		margin: 0 auto;
+		#latest-feed {
+			padding-top: 2.5rem;
+			.wp-post-list{
+				.wp-post {
+					margin-bottom: 2rem;
+					.post-title {
+						margin-bottom: 0.5em;
+						a{
+							color : #cfcfcf !important;
+						}
+					}
+					p{
+						font-size:0.85em;
+						color: #a0a0a0;
+					}
+				}
+			}
+			.tweets-column {
+				iframe[id^="twitter-widget"] {
+					max-width: 189px !important;
+					width: 100% !important;
+					min-width: 100% !important;
+				}
+			}
+		}
+
+		#footer-nav {
+			.footer-divider {
+				margin: 1rem 0;
+			}
+			.link {
+				a {
+					&:hover {
+						text-decoration: underline;
+					}
+				}
+			}
+			.company-col,
+			.help-col,
+			.categories-col {
+				margin-bottom: 0;
+			}
+			.footer-links {
+				.item {
+					font-size: 14px;
+				}
+			}
+		}
+
+		.copyright {
+			text-align: center;
+			padding-bottom: 1rem;
+			margin: 0;
+			padding-top: 0;
+			.company-cr {
+				font-size: 12px;
+			}
+		}
+	}
+}

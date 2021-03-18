@@ -1,0 +1,728 @@
+/*/////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+/* Stylesheet for the campaign page*/
+
+
+/*/////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+/*/////////////////////////////*/
+
+
+/* Campaign Page START*/
+
+
+/*/////////////////////////////*/
+
+#sedra-widget {
+  position: relative;
+
+  #campaign-header {
+    #campaign-header-top {
+      text-align: center;
+      padding: 35px 0;
+
+      .campaign-info-span {
+        font-weight: bold;
+      }
+
+      #campaign-header-title {
+        word-wrap: break-word;
+      }
+
+      @media screen and (min-width: 768px) {
+        .profile-nav {
+          position: absolute;
+          right: 15px;
+          top: 25px;
+        }
+
+        #campaign-header-title {
+          margin-top: 0;
+        }
+      }
+    }
+
+    #campaign-header-middle {
+      .campaign-header-middle-grid {
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        -ms-grid-row-align: center;
+        align-items: center;
+
+        .featured-image {
+          img {
+            width: 100%;
+          }
+        }
+      }
+
+      .campaign-fund-details {
+        .value {
+          font-size: 32px;
+          font-weight: bold;
+          line-height: 1;
+        }
+
+        >.item {
+          padding: 10px 0;
+
+          &:first-child {
+            padding-top: 0;
+          }
+
+          &:last-child {
+            padding-bottom: 0;
+          }
+        }
+
+        .progress-bar-fund {
+          margin: 0 0 5px;
+          border-radius: 0;
+          height: 25px;
+
+          .bar {
+            height: 25px;
+            border-radius: 0;
+          }
+        }
+
+        .funding-duration-note-text {
+          font-weight: normal;
+          text-align: center;
+
+          .campaign-end-date {
+            margin-top: 5px;
+          }
+        }
+
+        .contribute-button {
+          font-size: 20px;
+        }
+
+        .share-campaign {
+          font-size: 20px;
+          text-align: center;
+          border-radius: 4px !important;
+
+          .menu {
+            .item {
+              cursor: default;
+
+              &:hover {
+                background: transparent;
+              }
+            }
+          }
+
+          .a2a_kit {
+            text-align: center;
+            line-height: 1 !important;
+
+            .sm-link {
+              float: none;
+              display: inline-block;
+            }
+          }
+        }
+
+        .total-progress-funded {
+          .funded_goal {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    #campaign-header-bottom {
+      padding: 20px 0;
+
+      .campaign-header-meta {
+        margin-bottom: 5px;
+
+        .category-item,
+        .location-item {
+          .icon {
+            vertical-align: middle;
+            @include fontSize(17px);
+          }
+
+          .meta {
+            vertical-align: middle;
+          }
+        }
+      }
+
+      #campaign-header-blurb {
+        font-size: 16px;
+      }
+    }
+  }
+
+  #campaign-body {
+    #campaign-body-middle {
+      padding: 40px 0;
+
+      iframe {
+        max-width: 100%;
+      }
+
+      .campaign-tab-content {
+        @media screen and (max-width: 767px) {
+          #campaign-tabs {
+            overflow-x: scroll;
+          }
+        }
+
+        #campaign-tabs {
+          margin-bottom: 15px;
+        }
+
+        #streams-tab-body {
+          .stream-list {
+            cursor: pointer;
+          }
+
+          .stream-content {
+            background: $tab-content-background;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 14px;
+
+            .stream-top {
+              margin-bottom: 20px;
+
+              .stream-number,
+              .stream-post-date {
+                display: inline-block;
+                width: 49.666%;
+              }
+
+              .stream-post-date {
+                text-align: right;
+              }
+            }
+          }
+        }
+
+        #faq-tab-body {
+          .faq-info {
+            .faq-content {
+              margin-top: 15px;
+              border-radius: 4px;
+              background: $tab-content-background;
+
+              .title {
+                padding: 15px;
+              }
+
+              .content {
+                padding: 0 15px 15px 15px;
+              }
+            }
+          }
+        }
+
+        #backers-tab-body {
+          .campaign-backer {
+            background: $tab-content-background;
+
+            .header {
+              margin: 0;
+              border: 0;
+            }
+          }
+        }
+
+        #comment-tab-body {
+          .ui.comments {
+            margin: 0;
+            max-width: 100%;
+
+            .comment {
+              background: $tab-content-background;
+              padding: 15px;
+              border-radius: 4px;
+              margin-top: 15px;
+
+              .comment-title {
+                margin-top: 10px;
+              }
+            }
+          }
+
+          .button-wrap {
+            text-align: right;
+            margin-bottom: 8px;
+          }
+
+          .login-signup {
+            text-align: center;
+
+            .buttons {
+              padding-bottom: 8px;
+            }
+          }
+
+          .ui.message {
+            margin-top: 8px;
+          }
+        }
+
+        #contact-manager-tab-body {
+          .contact-form {
+            .contact-header {
+              display: inline;
+            }
+          }
+
+          .button-wrap {
+            text-align: right;
+
+            .buttons {
+              margin: 8px;
+            }
+          }
+
+          .login-signup {
+            text-align: center;
+
+            .buttons {
+              padding-bottom: 8px;
+            }
+          }
+
+          .contact-message {
+            .actions .button {
+              margin-top: 1em;
+            }
+
+            .account-dropdown {
+              float: right;
+            }
+          }
+        }
+      }
+
+      .campaign-bio-tab {
+        margin-bottom: 1em;
+
+        .campaign-profile-info,
+        .campaign-business-info {
+          text-align: center;
+
+          img {
+            margin: 0 auto;
+          }
+        }
+      }
+    }
+  }
+
+  .campaign-rewards {
+    .campaign-reward {
+      background: $campaign-reward-bg;
+      padding: 15px !important;
+      margin-bottom: 15px;
+      cursor: pointer;
+      border-radius: 4px;
+      -webkit-transition: all ease-in 0.25s;
+      transition: all ease-in 0.25s;
+      position: relative;
+
+      &:hover {
+        .campaign-reward-hover {
+          opacity: 0.90;
+        }
+      }
+
+      &.disabled {
+        .sold-out-content {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          z-index: 1;
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+          -webkit-box-pack: center;
+          -ms-flex-pack: center;
+          justify-content: center;
+          margin: 15px;
+          background: rgba(255, 255, 255, 0.9);
+          text-align: center;
+
+          .ui.header {
+            color: #8e8e8e;
+          }
+        }
+
+        .campaign-reward-content {
+          * {
+            color: initial !important;
+          }
+        }
+      }
+
+      .campaign-reward-content {
+        background: $campaign-reward-content-bg;
+        padding: 15px;
+        position: relative;
+
+        .reward-amount {
+          .amount {
+            vertical-align: text-bottom;
+            margin-right: 2px;
+          }
+
+          .currency,
+          .shipping {
+            @include fontSize(16px);
+            vertical-align: super;
+          }
+        }
+
+        .reward-title {
+          margin: 0;
+        }
+
+        .reward-description {
+          margin: 5px 0 15px;
+        }
+
+        .reward-backer-count,
+        .reward-limit {
+          display: inline-block;
+          width: 49%;
+        }
+
+        .reward-backer-count {
+          padding-right: 5px;
+        }
+
+        .reward-limit {
+          padding-left: 5px;
+          text-align: right;
+        }
+
+        .reward-meta-wrap {
+          .reward-meta {
+            padding: 3px 0;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+
+            &:first-child {
+              padding-top: 0;
+            }
+
+            &:last-child {
+              padding-bottom: 0;
+            }
+          }
+          .reward-delivery-date {
+            span:not(:last-child) {
+              margin-right: 5px;
+            }
+          }
+        }
+      }
+
+      .campaign-reward-hover {
+        -webkit-transition: all ease-in 0.25s;
+        transition: all ease-in 0.25s;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: $campaign-reward-choose-reward-hover-bg;
+        padding: 15px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        text-align: center;
+
+        .hover-label {
+          width: 100%;
+          color: #fff !important;
+        }
+      }
+    }
+  }
+
+  /*/////////////////////////////*/
+  /* Contribution Page END*/
+  /*/////////////////////////////*/
+  /*/////////////////////////////*/
+  /* Contribution Page START*/
+  /*/////////////////////////////*/
+  #contribution-header-top {
+    padding-top: 30px;
+
+    .campaign-image {
+      margin: 0 auto;
+    }
+
+    .campaign-info-span {
+      font-weight: bold;
+    }
+
+    #contribution-header-title {
+      word-wrap: break-word;
+    }
+  }
+
+  #contribution-rewards {
+    padding: 30px 0;
+
+    .contrib-actions {
+      padding-bottom: 20px;
+
+      .right-col {
+        text-align: right;
+      }
+    }
+
+    .website-tip {
+      padding-top: 40px;
+
+      .tip-option-selection-wrap {
+        .tip-option-selection {
+          .choose-tip-button {
+            border-top-left-radius: .28571429rem;
+            border-bottom-left-radius: .28571429rem;
+          }
+
+          .no-tip-button {
+            border-top-right-radius: .28571429rem;
+            border-bottom-right-radius: .28571429rem;
+          }
+        }
+      }
+
+      .tipping-option {
+        margin-top: 15px;
+
+        .field {
+
+          .ui.dropdown.selection,
+          input {
+            max-width: 100px;
+          }
+        }
+      }
+    }
+
+    .attributes-info {
+      padding-top: 40px;
+    }
+
+    #contribution-campaign-rewards {
+      @extend .campaign-rewards;
+
+      .campaign-reward {
+        cursor: default;
+
+        .campaign-reward-content {
+          padding: 0;
+
+          .reward-top {
+            padding: 15px;
+
+            &.active {
+              padding-bottom: 0;
+              cursor: default;
+            }
+          }
+
+          .reward-bottom {
+            padding: 0 15px 15px;
+          }
+        }
+      }
+
+      .no-reward-text {
+        margin: 0;
+      }
+
+      .reward-bottom {
+        .contribution-input {
+          margin-top: 20px;
+
+          .label {
+            cursor: default;
+          }
+        }
+      }
+    }
+
+    .card-info {
+      .credit-card-dropdown {
+        .text {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+        }
+
+        i.dropdown {
+          margin: 0;
+        }
+      }
+
+      .button-wrap {
+        margin-top: 15px;
+        text-align: center;
+      }
+    }
+
+    #account-info {
+      .account-info-tab {
+        padding-top: 30px;
+      }
+
+      #login-form,
+      #register-form {
+        .button-wrap {
+          text-align: right;
+        }
+      }
+
+      #guest-form {
+        margin-bottom: 24px;
+      }
+    }
+
+    #review-payment {
+      padding-top: 40px;
+
+      tr td:nth-child(2) {
+        text-align: right;
+      }
+
+      .total-contribution {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      tfoot {
+        tr {
+          &:first-child {
+            td {
+              padding-top: 15px;
+            }
+          }
+
+          &:last-child {
+            td {
+              padding-bottom: 0;
+            }
+          }
+
+          td {
+            padding-top: 0;
+            padding-bottom: 5px;
+            border: 0;
+          }
+        }
+      }
+
+      .button-wrap {
+        .submit-button.ui.button {
+          &:disabled {
+            color: #484848;
+            background-color: rgb(165, 165, 165) !important;
+          }
+        }
+      }
+    }
+
+    .address-info,
+    .phone-info {
+      padding-top: 40px;
+
+      .button-wrap {
+        text-align: center;
+        margin-top: 15px;
+      }
+    }
+
+    .contribution-message-info {
+      padding-top: 40px;
+    }
+
+    .info-buttons {
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+  }
+
+  .pledge-message-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+    .message-subcontainer {
+      width: 100%;
+      text-align: center;
+
+      .ui.success.message {
+        display: inline-block;
+
+        .header {
+          margin-right: 20px;
+        }
+      }
+    }
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+  .forgotPassword.nonSocialLogin {
+      text-align: right;
+      padding-top: 12.5px;
+      padding-right: 10px;
+  }
+  .forgotPassword.socialLogin {     
+      text-align: center;
+  }
+  .forgotPassword.socialLogin a{
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif !important;
+    font-size: 14px
+  }
+}
+
+
+/*/////////////////////////////*/
+
+
+/* Contribution Page END*/
+
+
+/*/////////////////////////////*/

@@ -1,0 +1,54 @@
+{
+  "entry_status_id": {
+    "1": "Created / Being Edited",
+    "2": "Approved / Running",
+    "3": "Not Approved",
+    "4": "Paused",
+    "5": "Finished - Processing Pre Authorization",
+    "6": "Finished - Accepted For Processing Capture",
+    "7": "Finished - Declined For Processing Capture",
+    "8": "Finished - Processing Capture",
+    "9": "Finished - Capture Processing Complete",
+    "10": "Sent For Review",
+    "11": "Cancelled",
+    "12": "Being Reviewed",
+    "13": "Not Funded"
+  },
+  "resource": {
+    "file": "File Resource",
+    "link": "Link Resource",
+    "html": "HTML Block Resource"
+  },
+  "raise_mode_id": {
+    "1": "AoN (All or Nothing Funding Mode)",
+    "2": "KiA (Keep it All Funding Mode)"
+  },
+  "profile_type_id": {
+    "1": "Individual User Profile",
+    "2": "Business Organization Profile"
+  },
+  "setting_type_id": {
+    "1": "Portal Setting",
+    "2": "User Setting",
+    "3": "Public Portal Setting"
+  },
+  "token_type_id": {
+    "1": "Registration Token",
+    "2": "Forgot Password Token",
+    "3": "Change Email Token"
+  },
+  "stream_type_id": {
+    "1": "Public Campaign Stream",
+    "2": "Private Campaign Stream - All Backers",
+    "3": "Private Campaign Stream - Specific Backers"
+  },
+  "person_type_id": {
+    "1": "Portal Administrator",
+    "2": "Portal User"
+  },
+  "person_status_id": {
+    "1": "Newly Created - Not Validated",
+    "2": "Approved - In Use",
+    "3": "Disabled"
+  }
+}

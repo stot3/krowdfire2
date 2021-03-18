@@ -1,0 +1,202 @@
+<div class="ad-tab-content" ng-cloak>
+	<div class="sticky-bar ui sticky" sticky>
+		<div class="sticky-action-bar ui page grid">
+			<div class="column">
+				<div class="ui selection dropdown menu-selector menu-dropdown">
+					<input type="hidden" name="menu-select" value="navigation">
+					<div class="text" translate> Navigation </div>
+					<i class="dropdown icon"></i>
+					<div class="menu">
+						<div class="item" ng-repeat="menu in menuSections" ng-click="menuManage(menu)">
+							{{menu|translate }}</div>
+					</div>
+				</div>
+				<div class="action-btn ui green button" ng-click="showAddPageModal()" translate ng-if="menu_selected">tab_sitemenu_add_button
+				</div>
+				<div class="action-button ui red button delete-link" ng-click="deleteMultiMenuItems()" ng-if="menu_selected">
+					{{'tab_portalsetting_RemoveFrom_Menu' | translate}} </div>
+			</div>
+		</div>
+	</div>
+	<div class="category-table ui page grid">
+		<div class="ui sixteen wide column">
+			<div class="sort-cat sort-cat-header">
+				<div class="sort-row">
+					<span class="sort-td t-menu-check-box"></span>
+					<span class="sort-td td-menu-name" translate>tab_portalsetting_name</span>
+					<span class="sort-td td-path" translate>tab_portalsetting_path</span>
+					<span class="sort-td td-delete" translate>tab_portalsetting_delete</span>
+					<span class="sort-td td-edit" translate>tab_portalsetting_edit_link</span>
+				</div>
+			</div>
+			<div ui-sortable="menuSortOptions" ng-model="menu_links" class="sort-cat sort-cat-body ui fluid styled accordion" ng-accord>
+				<div class="sort-cat-item-wrap category-sortable-item"
+					ng-repeat="link in menu_links">
+					<div class="sort-row">
+						<span class="sort-td t-menu-check-box">
+							<div class="ui checkbox">
+								<input type="checkbox" name="select-link">
+								<label></label>
+							</div>
+						</span>
+						<!-- Name -->
+						<span class="sort-td td-menu-name" ng-if="!link.name">
+							{{findPageByID(link.id).name}}
+						</span>
+						<span class="sort-td td-menu-name" ng-if="link.name && !link.edit" ng-bind="link.name"></span>
+						<span class="sort-td td-menu-name" ng-if="link.name && link.edit">
+							<div class="ui input">
+								<input type="text" ng-model="link.name">
+							</div>
+						</span>
+						<!-- Path -->
+						<span class="sort-td td-path" ng-if="!link.path">
+							{{findPageByID(link.id).path}}
+						</span>
+						<span class="sort-td td-path" ng-if="link.path && !link.edit" ng-bind="link.path"></span>
+						<span class="sort-td td-path" ng-if="link.path && link.edit">
+							<div class="ui input">
+								<input type="text" ng-model="link.path">
+							</div>
+						</span>
+						<span class="sort-td td-delete delete-column">
+							<button class="ui red icon button" ng-click="deleteLinkSave(link)" translate>
+								<i class="delete icon"></i>
+							</button>
+						</span>
+						<span class="sort-td td-edit edit-column">
+							<button class="ui blue icon button" ng-if="link.id" data-tab="pages" ng-click="clickPages()" translate>
+								<i class="icon" ng-class="{edit: !link.edit, save: link.edit}"></i>
+							</button>
+							<button class="ui blue icon button" ng-if="!link.id" ng-click="editLink(link)" translate>
+								<i class="icon" ng-class="{edit: !link.edit, save: link.edit}"></i>
+							</button>
+						</span>
+					</div>
+					<!-- Sub menu items -->
+					<div ng-if="link.hasOwnProperty('subpages')" ng-model="link['subpages']" class="content sort-sub-cat" ui-sortable="menuSortOptions">
+						<div class="sort-row category-sortable-item" ng-repeat="subpage in link['subpages']">
+						  <span class="sort-td td-menu-empty"></span>
+						  <span class="sort-td t-menu-check-box">
+							<div class="ui checkbox">
+							  <input ng-value="{{subpage.id}}" type="checkbox" name="{{subpage.name}}">
+							</div>
+						  </span>
+						  <!-- <span class="sort-td td-menu-name" ng-if="!subpage.name">
+							{{findPageByID(subpage.id).name}}
+						</span> -->
+						<span class="sort-td td-menu-name" ng-if="subpage.name && !subpage.edit" ng-bind="subpage.name"></span>
+						<span class="sort-td td-menu-name" ng-if="subpage.name && subpage.edit">
+							<div class="ui input">
+								<input type="text" ng-model="subpage.name">
+							</div>
+						</span>
+						  <!-- <span class="sort-td td-menu-name">{{subpage.name}}</span> -->
+						<span class="sort-td td-path" ng-if="subpage.path && !subpage.edit" ng-bind="subpage.path"></span>
+						<span class="sort-td td-path" ng-if="subpage.path && subpage.edit">
+							<div class="ui input">
+								<input type="text" ng-model="subpage.path">
+							</div>
+						</span>
+						  <!-- <span class="sort-td td-path">
+							{{subpage.path}}
+						 </span> -->
+						 <span class="sort-td td-delete delete-column">
+							<button class="ui red icon button" ng-click="deleteSubSave(link, subpage)" translate>
+								<i class="delete icon"></i>
+							</button>
+						</span>
+						<span class="sort-td td-edit edit-column">
+							<button class="ui blue icon button" ng-if="subpage.id" data-tab="pages" ng-click="clickPages()" translate>
+								<i class="icon" ng-class="{edit: !subpage.edit, save: subpage.edit}"></i>
+							</button>
+							<button class="ui blue icon button" ng-if="!subpage.id" ng-click="editLink(subpage)" translate>
+								<i class="icon" ng-class="{edit: !subpage.edit, save: subpage.edit}"></i>
+							</button>
+						</span>
+						</div>
+					  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- MODALS -->
+<div class="ui small modal add-page-modal">
+	<i class="close icon"></i>
+	<div class="header">
+		<h3 class="ui header" translate> tab_sitemenu_add_page </h3>
+	</div>
+	<div class="content">
+		<form class="ui form" id="add-menu-item">
+			<div class="ui buttons center aligned field">
+				<div class="ui button" ng-class="{positive: publishedFields}" ng-click="changeFieldsDisplay()" translate>
+					tab_sitemenu_add_published
+				</div>
+				<div class="or"></div>
+				<div class="ui button" ng-class="{positive: !publishedFields}" ng-click="changeFieldsDisplay()" translate>
+					tab_portalsetting_Add_Link </div>
+			</div>
+			<div class="field" ng-show="publishedFields">
+				<label translate>Page</label>
+				<div class="ui selection dropdown menu-selector" ng-model="publishedPage">
+					<input type="hidden" name="published-select">
+					<div class="default text" translate="tab_sitemenu_add_published">  </div>
+					<i class="dropdown icon"></i>
+					<div class="menu">
+						<div class="item" ng-repeat="page in pages" ng-click="setPublishedPage(page)" ng-show="page.published">
+							{{page.name}}</div>
+					</div>
+				</div>
+			</div>
+			<div class="field" ng-show="!publishedFields">
+				<label translate>tab_portalsetting_Link_Name</label>
+				<input type="text" name="link_name" ng-model="externalLink.name"
+					ng-attr-placeholder="{{'tab_portalsetting_Link_Name' | translate}}">
+			</div>
+			<div class="field" ng-show="!publishedFields">
+				<label translate>tab_portalsetting_Link_Path</label>
+				<input type="text" name="link_path" ng-model="externalLink.path"
+					ng-attr-placeholder="{{'tab_portalsetting_Link_Path' | translate}}">
+			</div>
+			<div class="field" ng-if="menu_selected == 'Navigation'">
+				<label translate>tab_sitemenu_parent_page</label>
+				<div class="ui selection dropdown category-options" ng-model="parentPage">
+					<input type="hidden" name="sharing">
+					<div class="default text" translate="tab_sitemenu_select_parent"></div>
+					<i class="dropdown icon"></i>
+					<div class="menu">
+						<div class="item" ng-repeat="page in menu_links"
+							 ng-click="setParentPage(page)">
+							{{page.hasOwnProperty('id') ?  findPageByID(page.id).name : page.name}}</div>
+					</div>
+				</div>
+			</div>
+			<div class="buttons">
+				<button class="ui positive button" ng-click="addPage($event)"
+					translate>tab_sitemenu_add_button </button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="ui small modal delete-multi-items-modal">
+	<i class="close icon"></i>
+	<div class="header">
+		<h3 class="ui header" translate>tab_sitemenu_delete_items</h3>
+	</div>
+	<div class="content">
+		<p translate>tab_sitemenu_delete_message</p>
+		<div ng-repeat="menuItem in menuItemsToDelete">{{menuItem.name}}</div>
+		<div ng-repeat="subMenuItem in subMenuItemsToDelete">{{subMenuItem.subpage.name}}</div>
+	</div><!-- CONTENT END -->
+	<div class="actions">
+		<div class="ui positive button" translate>
+			tab_categories_category_delete_message_yes
+		</div>
+		<div class="ui negative button" translate>
+			tab_categories_category_delete_message_no
+		</div>
+	</div>
+</div>

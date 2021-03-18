@@ -1,0 +1,1 @@
+app.service("OktaService",()=>{const okta={redirect:()=>{const hash=window.location.hash.substr(1,window.location.hash.length-1),params=new URLSearchParams(hash),state=params.get("state");state&&(window.location.href=`${state}#${params.toString()}`)}};return okta});

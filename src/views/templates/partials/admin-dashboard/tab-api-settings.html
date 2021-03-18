@@ -1,0 +1,137 @@
+<div class="ui page grid" ng-controller="AdminPortalSettingsCtrl" ng-cloak>
+	<div class="column">
+		<div class="admin-secondary-tabs ui secondary menu" >
+			<a class="active item" data-tab="api-settings/background-processor" ng-click="selectTab($event)" translate>tab_apisetting_background_processor</a>
+			<a class="item" data-tab="api-settings/campaign" ng-click="selectTab($event)" translate>tab_apisetting_campaign_processor</a>
+		</div>
+		<!-- Background Processor Tab -->
+		<div class="ui active tab" data-tab="api-settings/background-processor">
+			<div id="api-settings" class="portal-settings-wrap">
+				<div class="setting-content api-setting-content">
+					<div class="ui two column stackable setting-bg grid">
+						<div class="sixteen wide column">
+							<div class="ui info message">
+								<div class="content" translate>
+									tab_apisetting_background_processor_message
+								</div>
+							</div>
+						</div>
+						<div class="four wide column">
+							<h3 class="ui header main-font-color" translate>tab_apisetting_ending</h3>
+						</div><!-- COLUMN END -->
+						<div class="twelve wide column">
+							<div class="ui fluid form field">
+								<input name="process_ending" type="text" ng-model="private_settings.site_webhooks_processor.process_ending.uri">
+							</div>
+						</div><!-- COLUMN END -->
+						<div class="four wide column">
+							<h3 class="ui header main-font-color" translate>tab_apisetting_process_preauth</h3>
+						</div><!-- COLUMN END -->
+						<div class="twelve wide column">
+							<div class="ui fluid form field">
+								<input name="process_preauth" type="text" ng-model="private_settings.site_webhooks_processor.process_preauth.uri">
+							</div>
+						</div><!-- COLUMN END -->
+						<div class="four wide column">
+							<h3 class="ui header main-font-color" translate>tab_apisetting_accepted_capture</h3>
+						</div><!-- COLUMN END -->
+						<div class="twelve wide column">
+							<div class="ui fluid form field">
+								<input name="process_accepted_capture" type="text" ng-model="private_settings.site_webhooks_processor.process_accepted_capture.uri">
+							</div>
+						</div><!-- COLUMN END -->
+						<div class="four wide column">
+							<h3 class="ui header main-font-color" translate>tab_apisetting_capture</h3>
+						</div><!-- COLUMN END -->
+						<div class="twelve wide column">
+							<div class="ui fluid form field">
+								<input name="process_capture" type="text" ng-model="private_settings.site_webhooks_processor.process_capture.uri">
+							</div>
+						</div><!-- COLUMN END -->
+						<div class="four wide column">
+							<h3 class="ui header main-font-color" translate>tab_apisetting_cancelled</h3>
+						</div><!-- COLUMN END -->
+						<div class="twelve wide column">
+							<div class="ui fluid form field">
+								<input name="process_cancelled" type="text" ng-model="private_settings.site_webhooks_processor.process_cancelled.uri">
+							</div>
+						</div><!-- COLUMN END -->
+					</div><!-- GRID END -->
+					<div class="ui basic segment site-settings-btn">
+						<div class="ui column">
+							<div class="ui right floated green button save-site-settings" ng-click="confirmAPISetting('site_webhooks_processor')" translate>
+								tab_apisetting_save_button
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- tab end -->
+		<!-- Campaign API tab -->
+		<div class="ui tab" data-tab="api-settings/campaign">
+			<div id="api-settings" class="portal-settings-wrap">
+				<div class="setting-content api-setting-content">
+					<div class="ui two column stackable setting-bg grid">
+						<div class="sixteen wide column">
+							<div class="ui info message">
+								<div class="content" translate>
+									tab_apisetting_background_processor_message
+								</div>
+							</div>
+						</div>
+						<div class="four wide column">
+							<h3 class="ui header main-font-color" translate>tab_apisetting_campaign_processor_pledge</h3>
+						</div><!-- COLUMN END -->
+						<div class="twelve wide column">
+							<div class="ui fluid form field">
+								<input name="process_ending" type="text" ng-model="private_settings.site_webhooks_campaign.pledge.uri">
+							</div>
+						</div><!-- COLUMN END -->
+					</div><!-- GRID END -->
+					<div class="ui basic segment site-settings-btn">
+						<div class="ui column">
+							<div class="ui right floated green button save-site-settings" ng-click="confirmAPISetting('site_webhooks_campaign')" translate>
+								tab_apisetting_save_button
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- tab end -->
+	</div><!-- column end -->
+</div><!-- ui page grid -->
+
+
+<!-- API SETTINGS MODALS -->
+<div class="ui small modal api-setting-unsecure-modal">
+	<div class="header">
+		<h3 class="ui header" translate>tab_apisetting_insecure_modal_title</h3>
+	</div>
+	<div class="content">
+		<p translate>tab_apisetting_insecure_modal_message</p>
+	</div>
+	<div class="actions">
+		<div class="ui positive button" translate>
+			tab_apisetting_insecure_modal_confirm_button
+		</div>
+		<div class="ui black deny button" translate>
+			tab_apisetting_insecure_modal_deny_button
+		</div>
+
+	</div>
+</div><!-- MODAL END -->
+
+<!-- <div class="ui small modal api-setting-invalid-modal">
+	<div class="header">
+		<h3 class="ui header" translate> API Settings</h3>
+	</div>
+	<div class="content">
+		<p translate> The following links are not valid: </p>
+		<p ng-model="api_invalid_uri"></p>
+	</div>
+	<div class="actions">
+		<div class="ui positive button" translate>
+			Okay
+		</div>
+	</div>
+</div> --><!-- MODAL END -->

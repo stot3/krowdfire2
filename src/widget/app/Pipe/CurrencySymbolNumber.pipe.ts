@@ -1,0 +1,145 @@
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'currencySymbolNumber'
+})
+
+export class CurrencySymbolNumberPipe implements PipeTransform {
+  transform(value: any): string {
+    return this.getSymbolFromCurrency(value);
+  }
+
+  getSymbolFromCurrency(currencyCode) {
+    let symbol = this.getCurrencySymbolsJson();
+    if (symbol.hasOwnProperty(currencyCode)) {
+      return symbol[currencyCode];
+    } else {
+      return undefined;
+    }
+  }
+
+  getCurrencySymbolsJson() {
+    let currencySymbols = {
+      "ALL": "L",
+      "AFN": "؋",
+      "ARS": "$",
+      "AWG": "ƒ",
+      "AUD": "$",
+      "AZN": "₼",
+      "BSD": "$",
+      "BBD": "$",
+      "BYR": "p.",
+      "BZD": "BZ$",
+      "BMD": "$",
+      "BOB": "Bs.",
+      "BAM": "KM",
+      "BWP": "P",
+      "BGN": "лв",
+      "BRL": "R$",
+      "BND": "$",
+      "BIF": "FBu",
+      "KHR": "៛",
+      "CAD": "$",
+      "KYD": "$",
+      "CLP": "$",
+      "CNY": "¥",
+      "COP": "$",
+      "CRC": "₡",
+      "HRK": "kn",
+      "CUP": "₱",
+      "CZK": "Kč",
+      "DKK": "kr",
+      "DOP": "RD$",
+      "XCD": "$",
+      "EGP": "£",
+      "SVC": "₡",
+      "EEK": "kr",
+      "EUR": "€",
+      "FKP": "£",
+      "FJD": "$",
+      "GHC": "GH₵",
+      "GIP": "£",
+      "GTQ": "Q",
+      "GGP": "£",
+      "GYD": "$",
+      "HNL": "L",
+      "HKD": "$",
+      "HUF": "Ft",
+      "ISK": "kr",
+      "INR": "₹",
+      "IDR": "Rp",
+      "IRR": "﷼",
+      "IMP": "£",
+      "ILS": "₪",
+      "JMD": "$",
+      "JPY": "¥",
+      "JEP": "£",
+      "KES": "KSh",
+      "KZT": "₸",
+      "KPW": "₩",
+      "KRW": "₩",
+      "KGS": "лв",
+      "LAK": "₭",
+      "LVL": "Ls",
+      "LBP": "ل.ل",
+      "LRD": "$",
+      "LTL": "Lt",
+      "MKD": "ден",
+      "MYR": "RM",
+      "MUR": "₨",
+      "MXN": "$",
+      "MNT": "₮",
+      "MZN": "MT",
+      "NAD": "$",
+      "NPR": "₨",
+      "ANG": "ƒ",
+      "NZD": "$",
+      "NIO": "C$",
+      "NGN": "₦",
+      "NOK": "kr",
+      "OMR": "ر.ع.",
+      "PKR": "₨",
+      "PAB": "B/.",
+      "PYG": "₲",
+      "PEN": "S/.",
+      "PHP": "₱",
+      "PLN": "zł",
+      "QAR": "ر.ق",
+      "RON": "lei",
+      "RUB": "₽",
+      "RMB": "￥",
+      "SHP": "£",
+      "SAR": "ر.س",
+      "RSD": "Дин.",
+      "SCR": "₨",
+      "SGD": "$",
+      "SBD": "$",
+      "SOS": "Sh.So.",
+      "ZAR": "R",
+      "LKR": "Rs",
+      "SEK": "kr",
+      "CHF": "Fr.",
+      "SRD": "$",
+      "SYP": "£",
+      "TZS": "TSh",
+      "TWD": "NT$",
+      "THB": "฿",
+      "TTD": "TT$",
+      "TRY": "₺",
+      "TRL": "₺",
+      "TVD": "$",
+      "UGX": "USh",
+      "UAH": "₴",
+      "GBP": "£",
+      "USD": "$",
+      "UYU": "$U",
+      "UZS": "so'm",
+      "VEF": "Bs.",
+      "VND": "₫",
+      "YER": "﷼",
+      "ZWD": "Z$"
+    };
+    return currencySymbols;
+  }
+
+}

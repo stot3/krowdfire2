@@ -1,0 +1,23 @@
+/* Import all stylesheet files in here*/
+
+@import 'partials/colors';
+@import 'partials/stripe';
+
+@import 'partials/navigation';
+@import 'partials/footer';
+@import 'partials/frontpage';
+@import 'partials/global';
+@import 'partials/main';
+@import 'partials/responsive';
+@import 'partials/comments';
+
+/* Theme color settings in the admin dashboard*/
+@import 'theme/theme-banner';
+@import 'theme/theme-button';
+@import 'theme/theme-font';
+@import 'theme/theme-footer-background';
+@import 'theme/theme-footer-font';
+@import 'theme/theme-reward';
+@import 'theme/theme-table';
+@import 'theme/theme-top-nav-background';
+@import 'theme/theme-top-nav-font';

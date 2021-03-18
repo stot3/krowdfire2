@@ -1,0 +1,9 @@
+@mixin theme($name, $background-color){
+	.container.main-color.#{$name}{
+		#footer-wrap{
+			background-color: $background-color;
+		}
+	}
+}
+
+@include theme(theme-footer-background, $footer-bg-color);

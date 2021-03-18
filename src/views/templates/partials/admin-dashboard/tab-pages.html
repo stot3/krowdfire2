@@ -1,0 +1,274 @@
+<div ng-if="!pageShown" ng-cloak>
+	<div class="sticky-bar ui sticky" sticky>
+		<div class="sticky-action-bar ui page grid">
+			<div class="column">
+				<div class="action-btn  ui blue labeled icon top left pointing button dropdown">
+					{{'tab_pages_action' | translate }}
+					<i class="settings icon"></i>
+					<div class="menu">
+						<div class="item" ng-click="addPage($event)" translate> tab_pages_addpage </div>
+						<div class="item" ng-click="publishPage()" translate> tab_pages_publishpage</div>
+						<div class="item" ng-click="unpublishPage()" translate> tab_pages_unpublishpage </div>
+						<div class="item" ng-click="deleteMultiPage($event)" translate> tab_pages_deletepage </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="campaign-tab-content-container">
+		<div class="pages-table tab-content ui page grid">
+			<div class="column">
+				<div class="custom-pages">
+					<h2 class="ui header" translate> tab_pages_website_pages  </h2>
+					<div ng-include src="'views/templates/partials/no-data-available.html'" ng-show="pages.length==0"></div>
+					<table class="admin-table ui table" ng-show="pages.length>0">
+						<thead>
+							<tr>
+								<th class="one wide check-box">
+									<div class="ui checkbox" ng-click="checkall($event, '.page-table .t-check-box')">
+										<input type="checkbox">
+										<label></label>
+									</div>
+								</th>
+								<th class="two wide" translate>  tab_pages_id </th>
+								<th class="five wide" translate> tab_pages_name </th>
+								<th class="five wide" translate>  tab_pages_path </th>
+								<th class="one wide"></th>
+								<th  class="two wide" translate> tab_pages_status </th>
+								<!-- <th class="one wide center"> Delete </th> -->
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="page-row" ng-repeat="page in pages | orderBy: 'display_priority'" ng-if="!page.reserved">
+								<td class="t-check-box">
+									<div class="ui checkbox">
+										<input type="checkbox" name="select-user">
+										<label></label>
+									</div>
+								</td>
+								<td class="t-page-id"> {{page.id}} </td>
+								<td class="t-page">{{page.name}} </td>
+								<td class="t-page-path">
+									<a class="item menu-item"  href="{{page.path}}" target="_blank"><p>{{page.path}}</p></a>
+								</td>
+								<td class="t-page-edit">
+									<div class="ui small basic button" ng-click="editPage($event, page)" translate> tab_pages_edit </div>
+								</td>
+								<td class="t-page-status positive" ng-if="page.published">
+									{{'tab_pages_published' | translate }}
+								</td>
+								<td class="t-page-status negative" ng-if="!page.published">
+									{{'tab_pages_unpublished' | translate }}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="reserved-pages">
+					<h2 class="ui header reserved-page-title" translate> tab_pages_reservedpage   </h2>
+					<table class="admin-table ui table">
+						<thead>
+							<tr>
+								<th class="one wide"></th>
+								<th class="two wide" translate>  tab_pages_id </th>
+								<th class="five wide" translate> tab_pages_name </th>
+								<th class="five wide" translate> tab_pages_path  </th>
+								<th class="one wide"></th>
+								<th class="two wide" translate> tab_pages_status </th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="reserved-page-row" ng-repeat="page in pages" ng-if="page.reserved">
+								<td></td>
+								<td class="t-page-id"> {{page.id}} </td>
+								<td class="t-page"> {{page.name}} </td>
+								<td class="t-page-path">
+									<a class="item menu-item"  href="{{page.path}}" target="_blank">{{page.path}}</a>
+								</td>
+								<td class="t-page-edit">
+									<div class="ui small basic button" ng-click="editReservedPage(page)" translate>tab_pages_edit</div>
+								</td>
+								<td class="t-page-status positive" translate> tab_pages_published </td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- MODALS -->
+<div class="ui small modal delete-multi-page-modal">
+	<i class="close icon"></i>
+	<div class="header">
+		<h3 class="ui header" translate>tab_pages_deletepage </h3>
+	</div>
+	<div class="content">
+		<p translate>  tab_pages_deletepage_confirmation</p>
+		<div class="item" ng-repeat="pages in pagesToDelete">
+			{{pages.name}}
+		</div>
+	</div><!-- CONTENT END -->
+	<div class="actions">
+		<div class="ui positive button" ng-click="confirmMultiPageDelete()" translate>
+			tab_pages_deletepage_confirmation_yes
+		</div>
+		<div class="ui negative button" translate>
+			tab_pages_deletepage_confirmation_no
+		</div>
+	</div>
+</div><!-- MODAL END -->
+
+<!--
+////////////////////////////////////////////////
+Edit Page START
+//////////////////////////////////////////////// -->
+
+<div class="page-edit" ng-show="pageShown">
+	<div class="portal-setting-tabs">
+		<div class="edit-page-header ui two column stackable page grid">
+			<div class="column">
+
+				<div class="action-btn ui labeled icon black button" ng-click="goBack()">
+					<i class="left arrow icon"></i>
+					{{'tab_pages_goback' | translate }}
+				</div>
+			</div>
+			<div class="right-col right aligned column">
+
+				<div class="ui dropdown button widget-dropdown widgets" ng-hide="isReservedPage">
+					<div class="text" translate> tab_pages_widget </div>
+					<i class="dropdown icon"></i>
+					<div class="menu">
+						<div class="item" ng-click="setWidgetIndex(1)">
+							<div>  {{'tab_pages_contact_form' | translate }}  </div>
+						</div>
+						<div class="item" ng-click="setWidgetIndex(2); showWPOptions()">
+							<div>  {{'tab_pages_postList' | translate }} </div>
+						</div>
+						<div class="item" ng-click="setWidgetIndex(3); showTwitterOptions()">
+							<div>  {{'tab_pages_twitter' | translate }} </div>
+						</div>
+					</div>
+				</div>
+				<button class="ui button widgets" ng-hide="isReservedPage" translate>  tab_pages_insert_widget  </button>
+			</div>
+		</div><!-- edit-page-header end -->
+		<form id="page-view-form" name="edit_page_form" class="ui form">
+			<div class="edit-page-body ui one column page grid">
+				<div class="column">
+					<h2 class="ui inverted top attached header">{{pageSectionTitle | translate}}</h2>
+					<div class="campaign-bg">
+						<div class="formbg">
+
+
+							<div class="three fields">
+								<div class="field">
+									<label translate>tab_pages_editpage_name</label>
+									<input type="text" name="page_name" ng-attr-placeholder=" {{'tab_pages_editpage_pagename_placeholder' | translate }}" ng-model="page.name" required>
+									<!-- <div class="ui red pointing above ui label" ng-show="edit_page_form.page_name.$dirty && edit_page_form.page_name.$invalid">
+										<div ng-show="edit_page_form.page_name.$error.required" translate>tab_pages_editpage_name_message</div>
+									</div> -->
+								</div>
+
+								<div class="field">
+									<label translate>tab_pages_editpage_pagetitle</label>
+									<input type="text" name="page_title" ng-attr-placeholder="{{'tab_pages_editpage_pagetitle_placeholder' | translate }}" ng-model="page.title" required>
+									<!-- <div class="ui red pointing above ui label" ng-show="edit_page_form.page_title.$dirty && edit_page_form.page_title.$invalid">
+										<div ng-show="edit_page_form.page_title.$error.required">{{'tab_pages_editpage_pagetitle_placeholder' | translate }}</div>
+									</div> -->
+								</div>
+
+								<div class="field">
+									<label translate> tab_pages_editpage_path</label>
+									<input type="text" id="page-path" ng-model="page.path" name="page_path" ng-attr-placeholder="{{'tab_pages_editpage_pagepath_placeholder' | translate }} " ng-readonly="page.disable" ng-disabled='page.disable'  ng-blur="stripWords(page.path)">
+								</div>
+							</div>
+
+							<div class="btn-wrap">
+								<button class="ui icon green right labeled button" ng-click="addMeta()"><span translate="tab_pages_meta_add"></span><i class="add icon"></i>
+								</button>
+							</div>
+
+							<!-- Meta tags zone -->
+							<div class="custom-fields three fields" ng-repeat="singleMeta in page.meta">
+								<div class = "three wide field">
+									<label translate="tab_pages_meta_tag_types_label"></label>
+									<div class = "ui selection dropdown">
+										<input type="hidden" name = "metaType">
+										<div class="text" translate="tab_pages_meta_tag_types_placeholder">{{singleMeta.type}}</div>
+										<i class="dropdown icon"></i>
+										<div class="menu">
+											<div class="item" ng-repeat="metaType in metaTypes" ng-click="singleMeta.type = metaType">{{::metaType}}</div>
+										</div>
+									</div>
+								</div>
+								<div class="three wide field">
+									<label translate="tab_pages_meta_tag_name_label"></label>
+									<input ng-attr-placeholder="{{'tab_pages_meta_tag_type_input_placeholder' | translate}}" ng-model="singleMeta.name">
+								</div>
+								<div class="eight wide field">
+									<label translate="tab_pages_meta_tag_content_label"></label>
+									<input ng-attr-placeholder="{{'tab_pages_meta_tag_content_input_placeholder' | translate}}" ng-model="singleMeta.content">
+								</div>
+								<div class="remove-col two wide field">
+									<button class="remove-btn ui icon fluid red button" ng-click="removeMeta($index)" translate="tab_pages_meta_remove"></button>
+								</div>
+							</div>
+							<div class="field" ng-hide="page.disable">
+								<textarea froala="froalaOptionsPages" data-server="{{server}}" data-loc = "{{server_loc}}" class="page-content" ng-model="page.content" name="page_content_edit"></textarea>
+							</div><!-- FIELD END -->
+
+						</div>
+					</div>
+				</div>
+				<div class="right aligned column">
+					<div class="button-wrap">
+						<div class="ui green large pointing right label" ng-show="saveSuccessful" translate="success_message_save_changes_button"></div>
+						<div class="ui red large pointing right label" ng-show="saveFailed" translate="{{saveFailedMessage}}"></div>
+						<button class="ui positive apply button" ng-click="confirmPageEdit($event)" ng-if="pageEditType == 'edit'" translate> tab_pages_savepage  </button>
+						<button class="ui positive apply button" ng-click="confirmPageAdd($event)" ng-if="pageEditType == 'add'" translate> tab_pages_savepage </button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<!-- page widget modals -->
+<div class="ui modal post-list-options">
+	<i class="close icon"></i>
+	<div class="header" translate="tab_pages_wordPress">
+	</div>
+	<div class="content">
+		<div class="ui form">
+			<div class="field">
+				<label translate="tab_pages_post_perPage"></label>
+				<input type="text" ng-model="widget_options.page_limit" ng-attr-placeholder="{{'tab_pages_post_perPage' | translate }}">
+			</div>
+		</div>
+	</div>
+	<div class="actions">
+		<div class="ui button" translate> tab_pages_ok</div>
+	</div>
+</div>
+
+<div class="ui modal twitter-widget-options">
+	<i class="close icon"></i>
+	<div class="header" translate>
+		tab_pages_twitter_widget
+	</div>
+	<div class="content">
+		<div class="ui form">
+			<div class="field">
+				<label translate> tab_pages_tweet_links</label>
+				<input type="text" ng-model="widget_options.tweet_limit" ng-attr-placeholder="{{'tab_pages_tweet_links' | translate }} ">
+			</div>
+		</div>
+	</div>
+	<div class="actions">
+		<div class="ui button" translate>tab_pages_ok</div>
+	</div>
+</div>
+<!-- page widget modals end -->

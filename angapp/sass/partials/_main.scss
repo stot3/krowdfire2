@@ -1,0 +1,2913 @@
+// Make sure to comment out the section you are styling
+// Any new styling must start at the bottom
+///////////////////////////////////////////////
+// Campaign Review START
+///////////////////////////////////////////////
+#campaign-review {
+	.ui.label.notes-label {
+		background: $notes-bg;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+		margin: 0;
+	}
+	.ui.basic.segment.img-wrap {
+		padding: 1rem;
+	}
+	.notes {
+		cursor: pointer;
+		-webkit-transition: all 0.3s ease-in-out;
+		transition: all 0.3s ease-in-out;
+		&.field-empty {
+			min-height: 50px;
+			margin-top: 5px;
+			border: dashed 1px #ddd;
+		}
+		.campaign-blurb {
+			margin: 0;
+			padding: 1rem 0;
+		}
+		&:hover {
+			border: 1px dashed #ddd;
+			padding: 1rem;
+			-webkit-transition: all 0.3s ease-in-out;
+			transition: all 0.3s ease-in-out;
+			.content-text {
+				margin: 0;
+			}
+		}
+	}
+	.has-note.ui.basic.segment {
+		border: 1px dashed #ddd;
+		padding: 1rem;
+		margin-top: 0;
+		.content-text {
+			margin: 0;
+		}
+	}
+}
+///////////////////////////////////////////////
+// Campaign Review END
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+// Login/Register Page START
+///////////////////////////////////////////////
+#login-reg-wrap {
+	margin: 0;
+	padding: 80px;
+	background: #fafafa;
+	.ui.center.aligned.two.column.relaxed.grid {
+		.ui.form.segment {
+			padding: 40px;
+		}
+	}
+	.ui.login.form.segment,
+	.ui.register.form.segment {
+		background: #fff;
+		/*border: 1px solid #ccc;*/
+	}
+	.top-head {
+		margin-bottom: 40px;
+	}
+	.ui.basic.login-register-btn.segment {
+		margin-top: 40px;
+	}
+}
+.forgot-password {
+	text-align: left;
+	font-size: 0.9em;
+	padding-left: 3px;
+	color: rgba(0,0,0,0.8);
+}
+.forgot-password-modal {
+	.ui.form.segment {
+		padding: 0;
+	}
+}
+.field {
+	text-align: left;
+}
+.ui.pointing.above.label:before,
+.ui.pointing.label:before {
+	left: 15%;
+}
+///////////////////////////////////////////////
+// Login/Register Page END
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+// Discover Page START
+///////////////////////////////////////////////
+// Explore Banner
+.explore-head {
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-ms-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-position: 20% 45%;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-flex-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+	height: 350px;
+	align-items: center;
+	.banner-content {
+		width: 100%;
+		.banner-title {
+			color: #fff;
+		}
+	}
+}
+.home-banner {
+	position: relative;
+	.explore-bgimage-wrapper {
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-ms-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		background-position: center center;
+		background-repeat: no-repeat;
+		color: #fff;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-box-align: center;
+		-webkit-flex-align: center;
+		-ms-flex-align: center;
+		-webkit-align-items: center;
+		align-items: center;
+		height: 500px;
+		align-items: center;
+		position: relative;
+	}
+	.banner-content {
+		position: absolute;
+		z-index: 100;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-box-align: center;
+		-webkit-flex-align: center;
+		-ms-flex-align: center;
+		-webkit-align-items: center;
+		align-items: center;
+		background: rgba(0,0,0,0);
+		.banner-content-grid {
+			width: 100%;
+			text-align: center;
+		}
+	}
+}
+// Explore Body
+.mainbody-wrap {
+	#explore-page {
+		.ui.menu.project-sidebar-list {
+			width: 100%;
+			border-radius: 6px;
+		}
+		.right-col {
+			text-align: right;
+			.sort-dropdown {
+				padding-bottom: 1rem;
+				margin-bottom: 1rem;
+				.sort {
+					z-index: 1000;
+				}
+			}
+			.campaign-section-title {
+				margin-top: 1rem;
+				.icon {
+					margin: 0;
+					padding: 0;
+				}
+			}
+		}
+	}
+}
+///////////////////////////////////////////////
+// Discover Page END
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+// Campaign Creation START
+///////////////////////////////////////////////
+.mainbody-wrap {
+	.background-wrap {
+		.campaign-edited-message {
+			text-align: center;
+		}
+		//Start Campaign
+		.start-campaign {
+			padding: 4%;
+			background: rgba(0, 0, 0, 0.05);
+			border-radius: 6px;
+			.start-campaign-wrap {
+				max-width: 680px;
+				margin: 0 auto;
+				width: 100%;
+				.character-counter {
+					margin: 15px;
+					font-weight: bold;
+					font-size: 0.9em;
+					color: #c1c1c1;
+				}
+			}
+		}
+		//Campaign Creation Header
+		.campaign-creation-header {
+			margin-bottom: 1rem;
+			.campaignsteps {
+				&:first-child {
+					padding-top: 1rem;
+				}
+				.menu-steps {
+					margin: 0;
+					.setup {
+						padding: 0;
+						margin: 0;
+						&.active {
+							.step-link {
+								background-color: $main-color;
+								color: #fff;
+								border-color: $main-color;
+							}
+						}
+						&:hover {
+							.step-link {
+								background-color: #4E9FF5;
+								color: #fff;
+								border-color: #4E9FF5;
+							}
+						}
+						.step-link {
+							background-color: #fff;
+							color: #000;
+							display: block;
+							border: 1px solid #ccc;
+							padding: 20px;
+							text-align: center;
+							border-right: 0;
+							color: #5C6166;
+							i.asterisk {
+								vertical-align: top;
+							}
+						}
+					}
+					.setup.column:first-child {
+						.step-link {
+							border-top-left-radius: 6px;
+							border-bottom-left-radius: 6px;
+						}
+					}
+					.setup.column:last-child {
+						.step-link {
+							border-top-right-radius: 6px;
+							border-bottom-right-radius: 6px;
+							border-right: 1px solid #ccc;
+						}
+					}
+				}
+			}
+		}
+		//Campaign Form Body
+		.campaign-creation-form {
+			.campaign-edited-message {
+				margin-bottom: 2rem;
+			}
+			.backbtn,
+			.save-campaign-button {
+				margin-right: 15px;
+			}
+			.campaign-edited {
+				text-align: center;
+			}
+			textarea {
+				font-family: 'Helvetica';
+			}
+			.campaign-bg {
+				border: 0;
+				.formbg {
+					position: relative;
+					padding: 20px;
+					background: rgba(0, 0, 0, 0.05);
+					width: auto;
+					.stripe-connect-header {
+						margin: 0;
+					}
+					.action-btns {
+						text-align: center;
+						margin-top: 15px;
+					}
+					#phonetype {
+						margin-top: 1.5rem;
+					}
+					&:first-child {
+						border-top-right-radius: 0;
+						border-top-left-radius: 0;
+					}
+					&:last-child {
+						margin-bottom: 0;
+					}
+					&.campaign-links {
+						padding: 0;
+						background-color: transparent;
+						.column:first-child {
+							padding-left: 0;
+						}
+						.remove.icon {
+							cursor: pointer;
+						}
+					}
+					&.campaign-faq {
+						padding: 0;
+						background-color: transparent;
+						.remove.icon {
+							cursor: pointer;
+						}
+						.column:first-child {
+							padding-left: 0;
+						}
+					}
+					.btn-wrap {
+						.add-more-btn {
+							margin-top: 1rem;
+						}
+					}
+					.character-counter {
+						position: absolute;
+						right: 1rem;
+						font-weight: bold;
+						color: #c1c1c1;
+						font-size: 0.8em;
+					}
+					.fund-goal-desc,
+					.small-desc {
+						font-size: 0.9em;
+						color: $pane-desc-color;
+					}
+					.ui.upload.segment {
+						.ui.buttons {
+							.upld-img {
+								border-top-right-radius: 0.25em;
+								border-bottom-right-radius: 0.25em;
+							}
+						}
+					}
+					.totalfund {
+						margin-top: 2rem;
+						padding-top: 1rem;
+						font-size: 1.5em;
+						font-weight: bold;
+						border-top: 1px solid #ddd;
+						margin-bottom: 2rem;
+					}
+					#maxthreshold {
+						margin: 10px 0;
+						float: left;
+					}
+					#maxvalue {
+						margin-left: 1rem;
+						font-weight: bold;
+					}
+					.stripe-connect,
+					.toggle-preview {
+						margin-top: 1rem;
+					}
+					.media-requirements {
+						margin-top: 50px;
+						color: #555555;
+						p {
+							font-size: 0.8em;
+							margin: 0;
+						}
+					}
+					.left-col {
+						.funding-dur-desc {
+							p {
+								color: #555555;
+								.notice-sign {
+									font-weight: bold;
+								}
+							}
+						}
+					}
+					.campaign-header-image,
+					.campaign-thumbnail {
+						width: 100%;
+						max-width: 100%;
+						height: auto;
+						margin: 0 auto;
+						text-align: center;
+						&.file-drag {
+							background-color: black;
+						}
+						img {
+							max-width: 100%;
+							height: auto;
+							width: 100%;
+						}
+						> .img-note {
+							font-weight: bold;
+							font-size: 2em;
+							text-transform: uppercase;
+							color: #AAA;
+							display: block;
+							background-color: #CCC;
+						}
+					}
+					.campaignBasics {
+						#featured-img-field {
+							max-width: 668px;
+							min-height: 450px;
+							margin: 0 auto;
+							.dimmer {
+								padding: 20px;
+							}
+						}
+					}
+					.remove-reward-wrap {
+						margin-bottom: 1rem;
+					}
+					.add-reward-btn-wrap {
+						text-align: left;
+					}
+					&#top-header-image-section {
+						.url-input {
+							margin-top: 15px;
+						}
+					}
+				}
+			}
+		}
+		//Bottom buttons
+		.bottom-btn-wrap {
+			margin-top: 1rem;
+			text-align: right;
+			.nxt-step-btn {
+				margin-right: 0;
+			}
+		}
+		.agreement {
+			margin: 20px 0;
+			float: right;
+		}
+		.review-btn-wrap {
+			margin-top: 1rem;
+			clear: both;
+			.send-preview-btn {
+				text-align: right;
+				.review-btn {
+					margin-right: 0;
+				}
+			}
+		}
+		//Rewards
+		.shipping-option-wrap {
+			margin-bottom: 1.5rem;
+			.remove-btn {
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 0;
+				i.icon {
+					margin: 0;
+				}
+			}
+			.stacking-shipping-options {
+				background: none;
+				border: #cccccc dotted 1px;
+				padding: 1rem;
+				&:last-child {
+					border-bottom: #cccccc dotted 1px;
+				}
+			}
+			.subcountry-cost {
+				border: #cccccc dotted 1px;
+				padding: 1rem;
+				margin-top: 1em;
+				.subcountry-fields {
+					margin-bottom: 1em;
+					padding: 1rem;
+					background: #ffffff;
+					.city-name {
+						min-height: 40px;
+					}
+				}
+			}
+		}
+		.set-to-review-notice {
+			top: 0;
+			bottom: 0;
+			display: flex;
+			align-items: center;
+			.message {
+				margin: auto;
+				.success-text {
+					text-align: left;
+					font-size: 20px;
+				}
+			}
+		}
+	}
+}
+///////////////////////////////////////////////
+// Campaign Creation END
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+// Campaign Details START
+///////////////////////////////////////////////
+.mainbody-wrap {
+	.background-wrap {
+		// Creator
+		.campaign-top-header {
+			margin-bottom: 1rem;
+			.campaign-top-header-image {
+				margin-top: 30px;
+			}
+			.campaign-user {
+				.user-info-col {
+					.site-link-title {
+						margin-bottom: 0.5rem;
+					}
+				}
+				.user-img-col {
+					.user-img-wrap {
+						display: inline-block;
+						margin-bottom: 1rem;
+					}
+					.contact-btn {
+						display: block;
+						max-width: 150px;
+						width: 100%;
+						margin: 0 auto;
+					}
+				}
+			}
+			//Business
+			.cp-menu-tabs {
+				text-align: right;
+				margin-bottom: 1.5rem;
+			}
+			.campaign-company {
+				.company-info-col {
+					.site-link-title {
+						margin-bottom: 0.5rem;
+					}
+				}
+				.company-img-col {
+					.company-img-wrap {
+						display: inline-block;
+						margin-bottom: 1rem;
+					}
+					.contact-btn {
+						display: block;
+						max-width: 150px;
+						width: 100%;
+						margin: 0 auto;
+					}
+				}
+			}
+		}
+		//Campaign Body
+		#campaign-tabs {
+			.ui.middle.attached.segment {
+				border-top: 0;
+			}
+			.campaign-info {
+				border-radius: 0 0 5px 5px;
+				margin: 0;
+				.img-wrap {
+					img {
+						width: 100%;
+						height: auto;
+					}
+				}
+				.funding-wrap {
+					margin: 0;
+					.ui.funding-info.list {
+						.item {
+							text-align: center;
+							span.c-value {
+								font-size: 2em;
+								font-weight: bold;
+								color: $main-color;
+							}
+							em.c-meta {
+								font-size: 1em;
+								color: #ccc;
+							}
+							&.r-mode {
+								margin-bottom: 40px;
+							}
+							&.item-label {
+								margin-bottom: 20px;
+							}
+						}
+						.f-runtime {
+							padding: 30px 0;
+							.item {
+								.time-closed {
+									color: red;
+								}
+							}
+							.f-duration {
+								color: #555;
+								font-weight: bold;
+								font-size: 0.9em;
+								.closed-msg {
+									color: red;
+								}
+							}
+						}
+					}
+					.disabled {
+						.ui.label {
+							color: rgba(0, 0, 0, 0.65);
+						}
+					}
+					.ui.campaign-divider {
+						max-width: 130px;
+						margin: 10% auto;
+					}
+					// Contribute for Rewards
+					.rewards {
+						padding-left: 0;
+						margin-bottom: 0;
+						.pledge-level {
+							border-bottom: 1px solid #dddddd;
+							display: block;
+							&:last-child {
+								border-bottom: 0;
+							}
+							> li {
+								background: #f1f1f1;
+								list-style: none;
+								color: #555;
+								ul {
+									li {
+										list-style-type: disc;
+									}
+								}
+								.ui.basic.segment {
+									padding: 15px;
+									.reward-bg-wrap {
+										background: #fff;
+										padding: 20px;
+									}
+								}
+								&:hover {
+									cursor: pointer;
+									-webkit-transition: all 0.3s ease-in-out;
+									-moz-transition: all 0.3s ease-in-out;
+									-ms-transition: all 0.3s ease-in-out;
+									-o-transition: all 0.3s ease-in-out;
+									.limit,
+									.reward-desc {
+										color: #555;
+									}
+								}
+								.reward-amount {
+									font-size: 28px;
+									font-weight: bold;
+									.currency {
+										vertical-align: top;
+										font-size: 0.5em;
+										line-height: 2;
+									}
+								}
+								.bottom {
+									margin-top: 40px;
+									.limit {
+										font-size: 0.9em;
+									}
+									.reward-backers {
+										color: #555555;
+										font-size: 0.9em;
+										.backer-number {
+											font-weight: bold;
+										}
+									}
+									.reward-etd {
+										font-style: italic;
+										font-size: 0.9em;
+										color: #555555;
+										margin-top: 5px;
+									}
+								}
+							}
+						}
+					}
+				}
+				.campaign-backer {
+					background: #f1f1f1;
+					.linkdiv:hover {
+						cursor: pointer;
+					}
+				}
+				.campaign-backerbox {
+					margin-bottom: 1rem;
+				}
+				.campaign-backerbox:hover {
+					box-shadow: 0 0 0 1px rgba(39,41,43,.15),0 1px 2px 0 rgba(0,0,0,.05);
+				}
+			}
+			#sm-share-wrap {
+				// .social-media-share {
+				//  max-width: 180px;
+				//  width: 100%;
+				//  margin: 0 auto -11px;
+				//  display: inline-block;
+				// }
+				.share-campaign {
+					> .menu {
+						min-width: 245px;
+						padding: 15px;
+					}
+				}
+			}
+			.faq-info {
+				.faq-pair {
+					position: relative;
+					margin-left: 10px;
+					.question {
+						cursor: pointer;
+						color: #6ECFF5;
+						&:before {
+							content: "";
+							width: 0;
+							height: 0;
+							position: absolute;
+							left: -15px;
+							top: 6px;
+							border-top: 5px solid black;
+							border-left: 5px solid transparent;
+							border-right: 5px solid transparent;
+						}
+						&.closed:before {
+							content: "";
+							width: 0;
+							height: 0;
+							position: absolute;
+							left: -10px;
+							top: 3px;
+							border-top: 5px solid transparent;
+							border-bottom: 5px solid transparent;
+							border-left: 5px solid black;
+						}
+					}
+					.answer {
+						margin-left: 20px;
+					}
+				}
+				#faq-campaign {
+					padding: 2rem;
+					border-top: 1px solid #ddd;
+				}
+				#faq-title {
+					margin: 0;
+					padding: 1rem 2rem;
+				}
+				.campaign-faq-list {
+					padding-bottom: 1rem;
+					//background: #f1f1f1;
+				}
+				.campaign-faq-list1 {
+					background: #f1f1f1;
+				}
+				.campaign-faq-list:nth-child(odd) {
+					//  background: #b8d1f3;
+				}
+				.campaign-faq-list:nth-child(even) {
+					//background: #dae5f4;
+				}
+				.campaign-faq-list1:hover {
+					// border:1px solid black;
+					box-shadow: 0 0 0 1px rgba(39,41,43,.15),0 1px 2px 0 rgba(0,0,0,.05);
+				}
+			}
+			.campaign-links-wrap {
+				margin: 0;
+				text-align: center;
+				.ui.image {
+					width: 100%;
+				}
+				.campaign-links {
+					.item {
+						text-decoration: none;
+						color: #888;
+						font-size: 13px;
+						&:hover {
+							color: #333333;
+						}
+					}
+				}
+			}
+			.campaign-story {
+				margin: 0 auto;
+				img {
+					max-width: 100%;
+				}
+				p.caption {
+					font-style: italic;
+					margin-bottom: 20px;
+				}
+				.ui.center.aligned.basic.campaign-social-media.segment {
+					p {
+						color: #ccc;
+						margin: 0 20px 20px;
+					}
+				}
+			}
+			//Campaign Streams
+			#stream-list {
+				.stream-full {
+					.stream-full-content {
+						background: #f1f1f1;
+						box-shadow: none;
+						img {
+							max-width: 100%;
+						}
+						.stream-header {
+							margin-bottom: 15px;
+							float: left;
+							width: 100%;
+							.header {
+								margin: 0;
+							}
+						}
+					}
+				}
+				.stream-partial {
+					.stream-item {
+						background: #f1f1f1;
+						box-shadow: none;
+						cursor: pointer;
+						&:hover {
+							box-shadow: 0 0 0 1px rgba(39,41,43,.15),0 1px 2px 0 rgba(0,0,0,.05);
+						}
+						.stream-header {
+							margin-bottom: 15px;
+							float: left;
+							width: 100%;
+							.header {
+								margin: 0;
+							}
+						}
+						.stream-content {
+							.stream-title {
+								margin-bottom: 5px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+///////////////////////////////////////////////
+// Campaign Details END
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+// Retry Credit Card START
+///////////////////////////////////////////////
+.pledge-retry-wrap {
+	border: $main-border;
+	padding: 1rem;
+	background: #fff;
+	.left-col {
+		.camapign-info-header {
+			.text-col {
+				.campaign-title {
+					margin-top: 0;
+				}
+			}
+		}
+		.reward-information {
+			.reward-header {
+				.left-col {
+					h3.reward-title {
+						margin: 0;
+					}
+				}
+				.right-col {
+					.reward-value {
+						font-size: 24px;
+						font-weight: bold;
+						color: $main-color;
+					}
+				}
+			}
+			.your-contrib {
+				margin: 30px 0;
+				.contrib-amnt {
+					font-size: 24px;
+					font-weight: bold;
+				}
+			}
+		}
+	}
+	.right-col {
+		.ui.divider {
+			margin: 41px 0;
+		}
+	}
+	.retry-btn {
+		padding: 1rem;
+	}
+}
+.retry-card-content {
+	margin-left: 27.5%;
+	padding: 20px;
+	border-radius: 6px;
+	border: 1px solid rgba(0,0,0,0.1);
+}
+.credit-card-wrap {
+	#credit-card-info {
+		.ui.two.column.grid {
+			.eight.wide.column {
+				margin: 0;
+			}
+			.eight.wide.column.date-wrap {
+				.field.month {
+					padding-right: 0;
+					input {
+						border-top-right-radius: 0;
+						border-bottom-right-radius: 0;
+					}
+				}
+				.field.year {
+					padding-left: 0;
+					input {
+						border-top-left-radius: 0;
+						border-bottom-left-radius: 0;
+						border-left: 0;
+					}
+				}
+			}
+		}
+	}
+}
+///////////////////////////////////////////////
+// Retry Credit Card END
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+// Campaign Contribution START
+///////////////////////////////////////////////
+.mainbody-wrap {
+	.background-wrap {
+		.pledge-campaign-top-header {
+			margin-bottom: 2rem;
+			.campaign-img {
+				.ui.image {
+					width: 100%;
+					height: auto;
+				}
+			}
+		}
+		.pledge-campaign-info {
+			.ic-contribution-summary,
+			.pc-contribution-summary {
+				.section-header {
+					&:after {
+						content: '';
+						display: block;
+						clear: both;
+					}
+					.section-label-header {
+						float: left;
+					}
+					.contribution-selection {
+						float: right;
+						font-size: 16px;
+					}
+				}
+			}
+			.select-login-option {
+				margin-bottom: 15px;
+			}
+			.agreement {
+				float: right;
+			}
+			.pledge-btns {
+				clear: right;
+				margin: 0;
+				padding: 1em 0;
+			}
+			.ui.payment-total {
+				.ui.table.payments {
+					max-width: 400px;
+					float: right;
+					tbody {
+						tr {
+							&:hover {
+								background: none;
+							}
+							.payment-label {
+								text-align: left;
+								font-weight: bold;
+							}
+							.payment-amnt {
+								text-align: right;
+							}
+							&:last-child {
+								font-size: 1.5em;
+								font-weight: bold;
+								color: $main-color;
+							}
+						}
+					}
+				}
+			}
+			.shipping-info {
+				margin-bottom: 0;
+				#alt-select-subcountry,
+				#select-subcountry {
+					margin-bottom: 1rem;
+				}
+			}
+			.campaign-bg {
+				.right-col {
+					.ui.contrib-divider {
+						width: 100%;
+						margin: 40px auto;
+						max-width: 300px;
+					}
+					.expdate-field-wrap {
+						max-width: 300px;
+						.exp-date-field {
+							margin-bottom: 0;
+						}
+					}
+					.cvc-field-wrap {
+						input {
+							width: 139.5px;
+							display: block;
+						}
+					}
+				}
+				.ui.grid.reward-summary {
+					.ui.two.column.stackable.grid {
+						background: none;
+						padding: 0;
+						margin: 0;
+					}
+					.right-col {
+						.change-reward {
+							border-bottom-left-radius: 0;
+							box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+							border-bottom-right-radius: 0;
+						}
+						.reward-wrap {
+							margin: 0;
+							border-top-left-radius: 0;
+							word-wrap: break-word;
+							.reward-header {
+								.reward-title {
+									h3.title {
+										margin: 0;
+									}
+								}
+								.reward-amount {
+									.amount {
+										font-size: 26px;
+										font-weight: bold;
+										color: $main-color;
+									}
+								}
+							}
+							.reward-description {
+								margin-bottom: 20px;
+							}
+							.reward-etd {
+								font-size: 0.9em;
+								color: #555555;
+							}
+						}
+						.pledge-amount {
+							.extra-pledge,
+							.your-pledge {
+								.title {
+									margin-bottom: 0.6em;
+								}
+							}
+							.your-pledge {
+								.contrib-field {
+									display: flex;
+								}
+							}
+							.extra-pledge {
+								.amount {
+									padding: 0.5em;
+									font-size: 1.35em;
+									background: #eee;
+									border-radius: 4px;
+									border: 1px solid #ddd;
+								}
+							}
+						}
+					}
+				}
+			}
+			.choose-card-form {
+				#carddropdown {
+					.text {
+						img {
+							margin: -9px 10px -6px -8px;
+							max-width: 33px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+.pledge-thank-you {
+	#sm-share-wrap {
+		.share-label,
+		.social-media-share {
+			float: left;
+		}
+		.share-label {
+			margin-right: 15px;
+		}
+	}
+}
+///////////////////////////////////////////////
+// Campaign Contribution END
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+// Administrator Dashboard START
+///////////////////////////////////////////////
+.mainbody-wrap {
+	padding: 2rem 0 !important;
+	margin: 0 !important;
+	&.admin-dashboard {
+		#admin-setting-tabs {
+			//Admin Dash Global
+			table.admin-table {
+				border: 1;
+				thead {
+					tr {
+						th {
+							&:first-child,
+							&:last-child {
+								border-radius: 1;
+							}
+						}
+					}
+				}
+				tbody {
+					tr {
+						td {
+							border: 1;
+							&.t-user {
+								img {
+									max-width: 55px;
+								}
+							}
+							&.t-page-edit,
+							&:last-child {
+								text-align: right;
+							}
+							&.t-page-status,
+							&.t-status {
+								text-align: center;
+							}
+						}
+					}
+				}
+			}
+			.add-btn-link {
+				margin-top: 1rem;
+			}
+			.theme-setting-content {
+				.banner-media-upload {
+					.media-content {
+						.media-tab-menu {
+							margin-bottom: 30px;
+							.item {
+								&.active {
+									background: rgb(243, 243, 243);
+									color: #5bbd72;
+									border-color: #5bbd72;
+								}
+							}
+						}
+						.note-text {
+							font-style: italic;
+						}
+						.bg-thumbnail {
+							max-width: 400px;
+							margin: 0 auto;
+							position: relative;
+							.delete-button {
+								position: absolute;
+								right: 0;
+								top: 0;
+								margin: 10px;
+							}
+						}
+						.media-image,
+						.mobile-banner-image-section {
+							.imagePlace {
+								max-width: 400px !important;
+								min-height: 50px !important;
+								margin: 0 auto;
+								.dimmer {
+									padding: 20px;
+								}
+							}
+							.bg-thumbnail {
+								img {
+									max-width: 100%;
+									height: auto;
+								}
+							}
+						}
+						.media-video {
+							.mobile-banner-image-section {
+								text-align: center;
+								p {
+									text-align: left;
+								}
+							}
+							.banner-media-divider {
+								margin: 40px 0;
+							}
+							.video-url-section {
+								.note-text {
+									text-align: center;
+									margin-top: 5px;
+								}
+							}
+							.video-wrapper {
+								position: relative;
+								margin-bottom: 12px;
+								.yv-video {
+									position: relative;
+									padding-bottom: 56.25%;
+									overflow: hidden;
+									iframe {
+										position: absolute;
+										top: 0;
+										left: 0;
+										width: 100%;
+										height: 100%;
+									}
+								}
+								.custom-video {
+									#custom-video-player {
+										width: 100%;
+									}
+								}
+								.delete-button {
+									position: absolute;
+									right: 0;
+									top: 0;
+									margin: 10px;
+								}
+							}
+							.action-toggle {
+								text-align: center;
+								margin-top: 15px;
+							}
+						}
+						.action-btns {
+							text-align: center;
+						}
+					}
+				}
+				.explore-page-text-setting,
+				.home-page-text-setting {
+					.ui.buttons {
+						margin-left: auto;
+						margin-right: auto;
+						display: table;
+					}
+					.display-button-checkbox {
+						margin-top: 30px;
+						input {
+							float: left;
+							display: block;
+							margin-top: 3px;
+							margin-right: 6px;
+						}
+					}
+				}
+				.site-menu-setting {
+					.menu-sortable {
+						overflow: auto;
+					}
+					.campaign-tab-table-header {
+						.ui.grid {
+							margin: 0;
+						}
+					}
+					.menu-management {
+						.website-menu-table {
+							margin: 15px 0;
+						}
+						.action-btns {
+							.action-button {
+								margin: 0 !important;
+							}
+						}
+						.new-link-fields {
+							margin-top: 10em;
+						}
+					}
+				}
+			}
+			.site-setting-content {
+				.portal-settings-wrap {
+					border-top: none;
+					padding-top: 1rem;
+					.setting-content {
+						.text-setting-column {
+							.ui.accordion {
+								width: 100%;
+							}
+							h3.ui.header {
+								text-align: center;
+							}
+							h4.ui.header {
+								float: left;
+							}
+							.display {
+								float: right;
+								margin-top: 20px;
+								margin-right: 5px;
+								input {
+									margin-top: 6px;
+								}
+							}
+						}
+						.load-icon-section {
+							.select-semantic-icon {
+								.load-icon-selector {
+									margin-bottom: 40px;
+									.default {
+										color: #000000;
+										text-transform: capitalize;
+									}
+									.menu {
+										.item {
+											text-transform: capitalize;
+										}
+									}
+								}
+							}
+						}
+						> .setting-bg {
+							background-color: rgba(0,0,0,0.05);
+							margin-bottom: 10px !important;
+							margin-left: 0;
+							margin-right: 0 !important;
+							padding: 20px;
+							border-radius: 6px;
+							&:last-child {
+								margin-bottom: 0;
+							}
+							&.background-setting {
+								.upload-bg {
+									.bg-thumbnail {
+										img {
+											width: 100%;
+											height: auto;
+										}
+									}
+									.bg-buttons {
+										padding: 0;
+										margin: 0;
+										.ui.button {
+											margin: 2.5% 0;
+										}
+									}
+								}
+							}
+							.action-btns {
+								.button {
+									margin: 0.5rem 0;
+								}
+							}
+							.raise-mode-column {
+								.radio-btn-row {
+									margin: 0.2rem 0 1rem 2rem;
+									.radio-btn {
+										margin-right: 10px;
+									}
+								}
+							}
+						}
+					}
+				}
+				#campaign-currency-field.error {
+					input {
+						border: 0;
+						box-shadow: none;
+					}
+				}
+				.interval-field {
+					.field-label {
+						margin: 8px;
+					}
+				}
+			}
+			.ui.compact.table {
+				width: 100%;
+				th {
+					&.action-column {
+						min-width: 100px;
+					}
+					&.status-column {
+						min-width: 165px;
+					}
+				}
+				tbody {
+					.t-delete,
+					.t-edit {
+						text-align: center;
+						.delete.icon,
+						.edit.icon {
+							cursor: pointer;
+						}
+					}
+					.feat-icon {
+						.star.icon {
+							cursor: pointer;
+						}
+					}
+					.toggle-feature-icon {
+						cursor: pointer;
+					}
+				}
+			}
+			.menu-tab-content {
+				.admin-secondary-tabs {
+					margin: 0;
+					.item {
+						padding: 15px 20px;
+						margin-bottom: 1rem;
+						&.active,
+						&:hover {
+							background: rgba(0,0,0,0.5);
+							color: #fff;
+						}
+					}
+				}
+				#chartdiv,
+				#columndiv {
+					a {
+						display: none !important;
+					}
+				}
+				.refresh-report {
+					.refresh-report-btn {
+						float: left;
+						margin-right: 10px;
+					}
+					.update-date {
+						margin-top: 10px;
+					}
+				}
+				.campaign-report {
+					margin-bottom: 3rem;
+					table {
+						td:nth-child(2n) {
+							text-align: center;
+						}
+					}
+					.total-compaign {
+						padding: 0 8px 5px;
+						font-weight: bold;
+						border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+						span {
+							float: right;
+						}
+					}
+					#donut-chart {
+						text-align: center;
+						canvas {
+							width: 100% !important;
+							height: auto !important;
+							max-width: 350px;
+						}
+					}
+				}
+				.funding-report {
+					margin-top: 3rem;
+				}
+				.funding-report-table {
+					td:nth-child(2),
+					th:nth-child(2) {
+						text-align: right;
+					}
+				}
+				.chart2-container {
+					text-align: center;
+					canvas {
+						width: 100% !important;
+						height: auto !important;
+						max-width: 500px;
+					}
+				}
+			}
+			//Users
+			.user-table {
+				.admin-table {
+					thead {
+						th:nth-child(6):hover {
+							cursor: pointer;
+						}
+					}
+				}
+			}
+			//Users - User Edit
+			.user-edit {
+				.section-title {
+					margin-top: 1rem;
+					.admin-toggle {
+						float: right;
+						margin: 6px 0;
+						input[type="checkbox"]:checked~label {
+							color: #5bbd72;
+						}
+						label {
+							color: #fff;
+						}
+					}
+				}
+				.user-edit-body {
+					.edit-user-wrap {
+						max-width: 840px;
+						width: 100%;
+						margin: 0 auto;
+						.profile-links-wrap {
+							.profile-links-header {
+								margin: 1rem 0;
+							}
+							.profile-links-body {
+								.field {
+									.remove-btn,
+									input {
+										margin-bottom: 0.5rem;
+									}
+								}
+							}
+							.profile-links-footer {
+								margin-top: 1rem;
+							}
+						}
+					}
+				}
+			}
+			.bottom-btn-wrap {
+				margin-top: 1rem;
+				.ui.button {
+					&:last-child {
+						margin-right: 0;
+					}
+				}
+			}
+			//Categories & Campaigns
+			.category-table {
+				.tab-table-header {
+					.delete-column,
+					.edit-column,
+					.order-column {
+						text-align: center;
+					}
+				}
+			}
+			.campaign-table {
+				.campaign-buffer-section {
+					border: 1px dashed #ccc;
+					padding-top: 1em;
+				}
+				.campaign-buffer-desc {
+					display: table;
+					width: 100%;
+					.draggable-placement {
+						display: table-cell;
+						vertical-align: middle;
+						text-align: center;
+						height: 70px;
+						background-color: #ddd;
+						font-weight: bold;
+					}
+				}
+				.campaign-buffer-block {
+					width: 100%;
+					padding: 1em 0 0;
+				}
+			}
+			//campaigns
+			.manual-trans {
+				margin-top: 3rem;
+				.manual-trans-form {
+					max-width: 800px;
+					margin: 0 auto;
+					border: 1px solid #ddd;
+					padding: 40px;
+				}
+			}
+			.manual_transaction {
+				.columnBelowBack {
+					padding-top: 2em;
+				}
+				.content {
+					padding-top: 1em;
+				}
+				.manual-trans-form {
+					.field {
+						.clearBtn {
+							width: 100%;
+							text-align: center;
+						}
+						.notifyEmail {
+							float: right;
+						}
+					}
+				}
+			}
+			.transactions-table {
+				td {
+					&.status-col {
+						width: 10%;
+					}
+				}
+			}
+			//Pages & Edit Pages
+			.add-page-modal,
+			.edit-page-modal {
+				width: 80% !important;
+				margin-left: -40% !important;
+			}
+			#custom-content {
+				img {
+					max-width: 100%;
+				}
+			}
+			.pages-table {
+				.custom-pages {
+					margin-bottom: 2rem;
+				}
+				.page-item {
+					.draggable-row {
+						border: 1px solid #ccc;
+						border-radius: 6px;
+						margin: 0 !important;
+					}
+					.reorder.icon {
+						font-size: 1.5em;
+						margin-top: 0.7em;
+					}
+					.delete-column,
+					.edit-column,
+					.order-column {
+						text-align: center;
+					}
+				}
+			}
+			.edit-page-body {
+				.btn-wrap {
+					text-align: center;
+					margin-bottom: 15px;
+				}
+				.custom-fields {
+					background: rgba(0,0,0,0.08);
+					padding: 20px;
+					margin-bottom: 20px;
+					.field {
+						margin-bottom: 0;
+					}
+					.remove-col {
+						text-align: center;
+						.remove-btn {
+							margin-top: 22px;
+						}
+					}
+				}
+			}
+			//Stripe Settings
+			#stripe-settings {
+				.stripe-fee {
+					input {
+						width: 60px !important;
+					}
+					.percentage-symbol {
+						margin-left: 0.5rem;
+						vertical-align: middle;
+						line-height: 2.7;
+					}
+				}
+				.direct-transaction {
+					div.dropdown {
+						width: 580px !important;
+					}
+				}
+			}
+			//Email Notifications
+			.email-accordion {
+				.left-col {
+					div[id^="site_email_notification"] {
+						.ta-toolbar {
+							padding: 0;
+							.btn-group {
+								margin: 0 0 0.5rem;
+								button {
+									border-radius: 0;
+								}
+							}
+						}
+					}
+				}
+				.right-col {
+					margin-top: 33px;
+					.token-dropdown {
+						margin-bottom: 1rem;
+					}
+				}
+				.email-subject {
+					.two.wide.column {
+						margin: 0;
+						position: relative;
+						top: -4px;
+					}
+				}
+				.plain-text {
+					color: rgba(0, 0, 0, 0.85);
+					border-color: rgba(0, 0, 0, 0.2);
+					border-bottom-left-radius: 0;
+					border-top-left-radius: 0;
+					-webkit-appearance: none;
+					-webkit-box-shadow: 0.3em 0 0 0 rgba(0, 0, 0, 0.2) inset;
+					box-shadow: 0.3em 0 0 0 rgba(0, 0, 0, 0.2) inset;
+					line-height: 1.33;
+					min-height: 8em;
+					height: 12em;
+					max-height: 24em;
+					min-height: 220px;
+					resize: vertical;
+					margin: 0;
+					padding: 0.65em 1em;
+					font-size: 1em;
+					background-color: #FFFFFF;
+					border: 1px solid rgba(0, 0, 0, 0.15);
+					outline: none;
+					color: rgba(0, 0, 0, 0.7);
+					border-radius: 0.3125em;
+					-webkit-transition: background-color 0.3s ease-out, -webkit-box-shadow 0.2s ease, border-color 0.2s ease;
+					transition: background-color 0.3s ease-out, box-shadow 0.2s ease, border-color 0.2s ease;
+					-webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.3) inset;
+					box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.3) inset;
+					-webkit-appearance: none;
+					-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;
+					-ms-box-sizing: border-box;
+					box-sizing: border-box;
+					width: 100%;
+				}
+				.ta-bind {
+					border: 1px solid #ccc;
+					border-radius: 4px;
+					padding: 10px;
+				}
+				.notification-title {
+					cursor: default;
+					padding: 0;
+					.ui.grid {
+						margin: 0;
+						.notification-title-left {
+							cursor: pointer;
+						}
+					}
+					.enable-notification {
+						/* float: right; */
+					}
+				}
+			}
+			.partialLoading {
+				height: 500px;
+				padding: 10px;
+				margin: auto;
+				border: none;
+				margin-top: 30px;
+			}
+		}
+		//portal-settings end
+		.websiteLogo {
+			.imagePlace {
+				max-width: 160px;
+				max-height: 40px;
+				margin: 0 auto;
+				img {
+					max-width: 160px;
+				}
+				.dimmer {
+					padding: 10px;
+				}
+			}
+			.ui.progress.upload-bar {
+				margin: 0;
+			}
+		}
+		.websiteFavicon {
+			.imagePlace {
+				max-width: 120px !important;
+				min-height: 36px !important;
+				margin: 0 auto;
+				.dimmer {
+					padding: 10px;
+				}
+			}
+			.ui.progress.upload-bar {
+				margin: 0;
+			}
+		}
+	}
+}
+///////////////////////////////////////////////
+// Administrator Dashboard END
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+// Profile Settings START
+///////////////////////////////////////////////
+#profile-setting-tabs {
+	.profile-tab-content {
+		.upload-file-button {
+			display: none;
+		}
+		.formbg {
+			.add-btn-link,
+			.file-info {
+				margin-top: 1rem;
+			}
+		}
+	}
+	.ps-save-wrap {
+		text-align: right;
+		margin-top: 1rem;
+	}
+}
+.protocol_text {
+	width: 50px;
+}
+.profileCompany .imagePlace,
+.profilePersonal .imagePlace,
+.profileSetup .imagePlace {
+	max-width: 200px !important;
+	height: 200px !important;
+	margin: 0 auto;
+	.dimmer {
+		padding: 20px;
+	}
+	img {
+		width: 200px;
+		height: 200px;
+	}
+}
+///////////////////////////////////////////////
+// Profile Settings END
+///////////////////////////////////////////////
+////////////////////////////////////////////////
+//  My Campaigns START
+////////////////////////////////////////////////
+.campaign-management {
+	.cm-inner {
+		.cm-grid {
+			.left-col {
+				img.ui.image {
+					width: 100%;
+					height: auto;
+				}
+			}
+			.right-col {
+				.cm-name-status {
+					.cm-title-header {
+						a.cm-name {
+							color: #333333;
+							&:hover {
+								color: #555555;
+							}
+						}
+					}
+					.right-col {
+						text-align: right;
+					}
+				}
+				.cm-stats {
+					.column {
+						.stat-text {
+							color: #888888;
+							font-weight: bold;
+						}
+					}
+				}
+				.cm-progress {
+					border-radius: 50px;
+					padding: 0;
+					border: 0;
+					.bar {
+						border-radius: 50px;
+						box-shadow: none;
+					}
+				}
+			}
+		}
+	}
+}
+/// Transactions
+.transactions-wrap {
+	#campaign-transaction-chart {
+		max-width: 400px;
+		width: 100% !important;
+		height: auto !important;
+	}
+}
+//Stream Management
+#campaign-manager-stream-management {
+	.campaign-header {
+		img {
+			margin: 0 auto;
+		}
+	}
+}
+.stream-activities {
+	.sa-item {
+		display: inline;
+	}
+	.sa-date {
+		border-right: 1px solid #ddd;
+		margin-right: 1em;
+		padding-right: 1em;
+	}
+	.sa-wrap {
+		img {
+			max-width: 100%;
+		}
+		.sa-row {
+			&:last-child {
+				.sa-divider {
+					display: none;
+				}
+			}
+		}
+	}
+}
+.stream-form {
+	.stream-top-header {
+		margin-bottom: 0;
+		label {
+			font-weight: bold;
+		}
+	}
+	.specific-backer-field {
+		margin-bottom: 15px;
+	}
+	.bottom-btn-wrap {
+		margin-top: 15px;
+	}
+}
+////////////////////////////////////////////////
+//  My Campaigns END
+////////////////////////////////////////////////
+///////////////////////////////////////////////
+// My Contribution Settings START
+///////////////////////////////////////////////
+//Campaign Contributions
+.campaign-contrib-wrap {
+	margin-top: 1rem;
+	.campaign-contrib {
+		margin-bottom: 3rem;
+		&:last-child {
+			margin-bottom: 0;
+		}
+		.campaign-contrib-header {
+			border-bottom: 0;
+			.campaign-name {
+				margin-top: 1rem;
+				display: block;
+			}
+			.campaign-end-wrap {
+				margin-top: 1rem;
+				.campaign-end {
+					margin: 0;
+				}
+			}
+		}
+		table.campaign-contrib-history {
+			border: 0;
+			thead {
+				tr {
+					&:first-child,
+					&:last-child {
+						th:first-child,
+						th:last-child {
+							border-radius: 0;
+						}
+					}
+					.th-contrib-date {
+						text-align: center;
+					}
+					.th-contrib-amount {
+						text-align: center;
+					}
+				}
+			}
+			tbody {
+				tr {
+					td {
+						&:first-child {
+							border-left: 1px solid #d4d4d5;
+						}
+						&:last-child {
+							border-right: 1px solid #d4d4d5;
+						}
+					}
+					&:last-child {
+						td {
+							border-bottom: 1px solid #d4d4d5;
+						}
+					}
+				}
+				.td-contrib-date {
+					text-align: center;
+				}
+				.td-contrib-amount {
+					font-size: 1.5rem;
+					text-align: center;
+				}
+				.td-campaign-view {
+					text-align: center;
+				}
+			}
+		}
+	}
+}
+//Reward Details Modal
+#pledge-details {
+	.ui.grid.campaign-reward {
+		.left-column {
+			.campaign-img {
+				margin-bottom: 25px;
+				img {
+					width: 100% !important;
+					height: auto;
+				}
+			}
+			.pledged {
+				margin-bottom: 30px;
+				float: left;
+				width: 100%;
+				.amount-pledged {
+					font-size: 2em;
+					font-weight: bold;
+					float: left;
+				}
+				.ui.label.collected-label {
+					float: right;
+				}
+			}
+			.date-pledged,
+			.est-delivery-time {
+				margin-bottom: 10px;
+				.label {
+					font-weight: bold;
+					font-size: 0.9em;
+				}
+				.name {
+					font-size: 1.1em;
+					line-height: 1.3;
+				}
+			}
+		}
+		.right-column {
+			.campaign-name {
+				font-size: 1.5em;
+			}
+			.campaign-creator {
+				margin-top: 10px;
+				margin-bottom: 30px;
+				padding-bottom: 20px;
+				border-bottom: 1px solid #ddd;
+			}
+			.reward-description {
+				.label {
+					font-size: 1.1em;
+				}
+			}
+		}
+	}
+}
+///////////////////////////////////////////////
+// My Contribution Settings END
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+// My Messages START
+///////////////////////////////////////////////
+#msg-center {
+	#message-tabs {
+		.msgs-menu {
+			> .menu {
+				> .item {
+					padding: 1rem 2rem;
+					&.active,
+					&:hover {
+						background: rgba(51, 51, 51, 0.7);
+						color: #fff;
+					}
+					.menu-item-wrap {
+						.icon {
+							display: block;
+							margin: 0 auto 0.8rem;
+						}
+					}
+				}
+			}
+		}
+		.msg-tab {
+			.msg-header {
+				border-bottom: 1px solid #dddddd;
+				padding: 2rem;
+				.msg-header-title {
+					margin: 0;
+					text-transform: uppercase;
+				}
+			}
+			.left-col {
+				overflow: auto;
+				overflow-y: scroll;
+				height: 810px;
+				padding: 0;
+				.msgs-sum {
+					box-shadow: none;
+					.item {
+						padding: 2em 1em;
+						background: rgba(0,0,0,0.03);
+						border-radius: 0;
+						&.active,
+						&:hover {
+							box-shadow: none;
+							background: rgba(51, 51, 51, 0.7);
+							color: #fff;
+							h3 {
+								color: #fff;
+							}
+						}
+						.content {
+							.user-name {
+								float: left;
+							}
+							.date {
+								float: right;
+							}
+							.msg-summary {
+								clear: both;
+							}
+						}
+					}
+				}
+			}
+			.right-col {
+				padding: 0;
+				.full-msg {
+					min-height: 810px;
+					border-left: 1px solid #ddd;
+					.full-msg-row1 {
+						padding: 1rem 0;
+						margin: 0;
+						border-bottom: 1px solid #dddddd;
+						.action-col {
+							.action-link:first-child {
+								margin-right: 0.5em;
+							}
+						}
+					}
+					.full-msg-row2 {
+						margin: 0;
+						border-bottom: 1px solid #dddddd;
+					}
+					.user-col {
+						img.user-img {
+							max-width: 50px;
+							display: inline-block;
+							margin-right: 0.5em;
+						}
+						.user-name {
+							display: inline-block;
+							margin-top: 0;
+						}
+					}
+					.date-col {
+						.date {
+							margin: 1rem 0;
+						}
+					}
+					.msg-body-wrap {
+						min-height: 616px;
+						overflow: auto;
+						overflow-y: scroll;
+						margin-top: 0;
+						.msg-body {
+							word-wrap: break-word;
+							padding: 0 1rem;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+///////////////////////////////////////////////
+// My Messages END
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+// My Profile - Profile Settings START
+///////////////////////////////////////////////
+.user-profile-page-wrap {
+	.user-profile-info {
+		background: #f1f1f1;
+		padding: 3rem 0;
+		margin-bottom: 4rem;
+	}
+	.user-profile-campaigns {
+		#user-profile-tabs {
+			.menu-tabs {
+				margin-bottom: 1.5rem;
+			}
+			.campaigns-backed-tab,
+			.campaigns-created-tab {
+				.campaign-card {
+					.campaign-desc {
+						min-height: 183px;
+						border-top: 1px solid #dddddd;
+					}
+				}
+			}
+		}
+	}
+}
+///////////////////////////////////////////////
+// My Profile - Profile Settings END
+///////////////////////////////////////////////
+////////////////////////////////////////////////
+//  My Profile - Payment Settings START
+////////////////////////////////////////////////
+#payment-tabs {
+	.ps-top-actions.ui.basic.segment {
+		&:first-child {
+			padding-top: 1em;
+		}
+		.button {
+			margin-right: 10px;
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+	//PAYMENT SETTING STRIPE TAB
+	.stripe-connect-table {
+		tbody {
+			td.t-check-box {
+				.ui.checkbox {
+					margin-left: 6px;
+				}
+			}
+			td.t-address-status {
+				.ui.label {
+					width: 100px;
+				}
+			}
+		}
+	}
+	.stripe-connect-sidebar {
+		div.ui.button {
+			width: 193px;
+			margin-top: 5px;
+		}
+	}
+	//PAYMENT SETTING CARD TAB
+	.card-table {
+		tbody {
+			td {
+				.edit-button,
+				.set-default-button,
+				.test-card-status {
+					white-space: nowrap;
+				}
+				.test-card-status {
+					width: 75px;
+				}
+				.edit-button {
+					width: 125px;
+				}
+				.set-default-button {
+					width: 150px;
+				}
+			}
+		}
+	}
+}
+////////////////////////////////////////////////
+//  My Profile - Payment Settings END
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+//  API Documentation START
+////////////////////////////////////////////////
+body#api-docs {
+	#footer-wrapper,
+	#nav-wrapper {
+		margin-left: 450px;
+	}
+	#api-menu {
+		visibility: visible;
+		width: 450px !important;
+		.api-accordion {
+			background-color: #fff;
+		}
+		.menu-mainheader {
+			border: 0;
+			padding: 1.35rem 1rem;
+			.logo-wrap {
+				#logo {
+					display: block;
+					padding: 0.69rem;
+				}
+			}
+			.menu-maintitle {
+				color: #fff;
+			}
+		}
+		.package {
+			.api-title {
+				display: block;
+				padding: 15px;
+				cursor: pointer;
+				background: #333;
+				font-size: 18px;
+				font-weight: bold;
+				color: #fff;
+				&:hover {
+					background: #555555;
+				}
+			}
+			.content {
+				padding: 0;
+				.inner-item {
+					border: 1px solid #fff;
+					margin: 0;
+					.method-button {
+						background: #fff !important;
+					}
+					&:nth-child(2n) {
+						background-color: rgba(85,85,85, 0.09);
+					}
+					&:hover {
+						// background-color:rgba(51,51,51,0.12);
+						// -moz-box-shadow:    inset 0 0 6px #cccccc;
+						// -webkit-box-shadow: inset 0 0 6px #cccccc;
+						// box-shadow:         inset 0 0 6px #cccccc;
+						// .right-col {
+						//  .method-button {
+						//    background: #ffffff;
+						//  }
+						// }
+						border: 1px solid #FF3333;
+					}
+					&.active {
+						background-color: rgba(10,10,10,0.5);
+						-moz-box-shadow: inset 0 0 3px #cccccc;
+						-webkit-box-shadow: inset 0 0 3px #cccccc;
+						box-shadow: inset 0 0 3px #cccccc;
+						.right-col {
+							.method-button {
+								background: #ffffff;
+							}
+						}
+						a {
+							color: #fff !important;
+						}
+					}
+					.left-col {
+						padding: 0;
+						.path {
+							text-align: left;
+							font-size: 0.9rem;
+							color: #555555;
+							display: block;
+							padding: 1.8rem 1rem;
+							&:hover {
+								cursor: pointer;
+							}
+						}
+					}
+					.method-button {
+						font-size: 0.8rem;
+						padding: 1rem;
+						width: 100%;
+						text-align: left;
+						&:hover {
+							cursor: pointer;
+						}
+					}
+					.methods {
+						.text {
+							font-size: 0.8rem;
+						}
+						.dropdown.icon {
+							margin-left: 5px;
+						}
+						.ui.menu {
+							.item {
+								font-size: 12px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	#main-bg {
+		margin-left: 450px;
+		.mainbody-wrap {
+			#api-ref {
+				.api-maindescription {
+					margin-bottom: 3em;
+				}
+				.package {
+					margin-bottom: 50px;
+					.api-doc-info {
+						.menu-tabs {
+							border-bottom: 0;
+							.item {
+								padding: 1rem 0;
+								cursor: pointer;
+							}
+							div {
+								margin-right: 15px;
+								a {
+									padding: 0.65em 1em;
+									display: block;
+									border-radius: 0.3125em;
+									font-size: 0.8em;
+								}
+								&.api-POST {
+									&.active {
+										border-bottom: 3px solid $post-color;
+										padding: 1rem 0;
+									}
+									a {
+										background: $post-color;
+										border: 1px solid $post-color;
+										color: $post-txt;
+									}
+								}
+								&.api-GET {
+									&.active {
+										border-bottom: 3px solid $get-color;
+										padding: 1rem 0;
+									}
+									a {
+										background: $get-color;
+										border: 1px solid $get-color;
+										color: $get-txt;
+									}
+								}
+								&.api-PUT {
+									&.active {
+										border-bottom: 3px solid $put-color;
+										padding: 1rem 0;
+									}
+									a {
+										background: $put-color;
+										border: 1px solid $put-color;
+										color: $put-txt;
+									}
+								}
+								&.api-DELETE {
+									&.active {
+										border-bottom: 3px solid $delete-color;
+										padding: 1rem 0;
+									}
+									a {
+										background: $delete-color;
+										border: 1px solid $delete-color;
+										color: $delete-txt;
+									}
+								}
+							}
+						}
+					}
+					.ui.segment.lv1 {
+						padding: 2em;
+						margin-bottom: 2rem;
+						table.ui.table.api-ref-info {
+							margin-bottom: 40px;
+							.label {
+								font-weight: normal;
+							}
+							tbody {
+								tr.item {
+									border-color: #dddddd;
+									td.key {
+										font-weight: bold;
+										width: 115px;
+										.ui.label {
+											width: 105px;
+											text-align: center;
+										}
+									}
+									td.segment-name {
+										font-weight: bold;
+									}
+									&:hover {
+										background: none;
+									}
+								}
+							}
+						}
+						.button-segment {
+							.buttons {
+								.ui.button {
+									margin-right: 20px;
+									font-weight: normal;
+								}
+								.share-url {
+									max-width: 500px;
+									width: 100%;
+									.field {
+										width: 100%;
+										input {
+											width: 100%;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				.delete-method,
+				.get-method,
+				.post-method,
+				.put-method {
+					-webkit-border-radius: 3px;
+					-moz-border-radius: 3px;
+					border-radius: 3px;
+					color: #fff;
+					padding: 2px 4px;
+				}
+				.get-method {
+					background-color: #4DAB58;
+				}
+				.post-method {
+					background-color: #CC9900;
+				}
+				.put-method {
+					background-color: #36F;
+				}
+				.delete-method {
+					background-color: #C30;
+				}
+				span {
+					font-size: 14px;
+					color: #444;
+				}
+				.show-request {
+					cursor: pointer;
+					color: $main-color;
+				}
+				.segment.selected:before {
+					content: '';
+					display: inline-block;
+					width: 5px;
+					height: 100%;
+					background: #ccc;
+					position: absolute;
+					top: -5px;
+				}
+				.lv2 {
+					float: right;
+					width: 100%;
+					margin-top: 8px;
+					display: none;
+					.ui.table.segment {
+						font-size: 14px;
+					}
+					.has-lookup-table {
+						cursor: pointer;
+						padding-right: 10px;
+					}
+					.highlight-True {
+						font-weight: bold;
+						color: red;
+					}
+					.highlight-False {
+						//font-weight: bold;
+						color: grey;
+					}
+				}
+				.call-syntax {
+					text-decoration: underline;
+					word-break: break-word;
+				}
+			}
+		}
+	}
+}
+////////////////////////////////////////////////
+//  API Documentation END
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+//  Blog page START
+////////////////////////////////////////////////
+.blog-body {
+	margin: 3.5em 0;
+	.wp-post-list-wrap {
+		margin-bottom: 1.5rem;
+		.img-wrap {
+			max-width: 50px;
+			height: 50px;
+			width: 100%;
+			margin: 0 auto;
+		}
+		.post-meta {
+			float: left;
+			width: 100%;
+			.author {
+				float: left;
+			}
+			.date {
+				float: right;
+			}
+		}
+		.entry-meta {
+			.wp-categories {
+				margin-right: 1rem;
+			}
+		}
+	}
+	.blog-pager {
+		text-align: center;
+	}
+	.post-categories {
+		.categories-menu {
+			a.post-category-item {
+				display: inline-block;
+				color: rgba(0, 0, 0, 0.8);
+				font-size: 0.85rem;
+				padding: 0.2em 0;
+				&.third-level {
+					margin-left: 0.5em;
+					display: block;
+					&:not(last-child) {
+						margin-bottom: 5px;
+					}
+				}
+			}
+		}
+	}
+}
+////////////////////////////////////////////////
+//  Blog page END
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+//  individual post page START
+////////////////////////////////////////////////
+#post-content {
+	.post-title-wrap {
+		margin-bottom: 20px;
+	}
+}
+////////////////////////////////////////////////
+//  individual post page END
+////////////////////////////////////////////////
+/////////////////////////////////////////////////
+// page loader
+/////////////////////////////////////////////////
+.loader-modal {
+	display: none;
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: #333 50% 50% no-repeat;
+	background-size: 50px 50px;
+}
+/* When the body has the loading class, we turn
+the scrollbar off with overflow:hidden */
+body.loading {
+	overflow: hidden;
+}
+/* Anytime the body has the loading class, our
+modal element will be visible */
+body.loading .loader-modal {
+	display: block;
+}
+// embed card view
+#embed-card-view {
+	min-width: initial;
+	font-size: 0.85em;
+	background: transparent !important;
+	#main-bg {
+		.embed-column {
+			padding: 1rem;
+			.embed-campaign-card {
+				position: relative;
+				margin-bottom: 3rem;
+				height: 450px;
+				color: #888;
+				.campaign-desc {
+					border-top: 1px solid #dddddd;
+					.campaign-title {
+						margin-bottom: 10px;
+					}
+				}
+				.campaign-card-footer {
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					right: 0;
+					padding: 40px 15px 15px;
+					background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #fff 33%);
+					.campaign-stats {
+						overflow: auto;
+						.bar-progress {
+							margin-bottom: 0.5rem;
+							height: 9px;
+							.bar {
+								height: 9px;
+							}
+						}
+						.pledged-amount {
+							font-weight: bold;
+							span {
+								float: left;
+								clear: left;
+							}
+						}
+						.funded-amount {
+							font-weight: bold;
+							span {
+								float: left;
+								clear: left;
+							}
+						}
+					}
+				}
+				.campaign-location {
+					height: 2rem;
+					position: absolute;
+					bottom: -3em;
+					width: 100%;
+					left: 0;
+				}
+			}
+		}
+	}
+}
+#shipbtn {}
+#anonylabel {
+	color: white;
+	font-size: medium;
+}
+#anony {
+	float: right;
+	margin-right: 1rem;
+	margin-top: 0.5rem;
+}
+.transfailed {
+	background: #fff0f0 !important;
+	color: #cd2929;
+}
+.transwithdrawn {
+	background: #ddd !important;
+	color: #888;
+}
+.transsuccess {
+	background: #eeffe7 !important;
+	color: #3c763d;
+}
+.tranready {
+	background: #fff !important;
+}
+.ui.basic.button,
+.ui.basic.buttons .button {}
+#stream-text {
+	margin-top: 0.7rem;
+}
+#searchbtn {
+	min-width: 110px !important;
+}
+#campaign-status-filter {
+	min-width: 210px;
+}
+#searchbox {
+	float: right;
+}
+#searchbox1 {
+	margin-top: -2.5rem;
+	float: right;
+}
+#searchbox2 {
+	float: right;
+}
+#searchbox3 {
+	margin-top: -1.5rem;
+	float: right;
+}
+#csvbtn {}
+#exportbtn {
+	margin-top: 0.5rem;
+}
+#emailaccord {
+	background-color: rgba(0, 0, 0, 0.05);
+}
+#searchname {
+	width: 236px;
+}
+#defaultmode {
+	margin-left: 2.2rem;
+}
+#old-card-label {
+	padding-right: 0.4rem;
+	padding-left: 0.4rem;
+	font-style: italic;
+	font-weight: bold;
+}
+#retry-main-page-grid {
+	padding: 0 30%;
+}
+#retry-content {
+	margin-top: 2rem;
+}
+#propagate {
+	margin-top: 1rem;
+}
+#ad-propagate {
+	margin-left: 2rem;
+	margin-bottom: 2rem;
+}
+#disableClick {
+	pointer-events: none;
+}
+#hoverbtn {
+	cursor: pointer;
+	&:hover {
+		color: #555;
+		i.caret {
+			color: #555;
+		}
+	}
+}
+#pledge-history-campaign {
+	width: 250px;
+	margin-left: 7rem;
+}
+#user-view {
+	border-top: 1px solid #c3c3c3;
+	border-bottom: 1px solid #c3c3c3;
+	padding: 2rem;
+}
+#company-dropdown {
+	min-width: 490px !important;
+}
+#formcompany {
+	width: 30rem !important;
+}
+#widgetInput {
+	margin-top: 0.5rem;
+}
+#payment-input {
+	border: 1px solid gray;
+}
+.transaction_button {
+	display: block !important;
+	margin: auto !important;
+	max-width: 150px;
+}
+.add_manual_transaction {
+	display: block !important;
+	margin: auto !important;
+	max-width: 120px;
+}
+.notApproved {
+	display: hidden;
+}
+#proSetCompImage .field {
+	text-align: center !important;
+}

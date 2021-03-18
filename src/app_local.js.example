@@ -1,0 +1,25 @@
+app.constant('API_URL', {
+  url: "https://arcadia.thrinacia.com",
+  loc: '/service/restv1/',
+  identity_proxy_url: "http://localhost:8000"
+});  
+
+//define the default and prefered language
+app.constant('LANG', {
+  DEFAULT_LANG: "en",
+  PREFERRED_LANG: "en"
+}); 
+
+app.constant("CDN", {
+  "APP_URL": "https://cdn5.thrinacia.com/**"
+});  
+
+//app.constant('IDENTITY_PROXY_SERVER', {
+//  APP_URL: "http://localhost:8000",
+//});
+
+// Widget settings
+app.constant('SEDRA', {
+  url : "https://thrinacia-webui-v1.devwalk.com",
+  loc: ''
+} );

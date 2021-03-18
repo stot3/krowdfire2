@@ -1,0 +1,71 @@
+@mixin theme($name, $main-color) {
+  .container.main-color.#{$name} {
+    .collapsible-settings {
+      #m-user-settings {
+        @if $main-color==#ffffff {
+          background-color: #ffffff;
+          color: rgba(0, 0, 0, .8);
+        }
+
+        @else {
+          background-color: $main-color;
+        }
+      }
+    }
+
+    #login,
+    #register {
+      button {
+        @if $main-color==#ffffff {
+          background-color: #ffffff;
+          color: rgba(0, 0, 0, .8);
+        }
+
+        @else {
+          background-color: $main-color;
+          color: #ffffff;
+        }
+      }
+    }
+
+    .sidebar-heading,
+    .main-block-heading {
+      background-color: $main-color;
+      border-color: $main-color;
+    }
+
+    .contribute-button,
+    .redirect-button,
+    .start-button,
+    .view-more-btn,
+    .masthead-button {
+      @if $main-color==#ffffff {
+        background-color: #ffffff;
+        color: rgba(0, 0, 0, .8);
+      }
+
+      @else {
+        background-color: $main-color;
+        color: #ffffff;
+      }
+    }
+
+    .contribute-button {
+
+      .ui.label {
+        @if $main-color==#ffffff {
+          color: rgba(0, 0, 0, .8);
+          // font-weight: bold;
+        }
+
+        @else {
+          color: #fff;
+          // font-weight: bold;
+        }
+      }
+
+    }
+  }
+}
+
+@include theme(theme-button, $button-color);

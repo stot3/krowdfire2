@@ -1,0 +1,177 @@
+<div ng-cloak>
+	<div class="ui basic top-header segment">
+		<h2 class="ui header" translate> stream_management_main_header </h2>
+	</div>
+	<div class="mainbody-wrap admin-dashboard">
+		<div class="ui page grid">
+			<div class="column">
+				<div class="ui breadcrumb">
+					<a class="section" href="campaign-manager" class="txt-link" translate> stream_management_my_campaign </a>
+					<i class="right arrow icon divider"></i>
+					<div class="active section" translate> stream_management_stream </div>
+				</div>
+
+				<div class="ui divider"></div>
+				<!-- ================= message section -->
+				<div ng-include src="'views/templates/partials/response-message.html'"></div>
+
+				<!-- Campaign Info -->
+				<div class="campaign-header ui basic center aligned segment">
+					<div class="image-wrap">
+						<img class="ui small image" ng-repeat="file in campaign.files | filter:{region_id: RESOURCE_REGIONS.campaign.thumbnail} | orderBy:'-file_id' | limitTo: 1" ng-if="campaign.files[0].path_external" ng-src="{{server + '/image/campaign_thumbnail_medium/' + file.path_external}}"
+						/>
+						<img class="ui small image" ng-if="!campaign.files[0].path_external" src="images/placeholder-images/placeholder_campaign_thumb.png" />
+					</div>
+					<h2 class="ui header">{{campaign.name}}</h2>
+				</div>
+
+				<!-- Add Stream -->
+				<button class="ui button green" ng-click="showSection.streamForm=true;clearStream()" ng-hide="showSection.streamForm" translate> stream_management_add_stream</button>
+
+				<!-- Activities -->
+				<div ng-hide="showSection.streamForm" class="stream-activities">
+					<h4 translate id="stream-text">   stream_management_stream_activities </h4>
+					<div class="ui inverted divider"></div>
+
+					<div ng-hide="streams.length">
+						<div class="ui warning center aligned message" translate>
+							stream_management_no_stream_activities
+						</div>
+					</div>
+
+					<div class="sa-wrap ui segment" ng-if="streams.length">
+						<div ng-repeat="astream in streams" class="sa-row">
+							<div class="ui two column grid stackable">
+								<div class="column">
+									<div class="sa-date sa-item"> {{astream.created.slice(0, 16)}} </div>
+									<div class="sa-type sa-item">{{astream.stream_type | translate}}</div>
+								</div>
+								<div class="column right aligned">
+									<button class="ui small blue button" ng-click="showSection.streamForm=true;editStream(astream)" translate> stream_management_edit </button>
+									<button class="ui small red button" ng-click="deleteStream(astream.id)" translate> stream_management_delete </button>
+									<button class="ui small green button" ng-hide="astream.published" ng-click="publishStream(astream, true)" translate> stream_management_publish </button>
+									<button class="ui small black button" ng-show="astream.published" ng-click="publishStream(astream, false)" translate> stream_management_unpublish</button>
+									<button class="ui small teal button" ng-show="astream.published === true" ng-click="notifyBacker(astream)" translate> stream_management_notify </button>
+								</div>
+							</div>
+							<h3 class="ui header">{{astream.title}}</h3>
+							<div html-render html="astream.message" class="fr-view"></div>
+							<div class="ui divider sa-divider"></div>
+						</div>
+					</div>
+				</div>
+				<!-- stream form -->
+				<div class="stream-form ui segment" ng-if="showSection.streamForm === true">
+					<div class="stream-top-header ui grid">
+						<div class="twelve wide column">
+							<label>{{'stream_management_stream_title'|translate}}</label>
+							<div class="ui fluid input">
+								<input type="text" ng-class="{'has-error': (stream.has_error && (!stream.title))}" placeholder="{{'stream_management_stream_title_placeholder' | translate}} " ng-model="stream.title">
+							</div>
+						</div>
+						<div class="four wide column">
+							<label>{{'stream_management_who_cansee'|translate}}</label>
+							<div class="ui fluid selection dropdown">
+								<input type="hidden" name=" {{'stream_management_privacy' | translate}} ">
+								<div class="default text" translate> {{'stream_management_public'|translate}}</div>
+								<i class="dropdown icon"></i>
+								<div class="menu">
+									<div class="item" data-value="1" ng-click="stream.stream_type_id = 1"> {{'stream_management_public'|translate}} </div>
+									<div class="item" data-value="2" ng-click="stream.stream_type_id = 2"> {{'stream_management_all_backer'|translate}} </div>
+									<div class="item" data-value="3" ng-click="stream.stream_type_id = 3"> {{'stream_management_specific_backer'|translate}} </div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="specific-backer-field" ng-if="stream.stream_type_id === 3">
+
+						<div ui-select multiple style="width:100%;" ng-model="multiBacker.selected" theme="select2">
+							<div ui-select-match placeholder="Select a backer in the list or enter name...">{{$item.first_name}} {{$item.last_name}}</div>
+							<div ui-select-choices repeat="backer in campaign.backers | filter: $select.search" refresh="updateBackerList($select.search)">
+								{{backer.first_name}} {{backer.last_name}}
+							</div>
+						</div>
+
+					</div>
+
+					<textarea froala="froalaOptions" data-server="{{server}}" data-loc="{{server_loc}}" ng-model="stream.message" name="add_stream_content2"></textarea>
+
+					<div class="bottom-btn-wrap">
+						<div class="ui right aligned column">
+							<div class="ui green large pointing right label" ng-show="saveSuccessful" translate> success_message_save_changes_button </div>
+							<button class="ui green button" ng-click="saveStream()" translate> stream_management_save</button>
+							<button class="ui red button" ng-click="showSection.streamForm=false;clearStream()" translate> stream_management_cancel </button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- COLUMN END -->
+</div>
+<!-- UI PAGE GRID -->
+
+<!-- ================= FOOTER -->
+
+
+<!-- Modals -->
+<!-- delete confirm -->
+<div class="ui small modal" id="delete-stream">
+	<div class="header">
+		<h3 class="ui header" translate> stream_management_stream_delete  </h3>
+	</div>
+	<div class="content">
+		<p translate> stream_management_stream_delete_message </p>
+	</div>
+	<div class="actions">
+		<div class="ui green approve button" translate>
+			stream_management_stream_delete_yes
+		</div>
+		<div class="ui red button" translate>
+			stream_management_stream_delete_no
+		</div>
+	</div>
+</div>
+<!-- MODAL END -->
+
+<!-- publish confirm -->
+<div class="ui small modal" id="publish-stream">
+	<div class="header">
+		<h3 class="ui header" translate> stream_management_publish_message </h3>
+	</div>
+	<div class="content">
+		<p> {{'stream_management_publish_message1'|translate}} <span ng-show="publishBool"> {{'stream_management_publish_text'|translate}}</span> <span ng-hide="publishBool"> {{'stream_management_unpublish_text'|translate}} </span> {{'stream_management_thisstream_text'
+			| translate}} </p>
+	</div>
+	<div class="actions">
+		<div class="ui green approve button" translate>
+			stream_management_stream_delete_yes
+		</div>
+		<div class="ui red button" translate>
+			stream_management_stream_delete_no
+		</div>
+	</div>
+</div>
+<!-- MODAL END -->
+
+<!-- notify confirm -->
+<div class="ui small modal" id="notify-backers">
+	<div class="header">
+		<h3 class="ui header" translate>stream_management_backer_are_yousure  </h3>
+	</div>
+	<div class="content">
+		<p translate> stream_management_backer_notify_message</p>
+	</div>
+	<div class="actions">
+		<div class="ui green approve button" translate>
+			stream_management_stream_delete_yes
+		</div>
+		<div class="ui red button" translate>
+			stream_management_stream_delete_no
+		</div>
+	</div>
+</div>
+<!-- MODAL END -->

@@ -1,0 +1,113 @@
+$menu-active-bg: rgba(0, 0, 0, 0.3);
+$menu-hover-bg: rgba(0, 0, 0, 0.3);
+$hover-fontc: #fff;
+$main-bg: #0aa5df;
+$body-bg: #fafafa;
+$pane-desc-color: #555;
+$notes-bg: #FFF58C;
+$main-border: 1px solid #dddddd;
+$red: #B03060;
+$orange: #FE9A76;
+$yellow: #FFD700;
+$olive: #32CD32;
+$green: #016936;
+$teal: #008080;
+$blue: #0E6EB8;
+$violet: #EE82EE;
+$purple: #B413EC;
+$pink: #FF1493;
+$brown: #A52A2A;
+$grey: #A0A0A0;
+$black: #000000;
+$main-color: #fafafa;
+$main-color-hover:#D4E0DF;
+$main-color-table-alter:#CCF0EF;
+$main-color-one:#DB4DDB;
+$main-color-one-hover:#E0CCE0;
+$main-color-one-table-alter:#F9E3F9;
+$main-color-one-step-hover:#E682E6;
+$main-color-two:#94CA20;
+$main-color-two-hover:#D6DEC5;
+$main-color-two-table-alter:#EEF7DB;
+$main-color-two-step-hover:#CAE490;
+$main-color-three:#00B5AD;
+$main-color-three-hover:#D4E0DF;
+$main-color-three-table-alter:#EBF9F8;
+$main-color-three-step-hover:#66D3CE;
+$main-color-four:#4C9EE7;
+$main-color-four-hover: #D3DEE6;
+$main-color-four-table-alter: #EAF7FF;
+$main-color-four-step-hover:#82BBEE;
+$main-color-five:#D13F2B;
+$main-color-five-hover:#DFCAC7;
+$main-color-five-table-alter:#F8E0DD;
+$main-color-five-step-hover:#E38C80;
+$main-color-six:#FF9E35;
+$main-color-six-hover:#E6CAAB;
+$main-color-six-table-alter:#FFE0BE;
+$main-color-six-step-hover:#FFC586;
+$main-color-seven:#FFCC00;
+$main-color-seven-hover:#E6D38A;
+$main-color-seven-table-alter:#FFEA99;
+$main-color-seven-step-hover:#FFE680;
+$main-color-eight:#8B69DB;
+$main-color-eight-hover:#C6BDDC;
+$main-color-eight-table-alter: #DCD2F4;
+$main-color-eight-step-hover:#B9A5E9;
+$main-color-nine:#333333;
+$main-color-nine-hover:#555555;
+$main-color-nine-table-alter: #9b9b9b;
+$main-color-nine-step-hover:#555555;
+$main-color-ten:#ffffff;
+$main-color-ten-hover:#eeeeee;
+$main-color-ten-table-alter: #e6e6e6;
+$main-color-ten-step-hover:#dedede;
+$main-color-eleven:#00caf2;
+$main-color-eleven-hover:#add7e0;
+$main-color-eleven-table-alter:#daf0f5;
+$main-color-eleven-step-hover:#29caea;
+$main-color-twelve:#FF0081;
+$main-color-twelve-hover:#ecbdd5;
+$main-color-twelve-table-alter:#ffe5f2;
+$main-color-twelve-step-hover:#ff5cae;
+$link-color: #00B5AD;
+
+/* API DOCS POST, GET, PUT, DELETE*/
+
+$post-color: #4092CC;
+$post-txt: #FFFFFF;
+$get-color: #5BBD72;
+$get-txt: #FFFFFF;
+$put-color: #564F8A;
+$put-txt: #FFFFFF;
+$delete-color: #D95C5C;
+$delete-txt: #FFFFFF;
+
+/* top nav colors*/
+
+$top-nav-background1: #333333;
+$top-nav-hover1: #555555;
+$top-nav-font1: #ffffff;
+$top-nav-background2: #ffffff;
+$top-nav-hover2: #eeeeee;
+$top-nav-font2: #333333;
+
+/*table alt + hover colors*/
+
+$table-alt-bg: rgba(85, 85, 85, 0.08);
+$table-hover-alt-bg: rgba(51, 51, 51, 0.2);
+
+
+/* css vars */
+$top-nav-bg-color: var(--top-nav-bg-color, $top-nav-background1);
+$top-nav-font-color: var(--top-nav-font-color, $top-nav-font1);
+$table-color: var(--table-color, $main-color-four);
+$table-color-hover: var(--table-color-hover, $main-color-four-hover);
+$table-color-alter: var(--table-color-alter, $main-color-four-table-alter);
+$reward-color: var(--reward-color, $main-color-four);
+$footer-font-color: var(--footer-font-color, $main-color-ten);
+$footer-bg-color: var(--footer-bg-color, $main-color-nine);
+$font-color: var(--font-color, $main-color-four);
+$button-color: var(--button-color, $main-color-four);
+$banner-color: var(--banner-color, $main-color-four);
+$banner-color-hover: var(--banner-color, $main-color-four-step-hover);

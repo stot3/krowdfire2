@@ -1,0 +1,128 @@
+<div ng-cloak>	
+	<div class="refresh-report ui page grid">
+		<div class="column">
+			<div class="action-btn ui icon green button refresh-report-btn" ng-click="refreshReport()">
+				<i class="ui refresh icon"></i>
+			</div>
+			<div class="update-date">  {{'tab_report_updated' | translate}}   {{report.refreshed.substring(0,19)}}</div>
+		</div>
+	</div>
+	<div class="ui two column stackable page grid campaign-report">
+		<div class="eight wide column">
+			<table class="ui table">
+				<thead>
+					<tr>
+						<th><h2 class="ui header" translate="tab_report_total"></h2></th>
+						<th></th>
+						<th></th>
+						<th><h2 class="ui header">{{report.total_campaigns}}</h2></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td translate="tab_report_beingedited"></td>
+						<td>{{report.total_campaigns_being_edited}}</td>
+						<td translate="tab_report_running"></td>
+						<td>{{report.total_campaigns_running}}</td>
+					</tr>
+					<tr>
+						<td translate="tab_report_notapproved"></td>
+						<td>{{report.total_campaigns_not_approved}}</td>
+						<td translate="tab_report_paused"></td>
+						<td>{{report.total_campaigns_paused}}</td>
+					</tr>
+					<tr>
+						<td translate="tab_report_sentfor_review"></td>
+						<td>{{report.total_campaigns_sent_for_review}}</td>
+						<td translate="tab_report_being_review"></td>
+						<td>{{report.total_campaigns_being_reviewed}}</td>
+					</tr>
+					<tr>
+						<td translate="tab_report_canceled"></td>
+						<td>{{report.total_campaigns_cancelled}}</td>
+						<td translate="tab_report_notfunded"></td>
+						<td>{{report.total_campaigns_not_funded}}</td>
+					</tr>
+					<tr>
+						<td translate="tab_report_pre_auth"></td>
+						<td>{{report.total_campaigns_processing_pre_auth}}</td>
+						<td translate="tab_report_processing_capture"></td>
+						<td>{{report.total_campaigns_processing_processing_capture}}</td>
+					</tr>
+					<tr>
+						<td translate="tab_report_captur_accepted"></td>
+						<td>{{report.total_campaigns_processing_accepted_capture}}</td>
+						<td translate="tab_report_captur_declined"></td>
+						<td>{{report.total_campaigns_processing_declined_capture}}</td>
+					</tr>
+					<tr>
+						<td translate="tab_report_captur_complete"></td>
+						<td>{{report.total_campaigns_processing_capture_complete}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="eight wide column">
+			<div id="donut-chart" >
+				<canvas id="chart1" width="350" height="350"></canvas>
+			</div>
+		</div>
+	</div><!-- campaign-report end -->
+
+	<div class="ui horizontal divider"><i class="bar chart icon"></i></div>
+
+	<div class="ui two column stackable page grid funding-report">
+		<div class="eight wide column">
+			<div class="chart2-container">
+				<canvas id="chart2" width="500" height="380"></canvas>
+			</div>
+		</div>
+		<div class="eight wide column funding-report-table">
+			<table class="ui table">
+				<thead>
+					<tr>
+						<th><h2 class="ui header" translate="tab_report_total_earning"></h2></th>
+						<th><h2 class="ui header"><span class="c-value" ng-bind-html="calTotalEarn() | formatCurrency:defaultCurrency.code_iso4217_alpha"></span></h2></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td translate="tab_report_funding_sought"></td>
+						<td><span class="c-value" ng-bind-html="report.total_campaign_funding_sought | formatCurrency:defaultCurrency.code_iso4217_alpha"></span></td>
+					</tr>
+					<tr>
+						<td translate="tab_report_funding_sought_running"></td>
+						<td><span class="c-value" ng-bind-html="report.total_campaign_funding_sought_running| formatCurrency:defaultCurrency.code_iso4217_alpha"></span></td>
+					</tr>
+					<tr>
+						<td translate="tab_report_funding_sought_captured"></td>
+						<td><span class="c-value" ng-bind-html="report.total_campaign_funding_sought_capture_complete| formatCurrency:defaultCurrency.code_iso4217_alpha"></span></td>
+					</tr>
+					<tr>
+						<td translate="tab_report_funding_raised_running"></td>
+						<td><span class="c-value" ng-bind-html="report.total_campaign_funding_raised_running| formatCurrency:defaultCurrency.code_iso4217_alpha"></span></td>
+					</tr>
+					<tr>
+						<td translate="tab_report_sought_capture_complete"></td>
+						<td><span class="c-value" ng-bind-html="report.total_campaign_funding_sought_capture_complete| formatCurrency:defaultCurrency.code_iso4217_alpha"></span></td>
+					</tr>
+					<tr>
+						<td translate="tab_report_raised_capture_complete"></td>
+						<td><span class="c-value" ng-bind-html="report.total_campaign_funding_raised_capture_complete| formatCurrency:defaultCurrency.code_iso4217_alpha"></span></td>
+					</tr>
+				</tbody>
+			</table>
+			<!--<div class="ui selection dropdown">
+				<input type="hidden">
+				<div class="default text" ng-if="defaultCurrency">{{defaultCurrency.name}}</div>
+				<div class="default text" ng-if="!defaultCurrency" translate="tab_report_select_currency"></div>
+				<i class="dropdown icon"></i>
+				<div class="menu">
+					<div class="item" ng-repeat="currency in stripeSupportedCurrencies" ng-click="defaultCurrency = currency">
+						{{currency.name}}
+					</div>
+				</div>
+			</div>-->
+		</div>
+	</div><!-- funding-report end -->
+</div>

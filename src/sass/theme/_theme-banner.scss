@@ -1,0 +1,98 @@
+@mixin theme($name, $main-color, $main-color-hover) {
+  .container.main-color.#{$name} {
+    #learnmore-wrap {
+      @if $main-color==#ffffff {
+        background-color: #ffffff;
+      }
+
+      @else {
+        background-color: $main-color;
+      }
+
+      i {
+        @if $main-color==#ffffff {
+          color: rgba(0, 0, 0, .8) !important;
+        }
+
+        &.circular {
+          @if $main-color==#ffffff {
+            -webkit-box-shadow: 0em 0em 0em 0.1em rgba(0, 0, 0, .8) inset !important;
+            box-shadow: 0em 0em 0em 0.1em rgba(0, 0, 0, .8) inset !important;
+          }
+        }
+      }
+    }
+
+    #socialicons-wrap {
+      .social-link:hover {
+        color: $main-color;
+      }
+    }
+
+    .mainbody-wrap {
+      .background-wrap {
+        .campaignsteps {
+          .setup.column.active {
+            .step-link {
+              @if $main-color==#ffffff {
+                background-color: #cbcbcb;
+                color: #fff;
+                border-color: #cbcbcb;
+              }
+
+              @else {
+                background-color: $main-color;
+                color: #fff;
+                border-color: $main-color;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .ui.basic.top-header.segment {
+      @if $main-color==#ffffff {
+        background-color: #ffffff;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      }
+
+      @else {
+        background-color: $main-color;
+      }
+
+      .ui.header {
+        @if $main-color==#ffffff {
+          color: rgba(0, 0, 0, .8) !important;
+        }
+
+        @else {
+          color: #ffffff !important;
+        }
+      }
+    }
+
+    .campaignsteps {
+      .ui.stackable.grid.menu-steps {
+        .setup.column {
+          &:hover:not(.active) {
+            .step-link {
+              background-color: $main-color-hover;
+              color: #fff;
+              border-color: $main-color-hover;
+            }
+          }
+        }
+      }
+    }
+
+    #api-menu {
+      .menu-mainheader {
+        background: $main-color;
+      }
+    }
+  }
+}
+
+
+@include theme(theme-banner, $banner-color, $banner-color-hover);

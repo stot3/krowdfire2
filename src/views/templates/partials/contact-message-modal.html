@@ -1,0 +1,157 @@
+<!-- Send message to preset user. -->
+<div class="ui modal contact-message-modal">
+    <i class="close icon"></i>
+    <div class="header">
+        <h3 class="ui header">{{'message_modal_send_to'|translate}} {{campaign.campaign_manager_name}}</h3>
+    </div>
+    <div class="content">
+        <div class="fluid ui form contact-message">
+            <div class="field">
+                <span class="ui header">{{'message_modal_to'|translate}}:</span> {{campaign.campaign_manager_name}}
+            </div>
+            <div class="two fields" ng-if="!isLoggedin && isAllowAnonContactMsg">
+                <div class="field">
+                    <input type="text" name="first_name" ng-model="message.first_name" placeholder="First Name" required id="firstname-user">
+                </div>
+                <div class="field">
+                    <input type="text" name="last_name" ng-model="message.last_name" placeholder="Last Name" required id="lastname-user">
+                </div>
+            </div>
+            <div class="field" ng-if="!isLoggedin && isAllowAnonContactMsg">
+                <input type="email" name="email" ng-model="message.email" placeholder="Email" required id="email-user">
+            </div>
+            <div class="field">
+                <input type="text" name="subject" ng-model="message.subject" placeholder="{{'message_modal_subject'|translate}}" required
+                    id="subject">
+            </div>
+            <div class="field">
+                <textarea name="body" placeholder="{{'message_modal_content'|translate}}" ng-model="message.body" required id="message"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui approve green button" translate>message_modal_send_message</div>
+    </div>
+</div>
+
+<!-- Model for contacting users entered from auto fill. -->
+<div class="ui modal contact-user-modal">
+    <i class="close icon"></i>
+    <div class="header">
+        <h3 class="ui header">{{'message_modal_send_message'|translate}}</h3>
+    </div>
+    <div class="content">
+        <div class="fluid ui form contact-user">
+            <div class="field">
+                <div class="ui fluid search selection dropdown recipient">
+                    <input type="hidden" name="recipient">
+                    <input class="search" type="text" ng-change="updateUserList(message.receiver)" ng-keypress="setRecipientOnEnter($event)"
+                        ng-model="message.receiver" required id="to">
+                    <div class="default text to-user">{{'message_modal_to'|translate}}</div>
+                    <div class="menu" on-scroll-bottom="appendNextPage()">
+                        <div ng-repeat="user in list_users" ng-click="setRecipient($event)" class="item" first-name="{{user.first_name}}" last-name="{{user.last_name}}"
+                            data-value="{{user.id}}">
+                            {{user.first_name}} {{user.last_name}}
+                            <a class="right floated profile-link" target="_blank" ng-href="/profile/{{user.id}}" first-name="{{user.first_name}}" last-name="{{user.last_name}}"
+                                user-id="{{user.id}}">
+                                <!-- <i class="user large icon"></i> -->
+                                User ID {{user.id}}
+                                <i class="arrow large circle right icon"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <input type="text" name="subject" ng-model="message.subject" placeholder="{{'message_modal_subject'|translate}}" required
+                    id="subject-user">
+            </div>
+            <div class="field">
+                <textarea name="body" placeholder="{{'message_modal_content'|translate}}" ng-model="message.body" required id="message-user"></textarea>
+            </div>
+        </div>
+
+    </div>
+    <div class="actions">
+
+        <div class="ui approve green button" translate>message_modal_send_message</div>
+    </div>
+</div>
+
+<div class="ui small modal log-in-required-modal">
+
+    <i class="close icon"></i>
+    <div class="header">
+        <div class="ui header" translate> message_modal_log_in </div>
+    </div>
+    <div class="content" ng-controller="LoginCtrl">
+        <div ng-show="formData.successful" class="ui positive message" translate={{formData.successful.message}}></div>
+        <div ng-show="formData.errors" class="ui negative message">
+            <i class="close icon" ng-click="formData.errors = null;"></i>
+            <div class="header" translate>
+                message_modal_log_failed
+            </div>
+            <span>{{invalid_cred}}</span>
+        </div>
+        <div name="login_form" class="ui login form segment" id="login" ng-submit="submit()">
+            <div class="field">
+                <label>{{'message_modal_email'|translate}} </label>
+                <input type="text" name="email" placeholder="{{'message_modal_email'|translate}}" ng-model="formData.email">
+            </div>
+            <div class="field">
+                <label> {{'message_modal_password'|translate}}</label>
+                <input type="password" name="password" placeholder="{{'message_modal_password'|translate}}" ng-minlength="6" ng-model="formData.password">
+            </div>
+            <a href="" class="forgot-password" ng-click="forgotPassword()" ng-show="isAccSetEnabled" translate>login_page_forgot_password</a>
+
+            <div class="agreement ui checkbox" ng-model="agreed" ng-class="{'has-error': login_tos_not_checked && !agreed}" id="termcheck"
+                style="margin-top: 1rem;" ng-show="tos_login">
+                <input type="checkbox" id="terms">
+                <label for="terms"> {{'pledge_campaign_checkbox' | translate}}
+                    <a href="tos" target="_blank">
+                        <em> {{'pledge_campaign_term_service' | translate}}</em>
+                    </a>
+                    <a href="privacy" target="_blank">
+                        <em>{{'pledge_campaign_privacy' | translate}}</em>
+                    </a>
+                    {{'ampersand' | translate}}
+                    <a href="cookies" target="_blank">
+                        <em> {{'cookies_policy_text' | translate}}</em>
+                    </a>
+                </label>
+            </div>
+            <div class="field error" ng-show="!agreed && tos_login && submit_once">
+                <div class="ui red prompt pointing top label" translate>please_confirm_tos</div>
+            </div>
+
+            <div class="ui basic login-register-btn segment">
+                <button class="ui fluid login submit button" ng-class="{'loading disabled': loading}" translate> message_modal_log_in </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ui small modal forgot-password-modal" ng-controller="LoginCtrl" ng-show="isAccSetEnabled">
+    <i class="close icon"></i>
+    <div class="header">
+
+        <h3 class="ui header" translate> login_page_forgotpassword_modal</h3>
+    </div>
+    <div class="content">
+        <p translate> login_page_forgotpassword_modal_enter_email </p>
+        <div class="ui form basic segment email">
+            <div class="field">
+                <input type="text" name="email" placeholder="{{'login_page_forgotpassword_modal_enter_email_messgae' | translate}}" ng-model="account.email">
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+
+        <div class="ui positive button" ng-click="resetPassword()" translate>
+            login_page_reset_password
+        </div>
+        <div class="ui positive button" ng-click="reconfirm()" translate>
+            login_page_resend_activation_link
+        </div>
+    </div>
+</div>

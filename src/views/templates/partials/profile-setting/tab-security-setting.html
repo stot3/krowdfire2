@@ -1,0 +1,96 @@
+<div class="action-btns ui page grid" sticky ng-cloak>
+	<div class="column">
+		<button ng-show = "!tfa.enabled" accessible-form ng-click="enableTFA()" class="ui labeled green button small" translate>  tab_security_setting_enable_2fa</button>
+		<button ng-show = "tfa.enabled" accessible-form ng-click="disableTFA()" class="ui labeled red button small" translate>  tab_security_setting_disable_2fa</button>
+	</div><!-- column end -->
+</div><!-- ui page grid end -->
+
+<!--show setup info with indicator that 2fa is available-->
+<div ng-show = "tfa.enabled" class="action-btns ui page grid" sticky ng-cloak>
+	<div class="column">
+		<div class="ui success message no-data-message">
+			<div class="header ui center aligned" translate>tab_security_2fa_enabled</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modals ====================================================================== -->
+
+<!--2fa setup modal-->
+<div class="ui modal" id="setup-2fa">
+	<i class="close icon"></i>
+	<div class="header">
+		<h3 class="ui blue header" translate> tab_security_setting_modal_title  </h3>
+	</div>
+	<div class="content">
+	
+		<!--sdfdfgdfgfdg-->
+		
+		<div class="ui two column stackable formbg grid">
+
+			<div class="nine wide column">
+				<h3 class="ui header" translate> tab_security_setting_scan_image </h3>
+				<p translate> tab_security_setting_setup_instructions </p>
+			</div>
+	
+			<div class="center aligned seven wide column profilePersonal">
+				<div class="profile-image-thumbnail ui imagePlace">
+				  <img src={{tfa.qr_code_url}}>
+				  <div class="ui dimmer">
+					<div class="content">
+					  <div class="center">
+						<div class="ui small indicating progress upload-bar">
+						  <div class="bar"></div>
+						</div>
+						<div class="ui loader download-loader"></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+	
+				<div class="ui basic segment">
+					<form submit = "#" id = "code-form" class = "ui form">
+						<div class = "field">
+							<input autocomplete="off" ng-model = "formData.code" name = "code" class = "ui" type = "text" placeholder = "{{'tab_security_setting_type_2fa' | translate}}"></input>
+						</div>
+					</form>
+				</div>
+			  </div>
+			</div>
+
+		<!--sdfsdfsdfsdf-->
+
+	</div><!-- CONTENT END -->
+	<div class="actions">
+		<div class="ui negative button" ng-click = "closeModal()" translate>
+			tab_security_setting_cancel_setup
+		</div>
+		<div class="ui positive button" ng-click="checkCode()" translate>
+			tab_security_setting_complete_setup
+		</div>
+	</div>
+</div><!-- MODAL END -->
+
+<!--Show recovery codes modal-->
+<div class="ui modal" id="copy-codes">
+	<i class="close icon"></i>
+	<div class="header">
+		<h3 class="ui blue header" translate> tab_security_setting_copy_codes_title  </h3>
+	</div>
+	<div class="content">
+		<p translate>tab_security_setting_copy_codes</p>
+		<strong>
+			<p translate>tab_security_setting_copy_codes_emphasis</p>
+		</strong>
+		<p class = "ui message" style = "font-family: 'Courier New', Courier, monospace;">
+			<span ng-repeat = "code in tfa.recovery_codes" style = "margin-right: 8px;">
+				{{code}}
+			</span>
+		</p>
+	</div>
+	<div class="actions">
+		<div class="ui positive button" ng-click="closeModal()" translate>
+			tab_security_setting_finish
+		</div>
+	</div>
+</div>

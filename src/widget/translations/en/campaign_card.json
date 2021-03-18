@@ -1,0 +1,9 @@
+{
+  "campaign_card_name_card_placeholder": "Name on Card",
+  "campaign_card_credit_number_placeholder":"Credit Card Number",
+  "campaign_card_date_placeholder": "MM / YY",
+  "campaign_card_CVC_placeholder":"CVC",
+  "campaign_card_date_label": "Exp. Month/Year",
+  "campaign_card_CVC_label": "CVC Security Code",
+  "campaign_card_cardNumber_label": "Card Number"
+}

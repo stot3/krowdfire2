@@ -1,0 +1,160 @@
+<div class="four wide column">
+    <h3 class="ui header" translate>trulioo_identity_verification </h3>
+    <p translate>
+      trulioo_please_verify
+    </p>
+    <!-- <div ng-if="!truliooVerified" ng-click="verifyTrulioo()" class="ui right aligned button green save-settings" ng-class="{'loading': verifyTruliooLoading.loading, 'disabled': !useAddress}">Verify</div> -->
+</div>
+<div class="twelve wide column">
+    <div ng-if="!truliooVerified" class="ui icon negative message">
+        <i ng-class="{'notched circle loading': verifyTruliooLoading.loading || verifyTruliooLoading.confirm_loading, 'remove': !verifyTruliooLoading.loading && !verifyTruliooLoading.confirm_loading }" class="icon"></i>
+        <div class="content">
+            <div class="header" translate>
+              trulioo_identity_verification
+            </div>
+            <p translate>trulioo_verification_failed1</p>
+            <!-- Set your address <a href="/profile-setting#addresses">here</a> -->
+            <!-- <p ng-if="useAddress" translate>trulioo_verification_failed1<strong>{{useAddress.code_iso3166_1}}</strong> <i class="{{useAddress.code_iso3166_1.toLowerCase()}} flag"></i></span></p> -->
+            <div class="three wide right aligned column right-col">
+                <button class="ui small blue button" ng-click="showAddresses()" translate>trulioo_set_address</button>
+            </div>
+        </div>
+    </div>
+    <div ng-if="truliooVerified" class="ui icon positive message">
+        <i class="check icon"></i>
+        <div class="content">
+            <div class="header"translate>
+              trulioo_identity_verification            
+            </div>
+            <p translate>trulioo_verification_success</p>
+        </div>
+    </div>
+    <div class="ui segment">
+        <h4 class="ui header"><i class="user icon"></i> Personal Information</h4>
+        <p ng-if="truliooNeededFields.FirstGivenName">First Name: {{truliooNeededFields.FirstGivenName.value}} <span ng-style="{'color': (!truliooNeededFields.FirstGivenName.value) ? 'red' : 'green'}" ng-if="truliooNeededFields.FirstGivenName.required">[Required]</span></p>
+        <p ng-if="truliooNeededFields.FirstSurName">Last Name: {{truliooNeededFields.FirstSurName.value}} <span ng-style="{'color': (!truliooNeededFields.FirstSurName.value) ? 'red' : 'green'}" ng-if="truliooNeededFields.FirstSurName.required">[Required]</span></p>
+    </div>
+    <div class="ui segment">
+        <h4 class="ui header"><i class="home icon"></i> Address Information</h4>
+        <p ng-if="truliooNeededFields.City">City: {{truliooNeededFields.City.value}} <span ng-style="{'color': (!truliooNeededFields.FirstSurName.value) ? 'red' : 'green'}" ng-if="truliooNeededFields.City.required">[Required]</span></p>
+        
+        <p ng-if="truliooNeededFields.BuildingNumber">Building Number: {{truliooNeededFields.BuildingNumber.value}} <span ng-style="{'color': (!truliooNeededFields.BuildingNumber.value) ? 'red' : 'green'}" ng-if="truliooNeededFields.PostalCode.required">[Required]</span></p>
+        <p ng-if="truliooNeededFields.StreetName">Street Name: {{truliooNeededFields.StreetName.value}} <span ng-style="{'color': (!truliooNeededFields.StreetName.value) ? 'red' : 'green'}" ng-if="truliooNeededFields.PostalCode.required">[Required]</span></p>
+
+        <p ng-if="truliooNeededFields.StateProvinceCode">State Province: {{truliooNeededFields.StateProvinceCode.value}} <span ng-style="{'color': (!truliooNeededFields.StateProvinceCode.value) ? 'red' : 'green'}" ng-if="truliooNeededFields.StateProvinceCode.required">[Required]</span></p>
+        <p ng-if="truliooNeededFields.PostalCode">Mail Code: {{truliooNeededFields.PostalCode.value}} <span ng-style="{'color': (!truliooNeededFields.PostalCode.value) ? 'red' : 'green'}" ng-if="truliooNeededFields.PostalCode.required">[Required]</span></p>
+    </div>
+    <div class="ui segment">
+        <h4 class="ui header"><i class="mobile icon"></i> Communication Information</h4>
+        <p ng-if="truliooNeededFields.EmailAddress">Email: {{truliooNeededFields.EmailAddress.value}} <span ng-style="{'color': (!truliooNeededFields.EmailAddress.value) ? 'red' : 'green'}" ng-if="truliooNeededFields.EmailAddress.required">[Required]</span></p>
+        <p ng-if="truliooNeededFields.Telephone">Telephone: {{truliooNeededFields.Telephone.value}} <span ng-style="{'color': (!truliooNeededFields.Telephone.value) ? 'red' : 'green'}" ng-if="truliooNeededFields.Telephone.required">[Required]</span></p>
+        <p ng-if="truliooNeededFields.TelephoneType">Type: {{truliooNeededFields.TelephoneType.value}} <span ng-style="{'color': (!truliooNeededFields.TelephoneType.value) ? 'red' : 'green'}" ng-if="truliooNeededFields.TelephoneType.required">[Required]</span></p>
+    </div>
+</div>
+
+<!-- ===================================== MODALS ====================================-->
+
+<div class="ui modal addresses-modal">
+    <i class="close icon"></i>
+    <div class="header">
+      <h3 class="ui blue header">Select Address</h3>
+    </div>
+    <div class="content"> 
+        <!-- Pick an address or add a new one -->
+        <table class="ui compact table address-table-personal segment">
+            <thead>
+              <tr>
+                <th class="one wide center check-box">
+                </th>
+                <th class="one wide center address-id" translate> tab_address_setting_id </th>
+                <th class="one wide center address-company" translate>Building Number</th>
+                <th class="four wide center address-name" translate>Street Name</th>
+                <th class="four wide center address-description" translate> tab_address_setting_city</th>
+                <th class="two wide center address-postalcode" translate> tab_address_setting_postalcode </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="address-row" ng-repeat="address in personal_addresses | orderBy:'id'">
+    
+                <td class="t-check-box">
+                  <div class="ui checkbox radio">
+                    <input type="radio" name="select-address">
+                  </div>
+                </td>
+                <td class="t-id">
+                  {{address.address_id}}
+                </td>
+                <td class="t-address-number">
+                    <span title="{{address.street1}}">
+                      {{address.street1 | limitTo:25}}<span ng-if="address.street1.length > 25">...</span>
+                    </span>
+                  </td>
+                <td class="t-address-name">
+                  <span title="{{address.street2}}">
+                    {{address.street2 | limitTo:25}}<span ng-if="address.street2.length > 25">...</span>
+                  </span>
+                </td>
+                <td class="t-address-description">
+                  <span title="{{address.city_full}}">
+                    {{address.city_full | limitTo:25}}<span ng-if="address.city_full.length > 25">...</span>
+                  </span>
+                </td>
+                <td class="t-address-postalcode">
+                  {{address.mail_code}}
+                </td>
+              </tr>
+              <tr class="address-row  address-form">
+    
+                <td class="t-check-box">
+                  <div class="ui checkbox radio">
+                    <input type="radio" name="select-address">
+                  </div>
+                </td>
+                <td class="t-id">
+                    <label>
+                        <a class="ui teal label">
+                            New
+                        </a>
+                    </label>
+                </td>
+                <td class="t-address-number">
+                    <div class="ui corner fluid input">
+                        <input type="text" ng-model="newAddress.street1" ng-attr-placeholder="Building Number" name="address1">
+                    </div>
+                </td>
+                <td class="t-address-name">
+                    <div class="ui corner fluid input">
+                        <input type="text" ng-model="newAddress.street2" ng-attr-placeholder="Street Name">
+                    </div> 
+                </td>
+                <td class="t-address-city">
+                    <div class="field" id="select-city">
+                        <div ui-select style="width:100%;" ng-model="newAddress.selected" theme="select2" reset-search-input="false">
+                            <div ui-select-match placeholder="{{'tab_address_setting_edit_city'| translate}}">{{$select.selected.name}}</div>
+                            <div ui-select-choices repeat="city in cities | filter: $select.search" refresh="searchCities($select.search)" refresh-delay="200">
+                            <div ng-bind-html="city.name"></div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="t-address-postalcode">
+                    <div class="ui corner fluid input">
+                        <input type="text" name="mail_code" ng-model="newAddress.mail_code" ng-attr-placeholder="{{'tab_address_setting_edit_postalcode' | translate}}" ng-keypress="saveAddressInfoEnter($event)">
+                    </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+    </div>
+    <!-- CONTENT END -->
+    <div class="actions">
+      <div class="ui positive button" ng-click="setAddress()">
+        Select
+      </div>
+      <!-- <div class="ui negative button">
+        campaign_management_cancel_no
+      </div> -->
+    </div>
+  </div>
+  <!-- MODAL END -->

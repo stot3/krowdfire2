@@ -1,0 +1,42 @@
+
+<div id="login-form" class="ui large form">
+    <div id="widget-container"></div>
+  <div style="position: relative;" *ngIf="socialLogin === true">
+    <div class="ui negative message" *ngIf="!isLoggedInSuccessful">
+      <div class="content">
+        {{logginErrorMessage}}
+      </div>
+    </div>
+    <div id="widget-container-iframe" style="height:inherit"></div>
+  </div>
+  <div *ngIf="socialLogin === false">
+    <div class="two fields">
+      <div class="field">
+        <div class="ui left icon input">
+          <input type="email" name="Email" (keypress)="onLogIn($event)" placeholder="{{translate('campaign_login_email_placeholder')}}" [(ngModel)]="loginEmail">
+          <i class="mail icon"></i>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui left icon input">
+          <input type="password" name="Password" (keypress)="onLogIn($event)" placeholder="{{translate('campaign_login_password_placeholder')}}" [(ngModel)]="loginPassword">
+          <i class="lock icon"></i>
+        </div>
+      </div>
+    </div>
+    <div class="button-wrap">
+      <button type="submit" class="submit-button ui blue large button" ThemeColor (click)="login()">{{isContributePage ? translate('campaign_login_contribute_button') : translate('campaign_login_button')}}</button>
+    </div>
+  </div>
+  <div *ngIf="socialLogin === true" class="forgotPassword socialLogin">
+    <a class="item" [href]="urlForgotPassword" target="_blank">{{translate("campaign_page_forgot_password_link")}}</a>
+  </div>
+  <div *ngIf="socialLogin === false" class="forgotPassword nonSocialLogin">
+    <a class="item" [href]="urlForgotPassword" target="_blank">{{translate("campaign_page_forgot_password_link")}}</a>
+  </div>
+  <div class="ui negative message" *ngIf="!socialLogin && !isLoggedInSuccessful">
+      <div class="content">
+        {{logginErrorMessage}}
+      </div>
+    </div>
+</div>

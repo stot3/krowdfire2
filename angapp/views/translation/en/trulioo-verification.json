@@ -1,0 +1,8 @@
+{
+    "trulioo_verification_failed1": "Identity verification has failed. Your primary address information could not be verified, please make sure your verification provider supports the address or country you are trying to verify.",
+    "trulioo_verification_failed2": "Identity verification has failed. Your primary address information could not be verified, please try again validating for country: ",
+    "trulioo_verification_success": "You have been verified. You can now create campaigns.",
+    "trulioo_identity_verification": "Identity Verification",
+    "trulioo_set_address": "Set Address",
+    "trulioo_please_verify": "Verify your identity to create a campaign."
+}

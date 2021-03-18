@@ -1,0 +1,64 @@
+<div class="setting-bg" ng-cloak>
+	<div class="column">
+		<div class="ui info message">
+			<div class="content">
+				<div translate>tab_email_infomessage</div>
+			</div>
+		</div>
+		<div class="ui styled fluid accordion" ng-accord id="emailaccord" ng-if="settingLoaded">
+			<div class="email-accordion" ng-repeat="email in emails">
+				<div class="title notification-title" ng-click = "checkAccordion($index, $event)">
+					<div class="ui grid">
+						<div class="notification-title-left eleven wide column">
+								<i class="dropdown icon"></i>
+								{{email.name| translate}}
+						</div>
+						<div class="five wide column">
+							<div class="ui toggle checkbox enable-notification" ng-init="checkNotificationEnabled(email, $index)" ng-click="setNotificationEnabled($event, email)">
+								<input type="checkbox" name="public">
+								<label translate="{{getNotificationEnabledString(email)}}"></label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="content">
+					<div class="ui two column stackable grid">
+						<div class="left-col ten wide column">
+							<h3 class="ui header" translate>tab_email_email_subject   </h3>
+							<div class="ui form">
+								<div class="field">
+									<input type="text" ng-model="email.value.subject">
+								</div>
+							</div>
+							<h3 class="ui header" translate> tab_email_email_content  </h3>
+
+							<textarea froala="froalaOptions" data-server="{{server}}" data-loc = "{{server_loc}}" class="email-editor" ng-model="email.value.html" name="{{email.value.name}}" id="{{email.name+'_textarea'}}" ng-if="accordionNum == $index" ></textarea>
+
+							<h3 class="ui header" ng-show="email_preview" translate>  tab_email_email_preview  </h3>
+							<div class="bottom-btn-wrap">
+								<div class="ui green large pointing right label" ng-show="saveSuccessful" translate> success_message_save_changes_button </div>
+								<div class="ui green button apply-button" ng-click="confirmUpdateEmail(email)" translate> tab_email_email_savechanges_button</div>
+								<div class="ui red button apply-button" ng-click="resetEmailContent(email)" translate> tab_email_email_reset_button </div>
+							</div>
+						</div><!-- column end -->
+						<div class="right-col six wide column">
+							<div class="ui fluid selection dropdown token-dropdown tokens" >
+								<div class="default text token-selected" translate> tab_email_available_token  </div>
+								<i class="dropdown icon"></i>
+								<div class="menu">
+									<div class="item" ng-repeat="token in email.value.available_tokens" ng-click="selectToken(token, $event)">
+										<div >{{token.description}}</div>
+									</div>
+								</div>
+							</div>
+							<div class="ui fluid green button insert-token tokens disabled">
+								{{'tab_email_insert_token' | translate}}	
+							</div>
+
+						</div><!-- column end -->
+					</div>
+				</div><!-- CONTENT END -->
+			</div>
+		</div><!-- ACCORDION END -->
+	</div><!-- column end -->
+</div><!-- ui page grid end -->

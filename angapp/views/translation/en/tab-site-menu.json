@@ -1,0 +1,13 @@
+{
+    "tab_sitemenu_parent_page": "Parent Menu Item",
+    "tab_sitemenu_add_page": "Add New Menu Item",
+    "tab_sitemenu_add_button": "Add Menu Item",
+    "tab_sitemenu_add_published": "Select Published Page",
+    "tab_sitemenu_missing_name_error": "Please enter a link name.",
+    "tab_sitemenu_mising_path_error": "Please enter a link path.",
+    "tab_sitemenu_select_page_error": "Please select a page.",
+    "tab_sitemenu_select_parent": "Select Parent Item",
+    "tab_sitemenu_delete_items": "Delete Menu Items",
+    "tab_sitemenu_delete_message": "Are you sure you want to delete these items?"
+
+}

@@ -1,0 +1,15 @@
+{
+  "campaign_comment_header": "Comments",
+  "campaign_comment_on_text":"Commented on:",
+  "campaign_comment_reply_button":"Reply",
+  "campaign_comment_delete_button":"Delete",
+  "campaign_comment_delete_warning_text":"Are you sure you want to delete?",
+  "campaign_comment_confirm_button":"Yes",
+  "campaign_comment_deny_button":"No",
+  "campaign_comment_update_button":"Update",
+  "campaign_comment_add_comment_header":"Add a Comment",
+  "campaign_comment_log_out_button":"Log Out",
+  "campaign_comment_subject_text":"Subject: (optional)",
+  "campaign_comment_comment_text":"Comment:",
+  "campaign_comment_add_comment_button":"Add Comment"
+}

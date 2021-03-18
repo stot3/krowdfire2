@@ -1,0 +1,43 @@
+{
+  "name": "thrinacia-atlas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-cachebust": "0.0.6",
+    "gulp-clean": "^0.3.2",
+    "gulp-clean-css": "^2.4.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.5.0",
+    "gulp-htmlmin": "^2.0.0",
+    "gulp-ng-annotate": "^2.1.0",
+    "gulp-ng-annotate-patched": "^0.1.1",
+    "gulp-plumber": "^1.2.0",
+    "gulp-remove-html-comments": "^1.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-replace-task": "^0.11.0",
+    "gulp-sequence": "^0.4.6",
+    "gulp-sourcemaps": "^1.12.1",
+    "gulp-strip-css-comments": "^1.2.0",
+    "gulp-track-filenames": "^0.1.0",
+    "gulp-uglify": "^1.5.4",
+    "gulp-uglify-es": "^2.0.0",
+    "protractor": "^3.0.0",
+    "yargs": "^5.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gulp-install": "^1.1.0",
+    "md5": "^2.3.0"
+  }
+}

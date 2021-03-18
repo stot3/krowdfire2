@@ -1,0 +1,43 @@
+@mixin theme($name, $main-color) {
+  .container.main-color.#{$name} {
+    /* Reward block ------------------*/
+    .rewards {
+      .pledge-level {
+        >li {
+          &:hover {
+            @if $main-color !=#ffffff {
+              background: $main-color !important;
+              color: $main-color !important;
+            }
+          }
+        }
+        .choose-reward-btn {
+          &.no-attrs{
+            margin-top: 15px;
+          }
+          @if $main-color==#ffffff {
+            background-color: #ffffff !important;
+            color: rgba(0, 0, 0, .8);
+          }
+          @else {
+            background: $main-color !important;
+            color: #fff;
+          }
+        }
+        &.ended,
+        &.past-threshold,
+        &.sold-out {
+          >li {
+            &:hover {
+              background: #f1f1f1 !important;
+              color: #555555 !important;
+              cursor: default !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include theme(theme-reward, $reward-color);

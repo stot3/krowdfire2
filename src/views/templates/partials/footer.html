@@ -1,0 +1,90 @@
+<div ng-controller="FooterCtrl" ng-cloak>
+  <div ng-if="footerCustomHtmlBlock" html-render html="footerCustomHtmlBlock.html" class="fr-view" id="footer-custom-html-block"></div>
+  <div id="socialicons-wrap" ng-show="show_footer">
+    <div class="ui page grid">
+      <div class="center aligned column">
+        <h3 class="ui social-media-blurb header"> {{footer_text.media_header}}</h3>
+
+        <div class="social-media-divider ui divider"></div>
+
+        <div class="socialmedia-icons">
+          <div class="social-icon ui horizontal list">
+            <a ng-href="{{value.url}}" class="social-link item" ng-repeat="(key,value) in social_links" ng-show="{{value.url.length>1}}" target="_blank">
+              <i ng-if="key=='facebook'" class="large circular fb-blue facebook icon" title="Follow us on Facebook"></i>
+              <i ng-if="key=='linkedin'" class="large circular linkedin-blue linkedin icon" title="Follow us on Linkedin"></i>
+              <i ng-if="key=='google'" class="large circular google-plus-red google plus icon" title="Follow us on Google"></i>
+              <i ng-if="key=='twitter'" class="large circular twitter-blue twitter icon" title="Follow us on Twitter"></i>
+              <i ng-if="key=='instagram'" class="large circular instagram-blue instagram icon" title="Follow us on Instagram"></i>
+              <i ng-if="key=='youtube'" class="large circular youtube-red youtube icon" title="Follow us on Youtube"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-wrap">
+    <div class="footer-content">
+      <div id="latest-feed">
+        <div class="ui two column stackable page grid" ng-if="twitter_widget.enabled || wp_uri.enabled">
+          <div class="column" ng-if="wp_uri.enabled">
+            <h3 class="ui header feed-title">
+              <i class="comment icon"></i> {{'footer_page_latestblog' | translate}}
+            </h3>
+            <wp-post options="{}"></wp-post>
+          </div>
+          <div class="column" ng-if="twitter_widget.enabled">
+            <h3 class="ui header feed-title">
+              <i class="twitter icon"></i> {{'footer_page_latesttweets' | translate}}
+            </h3>
+            <twitter-timeline></twitter-timeline>
+          </div>
+        </div>
+      </div>
+
+      <div id="footer-nav">
+        <div class="ui stackable page grid">
+          <div class="footer-col-wrap five column centered row">
+            <div class="footer-col footer-first column" ng-if="leftMenu.length">
+              <h5 class="ui header"> {{$root.site_company}} </h5>
+              <div class="footer-links ui link list">
+                <a class="item" ng-repeat="link in leftMenu" ng-href="{{findPageAndLink(link).path}}" my-target="{{link.id}}" target="_self">{{findPageAndLink(link).name}}</a>
+              </div>
+            </div>
+            <div class="footer-col footer-second column" ng-if="rightMenu.length">
+              <h5 class="ui header"> {{'footer_page_needhelp' | translate}} </h5>
+              <div class="ui link list">
+                <a class="item" ng-repeat="link in rightMenu" ng-href="{{findPageAndLink(link).path}}" my-target="{{link.id}}" target="_self">{{findPageAndLink(link).name}}</a>
+              </div>
+            </div>
+            <div class="footer-col footer-third column" ng-if="left_category.length" ng-show="hasCategory">
+              <h5 class="ui header"> {{'footer_page_explore' | translate}} </h5>
+              <div class="ui link list">
+                <a href="explore" class="item"> {{'footer_page_allcategory' | translate}}   </a>
+                <a ng-href="explore?category={{category.id}}" class="item" ng-repeat="category in left_category">{{category.name}}</a>
+              </div>
+            </div>
+            <div class="footer-col footer-fourth column" ng-if="middle_category.length" ng-show="hasCategory">
+              <h5 class="ui header" style="visibility:hidden;">&nbsp;</h5>
+              <div class="ui link list">
+                <a ng-href="explore?category={{category.id}}" class="item" ng-repeat="category in middle_category">{{category.name}}</a>
+              </div>
+            </div>
+            <div class="footer-col footer-fifth  column" ng-if="right_category.length" ng-show="hasCategory">
+              <h5 class="ui header" style="visibility:hidden;">&nbsp;</h5>
+              <div class="ui link list">
+                <a ng-href="explore?category={{category.id}}" class="item" ng-repeat="category in right_category">{{category.name}}</a>
+              </div>
+            </div>
+          </div>
+          <div class="footer-divider ui inverted divider"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="copyright ui basic segment center aligned">
+      <p class="company-cr">&copy; <span ng-bind="current_year"></span> <span ng-bind="site_company"></span> <span translate="footer_page_allrights_reserved"></span>
+      </p>
+    </div>
+  </div>
+</div>

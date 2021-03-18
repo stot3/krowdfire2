@@ -1,0 +1,3321 @@
+/*!
+ * # Semantic UI 2.1.8 - Button
+ * http://github.com/semantic-org/semantic-ui/
+ *
+ *
+ * Copyright 2015 Contributors
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+
+/*******************************
+            Button
+*******************************/
+
+sedra-widget #sedra-widget {
+  
+
+/*******************************
+  States
+  *******************************/
+
+  
+/*--------------
+  Hover
+  ---------------*/
+
+  
+/*--------------
+  Focus
+  ---------------*/
+
+  
+/*--------------
+  Down
+  ---------------*/
+
+  
+/*--------------
+  Active
+  ---------------*/
+
+  
+/*--------------
+  Loading
+  ---------------*/
+
+  
+/* Specificity hack */
+  
+/*-------------------
+  Disabled
+  --------------------*/
+
+  
+/* Basic Group With Disabled */
+  
+
+/*******************************
+  Types
+  *******************************/
+
+  
+/*-------------------
+  Animated
+  --------------------*/
+
+  
+/* Horizontal */
+  
+/* Vertical */
+  
+/* Fade */
+  
+/*-------------------
+  Inverted
+  --------------------*/
+
+  
+/* Group */
+  
+/* States */
+  
+/* Hover */
+  
+/* Active / Focus */
+  
+/* Active Focus */
+  
+/*-------------------
+  Labeled Button
+  --------------------*/
+
+  
+/* Tag */
+  
+/* Right */
+  
+/* Left Side */
+  
+/*-------------------
+  Social
+  --------------------*/
+
+  
+/* Facebook */
+  
+/* Twitter */
+  
+/* Google Plus */
+  
+/* Linked In */
+  
+/* YouTube */
+  
+/* Instagram */
+  
+/* Pinterest */
+  
+/* VK */
+  
+/*--------------
+  Icon
+  ---------------*/
+
+  
+
+/*******************************
+  Variations
+  *******************************/
+
+  
+/*-------------------
+  Floated
+  --------------------*/
+
+  
+/*-------------------
+  Compact
+  --------------------*/
+
+  
+/*-------------------
+  Sizes
+  --------------------*/
+
+  
+/*--------------
+  Icon Only
+  ---------------*/
+
+  
+/*-------------------
+  Basic
+  --------------------*/
+
+  
+/* Vertical */
+  
+/* Standard Basic Inverted */
+  
+/* Basic Group */
+  
+/*--------------
+  Labeled Icon
+  ---------------*/
+
+  
+/* Left Labeled */
+  
+/* Left Labeled */
+  
+/* Right Labeled */
+  
+/* Fluid Labeled */
+  
+/*--------------
+  Toggle
+  ---------------*/
+
+  
+/* Toggle (Modifies active state to give affordances) */
+  
+/*--------------
+  Circular
+  ---------------*/
+
+  
+/*-------------------
+  Or Buttons
+  --------------------*/
+
+  
+/* Fluid Or */
+  
+/*-------------------
+  Attached
+  --------------------*/
+
+  
+/* Singular */
+  
+/* Top / Bottom */
+  
+/* Left / Right */
+  
+/* Plural */
+  
+/* Top / Bottom */
+  
+/* Left / Right */
+  
+/*-------------------
+  Fluid
+  --------------------*/
+
+  
+/* Fluid Vertical Buttons */
+  
+/*-------------------
+  Colors
+  --------------------*/
+
+  
+/*--- Black ---*/
+
+  
+/* Basic */
+  
+/* Inverted */
+  
+/* Inverted Basic */
+  
+/*--- Grey ---*/
+
+  
+/* Basic */
+  
+/* Inverted */
+  
+/* Inverted Basic */
+  
+/*--- Brown ---*/
+
+  
+/* Basic */
+  
+/* Inverted */
+  
+/* Inverted Basic */
+  
+/*--- Blue ---*/
+
+  
+/* Basic */
+  
+/* Inverted */
+  
+/* Inverted Basic */
+  
+/*--- Green ---*/
+
+  
+/* Basic */
+  
+/* Inverted */
+  
+/* Inverted Basic */
+  
+/*--- Orange ---*/
+
+  
+/* Basic */
+  
+/* Inverted */
+  
+/* Inverted Basic */
+  
+/*--- Pink ---*/
+
+  
+/* Basic */
+  
+/* Inverted */
+  
+/* Inverted Basic */
+  
+/*--- Violet ---*/
+
+  
+/* Basic */
+  
+/* Inverted */
+  
+/* Inverted Basic */
+  
+/*--- Purple ---*/
+
+  
+/* Basic */
+  
+/* Inverted */
+  
+/* Inverted Basic */
+  
+/*--- Red ---*/
+
+  
+/* Basic */
+  
+/* Inverted */
+  
+/* Inverted Basic */
+  
+/*--- Teal ---*/
+
+  
+/* Basic */
+  
+/* Inverted */
+  
+/* Inverted Basic */
+  
+/*--- Olive ---*/
+
+  
+/* Basic */
+  
+/* Inverted */
+  
+/* Inverted Basic */
+  
+/*--- Yellow ---*/
+
+  
+/* Basic */
+  
+/* Inverted */
+  
+/* Inverted Basic */
+  
+/*-------------------
+  Primary
+  --------------------*/
+
+  
+/*-------------------
+  Secondary
+  --------------------*/
+
+  
+/*---------------
+  Positive
+  ----------------*/
+
+  
+/*---------------
+  Negative
+  ----------------*/
+
+  
+
+/*******************************
+  Groups
+  *******************************/
+
+  
+/* Clearfix */
+  
+/* Standard Group */
+  
+/* Vertical  Style */
+}
+sedra-widget #sedra-widget .ui.button {
+  cursor: pointer;
+  display: inline-block;
+  min-height: 1em;
+  outline: none;
+  border: none;
+  vertical-align: baseline;
+  background: #E0E1E2 none;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  margin: 0em 0.25em 0em 0em;
+  padding: 0.78571429em 1.5em 0.78571429em;
+  text-transform: none;
+  text-shadow: none;
+  font-weight: bold;
+  line-height: 1em;
+  font-style: normal;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 0.28571429rem;
+  box-shadow: 0px 0px 0px 1px transparent inset, 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
+  transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
+  will-change: '';
+  -webkit-tap-highlight-color: transparent;
+}
+sedra-widget #sedra-widget .ui.button:hover {
+  background-color: #CACBCD;
+  background-image: none;
+  box-shadow: 0px 0px 0px 1px transparent inset, 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+  color: rgba(0, 0, 0, 0.8);
+}
+sedra-widget #sedra-widget .ui.button:hover .icon {
+  opacity: 0.85;
+}
+sedra-widget #sedra-widget .ui.button:focus {
+  background-color: #CACBCD;
+  color: rgba(0, 0, 0, 0.8);
+  background-image: '' !important;
+  box-shadow: '' !important;
+}
+sedra-widget #sedra-widget .ui.button:focus .icon {
+  opacity: 0.85;
+}
+sedra-widget #sedra-widget .ui.button:active,
+sedra-widget #sedra-widget .ui.active.button:active {
+  background-color: #BABBBC;
+  background-image: '';
+  color: rgba(0, 0, 0, 0.9);
+  box-shadow: 0px 0px 0px 1px transparent inset, none;
+}
+sedra-widget #sedra-widget .ui.active.button {
+  background-color: #C0C1C2;
+  background-image: none;
+  box-shadow: 0px 0px 0px 1px transparent inset;
+  color: rgba(0, 0, 0, 0.95);
+}
+sedra-widget #sedra-widget .ui.active.button:hover {
+  background-color: #C0C1C2;
+  background-image: none;
+  color: rgba(0, 0, 0, 0.95);
+}
+sedra-widget #sedra-widget .ui.active.button:active {
+  background-color: #C0C1C2;
+  background-image: none;
+}
+sedra-widget #sedra-widget .ui.loading.loading.loading.loading.loading.loading.button {
+  position: relative;
+  cursor: default;
+  text-shadow: none !important;
+  color: transparent !important;
+  opacity: 1;
+  pointer-events: auto;
+  -webkit-transition: all 0s linear, opacity 0.1s ease;
+  transition: all 0s linear, opacity 0.1s ease;
+}
+sedra-widget #sedra-widget .ui.loading.button:before {
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+  margin: -0.64285714em 0em 0em -0.64285714em;
+  width: 1.28571429em;
+  height: 1.28571429em;
+  border-radius: 500rem;
+  border: 0.2em solid rgba(0, 0, 0, 0.15);
+}
+sedra-widget #sedra-widget .ui.loading.button:after {
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+  margin: -0.64285714em 0em 0em -0.64285714em;
+  width: 1.28571429em;
+  height: 1.28571429em;
+  -webkit-animation: button-spin 0.6s linear;
+          animation: button-spin 0.6s linear;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  border-radius: 500rem;
+  border-color: #FFFFFF transparent transparent;
+  border-style: solid;
+  border-width: 0.2em;
+  box-shadow: 0px 0px 0px 1px transparent;
+}
+sedra-widget #sedra-widget .ui.labeled.icon.loading.button .icon {
+  background-color: transparent;
+  box-shadow: none;
+}
+@-webkit-keyframes button-spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes button-spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+sedra-widget #sedra-widget .ui.basic.loading.button:not(.inverted):before {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+sedra-widget #sedra-widget .ui.basic.loading.button:not(.inverted):after {
+  border-top-color: #767676;
+}
+sedra-widget #sedra-widget .ui.buttons .disabled.button,
+sedra-widget #sedra-widget .ui.disabled.button,
+sedra-widget #sedra-widget .ui.button:disabled,
+sedra-widget #sedra-widget .ui.disabled.button:hover,
+sedra-widget #sedra-widget .ui.disabled.active.button {
+  cursor: default;
+  opacity: 0.45 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  pointer-events: none;
+}
+sedra-widget #sedra-widget .ui.basic.buttons .ui.disabled.button {
+  border-color: rgba(34, 36, 38, 0.5);
+}
+sedra-widget #sedra-widget .ui.animated.button {
+  position: relative;
+  overflow: hidden;
+  padding-right: 0em !important;
+  vertical-align: middle;
+  z-index: 1;
+}
+sedra-widget #sedra-widget .ui.animated.button .content {
+  will-change: transform, opacity;
+}
+sedra-widget #sedra-widget .ui.animated.button .visible.content {
+  position: relative;
+  margin-right: 1.5em;
+}
+sedra-widget #sedra-widget .ui.animated.button .hidden.content {
+  position: absolute;
+  width: 100%;
+}
+sedra-widget #sedra-widget .ui.animated.button .visible.content,
+sedra-widget #sedra-widget .ui.animated.button .hidden.content {
+  -webkit-transition: right 0.3s ease 0s;
+  transition: right 0.3s ease 0s;
+}
+sedra-widget #sedra-widget .ui.animated.button .visible.content {
+  left: auto;
+  right: 0%;
+}
+sedra-widget #sedra-widget .ui.animated.button .hidden.content {
+  top: 50%;
+  left: auto;
+  right: -100%;
+  margin-top: -0.5em;
+}
+sedra-widget #sedra-widget .ui.animated.button:focus .visible.content,
+sedra-widget #sedra-widget .ui.animated.button:hover .visible.content {
+  left: auto;
+  right: 200%;
+}
+sedra-widget #sedra-widget .ui.animated.button:focus .hidden.content,
+sedra-widget #sedra-widget .ui.animated.button:hover .hidden.content {
+  left: auto;
+  right: 0%;
+}
+sedra-widget #sedra-widget .ui.vertical.animated.button .visible.content,
+sedra-widget #sedra-widget .ui.vertical.animated.button .hidden.content {
+  -webkit-transition: top 0.3s ease, -webkit-transform 0.3s ease;
+  transition: top 0.3s ease, -webkit-transform 0.3s ease;
+  transition: top 0.3s ease, transform 0.3s ease;
+  transition: top 0.3s ease, transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+sedra-widget #sedra-widget .ui.vertical.animated.button .visible.content {
+  -webkit-transform: translateY(0%);
+          transform: translateY(0%);
+  right: auto;
+}
+sedra-widget #sedra-widget .ui.vertical.animated.button .hidden.content {
+  top: -50%;
+  left: 0%;
+  right: auto;
+}
+sedra-widget #sedra-widget .ui.vertical.animated.button:focus .visible.content,
+sedra-widget #sedra-widget .ui.vertical.animated.button:hover .visible.content {
+  -webkit-transform: translateY(200%);
+          transform: translateY(200%);
+  right: auto;
+}
+sedra-widget #sedra-widget .ui.vertical.animated.button:focus .hidden.content,
+sedra-widget #sedra-widget .ui.vertical.animated.button:hover .hidden.content {
+  top: 50%;
+  right: auto;
+}
+sedra-widget #sedra-widget .ui.fade.animated.button .visible.content,
+sedra-widget #sedra-widget .ui.fade.animated.button .hidden.content {
+  -webkit-transition: opacity 0.3s ease, -webkit-transform 0.3s ease;
+  transition: opacity 0.3s ease, -webkit-transform 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+sedra-widget #sedra-widget .ui.fade.animated.button .visible.content {
+  left: auto;
+  right: auto;
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+sedra-widget #sedra-widget .ui.fade.animated.button .hidden.content {
+  opacity: 0;
+  left: 0%;
+  right: auto;
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+}
+sedra-widget #sedra-widget .ui.fade.animated.button:focus .visible.content,
+sedra-widget #sedra-widget .ui.fade.animated.button:hover .visible.content {
+  left: auto;
+  right: auto;
+  opacity: 0;
+  -webkit-transform: scale(0.75);
+          transform: scale(0.75);
+}
+sedra-widget #sedra-widget .ui.fade.animated.button:focus .hidden.content,
+sedra-widget #sedra-widget .ui.fade.animated.button:hover .hidden.content {
+  left: 0%;
+  right: auto;
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+sedra-widget #sedra-widget .ui.inverted.button {
+  box-shadow: 0px 0px 0px 2px #FFFFFF inset !important;
+  background: transparent none;
+  color: #FFFFFF;
+  text-shadow: none !important;
+}
+sedra-widget #sedra-widget .ui.inverted.buttons .button {
+  margin: 0px 0px 0px -2px;
+}
+sedra-widget #sedra-widget .ui.inverted.buttons .button:first-child {
+  margin-left: 0em;
+}
+sedra-widget #sedra-widget .ui.inverted.vertical.buttons .button {
+  margin: 0px 0px -2px 0px;
+}
+sedra-widget #sedra-widget .ui.inverted.vertical.buttons .button:first-child {
+  margin-top: 0em;
+}
+sedra-widget #sedra-widget .ui.inverted.button:hover {
+  background: #FFFFFF;
+  box-shadow: 0px 0px 0px 2px #FFFFFF inset !important;
+  color: rgba(0, 0, 0, 0.8);
+}
+sedra-widget #sedra-widget .ui.inverted.button:focus,
+sedra-widget #sedra-widget .ui.inverted.button.active {
+  background: #FFFFFF;
+  box-shadow: 0px 0px 0px 2px #FFFFFF inset !important;
+  color: rgba(0, 0, 0, 0.8);
+}
+sedra-widget #sedra-widget .ui.inverted.button.active:focus {
+  background: #DCDDDE;
+  box-shadow: 0px 0px 0px 2px #DCDDDE inset !important;
+  color: rgba(0, 0, 0, 0.8);
+}
+sedra-widget #sedra-widget .ui.labeled.button:not(.icon) {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  background: none !important;
+  padding: 0px !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+sedra-widget #sedra-widget .ui.labeled.button > .button {
+  margin: 0px;
+}
+sedra-widget #sedra-widget .ui.labeled.button > .label {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0px 0px 0px -1px !important;
+  padding: '';
+  font-size: 1em;
+  border-color: rgba(34, 36, 38, 0.15);
+}
+sedra-widget #sedra-widget .ui.labeled.button > .tag.label:before {
+  width: 1.85em;
+  height: 1.85em;
+}
+sedra-widget #sedra-widget .ui.labeled.button:not([class*="left labeled"]) > .button {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+sedra-widget #sedra-widget .ui.labeled.button:not([class*="left labeled"]) > .label {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+sedra-widget #sedra-widget .ui[class*="left labeled"].button > .button {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+sedra-widget #sedra-widget .ui[class*="left labeled"].button > .label {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+sedra-widget #sedra-widget .ui.facebook.button {
+  background-color: #3B5998;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.facebook.button:hover {
+  background-color: #304d8a;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.facebook.button:active {
+  background-color: #2d4373;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.twitter.button {
+  background-color: #0084B4;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.twitter.button:hover {
+  background-color: #00719b;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.twitter.button:active {
+  background-color: #005f81;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.google.plus.button {
+  background-color: #DC4A38;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.google.plus.button:hover {
+  background-color: #de321d;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.google.plus.button:active {
+  background-color: #bf3322;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.linkedin.button {
+  background-color: #1F88BE;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.linkedin.button:hover {
+  background-color: #147baf;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.linkedin.button:active {
+  background-color: #186992;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.youtube.button {
+  background-color: #CC181E;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.youtube.button:hover {
+  background-color: #bd0d13;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.youtube.button:active {
+  background-color: #9e1317;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.instagram.button {
+  background-color: #49769C;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.instagram.button:hover {
+  background-color: #3d698e;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.instagram.button:active {
+  background-color: #395c79;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.pinterest.button {
+  background-color: #00ACED;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.pinterest.button:hover {
+  background-color: #0099d4;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.pinterest.button:active {
+  background-color: #0087ba;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.vk.button {
+  background-color: #4D7198;
+  color: #FFFFFF;
+  background-image: none;
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.vk.button:hover {
+  background-color: #41648a;
+  color: #FFFFFF;
+}
+sedra-widget #sedra-widget .ui.vk.button:active {
+  background-color: #3c5876;
+  color: #FFFFFF;
+}
+sedra-widget #sedra-widget .ui.button > .icon:not(.button) {
+  height: 0.85714286em;
+  opacity: 0.8;
+  margin: 0em 0.42857143em 0em -0.21428571em;
+  -webkit-transition: opacity 0.1s ease;
+  transition: opacity 0.1s ease;
+  vertical-align: '';
+  color: '';
+}
+sedra-widget #sedra-widget .ui.button > .right.icon:not(.button) {
+  margin: 0em -0.21428571em 0em 0.42857143em;
+}
+sedra-widget #sedra-widget .ui[class*="left floated"].buttons,
+sedra-widget #sedra-widget .ui[class*="left floated"].button {
+  float: left;
+  margin-left: 0em;
+  margin-right: 0.25em;
+}
+sedra-widget #sedra-widget .ui[class*="right floated"].buttons,
+sedra-widget #sedra-widget .ui[class*="right floated"].button {
+  float: right;
+  margin-right: 0em;
+  margin-left: 0.25em;
+}
+sedra-widget #sedra-widget .ui.compact.buttons .button,
+sedra-widget #sedra-widget .ui.compact.button {
+  padding: 0.58928571em 1.125em 0.58928571em;
+}
+sedra-widget #sedra-widget .ui.compact.icon.buttons .button,
+sedra-widget #sedra-widget .ui.compact.icon.button {
+  padding: 0.58928571em 0.58928571em 0.58928571em;
+}
+sedra-widget #sedra-widget .ui.compact.labeled.icon.buttons .button,
+sedra-widget #sedra-widget .ui.compact.labeled.icon.button {
+  padding: 0.58928571em 3.69642857em 0.58928571em;
+}
+sedra-widget #sedra-widget .ui.mini.buttons .button,
+sedra-widget #sedra-widget .ui.mini.buttons .or,
+sedra-widget #sedra-widget .ui.mini.button {
+  font-size: 0.71428571rem;
+}
+sedra-widget #sedra-widget .ui.tiny.buttons .button,
+sedra-widget #sedra-widget .ui.tiny.buttons .or,
+sedra-widget #sedra-widget .ui.tiny.button {
+  font-size: 0.85714286rem;
+}
+sedra-widget #sedra-widget .ui.small.buttons .button,
+sedra-widget #sedra-widget .ui.small.buttons .or,
+sedra-widget #sedra-widget .ui.small.button {
+  font-size: 0.92857143rem;
+}
+sedra-widget #sedra-widget .ui.buttons .button,
+sedra-widget #sedra-widget .ui.buttons .or,
+sedra-widget #sedra-widget .ui.button {
+  font-size: 1rem;
+}
+sedra-widget #sedra-widget .ui.large.buttons .button,
+sedra-widget #sedra-widget .ui.large.buttons .or,
+sedra-widget #sedra-widget .ui.large.button {
+  font-size: 1.14285714rem;
+}
+sedra-widget #sedra-widget .ui.big.buttons .button,
+sedra-widget #sedra-widget .ui.big.buttons .or,
+sedra-widget #sedra-widget .ui.big.button {
+  font-size: 1.28571429rem;
+}
+sedra-widget #sedra-widget .ui.huge.buttons .button,
+sedra-widget #sedra-widget .ui.huge.buttons .or,
+sedra-widget #sedra-widget .ui.huge.button {
+  font-size: 1.42857143rem;
+}
+sedra-widget #sedra-widget .ui.massive.buttons .button,
+sedra-widget #sedra-widget .ui.massive.buttons .or,
+sedra-widget #sedra-widget .ui.massive.button {
+  font-size: 1.71428571rem;
+}
+sedra-widget #sedra-widget .ui.icon.buttons .button,
+sedra-widget #sedra-widget .ui.icon.button {
+  padding: 0.78571429em 0.78571429em 0.78571429em;
+}
+sedra-widget #sedra-widget .ui.icon.buttons .button > .icon,
+sedra-widget #sedra-widget .ui.icon.button > .icon {
+  opacity: 0.9;
+  margin: 0em;
+  vertical-align: top;
+}
+sedra-widget #sedra-widget .ui.basic.buttons .button,
+sedra-widget #sedra-widget .ui.basic.button {
+  background: transparent none !important;
+  color: rgba(0, 0, 0, 0.6) !important;
+  font-weight: normal;
+  border-radius: 0.28571429rem;
+  text-transform: none;
+  text-shadow: none !important;
+  box-shadow: 0px 0px 0px 1px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.basic.buttons {
+  box-shadow: none;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  border-radius: 0.28571429rem;
+}
+sedra-widget #sedra-widget .ui.basic.buttons .button {
+  border-radius: 0em;
+}
+sedra-widget #sedra-widget .ui.basic.buttons .button:hover,
+sedra-widget #sedra-widget .ui.basic.button:hover {
+  background: #FFFFFF !important;
+  color: rgba(0, 0, 0, 0.8) !important;
+  box-shadow: 0px 0px 0px 1px rgba(34, 36, 38, 0.35) inset, 0px 0px 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.basic.button:focus {
+  background: #FFFFFF !important;
+  color: rgba(0, 0, 0, 0.8) !important;
+  box-shadow: 0px 0px 0px 1px rgba(34, 36, 38, 0.35) inset, 0px 0px 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.basic.buttons .button:active,
+sedra-widget #sedra-widget .ui.basic.button:active {
+  background: #F8F8F8 !important;
+  color: rgba(0, 0, 0, 0.9) !important;
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.15) inset, 0px 1px 4px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.basic.buttons .active.button,
+sedra-widget #sedra-widget .ui.basic.active.button {
+  background: rgba(0, 0, 0, 0.05) !important;
+  box-shadow: '' !important;
+  color: rgba(0, 0, 0, 0.95);
+  box-shadow: rgba(34, 36, 38, 0.35);
+}
+sedra-widget #sedra-widget .ui.basic.buttons .active.button:hover,
+sedra-widget #sedra-widget .ui.basic.active.button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+sedra-widget #sedra-widget .ui.basic.buttons .button:hover {
+  box-shadow: 0px 0px 0px 1px rgba(34, 36, 38, 0.35) inset, 0px 0px 0px 0px rgba(34, 36, 38, 0.15) inset inset;
+}
+sedra-widget #sedra-widget .ui.basic.buttons .button:active {
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.15) inset, 0px 1px 4px 0px rgba(34, 36, 38, 0.15) inset inset;
+}
+sedra-widget #sedra-widget .ui.basic.buttons .active.button {
+  box-shadow: rgba(34, 36, 38, 0.35) inset;
+}
+sedra-widget #sedra-widget .ui.basic.inverted.buttons .button,
+sedra-widget #sedra-widget .ui.basic.inverted.button {
+  background-color: transparent !important;
+  color: #F9FAFB !important;
+  box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 0.5) inset !important;
+}
+sedra-widget #sedra-widget .ui.basic.inverted.buttons .button:hover,
+sedra-widget #sedra-widget .ui.basic.inverted.button:hover {
+  color: #FFFFFF !important;
+  box-shadow: 0px 0px 0px 2px #ffffff inset !important;
+}
+sedra-widget #sedra-widget .ui.basic.inverted.buttons .button:focus,
+sedra-widget #sedra-widget .ui.basic.inverted.button:focus {
+  color: #FFFFFF !important;
+  box-shadow: 0px 0px 0px 2px #ffffff inset !important;
+}
+sedra-widget #sedra-widget .ui.basic.inverted.buttons .button:active,
+sedra-widget #sedra-widget .ui.basic.inverted.button:active {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 0.9) inset !important;
+}
+sedra-widget #sedra-widget .ui.basic.inverted.buttons .active.button,
+sedra-widget #sedra-widget .ui.basic.inverted.active.button {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+  text-shadow: none;
+  box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 0.7) inset;
+}
+sedra-widget #sedra-widget .ui.basic.inverted.buttons .active.button:hover,
+sedra-widget #sedra-widget .ui.basic.inverted.active.button:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0px 0px 0px 2px #ffffff inset !important;
+}
+sedra-widget #sedra-widget .ui.basic.buttons .button {
+  border-left: 1px solid rgba(34, 36, 38, 0.15);
+  box-shadow: none;
+}
+sedra-widget #sedra-widget .ui.basic.vertical.buttons .button {
+  border-left: none;
+}
+sedra-widget #sedra-widget .ui.basic.vertical.buttons .button {
+  border-left-width: 0px;
+  border-top: 1px solid rgba(34, 36, 38, 0.15);
+}
+sedra-widget #sedra-widget .ui.basic.vertical.buttons .button:first-child {
+  border-top-width: 0px;
+}
+sedra-widget #sedra-widget .ui.labeled.icon.buttons .button,
+sedra-widget #sedra-widget .ui.labeled.icon.button {
+  position: relative;
+  padding-left: 4.07142857em !important;
+  padding-right: 1.5em !important;
+}
+sedra-widget #sedra-widget .ui.labeled.icon.buttons > .button > .icon,
+sedra-widget #sedra-widget .ui.labeled.icon.button > .icon {
+  position: absolute;
+  height: 100%;
+  line-height: 1;
+  border-radius: 0px;
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
+  text-align: center;
+  margin: 0em;
+  width: 2.57142857em;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: '';
+  box-shadow: -1px 0px 0px 0px transparent inset;
+}
+sedra-widget #sedra-widget .ui.labeled.icon.buttons > .button > .icon,
+sedra-widget #sedra-widget .ui.labeled.icon.button > .icon {
+  top: 0em;
+  left: 0em;
+}
+sedra-widget #sedra-widget .ui[class*="right labeled"].icon.button {
+  padding-right: 4.07142857em !important;
+  padding-left: 1.5em !important;
+}
+sedra-widget #sedra-widget .ui[class*="right labeled"].icon.button > .icon {
+  left: auto;
+  right: 0em;
+  border-radius: 0px;
+  border-top-right-radius: inherit;
+  border-bottom-right-radius: inherit;
+  box-shadow: 1px 0px 0px 0px transparent inset;
+}
+sedra-widget #sedra-widget .ui.labeled.icon.buttons > .button > .icon:before,
+sedra-widget #sedra-widget .ui.labeled.icon.button > .icon:before,
+sedra-widget #sedra-widget .ui.labeled.icon.buttons > .button > .icon:after,
+sedra-widget #sedra-widget .ui.labeled.icon.button > .icon:after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  text-align: center;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+sedra-widget #sedra-widget .ui.labeled.icon.buttons .button > .icon {
+  border-radius: 0em;
+}
+sedra-widget #sedra-widget .ui.labeled.icon.buttons .button:first-child > .icon {
+  border-top-left-radius: 0.28571429rem;
+  border-bottom-left-radius: 0.28571429rem;
+}
+sedra-widget #sedra-widget .ui.labeled.icon.buttons .button:last-child > .icon {
+  border-top-right-radius: 0.28571429rem;
+  border-bottom-right-radius: 0.28571429rem;
+}
+sedra-widget #sedra-widget .ui.vertical.labeled.icon.buttons .button:first-child > .icon {
+  border-radius: 0em;
+  border-top-left-radius: 0.28571429rem;
+}
+sedra-widget #sedra-widget .ui.vertical.labeled.icon.buttons .button:last-child > .icon {
+  border-radius: 0em;
+  border-bottom-left-radius: 0.28571429rem;
+}
+sedra-widget #sedra-widget .ui.fluid[class*="left labeled"].icon.button,
+sedra-widget #sedra-widget .ui.fluid[class*="right labeled"].icon.button {
+  padding-left: 1.5em !important;
+  padding-right: 1.5em !important;
+}
+sedra-widget #sedra-widget .ui.toggle.buttons .active.button,
+sedra-widget #sedra-widget .ui.buttons .button.toggle.active,
+sedra-widget #sedra-widget .ui.button.toggle.active {
+  background-color: #21BA45 !important;
+  box-shadow: none !important;
+  text-shadow: none;
+  color: #FFFFFF !important;
+}
+sedra-widget #sedra-widget .ui.button.toggle.active:hover {
+  background-color: #16ab39 !important;
+  text-shadow: none;
+  color: #FFFFFF !important;
+}
+sedra-widget #sedra-widget .ui.circular.button {
+  border-radius: 10em;
+}
+sedra-widget #sedra-widget .ui.circular.button > .icon {
+  width: 1em;
+  vertical-align: baseline;
+}
+sedra-widget #sedra-widget .ui.buttons .or {
+  position: relative;
+  width: 0.3em;
+  height: 2.57142857em;
+  z-index: 3;
+}
+sedra-widget #sedra-widget .ui.buttons .or:before {
+  position: absolute;
+  text-align: center;
+  border-radius: 500rem;
+  content: 'or';
+  top: 50%;
+  left: 50%;
+  background-color: #FFFFFF;
+  text-shadow: none;
+  margin-top: -0.89285714em;
+  margin-left: -0.89285714em;
+  width: 1.78571429em;
+  height: 1.78571429em;
+  line-height: 1.78571429em;
+  color: rgba(0, 0, 0, 0.4);
+  font-style: normal;
+  font-weight: bold;
+  box-shadow: 0px 0px 0px 1px transparent inset;
+}
+sedra-widget #sedra-widget .ui.buttons .or[data-text]:before {
+  content: attr(data-text);
+}
+sedra-widget #sedra-widget .ui.fluid.buttons .or {
+  width: 0em !important;
+}
+sedra-widget #sedra-widget .ui.fluid.buttons .or:after {
+  display: none;
+}
+sedra-widget #sedra-widget .ui.attached.button {
+  position: relative;
+  display: block;
+  margin: 0em;
+  border-radius: 0em;
+  box-shadow: 0px 0px 0px 1px rgba(34, 36, 38, 0.15) !important;
+}
+sedra-widget #sedra-widget .ui.attached.top.button {
+  border-radius: 0.28571429rem 0.28571429rem 0em 0em;
+}
+sedra-widget #sedra-widget .ui.attached.bottom.button {
+  border-radius: 0em 0em 0.28571429rem 0.28571429rem;
+}
+sedra-widget #sedra-widget .ui.left.attached.button {
+  display: inline-block;
+  border-left: none;
+  text-align: right;
+  padding-right: 0.75em;
+  border-radius: 0.28571429rem 0em 0em 0.28571429rem;
+}
+sedra-widget #sedra-widget .ui.right.attached.button {
+  display: inline-block;
+  text-align: left;
+  padding-left: 0.75em;
+  border-radius: 0em 0.28571429rem 0.28571429rem 0em;
+}
+sedra-widget #sedra-widget .ui.attached.buttons {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 0em;
+  width: auto !important;
+  z-index: 2;
+  margin-left: -1px;
+  margin-right: -1px;
+}
+sedra-widget #sedra-widget .ui.attached.buttons .button {
+  margin: 0em;
+}
+sedra-widget #sedra-widget .ui.attached.buttons .button:first-child {
+  border-radius: 0em;
+}
+sedra-widget #sedra-widget .ui.attached.buttons .button:last-child {
+  border-radius: 0em;
+}
+sedra-widget #sedra-widget .ui[class*="top attached"].buttons {
+  margin-bottom: -1px;
+  border-radius: 0.28571429rem 0.28571429rem 0em 0em;
+}
+sedra-widget #sedra-widget .ui[class*="top attached"].buttons .button:first-child {
+  border-radius: 0.28571429rem 0em 0em 0em;
+}
+sedra-widget #sedra-widget .ui[class*="top attached"].buttons .button:last-child {
+  border-radius: 0em 0.28571429rem 0em 0em;
+}
+sedra-widget #sedra-widget .ui[class*="bottom attached"].buttons {
+  margin-top: -1px;
+  border-radius: 0em 0em 0.28571429rem 0.28571429rem;
+}
+sedra-widget #sedra-widget .ui[class*="bottom attached"].buttons .button:first-child {
+  border-radius: 0em 0em 0em 0.28571429rem;
+}
+sedra-widget #sedra-widget .ui[class*="bottom attached"].buttons .button:last-child {
+  border-radius: 0em 0em 0.28571429rem 0em;
+}
+sedra-widget #sedra-widget .ui[class*="left attached"].buttons {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  margin-right: 0em;
+  margin-left: -1px;
+  border-radius: 0em 0.28571429rem 0.28571429rem 0em;
+}
+sedra-widget #sedra-widget .ui[class*="left attached"].buttons .button:first-child {
+  margin-left: -1px;
+  border-radius: 0em 0.28571429rem 0em 0em;
+}
+sedra-widget #sedra-widget .ui[class*="left attached"].buttons .button:last-child {
+  margin-left: -1px;
+  border-radius: 0em 0em 0.28571429rem 0em;
+}
+sedra-widget #sedra-widget .ui[class*="right attached"].buttons {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  margin-left: 0em;
+  margin-right: -1px;
+  border-radius: 0.28571429rem 0em 0em 0.28571429rem;
+}
+sedra-widget #sedra-widget .ui[class*="right attached"].buttons .button:first-child {
+  margin-left: -1px;
+  border-radius: 0.28571429rem 0em 0em 0em;
+}
+sedra-widget #sedra-widget .ui[class*="right attached"].buttons .button:last-child {
+  margin-left: -1px;
+  border-radius: 0em 0em 0em 0.28571429rem;
+}
+sedra-widget #sedra-widget .ui.fluid.buttons,
+sedra-widget #sedra-widget .ui.fluid.button {
+  width: 100%;
+}
+sedra-widget #sedra-widget .ui.fluid.button {
+  display: block;
+}
+sedra-widget #sedra-widget .ui.two.buttons {
+  width: 100%;
+}
+sedra-widget #sedra-widget .ui.two.buttons > .button {
+  width: 50%;
+}
+sedra-widget #sedra-widget .ui.three.buttons {
+  width: 100%;
+}
+sedra-widget #sedra-widget .ui.three.buttons > .button {
+  width: 33.333%;
+}
+sedra-widget #sedra-widget .ui.four.buttons {
+  width: 100%;
+}
+sedra-widget #sedra-widget .ui.four.buttons > .button {
+  width: 25%;
+}
+sedra-widget #sedra-widget .ui.five.buttons {
+  width: 100%;
+}
+sedra-widget #sedra-widget .ui.five.buttons > .button {
+  width: 20%;
+}
+sedra-widget #sedra-widget .ui.six.buttons {
+  width: 100%;
+}
+sedra-widget #sedra-widget .ui.six.buttons > .button {
+  width: 16.666%;
+}
+sedra-widget #sedra-widget .ui.seven.buttons {
+  width: 100%;
+}
+sedra-widget #sedra-widget .ui.seven.buttons > .button {
+  width: 14.285%;
+}
+sedra-widget #sedra-widget .ui.eight.buttons {
+  width: 100%;
+}
+sedra-widget #sedra-widget .ui.eight.buttons > .button {
+  width: 12.500%;
+}
+sedra-widget #sedra-widget .ui.nine.buttons {
+  width: 100%;
+}
+sedra-widget #sedra-widget .ui.nine.buttons > .button {
+  width: 11.11%;
+}
+sedra-widget #sedra-widget .ui.ten.buttons {
+  width: 100%;
+}
+sedra-widget #sedra-widget .ui.ten.buttons > .button {
+  width: 10%;
+}
+sedra-widget #sedra-widget .ui.eleven.buttons {
+  width: 100%;
+}
+sedra-widget #sedra-widget .ui.eleven.buttons > .button {
+  width: 9.09%;
+}
+sedra-widget #sedra-widget .ui.twelve.buttons {
+  width: 100%;
+}
+sedra-widget #sedra-widget .ui.twelve.buttons > .button {
+  width: 8.3333%;
+}
+sedra-widget #sedra-widget .ui.fluid.vertical.buttons,
+sedra-widget #sedra-widget .ui.fluid.vertical.buttons > .button {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: auto;
+}
+sedra-widget #sedra-widget .ui.two.vertical.buttons > .button {
+  height: 50%;
+}
+sedra-widget #sedra-widget .ui.three.vertical.buttons > .button {
+  height: 33.333%;
+}
+sedra-widget #sedra-widget .ui.four.vertical.buttons > .button {
+  height: 25%;
+}
+sedra-widget #sedra-widget .ui.five.vertical.buttons > .button {
+  height: 20%;
+}
+sedra-widget #sedra-widget .ui.six.vertical.buttons > .button {
+  height: 16.666%;
+}
+sedra-widget #sedra-widget .ui.seven.vertical.buttons > .button {
+  height: 14.285%;
+}
+sedra-widget #sedra-widget .ui.eight.vertical.buttons > .button {
+  height: 12.500%;
+}
+sedra-widget #sedra-widget .ui.nine.vertical.buttons > .button {
+  height: 11.11%;
+}
+sedra-widget #sedra-widget .ui.ten.vertical.buttons > .button {
+  height: 10%;
+}
+sedra-widget #sedra-widget .ui.eleven.vertical.buttons > .button {
+  height: 9.09%;
+}
+sedra-widget #sedra-widget .ui.twelve.vertical.buttons > .button {
+  height: 8.3333%;
+}
+sedra-widget #sedra-widget .ui.black.buttons .button,
+sedra-widget #sedra-widget .ui.black.button {
+  background-color: #1B1C1D;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+}
+sedra-widget #sedra-widget .ui.black.button {
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.black.buttons .button:hover,
+sedra-widget #sedra-widget .ui.black.button:hover {
+  background-color: #27292a;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.black.buttons .button:focus,
+sedra-widget #sedra-widget .ui.black.button:focus {
+  background-color: #2f3032;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.black.buttons .button:active,
+sedra-widget #sedra-widget .ui.black.button:active {
+  background-color: #343637;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.black.buttons .active.button,
+sedra-widget #sedra-widget .ui.black.buttons .active.button:active,
+sedra-widget #sedra-widget .ui.black.active.button,
+sedra-widget #sedra-widget .ui.black.button .active.button:active {
+  background-color: #0f0f10;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.basic.black.buttons .button,
+sedra-widget #sedra-widget .ui.basic.black.button {
+  box-shadow: 0px 0px 0px 1px #1B1C1D inset !important;
+  color: #1B1C1D !important;
+}
+sedra-widget #sedra-widget .ui.basic.black.buttons .button:hover,
+sedra-widget #sedra-widget .ui.basic.black.button:hover {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #27292a inset !important;
+  color: #27292a !important;
+}
+sedra-widget #sedra-widget .ui.basic.black.buttons .button:focus,
+sedra-widget #sedra-widget .ui.basic.black.button:focus {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #2f3032 inset !important;
+  color: #27292a !important;
+}
+sedra-widget #sedra-widget .ui.basic.black.buttons .active.button,
+sedra-widget #sedra-widget .ui.basic.black.active.button {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #0f0f10 inset !important;
+  color: #343637 !important;
+}
+sedra-widget #sedra-widget .ui.basic.black.buttons .button:active,
+sedra-widget #sedra-widget .ui.basic.black.button:active {
+  box-shadow: 0px 0px 0px 1px #343637 inset !important;
+  color: #343637 !important;
+}
+sedra-widget #sedra-widget .ui.buttons:not(.vertical) > .basic.black.button:not(:first-child) {
+  margin-left: -1px;
+}
+sedra-widget #sedra-widget .ui.inverted.black.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.black.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px #D4D4D5 inset !important;
+  color: #FFFFFF;
+}
+sedra-widget #sedra-widget .ui.inverted.black.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.black.button:hover,
+sedra-widget #sedra-widget .ui.inverted.black.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.black.button:focus,
+sedra-widget #sedra-widget .ui.inverted.black.buttons .button.active,
+sedra-widget #sedra-widget .ui.inverted.black.button.active,
+sedra-widget #sedra-widget .ui.inverted.black.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.black.button:active {
+  box-shadow: none !important;
+  color: #FFFFFF;
+}
+sedra-widget #sedra-widget .ui.inverted.black.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.black.button:hover {
+  background-color: #000000;
+}
+sedra-widget #sedra-widget .ui.inverted.black.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.black.button:focus {
+  background-color: #000000;
+}
+sedra-widget #sedra-widget .ui.inverted.black.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.black.active.button {
+  background-color: #000000;
+}
+sedra-widget #sedra-widget .ui.inverted.black.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.black.button:active {
+  background-color: #000000;
+}
+sedra-widget #sedra-widget .ui.inverted.black.basic.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.black.buttons .basic.button,
+sedra-widget #sedra-widget .ui.inverted.black.basic.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 0.5) inset !important;
+  color: #FFFFFF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.black.basic.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.black.buttons .basic.button:hover,
+sedra-widget #sedra-widget .ui.inverted.black.basic.button:hover {
+  box-shadow: 0px 0px 0px 2px #000000 inset !important;
+  color: #FFFFFF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.black.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.black.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.black.basic.button:focus {
+  box-shadow: 0px 0px 0px 2px #000000 inset !important;
+  color: #545454 !important;
+}
+sedra-widget #sedra-widget .ui.inverted.black.basic.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.black.buttons .basic.active.button,
+sedra-widget #sedra-widget .ui.inverted.black.basic.active.button {
+  box-shadow: 0px 0px 0px 2px #000000 inset !important;
+  color: #FFFFFF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.black.basic.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.black.buttons .basic.button:active,
+sedra-widget #sedra-widget .ui.inverted.black.basic.button:active {
+  box-shadow: 0px 0px 0px 2px #000000 inset !important;
+  color: #FFFFFF !important;
+}
+sedra-widget #sedra-widget .ui.grey.buttons .button,
+sedra-widget #sedra-widget .ui.grey.button {
+  background-color: #767676;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+}
+sedra-widget #sedra-widget .ui.grey.button {
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.grey.buttons .button:hover,
+sedra-widget #sedra-widget .ui.grey.button:hover {
+  background-color: #838383;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.grey.buttons .button:focus,
+sedra-widget #sedra-widget .ui.grey.button:focus {
+  background-color: #8a8a8a;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.grey.buttons .button:active,
+sedra-widget #sedra-widget .ui.grey.button:active {
+  background-color: #909090;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.grey.buttons .active.button,
+sedra-widget #sedra-widget .ui.grey.buttons .active.button:active,
+sedra-widget #sedra-widget .ui.grey.active.button,
+sedra-widget #sedra-widget .ui.grey.button .active.button:active {
+  background-color: #696969;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.basic.grey.buttons .button,
+sedra-widget #sedra-widget .ui.basic.grey.button {
+  box-shadow: 0px 0px 0px 1px #767676 inset !important;
+  color: #767676 !important;
+}
+sedra-widget #sedra-widget .ui.basic.grey.buttons .button:hover,
+sedra-widget #sedra-widget .ui.basic.grey.button:hover {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #838383 inset !important;
+  color: #838383 !important;
+}
+sedra-widget #sedra-widget .ui.basic.grey.buttons .button:focus,
+sedra-widget #sedra-widget .ui.basic.grey.button:focus {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #8a8a8a inset !important;
+  color: #838383 !important;
+}
+sedra-widget #sedra-widget .ui.basic.grey.buttons .active.button,
+sedra-widget #sedra-widget .ui.basic.grey.active.button {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #696969 inset !important;
+  color: #909090 !important;
+}
+sedra-widget #sedra-widget .ui.basic.grey.buttons .button:active,
+sedra-widget #sedra-widget .ui.basic.grey.button:active {
+  box-shadow: 0px 0px 0px 1px #909090 inset !important;
+  color: #909090 !important;
+}
+sedra-widget #sedra-widget .ui.buttons:not(.vertical) > .basic.grey.button:not(:first-child) {
+  margin-left: -1px;
+}
+sedra-widget #sedra-widget .ui.inverted.grey.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.grey.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px #D4D4D5 inset !important;
+  color: #FFFFFF;
+}
+sedra-widget #sedra-widget .ui.inverted.grey.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.grey.button:hover,
+sedra-widget #sedra-widget .ui.inverted.grey.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.grey.button:focus,
+sedra-widget #sedra-widget .ui.inverted.grey.buttons .button.active,
+sedra-widget #sedra-widget .ui.inverted.grey.button.active,
+sedra-widget #sedra-widget .ui.inverted.grey.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.grey.button:active {
+  box-shadow: none !important;
+  color: rgba(0, 0, 0, 0.6);
+}
+sedra-widget #sedra-widget .ui.inverted.grey.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.grey.button:hover {
+  background-color: #cfd0d2;
+}
+sedra-widget #sedra-widget .ui.inverted.grey.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.grey.button:focus {
+  background-color: #c7c9cb;
+}
+sedra-widget #sedra-widget .ui.inverted.grey.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.grey.active.button {
+  background-color: #cfd0d2;
+}
+sedra-widget #sedra-widget .ui.inverted.grey.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.grey.button:active {
+  background-color: #c2c4c5;
+}
+sedra-widget #sedra-widget .ui.inverted.grey.basic.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.grey.buttons .basic.button,
+sedra-widget #sedra-widget .ui.inverted.grey.basic.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 0.5) inset !important;
+  color: #FFFFFF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.grey.basic.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.grey.buttons .basic.button:hover,
+sedra-widget #sedra-widget .ui.inverted.grey.basic.button:hover {
+  box-shadow: 0px 0px 0px 2px #cfd0d2 inset !important;
+  color: #FFFFFF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.grey.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.grey.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.grey.basic.button:focus {
+  box-shadow: 0px 0px 0px 2px #c7c9cb inset !important;
+  color: #DCDDDE !important;
+}
+sedra-widget #sedra-widget .ui.inverted.grey.basic.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.grey.buttons .basic.active.button,
+sedra-widget #sedra-widget .ui.inverted.grey.basic.active.button {
+  box-shadow: 0px 0px 0px 2px #cfd0d2 inset !important;
+  color: #FFFFFF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.grey.basic.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.grey.buttons .basic.button:active,
+sedra-widget #sedra-widget .ui.inverted.grey.basic.button:active {
+  box-shadow: 0px 0px 0px 2px #c2c4c5 inset !important;
+  color: #FFFFFF !important;
+}
+sedra-widget #sedra-widget .ui.brown.buttons .button,
+sedra-widget #sedra-widget .ui.brown.button {
+  background-color: #A5673F;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+}
+sedra-widget #sedra-widget .ui.brown.button {
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.brown.buttons .button:hover,
+sedra-widget #sedra-widget .ui.brown.button:hover {
+  background-color: #975b33;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.brown.buttons .button:focus,
+sedra-widget #sedra-widget .ui.brown.button:focus {
+  background-color: #90532b;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.brown.buttons .button:active,
+sedra-widget #sedra-widget .ui.brown.button:active {
+  background-color: #805031;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.brown.buttons .active.button,
+sedra-widget #sedra-widget .ui.brown.buttons .active.button:active,
+sedra-widget #sedra-widget .ui.brown.active.button,
+sedra-widget #sedra-widget .ui.brown.button .active.button:active {
+  background-color: #995a31;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.basic.brown.buttons .button,
+sedra-widget #sedra-widget .ui.basic.brown.button {
+  box-shadow: 0px 0px 0px 1px #A5673F inset !important;
+  color: #A5673F !important;
+}
+sedra-widget #sedra-widget .ui.basic.brown.buttons .button:hover,
+sedra-widget #sedra-widget .ui.basic.brown.button:hover {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #975b33 inset !important;
+  color: #975b33 !important;
+}
+sedra-widget #sedra-widget .ui.basic.brown.buttons .button:focus,
+sedra-widget #sedra-widget .ui.basic.brown.button:focus {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #90532b inset !important;
+  color: #975b33 !important;
+}
+sedra-widget #sedra-widget .ui.basic.brown.buttons .active.button,
+sedra-widget #sedra-widget .ui.basic.brown.active.button {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #995a31 inset !important;
+  color: #805031 !important;
+}
+sedra-widget #sedra-widget .ui.basic.brown.buttons .button:active,
+sedra-widget #sedra-widget .ui.basic.brown.button:active {
+  box-shadow: 0px 0px 0px 1px #805031 inset !important;
+  color: #805031 !important;
+}
+sedra-widget #sedra-widget .ui.buttons:not(.vertical) > .basic.brown.button:not(:first-child) {
+  margin-left: -1px;
+}
+sedra-widget #sedra-widget .ui.inverted.brown.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.brown.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px #D67C1C inset !important;
+  color: #D67C1C;
+}
+sedra-widget #sedra-widget .ui.inverted.brown.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.brown.button:hover,
+sedra-widget #sedra-widget .ui.inverted.brown.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.brown.button:focus,
+sedra-widget #sedra-widget .ui.inverted.brown.buttons .button.active,
+sedra-widget #sedra-widget .ui.inverted.brown.button.active,
+sedra-widget #sedra-widget .ui.inverted.brown.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.brown.button:active {
+  box-shadow: none !important;
+  color: #FFFFFF;
+}
+sedra-widget #sedra-widget .ui.inverted.brown.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.brown.button:hover {
+  background-color: #c86f11;
+}
+sedra-widget #sedra-widget .ui.inverted.brown.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.brown.button:focus {
+  background-color: #c16808;
+}
+sedra-widget #sedra-widget .ui.inverted.brown.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.brown.active.button {
+  background-color: #cc6f0d;
+}
+sedra-widget #sedra-widget .ui.inverted.brown.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.brown.button:active {
+  background-color: #a96216;
+}
+sedra-widget #sedra-widget .ui.inverted.brown.basic.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.brown.buttons .basic.button,
+sedra-widget #sedra-widget .ui.inverted.brown.basic.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 0.5) inset !important;
+  color: #FFFFFF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.brown.basic.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.brown.buttons .basic.button:hover,
+sedra-widget #sedra-widget .ui.inverted.brown.basic.button:hover {
+  box-shadow: 0px 0px 0px 2px #c86f11 inset !important;
+  color: #D67C1C !important;
+}
+sedra-widget #sedra-widget .ui.inverted.brown.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.brown.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.brown.basic.button:focus {
+  box-shadow: 0px 0px 0px 2px #c16808 inset !important;
+  color: #D67C1C !important;
+}
+sedra-widget #sedra-widget .ui.inverted.brown.basic.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.brown.buttons .basic.active.button,
+sedra-widget #sedra-widget .ui.inverted.brown.basic.active.button {
+  box-shadow: 0px 0px 0px 2px #cc6f0d inset !important;
+  color: #D67C1C !important;
+}
+sedra-widget #sedra-widget .ui.inverted.brown.basic.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.brown.buttons .basic.button:active,
+sedra-widget #sedra-widget .ui.inverted.brown.basic.button:active {
+  box-shadow: 0px 0px 0px 2px #a96216 inset !important;
+  color: #D67C1C !important;
+}
+sedra-widget #sedra-widget .ui.blue.buttons .button,
+sedra-widget #sedra-widget .ui.blue.button {
+  background-color: #2185D0;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+}
+sedra-widget #sedra-widget .ui.blue.button {
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.blue.buttons .button:hover,
+sedra-widget #sedra-widget .ui.blue.button:hover {
+  background-color: #1678c2;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.blue.buttons .button:focus,
+sedra-widget #sedra-widget .ui.blue.button:focus {
+  background-color: #0d71bb;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.blue.buttons .button:active,
+sedra-widget #sedra-widget .ui.blue.button:active {
+  background-color: #1a69a4;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.blue.buttons .active.button,
+sedra-widget #sedra-widget .ui.blue.buttons .active.button:active,
+sedra-widget #sedra-widget .ui.blue.active.button,
+sedra-widget #sedra-widget .ui.blue.button .active.button:active {
+  background-color: #1279c6;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.basic.blue.buttons .button,
+sedra-widget #sedra-widget .ui.basic.blue.button {
+  box-shadow: 0px 0px 0px 1px #2185D0 inset !important;
+  color: #2185D0 !important;
+}
+sedra-widget #sedra-widget .ui.basic.blue.buttons .button:hover,
+sedra-widget #sedra-widget .ui.basic.blue.button:hover {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #1678c2 inset !important;
+  color: #1678c2 !important;
+}
+sedra-widget #sedra-widget .ui.basic.blue.buttons .button:focus,
+sedra-widget #sedra-widget .ui.basic.blue.button:focus {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #0d71bb inset !important;
+  color: #1678c2 !important;
+}
+sedra-widget #sedra-widget .ui.basic.blue.buttons .active.button,
+sedra-widget #sedra-widget .ui.basic.blue.active.button {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #1279c6 inset !important;
+  color: #1a69a4 !important;
+}
+sedra-widget #sedra-widget .ui.basic.blue.buttons .button:active,
+sedra-widget #sedra-widget .ui.basic.blue.button:active {
+  box-shadow: 0px 0px 0px 1px #1a69a4 inset !important;
+  color: #1a69a4 !important;
+}
+sedra-widget #sedra-widget .ui.buttons:not(.vertical) > .basic.blue.button:not(:first-child) {
+  margin-left: -1px;
+}
+sedra-widget #sedra-widget .ui.inverted.blue.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.blue.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px #54C8FF inset !important;
+  color: #54C8FF;
+}
+sedra-widget #sedra-widget .ui.inverted.blue.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.blue.button:hover,
+sedra-widget #sedra-widget .ui.inverted.blue.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.blue.button:focus,
+sedra-widget #sedra-widget .ui.inverted.blue.buttons .button.active,
+sedra-widget #sedra-widget .ui.inverted.blue.button.active,
+sedra-widget #sedra-widget .ui.inverted.blue.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.blue.button:active {
+  box-shadow: none !important;
+  color: #FFFFFF;
+}
+sedra-widget #sedra-widget .ui.inverted.blue.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.blue.button:hover {
+  background-color: #3ac0ff;
+}
+sedra-widget #sedra-widget .ui.inverted.blue.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.blue.button:focus {
+  background-color: #2bbbff;
+}
+sedra-widget #sedra-widget .ui.inverted.blue.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.blue.active.button {
+  background-color: #3ac0ff;
+}
+sedra-widget #sedra-widget .ui.inverted.blue.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.blue.button:active {
+  background-color: #21b8ff;
+}
+sedra-widget #sedra-widget .ui.inverted.blue.basic.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.blue.buttons .basic.button,
+sedra-widget #sedra-widget .ui.inverted.blue.basic.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 0.5) inset !important;
+  color: #FFFFFF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.blue.basic.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.blue.buttons .basic.button:hover,
+sedra-widget #sedra-widget .ui.inverted.blue.basic.button:hover {
+  box-shadow: 0px 0px 0px 2px #3ac0ff inset !important;
+  color: #54C8FF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.blue.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.blue.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.blue.basic.button:focus {
+  box-shadow: 0px 0px 0px 2px #2bbbff inset !important;
+  color: #54C8FF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.blue.basic.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.blue.buttons .basic.active.button,
+sedra-widget #sedra-widget .ui.inverted.blue.basic.active.button {
+  box-shadow: 0px 0px 0px 2px #3ac0ff inset !important;
+  color: #54C8FF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.blue.basic.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.blue.buttons .basic.button:active,
+sedra-widget #sedra-widget .ui.inverted.blue.basic.button:active {
+  box-shadow: 0px 0px 0px 2px #21b8ff inset !important;
+  color: #54C8FF !important;
+}
+sedra-widget #sedra-widget .ui.green.buttons .button,
+sedra-widget #sedra-widget .ui.green.button {
+  background-color: #21BA45;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+}
+sedra-widget #sedra-widget .ui.green.button {
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.green.buttons .button:hover,
+sedra-widget #sedra-widget .ui.green.button:hover {
+  background-color: #16ab39;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.green.buttons .button:focus,
+sedra-widget #sedra-widget .ui.green.button:focus {
+  background-color: #0ea432;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.green.buttons .button:active,
+sedra-widget #sedra-widget .ui.green.button:active {
+  background-color: #198f35;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.green.buttons .active.button,
+sedra-widget #sedra-widget .ui.green.buttons .active.button:active,
+sedra-widget #sedra-widget .ui.green.active.button,
+sedra-widget #sedra-widget .ui.green.button .active.button:active {
+  background-color: #13ae38;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.basic.green.buttons .button,
+sedra-widget #sedra-widget .ui.basic.green.button {
+  box-shadow: 0px 0px 0px 1px #21BA45 inset !important;
+  color: #21BA45 !important;
+}
+sedra-widget #sedra-widget .ui.basic.green.buttons .button:hover,
+sedra-widget #sedra-widget .ui.basic.green.button:hover {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #16ab39 inset !important;
+  color: #16ab39 !important;
+}
+sedra-widget #sedra-widget .ui.basic.green.buttons .button:focus,
+sedra-widget #sedra-widget .ui.basic.green.button:focus {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #0ea432 inset !important;
+  color: #16ab39 !important;
+}
+sedra-widget #sedra-widget .ui.basic.green.buttons .active.button,
+sedra-widget #sedra-widget .ui.basic.green.active.button {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #13ae38 inset !important;
+  color: #198f35 !important;
+}
+sedra-widget #sedra-widget .ui.basic.green.buttons .button:active,
+sedra-widget #sedra-widget .ui.basic.green.button:active {
+  box-shadow: 0px 0px 0px 1px #198f35 inset !important;
+  color: #198f35 !important;
+}
+sedra-widget #sedra-widget .ui.buttons:not(.vertical) > .basic.green.button:not(:first-child) {
+  margin-left: -1px;
+}
+sedra-widget #sedra-widget .ui.inverted.green.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.green.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px #2ECC40 inset !important;
+  color: #2ECC40;
+}
+sedra-widget #sedra-widget .ui.inverted.green.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.green.button:hover,
+sedra-widget #sedra-widget .ui.inverted.green.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.green.button:focus,
+sedra-widget #sedra-widget .ui.inverted.green.buttons .button.active,
+sedra-widget #sedra-widget .ui.inverted.green.button.active,
+sedra-widget #sedra-widget .ui.inverted.green.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.green.button:active {
+  box-shadlightOw: none !important;
+  color: #FFFFFF;
+}
+sedra-widget #sedra-widget .ui.inverted.green.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.green.button:hover {
+  background-color: #22be34;
+}
+sedra-widget #sedra-widget .ui.inverted.green.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.green.button:focus {
+  background-color: #19b82b;
+}
+sedra-widget #sedra-widget .ui.inverted.green.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.green.active.button {
+  background-color: #1fc231;
+}
+sedra-widget #sedra-widget .ui.inverted.green.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.green.button:active {
+  background-color: #25a233;
+}
+sedra-widget #sedra-widget .ui.inverted.green.basic.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.green.buttons .basic.button,
+sedra-widget #sedra-widget .ui.inverted.green.basic.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 0.5) inset !important;
+  color: #FFFFFF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.green.basic.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.green.buttons .basic.button:hover,
+sedra-widget #sedra-widget .ui.inverted.green.basic.button:hover {
+  box-shadow: 0px 0px 0px 2px #22be34 inset !important;
+  color: #2ECC40 !important;
+}
+sedra-widget #sedra-widget .ui.inverted.green.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.green.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.green.basic.button:focus {
+  box-shadow: 0px 0px 0px 2px #19b82b inset !important;
+  color: #2ECC40 !important;
+}
+sedra-widget #sedra-widget .ui.inverted.green.basic.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.green.buttons .basic.active.button,
+sedra-widget #sedra-widget .ui.inverted.green.basic.active.button {
+  box-shadow: 0px 0px 0px 2px #1fc231 inset !important;
+  color: #2ECC40 !important;
+}
+sedra-widget #sedra-widget .ui.inverted.green.basic.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.green.buttons .basic.button:active,
+sedra-widget #sedra-widget .ui.inverted.green.basic.button:active {
+  box-shadow: 0px 0px 0px 2px #25a233 inset !important;
+  color: #2ECC40 !important;
+}
+sedra-widget #sedra-widget .ui.orange.buttons .button,
+sedra-widget #sedra-widget .ui.orange.button {
+  background-color: #F2711C;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+}
+sedra-widget #sedra-widget .ui.orange.button {
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.orange.buttons .button:hover,
+sedra-widget #sedra-widget .ui.orange.button:hover {
+  background-color: #f26202;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.orange.buttons .button:focus,
+sedra-widget #sedra-widget .ui.orange.button:focus {
+  background-color: #e55b00;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.orange.buttons .button:active,
+sedra-widget #sedra-widget .ui.orange.button:active {
+  background-color: #cf590c;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.orange.buttons .active.button,
+sedra-widget #sedra-widget .ui.orange.buttons .active.button:active,
+sedra-widget #sedra-widget .ui.orange.active.button,
+sedra-widget #sedra-widget .ui.orange.button .active.button:active {
+  background-color: #f56100;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.basic.orange.buttons .button,
+sedra-widget #sedra-widget .ui.basic.orange.button {
+  box-shadow: 0px 0px 0px 1px #F2711C inset !important;
+  color: #F2711C !important;
+}
+sedra-widget #sedra-widget .ui.basic.orange.buttons .button:hover,
+sedra-widget #sedra-widget .ui.basic.orange.button:hover {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #f26202 inset !important;
+  color: #f26202 !important;
+}
+sedra-widget #sedra-widget .ui.basic.orange.buttons .button:focus,
+sedra-widget #sedra-widget .ui.basic.orange.button:focus {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #e55b00 inset !important;
+  color: #f26202 !important;
+}
+sedra-widget #sedra-widget .ui.basic.orange.buttons .active.button,
+sedra-widget #sedra-widget .ui.basic.orange.active.button {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #f56100 inset !important;
+  color: #cf590c !important;
+}
+sedra-widget #sedra-widget .ui.basic.orange.buttons .button:active,
+sedra-widget #sedra-widget .ui.basic.orange.button:active {
+  box-shadow: 0px 0px 0px 1px #cf590c inset !important;
+  color: #cf590c !important;
+}
+sedra-widget #sedra-widget .ui.buttons:not(.vertical) > .basic.orange.button:not(:first-child) {
+  margin-left: -1px;
+}
+sedra-widget #sedra-widget .ui.inverted.orange.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.orange.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px #FF851B inset !important;
+  color: #FF851B;
+}
+sedra-widget #sedra-widget .ui.inverted.orange.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.orange.button:hover,
+sedra-widget #sedra-widget .ui.inverted.orange.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.orange.button:focus,
+sedra-widget #sedra-widget .ui.inverted.orange.buttons .button.active,
+sedra-widget #sedra-widget .ui.inverted.orange.button.active,
+sedra-widget #sedra-widget .ui.inverted.orange.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.orange.button:active {
+  box-shadow: none !important;
+  color: #FFFFFF;
+}
+sedra-widget #sedra-widget .ui.inverted.orange.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.orange.button:hover {
+  background-color: #ff7701;
+}
+sedra-widget #sedra-widget .ui.inverted.orange.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.orange.button:focus {
+  background-color: #f17000;
+}
+sedra-widget #sedra-widget .ui.inverted.orange.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.orange.active.button {
+  background-color: #ff7701;
+}
+sedra-widget #sedra-widget .ui.inverted.orange.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.orange.button:active {
+  background-color: #e76b00;
+}
+sedra-widget #sedra-widget .ui.inverted.orange.basic.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.orange.buttons .basic.button,
+sedra-widget #sedra-widget .ui.inverted.orange.basic.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 0.5) inset !important;
+  color: #FFFFFF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.orange.basic.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.orange.buttons .basic.button:hover,
+sedra-widget #sedra-widget .ui.inverted.orange.basic.button:hover {
+  box-shadow: 0px 0px 0px 2px #ff7701 inset !important;
+  color: #FF851B !important;
+}
+sedra-widget #sedra-widget .ui.inverted.orange.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.orange.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.orange.basic.button:focus {
+  box-shadow: 0px 0px 0px 2px #f17000 inset !important;
+  color: #FF851B !important;
+}
+sedra-widget #sedra-widget .ui.inverted.orange.basic.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.orange.buttons .basic.active.button,
+sedra-widget #sedra-widget .ui.inverted.orange.basic.active.button {
+  box-shadow: 0px 0px 0px 2px #ff7701 inset !important;
+  color: #FF851B !important;
+}
+sedra-widget #sedra-widget .ui.inverted.orange.basic.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.orange.buttons .basic.button:active,
+sedra-widget #sedra-widget .ui.inverted.orange.basic.button:active {
+  box-shadow: 0px 0px 0px 2px #e76b00 inset !important;
+  color: #FF851B !important;
+}
+sedra-widget #sedra-widget .ui.pink.buttons .button,
+sedra-widget #sedra-widget .ui.pink.button {
+  background-color: #E03997;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+}
+sedra-widget #sedra-widget .ui.pink.button {
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.pink.buttons .button:hover,
+sedra-widget #sedra-widget .ui.pink.button:hover {
+  background-color: #e61a8d;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.pink.buttons .button:focus,
+sedra-widget #sedra-widget .ui.pink.button:focus {
+  background-color: #e10f85;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.pink.buttons .button:active,
+sedra-widget #sedra-widget .ui.pink.button:active {
+  background-color: #c71f7e;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.pink.buttons .active.button,
+sedra-widget #sedra-widget .ui.pink.buttons .active.button:active,
+sedra-widget #sedra-widget .ui.pink.active.button,
+sedra-widget #sedra-widget .ui.pink.button .active.button:active {
+  background-color: #ea158d;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.basic.pink.buttons .button,
+sedra-widget #sedra-widget .ui.basic.pink.button {
+  box-shadow: 0px 0px 0px 1px #E03997 inset !important;
+  color: #E03997 !important;
+}
+sedra-widget #sedra-widget .ui.basic.pink.buttons .button:hover,
+sedra-widget #sedra-widget .ui.basic.pink.button:hover {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #e61a8d inset !important;
+  color: #e61a8d !important;
+}
+sedra-widget #sedra-widget .ui.basic.pink.buttons .button:focus,
+sedra-widget #sedra-widget .ui.basic.pink.button:focus {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #e10f85 inset !important;
+  color: #e61a8d !important;
+}
+sedra-widget #sedra-widget .ui.basic.pink.buttons .active.button,
+sedra-widget #sedra-widget .ui.basic.pink.active.button {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #ea158d inset !important;
+  color: #c71f7e !important;
+}
+sedra-widget #sedra-widget .ui.basic.pink.buttons .button:active,
+sedra-widget #sedra-widget .ui.basic.pink.button:active {
+  box-shadow: 0px 0px 0px 1px #c71f7e inset !important;
+  color: #c71f7e !important;
+}
+sedra-widget #sedra-widget .ui.buttons:not(.vertical) > .basic.pink.button:not(:first-child) {
+  margin-left: -1px;
+}
+sedra-widget #sedra-widget .ui.inverted.pink.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.pink.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px #FF8EDF inset !important;
+  color: #FF8EDF;
+}
+sedra-widget #sedra-widget .ui.inverted.pink.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.pink.button:hover,
+sedra-widget #sedra-widget .ui.inverted.pink.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.pink.button:focus,
+sedra-widget #sedra-widget .ui.inverted.pink.buttons .button.active,
+sedra-widget #sedra-widget .ui.inverted.pink.button.active,
+sedra-widget #sedra-widget .ui.inverted.pink.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.pink.button:active {
+  box-shadow: none !important;
+  color: #FFFFFF;
+}
+sedra-widget #sedra-widget .ui.inverted.pink.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.pink.button:hover {
+  background-color: #ff74d8;
+}
+sedra-widget #sedra-widget .ui.inverted.pink.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.pink.button:focus {
+  background-color: #ff65d3;
+}
+sedra-widget #sedra-widget .ui.inverted.pink.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.pink.active.button {
+  background-color: #ff74d8;
+}
+sedra-widget #sedra-widget .ui.inverted.pink.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.pink.button:active {
+  background-color: #ff5bd1;
+}
+sedra-widget #sedra-widget .ui.inverted.pink.basic.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.pink.buttons .basic.button,
+sedra-widget #sedra-widget .ui.inverted.pink.basic.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 0.5) inset !important;
+  color: #FFFFFF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.pink.basic.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.pink.buttons .basic.button:hover,
+sedra-widget #sedra-widget .ui.inverted.pink.basic.button:hover {
+  box-shadow: 0px 0px 0px 2px #ff74d8 inset !important;
+  color: #FF8EDF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.pink.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.pink.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.pink.basic.button:focus {
+  box-shadow: 0px 0px 0px 2px #ff65d3 inset !important;
+  color: #FF8EDF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.pink.basic.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.pink.buttons .basic.active.button,
+sedra-widget #sedra-widget .ui.inverted.pink.basic.active.button {
+  box-shadow: 0px 0px 0px 2px #ff74d8 inset !important;
+  color: #FF8EDF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.pink.basic.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.pink.buttons .basic.button:active,
+sedra-widget #sedra-widget .ui.inverted.pink.basic.button:active {
+  box-shadow: 0px 0px 0px 2px #ff5bd1 inset !important;
+  color: #FF8EDF !important;
+}
+sedra-widget #sedra-widget .ui.violet.buttons .button,
+sedra-widget #sedra-widget .ui.violet.button {
+  background-color: #6435C9;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+}
+sedra-widget #sedra-widget .ui.violet.button {
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.violet.buttons .button:hover,
+sedra-widget #sedra-widget .ui.violet.button:hover {
+  background-color: #5829bb;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.violet.buttons .button:focus,
+sedra-widget #sedra-widget .ui.violet.button:focus {
+  background-color: #4f20b5;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.violet.buttons .button:active,
+sedra-widget #sedra-widget .ui.violet.button:active {
+  background-color: #502aa1;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.violet.buttons .active.button,
+sedra-widget #sedra-widget .ui.violet.buttons .active.button:active,
+sedra-widget #sedra-widget .ui.violet.active.button,
+sedra-widget #sedra-widget .ui.violet.button .active.button:active {
+  background-color: #5626bf;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.basic.violet.buttons .button,
+sedra-widget #sedra-widget .ui.basic.violet.button {
+  box-shadow: 0px 0px 0px 1px #6435C9 inset !important;
+  color: #6435C9 !important;
+}
+sedra-widget #sedra-widget .ui.basic.violet.buttons .button:hover,
+sedra-widget #sedra-widget .ui.basic.violet.button:hover {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #5829bb inset !important;
+  color: #5829bb !important;
+}
+sedra-widget #sedra-widget .ui.basic.violet.buttons .button:focus,
+sedra-widget #sedra-widget .ui.basic.violet.button:focus {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #4f20b5 inset !important;
+  color: #5829bb !important;
+}
+sedra-widget #sedra-widget .ui.basic.violet.buttons .active.button,
+sedra-widget #sedra-widget .ui.basic.violet.active.button {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #5626bf inset !important;
+  color: #502aa1 !important;
+}
+sedra-widget #sedra-widget .ui.basic.violet.buttons .button:active,
+sedra-widget #sedra-widget .ui.basic.violet.button:active {
+  box-shadow: 0px 0px 0px 1px #502aa1 inset !important;
+  color: #502aa1 !important;
+}
+sedra-widget #sedra-widget .ui.buttons:not(.vertical) > .basic.violet.button:not(:first-child) {
+  margin-left: -1px;
+}
+sedra-widget #sedra-widget .ui.inverted.violet.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.violet.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px #A291FB inset !important;
+  color: #A291FB;
+}
+sedra-widget #sedra-widget .ui.inverted.violet.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.violet.button:hover,
+sedra-widget #sedra-widget .ui.inverted.violet.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.violet.button:focus,
+sedra-widget #sedra-widget .ui.inverted.violet.buttons .button.active,
+sedra-widget #sedra-widget .ui.inverted.violet.button.active,
+sedra-widget #sedra-widget .ui.inverted.violet.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.violet.button:active {
+  box-shadow: none !important;
+  color: #FFFFFF;
+}
+sedra-widget #sedra-widget .ui.inverted.violet.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.violet.button:hover {
+  background-color: #8a73ff;
+}
+sedra-widget #sedra-widget .ui.inverted.violet.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.violet.button:focus {
+  background-color: #7d64ff;
+}
+sedra-widget #sedra-widget .ui.inverted.violet.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.violet.active.button {
+  background-color: #8a73ff;
+}
+sedra-widget #sedra-widget .ui.inverted.violet.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.violet.button:active {
+  background-color: #7860f9;
+}
+sedra-widget #sedra-widget .ui.inverted.violet.basic.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.violet.buttons .basic.button,
+sedra-widget #sedra-widget .ui.inverted.violet.basic.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 0.5) inset !important;
+  color: #FFFFFF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.violet.basic.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.violet.buttons .basic.button:hover,
+sedra-widget #sedra-widget .ui.inverted.violet.basic.button:hover {
+  box-shadow: 0px 0px 0px 2px #8a73ff inset !important;
+  color: #A291FB !important;
+}
+sedra-widget #sedra-widget .ui.inverted.violet.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.violet.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.violet.basic.button:focus {
+  box-shadow: 0px 0px 0px 2px #7d64ff inset !important;
+  color: #A291FB !important;
+}
+sedra-widget #sedra-widget .ui.inverted.violet.basic.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.violet.buttons .basic.active.button,
+sedra-widget #sedra-widget .ui.inverted.violet.basic.active.button {
+  box-shadow: 0px 0px 0px 2px #8a73ff inset !important;
+  color: #A291FB !important;
+}
+sedra-widget #sedra-widget .ui.inverted.violet.basic.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.violet.buttons .basic.button:active,
+sedra-widget #sedra-widget .ui.inverted.violet.basic.button:active {
+  box-shadow: 0px 0px 0px 2px #7860f9 inset !important;
+  color: #A291FB !important;
+}
+sedra-widget #sedra-widget .ui.purple.buttons .button,
+sedra-widget #sedra-widget .ui.purple.button {
+  background-color: #A333C8;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+}
+sedra-widget #sedra-widget .ui.purple.button {
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.purple.buttons .button:hover,
+sedra-widget #sedra-widget .ui.purple.button:hover {
+  background-color: #9627ba;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.purple.buttons .button:focus,
+sedra-widget #sedra-widget .ui.purple.button:focus {
+  background-color: #8f1eb4;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.purple.buttons .button:active,
+sedra-widget #sedra-widget .ui.purple.button:active {
+  background-color: #82299f;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.purple.buttons .active.button,
+sedra-widget #sedra-widget .ui.purple.buttons .active.button:active,
+sedra-widget #sedra-widget .ui.purple.active.button,
+sedra-widget #sedra-widget .ui.purple.button .active.button:active {
+  background-color: #9724be;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.basic.purple.buttons .button,
+sedra-widget #sedra-widget .ui.basic.purple.button {
+  box-shadow: 0px 0px 0px 1px #A333C8 inset !important;
+  color: #A333C8 !important;
+}
+sedra-widget #sedra-widget .ui.basic.purple.buttons .button:hover,
+sedra-widget #sedra-widget .ui.basic.purple.button:hover {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #9627ba inset !important;
+  color: #9627ba !important;
+}
+sedra-widget #sedra-widget .ui.basic.purple.buttons .button:focus,
+sedra-widget #sedra-widget .ui.basic.purple.button:focus {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #8f1eb4 inset !important;
+  color: #9627ba !important;
+}
+sedra-widget #sedra-widget .ui.basic.purple.buttons .active.button,
+sedra-widget #sedra-widget .ui.basic.purple.active.button {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #9724be inset !important;
+  color: #82299f !important;
+}
+sedra-widget #sedra-widget .ui.basic.purple.buttons .button:active,
+sedra-widget #sedra-widget .ui.basic.purple.button:active {
+  box-shadow: 0px 0px 0px 1px #82299f inset !important;
+  color: #82299f !important;
+}
+sedra-widget #sedra-widget .ui.buttons:not(.vertical) > .basic.purple.button:not(:first-child) {
+  margin-left: -1px;
+}
+sedra-widget #sedra-widget .ui.inverted.purple.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.purple.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px #DC73FF inset !important;
+  color: #DC73FF;
+}
+sedra-widget #sedra-widget .ui.inverted.purple.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.purple.button:hover,
+sedra-widget #sedra-widget .ui.inverted.purple.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.purple.button:focus,
+sedra-widget #sedra-widget .ui.inverted.purple.buttons .button.active,
+sedra-widget #sedra-widget .ui.inverted.purple.button.active,
+sedra-widget #sedra-widget .ui.inverted.purple.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.purple.button:active {
+  box-shadow: none !important;
+  color: #FFFFFF;
+}
+sedra-widget #sedra-widget .ui.inverted.purple.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.purple.button:hover {
+  background-color: #d65aff;
+}
+sedra-widget #sedra-widget .ui.inverted.purple.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.purple.button:focus {
+  background-color: #d24aff;
+}
+sedra-widget #sedra-widget .ui.inverted.purple.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.purple.active.button {
+  background-color: #d65aff;
+}
+sedra-widget #sedra-widget .ui.inverted.purple.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.purple.button:active {
+  background-color: #cf40ff;
+}
+sedra-widget #sedra-widget .ui.inverted.purple.basic.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.purple.buttons .basic.button,
+sedra-widget #sedra-widget .ui.inverted.purple.basic.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 0.5) inset !important;
+  color: #FFFFFF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.purple.basic.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.purple.buttons .basic.button:hover,
+sedra-widget #sedra-widget .ui.inverted.purple.basic.button:hover {
+  box-shadow: 0px 0px 0px 2px #d65aff inset !important;
+  color: #DC73FF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.purple.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.purple.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.purple.basic.button:focus {
+  box-shadow: 0px 0px 0px 2px #d24aff inset !important;
+  color: #DC73FF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.purple.basic.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.purple.buttons .basic.active.button,
+sedra-widget #sedra-widget .ui.inverted.purple.basic.active.button {
+  box-shadow: 0px 0px 0px 2px #d65aff inset !important;
+  color: #DC73FF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.purple.basic.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.purple.buttons .basic.button:active,
+sedra-widget #sedra-widget .ui.inverted.purple.basic.button:active {
+  box-shadow: 0px 0px 0px 2px #cf40ff inset !important;
+  color: #DC73FF !important;
+}
+sedra-widget #sedra-widget .ui.red.buttons .button,
+sedra-widget #sedra-widget .ui.red.button {
+  background-color: #DB2828;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+}
+sedra-widget #sedra-widget .ui.red.button {
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.red.buttons .button:hover,
+sedra-widget #sedra-widget .ui.red.button:hover {
+  background-color: #d01919;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.red.buttons .button:focus,
+sedra-widget #sedra-widget .ui.red.button:focus {
+  background-color: #ca1010;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.red.buttons .button:active,
+sedra-widget #sedra-widget .ui.red.button:active {
+  background-color: #b21e1e;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.red.buttons .active.button,
+sedra-widget #sedra-widget .ui.red.buttons .active.button:active,
+sedra-widget #sedra-widget .ui.red.active.button,
+sedra-widget #sedra-widget .ui.red.button .active.button:active {
+  background-color: #d41515;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.basic.red.buttons .button,
+sedra-widget #sedra-widget .ui.basic.red.button {
+  box-shadow: 0px 0px 0px 1px #DB2828 inset !important;
+  color: #DB2828 !important;
+}
+sedra-widget #sedra-widget .ui.basic.red.buttons .button:hover,
+sedra-widget #sedra-widget .ui.basic.red.button:hover {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #d01919 inset !important;
+  color: #d01919 !important;
+}
+sedra-widget #sedra-widget .ui.basic.red.buttons .button:focus,
+sedra-widget #sedra-widget .ui.basic.red.button:focus {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #ca1010 inset !important;
+  color: #d01919 !important;
+}
+sedra-widget #sedra-widget .ui.basic.red.buttons .active.button,
+sedra-widget #sedra-widget .ui.basic.red.active.button {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #d41515 inset !important;
+  color: #b21e1e !important;
+}
+sedra-widget #sedra-widget .ui.basic.red.buttons .button:active,
+sedra-widget #sedra-widget .ui.basic.red.button:active {
+  box-shadow: 0px 0px 0px 1px #b21e1e inset !important;
+  color: #b21e1e !important;
+}
+sedra-widget #sedra-widget .ui.buttons:not(.vertical) > .basic.red.button:not(:first-child) {
+  margin-left: -1px;
+}
+sedra-widget #sedra-widget .ui.inverted.red.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.red.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px #FF695E inset !important;
+  color: #FF695E;
+}
+sedra-widget #sedra-widget .ui.inverted.red.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.red.button:hover,
+sedra-widget #sedra-widget .ui.inverted.red.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.red.button:focus,
+sedra-widget #sedra-widget .ui.inverted.red.buttons .button.active,
+sedra-widget #sedra-widget .ui.inverted.red.button.active,
+sedra-widget #sedra-widget .ui.inverted.red.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.red.button:active {
+  box-shadow: none !important;
+  color: #FFFFFF;
+}
+sedra-widget #sedra-widget .ui.inverted.red.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.red.button:hover {
+  background-color: #ff5144;
+}
+sedra-widget #sedra-widget .ui.inverted.red.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.red.button:focus {
+  background-color: #ff4335;
+}
+sedra-widget #sedra-widget .ui.inverted.red.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.red.active.button {
+  background-color: #ff5144;
+}
+sedra-widget #sedra-widget .ui.inverted.red.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.red.button:active {
+  background-color: #ff392b;
+}
+sedra-widget #sedra-widget .ui.inverted.red.basic.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.red.buttons .basic.button,
+sedra-widget #sedra-widget .ui.inverted.red.basic.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 0.5) inset !important;
+  color: #FFFFFF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.red.basic.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.red.buttons .basic.button:hover,
+sedra-widget #sedra-widget .ui.inverted.red.basic.button:hover {
+  box-shadow: 0px 0px 0px 2px #ff5144 inset !important;
+  color: #FF695E !important;
+}
+sedra-widget #sedra-widget .ui.inverted.red.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.red.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.red.basic.button:focus {
+  box-shadow: 0px 0px 0px 2px #ff4335 inset !important;
+  color: #FF695E !important;
+}
+sedra-widget #sedra-widget .ui.inverted.red.basic.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.red.buttons .basic.active.button,
+sedra-widget #sedra-widget .ui.inverted.red.basic.active.button {
+  box-shadow: 0px 0px 0px 2px #ff5144 inset !important;
+  color: #FF695E !important;
+}
+sedra-widget #sedra-widget .ui.inverted.red.basic.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.red.buttons .basic.button:active,
+sedra-widget #sedra-widget .ui.inverted.red.basic.button:active {
+  box-shadow: 0px 0px 0px 2px #ff392b inset !important;
+  color: #FF695E !important;
+}
+sedra-widget #sedra-widget .ui.teal.buttons .button,
+sedra-widget #sedra-widget .ui.teal.button {
+  background-color: #00B5AD;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+}
+sedra-widget #sedra-widget .ui.teal.button {
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.teal.buttons .button:hover,
+sedra-widget #sedra-widget .ui.teal.button:hover {
+  background-color: #009c95;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.teal.buttons .button:focus,
+sedra-widget #sedra-widget .ui.teal.button:focus {
+  background-color: #008c86;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.teal.buttons .button:active,
+sedra-widget #sedra-widget .ui.teal.button:active {
+  background-color: #00827c;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.teal.buttons .active.button,
+sedra-widget #sedra-widget .ui.teal.buttons .active.button:active,
+sedra-widget #sedra-widget .ui.teal.active.button,
+sedra-widget #sedra-widget .ui.teal.button .active.button:active {
+  background-color: #009c95;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.basic.teal.buttons .button,
+sedra-widget #sedra-widget .ui.basic.teal.button {
+  box-shadow: 0px 0px 0px 1px #00B5AD inset !important;
+  color: #00B5AD !important;
+}
+sedra-widget #sedra-widget .ui.basic.teal.buttons .button:hover,
+sedra-widget #sedra-widget .ui.basic.teal.button:hover {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #009c95 inset !important;
+  color: #009c95 !important;
+}
+sedra-widget #sedra-widget .ui.basic.teal.buttons .button:focus,
+sedra-widget #sedra-widget .ui.basic.teal.button:focus {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #008c86 inset !important;
+  color: #009c95 !important;
+}
+sedra-widget #sedra-widget .ui.basic.teal.buttons .active.button,
+sedra-widget #sedra-widget .ui.basic.teal.active.button {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #009c95 inset !important;
+  color: #00827c !important;
+}
+sedra-widget #sedra-widget .ui.basic.teal.buttons .button:active,
+sedra-widget #sedra-widget .ui.basic.teal.button:active {
+  box-shadow: 0px 0px 0px 1px #00827c inset !important;
+  color: #00827c !important;
+}
+sedra-widget #sedra-widget .ui.buttons:not(.vertical) > .basic.teal.button:not(:first-child) {
+  margin-left: -1px;
+}
+sedra-widget #sedra-widget .ui.inverted.teal.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.teal.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px #6DFFFF inset !important;
+  color: #6DFFFF;
+}
+sedra-widget #sedra-widget .ui.inverted.teal.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.teal.button:hover,
+sedra-widget #sedra-widget .ui.inverted.teal.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.teal.button:focus,
+sedra-widget #sedra-widget .ui.inverted.teal.buttons .button.active,
+sedra-widget #sedra-widget .ui.inverted.teal.button.active,
+sedra-widget #sedra-widget .ui.inverted.teal.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.teal.button:active {
+  box-shadow: none !important;
+  color: rgba(0, 0, 0, 0.6);
+}
+sedra-widget #sedra-widget .ui.inverted.teal.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.teal.button:hover {
+  background-color: #54ffff;
+}
+sedra-widget #sedra-widget .ui.inverted.teal.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.teal.button:focus {
+  background-color: #44ffff;
+}
+sedra-widget #sedra-widget .ui.inverted.teal.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.teal.active.button {
+  background-color: #54ffff;
+}
+sedra-widget #sedra-widget .ui.inverted.teal.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.teal.button:active {
+  background-color: #3affff;
+}
+sedra-widget #sedra-widget .ui.inverted.teal.basic.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.teal.buttons .basic.button,
+sedra-widget #sedra-widget .ui.inverted.teal.basic.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 0.5) inset !important;
+  color: #FFFFFF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.teal.basic.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.teal.buttons .basic.button:hover,
+sedra-widget #sedra-widget .ui.inverted.teal.basic.button:hover {
+  box-shadow: 0px 0px 0px 2px #54ffff inset !important;
+  color: #6DFFFF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.teal.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.teal.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.teal.basic.button:focus {
+  box-shadow: 0px 0px 0px 2px #44ffff inset !important;
+  color: #6DFFFF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.teal.basic.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.teal.buttons .basic.active.button,
+sedra-widget #sedra-widget .ui.inverted.teal.basic.active.button {
+  box-shadow: 0px 0px 0px 2px #54ffff inset !important;
+  color: #6DFFFF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.teal.basic.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.teal.buttons .basic.button:active,
+sedra-widget #sedra-widget .ui.inverted.teal.basic.button:active {
+  box-shadow: 0px 0px 0px 2px #3affff inset !important;
+  color: #6DFFFF !important;
+}
+sedra-widget #sedra-widget .ui.olive.buttons .button,
+sedra-widget #sedra-widget .ui.olive.button {
+  background-color: #B5CC18;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+}
+sedra-widget #sedra-widget .ui.olive.button {
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.olive.buttons .button:hover,
+sedra-widget #sedra-widget .ui.olive.button:hover {
+  background-color: #a7bd0d;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.olive.buttons .button:focus,
+sedra-widget #sedra-widget .ui.olive.button:focus {
+  background-color: #a0b605;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.olive.buttons .button:active,
+sedra-widget #sedra-widget .ui.olive.button:active {
+  background-color: #8d9e13;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.olive.buttons .active.button,
+sedra-widget #sedra-widget .ui.olive.buttons .active.button:active,
+sedra-widget #sedra-widget .ui.olive.active.button,
+sedra-widget #sedra-widget .ui.olive.button .active.button:active {
+  background-color: #aac109;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.basic.olive.buttons .button,
+sedra-widget #sedra-widget .ui.basic.olive.button {
+  box-shadow: 0px 0px 0px 1px #B5CC18 inset !important;
+  color: #B5CC18 !important;
+}
+sedra-widget #sedra-widget .ui.basic.olive.buttons .button:hover,
+sedra-widget #sedra-widget .ui.basic.olive.button:hover {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #a7bd0d inset !important;
+  color: #a7bd0d !important;
+}
+sedra-widget #sedra-widget .ui.basic.olive.buttons .button:focus,
+sedra-widget #sedra-widget .ui.basic.olive.button:focus {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #a0b605 inset !important;
+  color: #a7bd0d !important;
+}
+sedra-widget #sedra-widget .ui.basic.olive.buttons .active.button,
+sedra-widget #sedra-widget .ui.basic.olive.active.button {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #aac109 inset !important;
+  color: #8d9e13 !important;
+}
+sedra-widget #sedra-widget .ui.basic.olive.buttons .button:active,
+sedra-widget #sedra-widget .ui.basic.olive.button:active {
+  box-shadow: 0px 0px 0px 1px #8d9e13 inset !important;
+  color: #8d9e13 !important;
+}
+sedra-widget #sedra-widget .ui.buttons:not(.vertical) > .basic.olive.button:not(:first-child) {
+  margin-left: -1px;
+}
+sedra-widget #sedra-widget .ui.inverted.olive.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.olive.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px #D9E778 inset !important;
+  color: #D9E778;
+}
+sedra-widget #sedra-widget .ui.inverted.olive.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.olive.button:hover,
+sedra-widget #sedra-widget .ui.inverted.olive.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.olive.button:focus,
+sedra-widget #sedra-widget .ui.inverted.olive.buttons .button.active,
+sedra-widget #sedra-widget .ui.inverted.olive.button.active,
+sedra-widget #sedra-widget .ui.inverted.olive.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.olive.button:active {
+  box-shadow: none !important;
+  color: rgba(0, 0, 0, 0.6);
+}
+sedra-widget #sedra-widget .ui.inverted.olive.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.olive.button:hover {
+  background-color: #d8ea5c;
+}
+sedra-widget #sedra-widget .ui.inverted.olive.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.olive.button:focus {
+  background-color: #daef47;
+}
+sedra-widget #sedra-widget .ui.inverted.olive.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.olive.active.button {
+  background-color: #daed59;
+}
+sedra-widget #sedra-widget .ui.inverted.olive.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.olive.button:active {
+  background-color: #cddf4d;
+}
+sedra-widget #sedra-widget .ui.inverted.olive.basic.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.olive.buttons .basic.button,
+sedra-widget #sedra-widget .ui.inverted.olive.basic.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 0.5) inset !important;
+  color: #FFFFFF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.olive.basic.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.olive.buttons .basic.button:hover,
+sedra-widget #sedra-widget .ui.inverted.olive.basic.button:hover {
+  box-shadow: 0px 0px 0px 2px #d8ea5c inset !important;
+  color: #D9E778 !important;
+}
+sedra-widget #sedra-widget .ui.inverted.olive.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.olive.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.olive.basic.button:focus {
+  box-shadow: 0px 0px 0px 2px #daef47 inset !important;
+  color: #D9E778 !important;
+}
+sedra-widget #sedra-widget .ui.inverted.olive.basic.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.olive.buttons .basic.active.button,
+sedra-widget #sedra-widget .ui.inverted.olive.basic.active.button {
+  box-shadow: 0px 0px 0px 2px #daed59 inset !important;
+  color: #D9E778 !important;
+}
+sedra-widget #sedra-widget .ui.inverted.olive.basic.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.olive.buttons .basic.button:active,
+sedra-widget #sedra-widget .ui.inverted.olive.basic.button:active {
+  box-shadow: 0px 0px 0px 2px #cddf4d inset !important;
+  color: #D9E778 !important;
+}
+sedra-widget #sedra-widget .ui.yellow.buttons .button,
+sedra-widget #sedra-widget .ui.yellow.button {
+  background-color: #FBBD08;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+}
+sedra-widget #sedra-widget .ui.yellow.button {
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.yellow.buttons .button:hover,
+sedra-widget #sedra-widget .ui.yellow.button:hover {
+  background-color: #eaae00;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.yellow.buttons .button:focus,
+sedra-widget #sedra-widget .ui.yellow.button:focus {
+  background-color: #daa300;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.yellow.buttons .button:active,
+sedra-widget #sedra-widget .ui.yellow.button:active {
+  background-color: #cd9903;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.yellow.buttons .active.button,
+sedra-widget #sedra-widget .ui.yellow.buttons .active.button:active,
+sedra-widget #sedra-widget .ui.yellow.active.button,
+sedra-widget #sedra-widget .ui.yellow.button .active.button:active {
+  background-color: #eaae00;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.basic.yellow.buttons .button,
+sedra-widget #sedra-widget .ui.basic.yellow.button {
+  box-shadow: 0px 0px 0px 1px #FBBD08 inset !important;
+  color: #FBBD08 !important;
+}
+sedra-widget #sedra-widget .ui.basic.yellow.buttons .button:hover,
+sedra-widget #sedra-widget .ui.basic.yellow.button:hover {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #eaae00 inset !important;
+  color: #eaae00 !important;
+}
+sedra-widget #sedra-widget .ui.basic.yellow.buttons .button:focus,
+sedra-widget #sedra-widget .ui.basic.yellow.button:focus {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #daa300 inset !important;
+  color: #eaae00 !important;
+}
+sedra-widget #sedra-widget .ui.basic.yellow.buttons .active.button,
+sedra-widget #sedra-widget .ui.basic.yellow.active.button {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 1px #eaae00 inset !important;
+  color: #cd9903 !important;
+}
+sedra-widget #sedra-widget .ui.basic.yellow.buttons .button:active,
+sedra-widget #sedra-widget .ui.basic.yellow.button:active {
+  box-shadow: 0px 0px 0px 1px #cd9903 inset !important;
+  color: #cd9903 !important;
+}
+sedra-widget #sedra-widget .ui.buttons:not(.vertical) > .basic.yellow.button:not(:first-child) {
+  margin-left: -1px;
+}
+sedra-widget #sedra-widget .ui.inverted.yellow.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.yellow.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px #FFE21F inset !important;
+  color: #FFE21F;
+}
+sedra-widget #sedra-widget .ui.inverted.yellow.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.yellow.button:hover,
+sedra-widget #sedra-widget .ui.inverted.yellow.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.yellow.button:focus,
+sedra-widget #sedra-widget .ui.inverted.yellow.buttons .button.active,
+sedra-widget #sedra-widget .ui.inverted.yellow.button.active,
+sedra-widget #sedra-widget .ui.inverted.yellow.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.yellow.button:active {
+  box-shadow: none !important;
+  color: rgba(0, 0, 0, 0.6);
+}
+sedra-widget #sedra-widget .ui.inverted.yellow.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.yellow.button:hover {
+  background-color: #ffdf05;
+}
+sedra-widget #sedra-widget .ui.inverted.yellow.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.yellow.button:focus {
+  background-color: #f5d500;
+}
+sedra-widget #sedra-widget .ui.inverted.yellow.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.yellow.active.button {
+  background-color: #ffdf05;
+}
+sedra-widget #sedra-widget .ui.inverted.yellow.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.yellow.button:active {
+  background-color: #ebcd00;
+}
+sedra-widget #sedra-widget .ui.inverted.yellow.basic.buttons .button,
+sedra-widget #sedra-widget .ui.inverted.yellow.buttons .basic.button,
+sedra-widget #sedra-widget .ui.inverted.yellow.basic.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 0.5) inset !important;
+  color: #FFFFFF !important;
+}
+sedra-widget #sedra-widget .ui.inverted.yellow.basic.buttons .button:hover,
+sedra-widget #sedra-widget .ui.inverted.yellow.buttons .basic.button:hover,
+sedra-widget #sedra-widget .ui.inverted.yellow.basic.button:hover {
+  box-shadow: 0px 0px 0px 2px #ffdf05 inset !important;
+  color: #FFE21F !important;
+}
+sedra-widget #sedra-widget .ui.inverted.yellow.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.yellow.basic.buttons .button:focus,
+sedra-widget #sedra-widget .ui.inverted.yellow.basic.button:focus {
+  box-shadow: 0px 0px 0px 2px #f5d500 inset !important;
+  color: #FFE21F !important;
+}
+sedra-widget #sedra-widget .ui.inverted.yellow.basic.buttons .active.button,
+sedra-widget #sedra-widget .ui.inverted.yellow.buttons .basic.active.button,
+sedra-widget #sedra-widget .ui.inverted.yellow.basic.active.button {
+  box-shadow: 0px 0px 0px 2px #ffdf05 inset !important;
+  color: #FFE21F !important;
+}
+sedra-widget #sedra-widget .ui.inverted.yellow.basic.buttons .button:active,
+sedra-widget #sedra-widget .ui.inverted.yellow.buttons .basic.button:active,
+sedra-widget #sedra-widget .ui.inverted.yellow.basic.button:active {
+  box-shadow: 0px 0px 0px 2px #ebcd00 inset !important;
+  color: #FFE21F !important;
+}
+sedra-widget #sedra-widget .ui.primary.buttons .button,
+sedra-widget #sedra-widget .ui.primary.button {
+  background-color: #2185D0;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+}
+sedra-widget #sedra-widget .ui.primary.button {
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.primary.buttons .button:hover,
+sedra-widget #sedra-widget .ui.primary.button:hover {
+  background-color: #1678c2;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.primary.buttons .button:focus,
+sedra-widget #sedra-widget .ui.primary.button:focus {
+  background-color: #0d71bb;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.primary.buttons .button:active,
+sedra-widget #sedra-widget .ui.primary.button:active {
+  background-color: #1a69a4;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.primary.buttons .active.button,
+sedra-widget #sedra-widget .ui.primary.active.button {
+  background-color: #1279c6;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.secondary.buttons .button,
+sedra-widget #sedra-widget .ui.secondary.button {
+  background-color: #1B1C1D;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+}
+sedra-widget #sedra-widget .ui.secondary.button {
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.secondary.buttons .button:hover,
+sedra-widget #sedra-widget .ui.secondary.button:hover {
+  background-color: #27292a;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.secondary.buttons .button:focus,
+sedra-widget #sedra-widget .ui.secondary.button:focus {
+  background-color: #2e3032;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.secondary.buttons .button:active,
+sedra-widget #sedra-widget .ui.secondary.button:active {
+  background-color: #343637;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.secondary.buttons .active.button,
+sedra-widget #sedra-widget .ui.secondary.active.button {
+  background-color: #27292a;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.positive.buttons .button,
+sedra-widget #sedra-widget .ui.positive.button {
+  background-color: #21BA45 !important;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+}
+sedra-widget #sedra-widget .ui.positive.button {
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.positive.buttons .button:hover,
+sedra-widget #sedra-widget .ui.positive.button:hover {
+  background-color: #16ab39 !important;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.positive.buttons .button:focus,
+sedra-widget #sedra-widget .ui.positive.button:focus {
+  background-color: #0ea432 !important;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.positive.buttons .button:active,
+sedra-widget #sedra-widget .ui.positive.button:active {
+  background-color: #198f35 !important;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.positive.buttons .active.button,
+sedra-widget #sedra-widget .ui.positive.active.button,
+sedra-widget #sedra-widget .ui.positive.buttons .active.button:active {
+  background-color: #13ae38;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.negative.buttons .button,
+sedra-widget #sedra-widget .ui.negative.button {
+  background-color: #DB2828 !important;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+}
+sedra-widget #sedra-widget .ui.negative.button {
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.negative.buttons .button:hover,
+sedra-widget #sedra-widget .ui.negative.button:hover {
+  background-color: #d01919 !important;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.negative.buttons .button:focus,
+sedra-widget #sedra-widget .ui.negative.button:focus {
+  background-color: #ca1010 !important;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.negative.buttons .button:active,
+sedra-widget #sedra-widget .ui.negative.button:active {
+  background-color: #b21e1e !important;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.negative.buttons .active.button,
+sedra-widget #sedra-widget .ui.negative.active.button,
+sedra-widget #sedra-widget .ui.negative.buttons .active.button:active {
+  background-color: #d41515;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+sedra-widget #sedra-widget .ui.buttons {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  font-size: 0em;
+  vertical-align: baseline;
+  margin: 0em 0.25em 0em 0em;
+}
+sedra-widget #sedra-widget .ui.buttons:not(.basic):not(.inverted) {
+  box-shadow: none;
+}
+sedra-widget #sedra-widget .ui.buttons:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+sedra-widget #sedra-widget .ui.buttons .button {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 0 auto;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+  margin: 0em;
+  border-radius: 0em;
+  margin: 0px 0px 0px 0px;
+}
+sedra-widget #sedra-widget .ui.buttons > .ui.button:not(.basic):not(.inverted),
+sedra-widget #sedra-widget .ui.buttons:not(.basic):not(.inverted) > .button {
+  box-shadow: 0px 0px 0px 1px transparent inset, 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+sedra-widget #sedra-widget .ui.buttons .button:first-child {
+  border-left: none;
+  margin-left: 0em;
+  border-top-left-radius: 0.28571429rem;
+  border-bottom-left-radius: 0.28571429rem;
+}
+sedra-widget #sedra-widget .ui.buttons .button:last-child {
+  border-top-right-radius: 0.28571429rem;
+  border-bottom-right-radius: 0.28571429rem;
+}
+sedra-widget #sedra-widget .ui.vertical.buttons {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+sedra-widget #sedra-widget .ui.vertical.buttons .button {
+  display: block;
+  float: none;
+  width: 100%;
+  margin: 0px 0px 0px 0px;
+  box-shadow: none;
+}
+sedra-widget #sedra-widget .ui.vertical.buttons .button:first-child,
+sedra-widget #sedra-widget .ui.vertical.buttons .mini.button:first-child,
+sedra-widget #sedra-widget .ui.vertical.buttons .tiny.button:first-child,
+sedra-widget #sedra-widget .ui.vertical.buttons .small.button:first-child,
+sedra-widget #sedra-widget .ui.vertical.buttons .massive.button:first-child,
+sedra-widget #sedra-widget .ui.vertical.buttons .huge.button:first-child {
+  border-radius: 0.28571429rem 0.28571429rem 0px 0px;
+}
+sedra-widget #sedra-widget .ui.vertical.buttons .button:last-child,
+sedra-widget #sedra-widget .ui.vertical.buttons .mini.button:last-child,
+sedra-widget #sedra-widget .ui.vertical.buttons .tiny.button:last-child,
+sedra-widget #sedra-widget .ui.vertical.buttons .small.button:last-child,
+sedra-widget #sedra-widget .ui.vertical.buttons .massive.button:last-child,
+sedra-widget #sedra-widget .ui.vertical.buttons .huge.button:last-child,
+sedra-widget #sedra-widget .ui.vertical.buttons .gigantic.button:last-child {
+  margin-bottom: 0px;
+  border-radius: 0px 0px 0.28571429rem 0.28571429rem;
+}
+
+
+/*******************************
+         Theme Overrides
+*******************************/
+
+
+
+/*******************************
+         Site Overrides
+*******************************/
+

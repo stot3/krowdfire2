@@ -1,0 +1,426 @@
+<div class="mainbody-wrap" ng-cloak>
+  <div class="background-wrap">
+    <div class="ui page grid">
+      <div class="ui column">
+
+        <div class="campaign-creation-header">
+          <div class="campaignsteps" ng-include src="'views/templates/partials/campaign/create/campaign-steps.html'"></div>
+
+          <div class="ui center aligned basic campaign-top-header segment">
+            <h1 class="ui header" translate> campaign_setup_message</h1>
+            <p translate> campaign_setup_text</p>
+            <p translate>campaign_setup_text2</p>
+            <div class="header-footer">
+              <div class="header-prev-action" ng-if="displayPrevButtonHeader" ng-include src="'views/templates/partials/campaign/create/campaign-previous.html'"></div>
+            </div>
+          </div>
+        </div>
+
+        <form class="campaign-details-form campaign-creation-form ui form" name="campaign_form" novalidate>
+          <h2 class="ui inverted top attached header" translate ng-if="!hideCampaignManagerField"> campaign_setup_team</h2>
+          <div class="campaign-bg ui middle attached basic segment" ng-if="!hideCampaignManagerField">
+            <div class="formbg ui two column stackable grid required-field" ng-class="{'revision-active' : enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id !== 1}">
+              <div class="left-col five wide column">
+                <h3 class="ui header">
+                  <span translate="campaign_setup_owner"></span>&nbsp;
+                  <span class="required-text ng-scope" translate="campaign_creation_required_text" ng-if="user.person_type_id == 1"></span>
+                </h3>
+                <p translate="get_started_campaign_manager_note"></p>
+              </div>
+
+              <div class="right-col eleven wide column">
+                <div class="ui fluid form">
+                  <div class="field">
+                    <h2 class="ui black header" ng-if="user.person_type_id != 1">{{owner.first_name + ' ' + owner.last_name}}</h2>
+                    <div class="campaign-creator-user-select ui icon fluid search selection dropdown recipient" ng-if="user.person_type_id == 1" ng-class="{'disabled' : enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id !== 1}">
+                      <input type="hidden" name="recipient" ng-value="campaign.managers[0].person_id">
+                      <input type="text" ng-model="campaign.settings.campaign_manager_name" ng-change="updateUserList(campaign.settings.campaign_manager_name)"
+                        style="background: transparent;box-shadow: none; border: 0; padding: 0;">
+                      <div class="menu" on-scroll-bottom="appendNextPage()">
+                        <div ng-repeat="user in list_users" ng-click="setRecipient($event)" class="item" first-name="{{user.first_name}}" last-name="{{user.last_name}}"
+                          data-value="{{user.id}}">
+                          {{user.first_name}} {{user.last_name}}
+                          <a class="right floated profile-link" target="_blank" ng-href="/profile/{{user.id}}" first-name="{{user.first_name}}" last-name="{{user.last_name}}"
+                            user-id="{{user.id}}">
+                            <!-- <i class="user large icon"></i> -->
+                            User ID {{user.id}}
+                            <i class="arrow large circle right icon"></i>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="ui tiny label admin-only-label" sui-popup data-content="{{ 'admin_only_popup_msg'| translate }}">
+                        <i class="eye icon"></i>
+                        {{ 'admin_only_popup_label' | translate }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <h2 class="ui inverted top attached header" translate>campaign_setup_details </h2>
+          <div class="campaign-bg ui middle attached basic segment story-section">
+            <div class="formbg ui grid stacked-ui-field required-field campaign-image-form-field" ng-if="showCampaignImageField">
+
+              <div class="column campaignBasics">
+                <h3 class="ui header">
+                  <span translate>get_started_image</span>
+                  <span class="required-text" translate="campaign_creation_required_text"></span>
+                </h3>
+
+
+                <div class="ui yellow message" ng-if="notes.files">
+                  <div class="ui small header" translate>get_started_note</div>
+                  {{notes.files}}
+                </div>
+                <div class="field" id="featured-img-field">
+                  <span class="campaign-revision-note ui blue label" ng-if="enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id == 1 && isCampaignRevised"
+                    translate="campaign_creation_revised_note"></span>
+                  <div class="campaign-thumbnail ui imagePlace" ng-file-drop="uploadCampaignThumnail($files)" ng-file-drag-over-class="file-drag">
+                    <div class="img-wrap">
+                      <div class="inner-img-placeholder" ng-if="campaignImages && !campaignImages.length">
+
+                        <img class="ui image image-placeholder" src="images/placeholder-images/placeholder_campaign.png" />
+                        <span class="img-note">{{'get_started_imagetext'| translate}}</span>
+                      </div>
+                      <img class="ui image image-uploaded" ng-if="campaignImages.length" ng-src="{{server + '/image/campaign_detail_large/' + campaignImages[0].path_external}}"
+                        imageonload/>
+                    </div>
+                    <div class="ui dimmer">
+                      <div class="content">
+                        <div class="center">
+                          <div class="ui small indicating progress upload-bar">
+                            <div class="bar"></div>
+                          </div>
+                          <div class="ui loader download-loader"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="campaign-image-upload-wrap ui center aligned basic segment" ng-if="campaignImages.length">
+                  <thrinacia-file-upload upload-id="campaignFeaturedImage" upload-file="uploadCampaignThumnail" upload-translate=" get_started_uploadimage"></thrinacia-file-upload>
+                  <button class="ui red labeled icon button" ng-click="deleteCampaignThumnail(campaignImages)">
+                    <i class="remove sign icon"></i>{{'get_started_deleteimage'|translate}}
+                  </button>
+                </div>
+                <p translate>get_started_image_upload_note</p>
+              </div>
+            </div>
+
+            <div class="formbg ui two column stackable grid required-field" ng-show="!hideCampaignDescriptionField">
+              <div class="ui corner red label">
+                <i class="white asterisk icon"></i>
+              </div>
+              <div class="left-col five wide column">
+                <h3 class="ui header">
+                  <span translate="campaign_setup_description"></span>
+                  <span class="required-text" translate="campaign_creation_required_text"></span>
+                </h3>
+                <p translate="campaign_setup_description_text"></p>
+              </div>
+
+              <div class="right-col eleven wide column">
+                <div class="ui yellow message" ng-if="notes.description">
+                  <div class="ui small header" translate>get_started_note</div>
+                  {{notes.description}}
+                </div>
+                <div class="field" id="campaign-details-field" ng-class="{'description-added' : campaign.description}">
+                  <span class="campaign-revision-note ui blue label" ng-if="enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id == 1 && isCampaignRevised"
+                    translate="campaign_creation_revised_note"></span>
+                  <textarea froala="froalaOptionsCampaigns" ng-if="enableCampaignRevisions && campaign.entry_status_id == 2 && in_revision"
+                    data-server="{{server}}" data-loc="{{server_loc}}" class="page-content" ng-model="revision.description"
+                    name="data.htmlcontent" ng-class="{'has-error': !revision.description}"></textarea>
+                  <textarea froala="froalaOptionsCampaigns" ng-if="!in_revision" data-server="{{server}}" data-loc="{{server_loc}}" class="page-content"
+                    ng-model="campaign.description" name="data.htmlcontent" ng-class="{'has-error': !campaign.description}"></textarea>
+                  <div class="ui selection dropdown description-suggestions-dropdown" ng-if="descriptionSuggestions && descriptionSuggestions.length">
+                    <input type="hidden" name="description-suggestions">
+                    <div class="default text" translate="campaign_setup_description_suggestions"></div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                      <div class="item" ng-repeat="dsecription in descriptionSuggestions track by $index" ng-click="setDescriptionFromSuggestion(dsecription)">
+                        <span ng-bind="dsecription.title"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div ta-bind="text" ng-show="togglepreview" ng-model="campaign.description" ta-readonly='disabled'></div>
+              </div>
+            </div>
+
+            <div class="formbg ui two column stackable grid optional-field" ng-if="!isRemoveCampaignLinks" ng-class="{'revision-active' : enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id !== 1}">
+              <div class="left-col five wide column">
+                <h3 class="ui header">
+                  <span translate>campaign_setup_links</span>
+                  <span class="optional-text" translate="campaign_creation_optional_text"></span>
+                </h3>
+                <p translate>campaign_setup_linkstext </p>
+              </div>
+
+              <div class="right-col eleven wide column">
+                <div class="ui fluid form campaign-links">
+                  <div class="campaign-links ui stackable grid" name="links" ng-repeat="link in links">
+                    <div class="five wide column">
+                      <div class="field">
+                        <input class="left" name="link_label{{$index}}" type="text" ng-model="link.uri_text" placeholder="{{'campaign_setup_links_placeholder'| translate}}"
+                          ng-disabled="enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id !== 1">
+                      </div>
+                    </div>
+
+                    <div class="ten wide column">
+                      <div class="field">
+                        <div class="url-input ui left labeled input fluid">
+                          <div class="ui dropdown top-header-link-protocol label" ng-class="{'disabled' : enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id !== 1}">
+                            <input name="profile_link_protocol" type="hidden">
+                            <div class="text protocol_text" ng-if="!link.default_protocol">{{top_header_link_default_protocal.value}}</div>
+                            <div class="text protocol_text" ng-if="link.default_protocol">{{link.default_protocol}}</div>
+                            <div class="menu">
+                              <div ng-repeat="protocol in top_header_protocals" class="item" ng-class="{'active':link.default_protocol == protocol.value}">{{protocol.value}}</div>
+                            </div>
+                            <i class="dropdown icon"></i>
+                          </div>
+                          <input type="text" class="right" name="link_url{{$index}}" ng-model="link.uri" type="text" placeholder="{{'campaign_setup_links_placeholder1'| translate}}"
+                            ng-disabled="enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id !== 1">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="one wide column">
+                      <button class="ui red icon button" ng-click="removeLink(link, $index)" ng-disabled="enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id !== 1">
+                        <i class="remove icon"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="btn-wrap">
+                    <button ng-hide="links.length >= 4" class="add-more-btn ui green right labeled icon button" ng-click="addLink(links)" ng-disabled="enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id !== 1">
+                      <span translate> campaign_setup_addlink</span>
+                      <i class="add icon"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="formbg ui two column stackable grid optional-field" ng-if="!isRemoveCampaignFaq">
+              <div class="left-col five wide column">
+                <h3 class="ui header">
+                  <span translate>campaign_setup_faq</span>
+                  <span class="optional-text" translate="campaign_creation_optional_text"></span>
+                </h3>
+                <p translate> campaign_setup_faqtext</p>
+              </div>
+
+              <div class="right-col eleven wide column">
+                <div class="ui yellow message" ng-if="notes.faqs">
+                  <div class="ui small header" translate> campaign_setup_faqnote </div>
+                  {{notes.faqs}}
+                </div>
+                <span class="campaign-revision-note ui blue label" ng-if="enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id == 1 && isCampaignRevised"
+                  translate="campaign_creation_revised_note"></span>
+                <div class="ui fluid" ng-repeat="faq in campaign.faq | orderBy:'display_priority'">
+                  <div class="ui stackable grid campaign-faq">
+                    <div class="seven wide column">
+                      <div class="field">
+                        <div class="ui input">
+                          <input class="left" ng-show="!isDisableFaq" ng-disabled="isDisableFaq" name="link_label{{$index}}" type="text" ng-model="faq.name"
+                            placeholder="{{'campaign_setup_faqheader'| translate}}">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="eight wide column">
+                      <div class="field" id="faq-description">
+                        <div class="ui input">
+                          <input type="text" ng-show="!isDisableFaq" ng-disabled="isDisableFaq" class="right faq-description" name="faq_url{{$index}}"
+                            ng-model="faq.description" ng-class="{'has-error': faq.name.length && faq.description.length == 0}"
+                            type="text" placeholder="{{'campaign_setup_faqdescription'| translate}}">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="one wide column">
+                      <button class="ui red icon button" ng-show="!isDisableFaq" ng-disabled="isDisableFaq" ng-click="deleteFaq(faq)">
+                        <i class="remove icon"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <ul ui-sortable="faqSortOptions" ng-model="faq.faq_pairs">
+                    <div class="ui stackable grid campaign-faq" ng-repeat="pair in faq.faq_pairs">
+                      <div class="one wide column">
+                        <div class="fa fa-bars"></div>
+                      </div>
+                      <div class="seven wide column">
+                        <input class="left" name="link_label{{$index}}" type="text" ng-model="pair.question" placeholder="{{'campaign_setup_qas_question'| translate}}">
+                      </div>
+                      <div class="seven wide column">
+                        <input type="text" class="right" name="pair_url{{$index}}" ng-model="pair.answer" ng-class="{'has-error': pair.question.length && pair.answer.length == 0}"
+                          type="text" placeholder="{{'campaign_setup_qas_answer'| translate}}">
+                      </div>
+                      <div class="one wide column">
+                        <button class="ui red icon button" ng-click="removeFaqPair(faq, pair)">
+                          <i class="remove icon"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </ul>
+                  <div class="btn-wrap">
+                    <button ng-show="campaign.faq.length" class="add-more-btn ui green right labeled icon button" ng-click="addFAQPair(faq.faq_pairs)">
+                      <span translate="campaign_setup_qas"></span>
+                      <i class="add icon"></i>
+                    </button>
+                    <div class="ui selection dropdown" ng-if="faqSuggestions && faqSuggestions.length">
+                      <input type="hidden" name="faq-suggestion">
+                      <div class="default text" translate="campaign_setup_faq_suggestions"></div>
+                      <i class="dropdown icon"></i>
+                      <div class="menu">
+                        <div class="item" ng-repeat="faq in faqSuggestions track by $index" ng-click="setFAQFromSuggestion(faq)" ng-bind="faq.title"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="formbg ui two column stackable grid required-field" ng-if="isRemoveCampaignBio">
+              <div class="four wide column">
+                <h3 class="ui header main-font-color">
+                  <span translate>campaign_setup_campaign_bio_header</span>
+                  <span class="required-text" translate="campaign_creation_required_text"></span>
+                </h3>
+                <p translate>
+                  campaign_setup_campaign_bio_note
+                </p>
+              </div>
+              <div class="twelve wide column">
+                <div class="ui yellow message" ng-if="notes.blurb">
+                  <div class="ui small header" translate="get_started_note"></div>
+                  {{notes.managers}}
+                </div>
+                <div class="ui form">
+                  <div class="field">
+                    <span class="campaign-revision-note ui blue label" ng-if="enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id == 1 && isCampaignRevised"
+                      translate="campaign_creation_revised_note"></span>
+                    <!--<label translate>campaign_setup_campaign_bio_label</label>-->
+                    <textarea maxlength="300" ng-model="campaign.settings.bio_enable" name="bio"></textarea>
+                    <label class="character-counter">{{campaign.settings.bio_enable.length || 0}}/300 max characters</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="formbg ui two column stackable grid optional-field" ng-if="public_settings.dedicated_campaign_files" ng-class="{'revision-active' : enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id !== 1}">
+              <div class="left-col five wide column">
+                <h3 class="ui header">
+                  <span translate="campaign_setup_campaign_file"></span>
+                  <span class="optional-text" translate="campaign_creation_optional_text"></span>
+                </h3>
+                <!--<p translate="campaign_setup_google_analytics_desc"></p>-->
+              </div>
+
+              <div class="right-col eleven wide column campaign-files-container">
+                <div class="ui two column stackable grid">
+                  <div class="six wide column file-upload-area">
+                    <div class="ui input fluid">
+                      <input type="text" ng-model="currentUploadFile.title" placeholder="{{'campaign_setup_file_title_placeholder' | translate}}"
+                        ng-disabled="enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id !== 1"
+                      />
+                    </div>
+                    <div class="ui input">
+                      <input type="text" ng-model="currentUploadFile.description" placeholder="{{'campaign_setup_file_description_placeholder' | translate}}"
+                        ng-disabled="enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id !== 1"
+                      />
+                    </div>
+                    <div class="ui column grid file-container">
+                      <div class="column">
+                        <i class="big outline icon" ng-class="currentUploadFile.icon"></i>
+                        <span ng-bind="currentUploadFile.fileName" ng-show="currentUploadFile.fileName"></span>
+                        <span translate="campaign_setup_file_no_file" ng-show="!currentUploadFile.fileName"></span>
+                      </div>
+                    </div>
+                    <thrinacia-file-upload additional-classes="teal" upload-disabled="{{enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id !== 1}}"
+                      upload-id="uploadCampaignFileButton" upload-file="uploadCampaignFile" upload-translate="campaign_setup_file_upload"></thrinacia-file-upload>
+
+                    <button class="ui primary button" ng-click="addCampaignFile()" ng-class="{'disabled': isUploading || !currentUploadFile.fileName}"
+                      ng-disabled="enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id !== 1">
+                      <span translate="campaign_setup_file_add"></span>
+                    </button>
+                    <button class="ui button" ng-click="cancelCampaignFile()" ng-class="{'disabled': isUploading || !currentUploadFile.fileName}"
+                      ng-disabled="enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id !== 1">
+                      <span translate="campaign_setup_file_cancel"></span>
+                    </button>
+                  </div>
+                  <div class="ten wide column">
+                    <div class="file-list ui items" ng-repeat="campaignFile in campaign.settings.campaign_files">
+                      <div class="item">
+                        <div class="ui image">
+                          <i class="huge outline icon" ng-class="campaignFile.icon"></i>
+                        </div>
+                        <div class="middle aligned content">
+                          <div class="header">
+                            <span ng-bind="campaignFile.title | limitTo: 25"></span>
+                            <span ng-show="campaignFile.title.length >= 25">...</span>
+                          </div>
+                          <div class="description">
+                            <p ng-bind="campaignFile.description"></p>
+                          </div>
+                          <div class="extra">
+                            <a ng-href="{{server + '/static/images/' + campaignFile.path}}" target="_blank" ng-class="{'disabled' : enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id !== 1}"
+                              disable-link="enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id !== 1">
+                              <span translate="campaign_setup_file_view"></span>
+                            </a>
+                            <a href="" translate="campaign_setup_file_delete" ng-click="removeFileFromSetting($index)" ng-class="{'disabled' : enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id !== 1}"></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="formbg ui two column stackable grid optional-field" ng-if="!isRemoveCampaignGA" ng-class="{'revision-active' : enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id !== 1}">
+              <div class="left-col five wide column">
+                <h3 class="ui header">
+                  <span translate="campaign_setup_google_analytics_id"></span>
+                  <span class="optional-text" translate="campaign_creation_optional_text"></span>
+                </h3>
+                <p translate="campaign_setup_google_analytics_desc"></p>
+              </div>
+
+              <div class="right-col eleven wide column">
+                <div class="ui input">
+                  <input type="text" ng-model="campaign.settings.google_analytics_id" ng-disabled="enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id !== 1">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div ng-include src="'views/templates/partials/response-message.html'"></div>
+
+          <div class="bottom-btn-wrap" ng-include src="'views/templates/partials/campaign/create/campaign-save.html'"></div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="ui small modal delete-faq-modal">
+  <i class="close icon"></i>
+  <div class="header">
+    <h3 class="ui blue header" translate>campaign_setup_delete_faq</h3>
+  </div>
+  <div class="content">
+    <p>{{'campaign_setup_delete_faq_text'| translate}} {{faq.name}}?</p>
+  </div>
+  <div class="actions">
+    <div class="ui positive button" ng-click="confirmDeleteFaq($event)" translate>
+      campaign_setup_delete_faq_yes
+    </div>
+    <div class="ui negative button" translate>
+      campaign_setup_delete_faq_no
+    </div>
+  </div>
+</div>

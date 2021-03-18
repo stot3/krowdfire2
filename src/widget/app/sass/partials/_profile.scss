@@ -1,0 +1,68 @@
+sedra-widget #sedra-widget div#profile-page {
+  .password-edit,
+  .profile-edit {
+    text-align: center;
+  }
+  .progress-bar-fund {
+    margin-bottom: 5px;
+    .bar {
+      height: 22px;
+      border-radius: 0;
+    }
+  }
+  .transaction-wrap-content {
+    margin-top: 15px;
+  }
+  @media screen and (min-width: 768px) {
+    .view-campaign-button {
+      position: absolute;
+      left: 15px;
+      top: 15px;
+    }
+    .profile-image {
+      margin-top: 0;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .profile-image {
+      margin-top: 12px;
+    }
+  }
+  div.profile-info-view {
+    margin-top: 8px;
+  }
+  form.ui.form.info-form,
+  form.ui.form.password-form {
+    margin-top: 12px;
+    .field {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 400px;
+    }
+  }
+  .ui.buttons.profile-edit-buttons {
+    margin-top: 12px;
+  }
+  .image-wrap {
+    max-width: 150px;
+    margin: 0 auto;
+    position: relative;
+    .text-overlay {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      .image-upload {
+        width: 100%;
+        color: white;
+        margin: 0;
+        border-radius: 0;
+        background: rgba(0, 0, 0, 0.50);
+        border: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,69 @@
+<div class="credit-card-form" *ngIf="!stripeElement.toggle">
+  <div class="ui large form">
+    <div class="two fields">
+      <div class="cc-field field">
+        <div class="ui left icon input">
+          <input type="text" name="CardName" placeholder="{{translate('campaign_card_name_card_placeholder')}}" [(ngModel)]="cardObj.cardName"
+          />
+          <i class="user icon"></i>
+        </div>
+      </div>
+      <div class="cc-field field">
+        <div class="ui left icon input">
+          <input type="text" name="CardNumber" placeholder="{{translate('campaign_card_credit_number_placeholder')}}" class="cardNumber"
+            CardType [cardNumber]="cardObj.cardNumber" [(ngModel)]="cardObj.cardNumber" maxlength="19">
+          <i class="payment icon"></i>
+        </div>
+      </div>
+    </div>
+    <div class="card-expiry-cvc two fields">
+      <div class="cc-field four wide field">
+        <div class="ui left icon input">
+          <input type="text" name="CardDate" placeholder="{{translate('campaign_card_date_placeholder')}}" class="cardExpiry" [(ngModel)]="cardObj.cardDate"
+            maxlength="7" />
+          <i class="calendar icon"></i>
+        </div>
+      </div>
+      <div class="cc-field four wide field">
+        <div class="ui left icon input">
+          <input type="text" name="CardCVC" class="cardCVC" placeholder="{{translate('campaign_card_CVC_placeholder')}}" [(ngModel)]="cardObj.cardCVC"
+          />
+          <i class="lock icon"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="credit-card-form" *ngIf="stripeElement.toggle">
+  <div class="ui large form stripe-elements-form">
+    <div class="field">
+      <div class="ui left icon input">
+        <input type="text" name="CardName" placeholder="{{translate('campaign_card_name_card_placeholder')}}" [(ngModel)]="cardObj.cardName"
+        />
+        <i class="user icon"></i>
+      </div>
+    </div>
+    <div class="two fields">
+      <div class="ten wide field">
+        <div id="card-number-element-wrap">
+          <i class="pf pf-credit-card" id="brand-icon"></i>
+          <div #cardNumber id="card-number-element"></div>
+        </div>
+      </div>
+      <div class="six wide field">
+        <div class="two fields">
+          <div class="field">
+            <div #cardExpiry id="card-expiry-element"></div>
+          </div>
+          <div class="field">
+            <div #cardCvc id="card-cvc-element"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Used to display Element errors -->
+    <div id="card-errors" role="alert"></div>
+    <!-- <button>Submit Payment</button> -->
+  </div>
+</div>

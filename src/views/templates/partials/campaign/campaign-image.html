@@ -1,0 +1,60 @@
+<div class="desktop-only img-wrap campaign-image">
+  <div ng-if="note.video" class="ui label notes-label">
+    {{'campaign_review_notes'|translate}}
+    <i class="delete icon" ng-click="removeNote('note.video')" ng-if="note.video"></i>
+  </div>
+  <div class="notes" ng-class="{'has-note ui basic segment' : note.video, 'field-empty': !campaign.files.length}" ng-click="addNotes('campaign_review_featured_video_note_title', 'video')">
+    <embed-video ng-if="campaign.video && campaign.video_type != 'custom'" class="campaign-video" ng-href="{{campaign.video}}"></embed-video>
+    <video ng-if="campaign.video && campaign.video_type == 'custom'" style="width:100%;height:100%;background:#000000;" id="custom-video-player"
+      controls>
+      <source ng-src="{{campaign.video}}">
+      </source>
+    </video>
+  </div>
+  <div ng-if="note.image" class="ui label notes-label">
+    {{'campaign_review_notes' | translate}}
+    <i class="delete icon" ng-click="removeNote('image')" ng-if="note.image"></i>
+  </div>
+  <div class="notes" ng-class="{'has-note ui basic segment' : note.image, 'field-empty': !campaign.files.length}" ng-click="addNotes('campaign_review_featured_image_note_title', 'image')">
+    <img ng-hide="campaign.video" ng-if="campaign.files.length" ng-repeat="file in campaign.files | filter:{region_id: RESOURCE_REGIONS.campaign.thumbnail} | orderBy:'-file_id' | limitTo: 1"
+      ng-src="{{server + '/image/campaign_detail_large/' + file.path_external}}" class="ui image" />
+    <img ng-hide="campaign.video" ng-if="noMainImage" src="/images/placeholder-images/placeholder_campaign.png" class="ui image"
+    />
+  </div>
+</div>
+<div id="sm-share-wrap" class="desktop-only ui basic segment center aligned" ng-if="is_sharing_available && !moveSharingButtonsToSidebar">
+  <div class="share-campaign ui top left pointing dropdown green button">
+    <span class="text" translate>campaign_page_share_this_campaign</span>
+    <div class="menu">
+      <div class="a2a_kit a2a_kit_size_32 a2a_default_style social-media-share" data-a2a-url="{{shortenedUrl}}" ng-show="!share">
+        <a class="a2a_button_facebook"></a>
+        <a class="a2a_button_twitter"></a>
+        <a class="a2a_button_email"></a>
+        <a class="a2a_button_google_plus"></a>
+        <a class="a2a_dd" href="https://www.addtoany.com/share_save"></a>
+      </div>
+      <script type="text/javascript" src="https://static.addtoany.com/menu/page.js"></script>
+    </div>
+  </div>
+  <div class="embed-campaign ui floating dropdown labeled icon button" id="mob-view1">
+    <i class="code icon"></i>
+    <span class="text" translate>campaign_page_embed</span>
+    <div class="menu">
+      <textarea rows="4" cols="50" ng-show="!isPrivateCampaign"><iframe width="260" height="650" src="{{embed_path}}" frameborder="0" scrolling="no"></iframe></textarea>
+      <textarea rows="4" cols="50" ng-show="isPrivateCampaign"><iframe width="260" height="650" src="{{embed_path}}?privatepath={{currentLoc}}" frameborder="0" scrolling="no"> </iframe></textarea>
+    </div>
+  </div>
+</div>
+<div ng-if="campaign.campaign_links.length && !isRemoveCampaignLinks" class="desktop-only campaign-links-wrap">
+  <div ng-if="note.links" class="ui label notes-label" >{{'campaign_review_notes'|translate}}
+    <i class="delete icon" ng-click="removeNote('links')" ng-if="note.links"></i>
+  </div>
+  <div class="notes" ng-class="{'has-note ui basic segment' : note.links}" ng-click="addNotes('campaign_review_links_note_title', 'links')">
+    <div class="ui center aligned  bulleted horizontal list campaign-links">
+      <a class="item" ng-repeat="link in campaign.campaign_links | limitTo: 5" ng-href="{{link.uri}}" target="_blank">
+        <span ng-if="link.uri_text">{{link.uri_text}}</span>
+        <span ng-if="!link.uri_text">{{link.uri}}</span>
+      </a>
+    </div>
+  </div>
+</div>

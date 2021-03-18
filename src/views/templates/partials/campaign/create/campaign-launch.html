@@ -1,0 +1,5 @@
+<button accessible-form ng-click="completionCheck()" class="review-btn ui right labeled icon orange button" ng-class="{'disabled': loadingText || confirmNotice}">
+  <span ng-show="!approve_campaign">{{'campaign_preview_button'|translate}} </span>
+  <span ng-show="approve_campaign">{{'campaign_preview_auto_approve_button'|translate}} </span>
+  <i class="right arrow icon"></i>
+</button>

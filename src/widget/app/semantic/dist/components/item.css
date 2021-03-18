@@ -1,0 +1,484 @@
+/*!
+ * # Semantic UI 2.1.8 - Item
+ * http://github.com/semantic-org/semantic-ui/
+ *
+ *
+ * Copyright 2015 Contributors
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+
+/*******************************
+            Standard
+*******************************/
+
+
+/*--------------
+      Item
+---------------*/
+
+sedra-widget #sedra-widget {
+  
+/*--------------
+  Items
+  ---------------*/
+
+  
+/*--------------
+  Item
+  ---------------*/
+
+  
+/*--------------
+  Images
+  ---------------*/
+
+  
+/*--------------
+  Content
+  ---------------*/
+
+  
+/* Default Header Size */
+  
+/*--------------
+  Floated
+  ---------------*/
+
+  
+/*--------------
+  Content Image
+  ---------------*/
+
+  
+/*--------------
+  Description
+  ---------------*/
+
+  
+/*--------------
+  Paragraph
+  ---------------*/
+
+  
+/*--------------
+  Meta
+  ---------------*/
+
+  
+/*--------------
+  Links
+  ---------------*/
+
+  
+/* Generic */
+  
+/* Header */
+  
+/* Meta */
+  
+/*--------------
+  Labels
+  ---------------*/
+
+  
+/*-----Star----- */
+
+  
+/* Icon */
+  
+/*-----Like----- */
+
+  
+/* Icon */
+  
+/*----------------
+  Extra Content
+  -----------------*/
+
+  
+
+/*******************************
+  Responsive
+  *******************************/
+
+  
+/* Default Image Width */
+  
+/* Tablet Only */
+  
+/* Mobily Only */
+  
+
+/*******************************
+  Variations
+  *******************************/
+
+  
+/*-------------------
+  Aligned
+  --------------------*/
+
+  
+/*--------------
+  Relaxed
+  ---------------*/
+
+  
+/*-------------------
+  Divided
+  --------------------*/
+
+  
+/* Relaxed Divided */
+  
+/*-------------------
+  Link
+  --------------------*/
+
+  
+/*--------------
+  Size
+  ---------------*/
+
+}
+sedra-widget #sedra-widget .ui.items > .item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 1em 0em;
+  width: 100%;
+  min-height: 0px;
+  background: transparent;
+  padding: 0em;
+  border: none;
+  border-radius: 0rem;
+  box-shadow: none;
+  -webkit-transition: box-shadow 0.1s ease;
+  transition: box-shadow 0.1s ease;
+  z-index: '';
+}
+sedra-widget #sedra-widget .ui.items > .item a {
+  cursor: pointer;
+}
+sedra-widget #sedra-widget .ui.items {
+  margin: 1.5em 0em;
+}
+sedra-widget #sedra-widget .ui.items:first-child {
+  margin-top: 0em !important;
+}
+sedra-widget #sedra-widget .ui.items:last-child {
+  margin-bottom: 0em !important;
+}
+sedra-widget #sedra-widget .ui.items > .item:after {
+  display: block;
+  content: ' ';
+  height: 0px;
+  clear: both;
+  overflow: hidden;
+  visibility: hidden;
+}
+sedra-widget #sedra-widget .ui.items > .item:first-child {
+  margin-top: 0em;
+}
+sedra-widget #sedra-widget .ui.items > .item:last-child {
+  margin-bottom: 0em;
+}
+sedra-widget #sedra-widget .ui.items > .item > .image {
+  position: relative;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  display: block;
+  float: none;
+  margin: 0em;
+  padding: 0em;
+  max-height: '';
+  -webkit-align-self: top;
+      -ms-flex-item-align: top;
+          align-self: top;
+}
+sedra-widget #sedra-widget .ui.items > .item > .image > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.125rem;
+  border: none;
+}
+sedra-widget #sedra-widget .ui.items > .item > .image:only-child > img {
+  border-radius: 0rem;
+}
+sedra-widget #sedra-widget .ui.items > .item > .content {
+  display: block;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  background: none;
+  margin: 0em;
+  padding: 0em;
+  box-shadow: none;
+  font-size: 1em;
+  border: none;
+  border-radius: 0em;
+}
+sedra-widget #sedra-widget .ui.items > .item > .content:after {
+  display: block;
+  content: ' ';
+  height: 0px;
+  clear: both;
+  overflow: hidden;
+  visibility: hidden;
+}
+sedra-widget #sedra-widget .ui.items > .item > .image + .content {
+  min-width: 0;
+  width: auto;
+  display: block;
+  margin-left: 0em;
+  -webkit-align-self: top;
+      -ms-flex-item-align: top;
+          align-self: top;
+  padding-left: 1.5em;
+}
+sedra-widget #sedra-widget .ui.items > .item > .content > .header {
+  display: inline-block;
+  margin: -0.21425em 0em 0em;
+  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.85);
+}
+sedra-widget #sedra-widget .ui.items > .item > .content > .header:not(.ui) {
+  font-size: 1.28571429em;
+}
+sedra-widget #sedra-widget .ui.items > .item [class*="left floated"] {
+  float: left;
+}
+sedra-widget #sedra-widget .ui.items > .item [class*="right floated"] {
+  float: right;
+}
+sedra-widget #sedra-widget .ui.items > .item .content img {
+  -webkit-align-self: middle;
+      -ms-flex-item-align: middle;
+          align-self: middle;
+  width: '';
+}
+sedra-widget #sedra-widget .ui.items > .item img.avatar,
+sedra-widget #sedra-widget .ui.items > .item .avatar img {
+  width: '';
+  height: '';
+  border-radius: 500rem;
+}
+sedra-widget #sedra-widget .ui.items > .item > .content > .description {
+  margin-top: 0.6em;
+  max-width: auto;
+  font-size: 1em;
+  line-height: 1.4285em;
+  color: rgba(0, 0, 0, 0.87);
+}
+sedra-widget #sedra-widget .ui.items > .item > .content p {
+  margin: 0em 0em 0.5em;
+}
+sedra-widget #sedra-widget .ui.items > .item > .content p:last-child {
+  margin-bottom: 0em;
+}
+sedra-widget #sedra-widget .ui.items > .item .meta {
+  margin: 0.5em 0em 0.5em;
+  font-size: 1em;
+  line-height: 1em;
+  color: rgba(0, 0, 0, 0.6);
+}
+sedra-widget #sedra-widget .ui.items > .item .meta * {
+  margin-right: 0.3em;
+}
+sedra-widget #sedra-widget .ui.items > .item .meta :last-child {
+  margin-right: 0em;
+}
+sedra-widget #sedra-widget .ui.items > .item .meta [class*="right floated"] {
+  margin-right: 0em;
+  margin-left: 0.3em;
+}
+sedra-widget #sedra-widget .ui.items > .item > .content a:not(.ui) {
+  color: '';
+  -webkit-transition: color 0.1s ease;
+  transition: color 0.1s ease;
+}
+sedra-widget #sedra-widget .ui.items > .item > .content a:not(.ui):hover {
+  color: '';
+}
+sedra-widget #sedra-widget .ui.items > .item > .content > a.header {
+  color: rgba(0, 0, 0, 0.85);
+}
+sedra-widget #sedra-widget .ui.items > .item > .content > a.header:hover {
+  color: #1e70bf;
+}
+sedra-widget #sedra-widget .ui.items > .item .meta > a:not(.ui) {
+  color: rgba(0, 0, 0, 0.4);
+}
+sedra-widget #sedra-widget .ui.items > .item .meta > a:not(.ui):hover {
+  color: rgba(0, 0, 0, 0.87);
+}
+sedra-widget #sedra-widget .ui.items > .item > .content .favorite.icon {
+  cursor: pointer;
+  opacity: 0.75;
+  -webkit-transition: color 0.1s ease;
+  transition: color 0.1s ease;
+}
+sedra-widget #sedra-widget .ui.items > .item > .content .favorite.icon:hover {
+  opacity: 1;
+  color: #FFB70A;
+}
+sedra-widget #sedra-widget .ui.items > .item > .content .active.favorite.icon {
+  color: #FFE623;
+}
+sedra-widget #sedra-widget .ui.items > .item > .content .like.icon {
+  cursor: pointer;
+  opacity: 0.75;
+  -webkit-transition: color 0.1s ease;
+  transition: color 0.1s ease;
+}
+sedra-widget #sedra-widget .ui.items > .item > .content .like.icon:hover {
+  opacity: 1;
+  color: #FF2733;
+}
+sedra-widget #sedra-widget .ui.items > .item > .content .active.like.icon {
+  color: #FF2733;
+}
+sedra-widget #sedra-widget .ui.items > .item .extra {
+  display: block;
+  position: relative;
+  background: none;
+  margin: 0.5rem 0em 0em;
+  width: 100%;
+  padding: 0em 0em 0em;
+  top: 0em;
+  left: 0em;
+  color: rgba(0, 0, 0, 0.4);
+  box-shadow: none;
+  -webkit-transition: color 0.1s ease;
+  transition: color 0.1s ease;
+  border-top: none;
+}
+sedra-widget #sedra-widget .ui.items > .item .extra > * {
+  margin: 0.25rem 0.5rem 0.25rem 0em;
+}
+sedra-widget #sedra-widget .ui.items > .item .extra > [class*="right floated"] {
+  margin: 0.25rem 0em 0.25rem 0.5rem;
+}
+sedra-widget #sedra-widget .ui.items > .item .extra:after {
+  display: block;
+  content: ' ';
+  height: 0px;
+  clear: both;
+  overflow: hidden;
+  visibility: hidden;
+}
+sedra-widget #sedra-widget .ui.items > .item > .image:not(.ui) {
+  width: 175px;
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  sedra-widget #sedra-widget .ui.items > .item {
+    margin: 1em 0em;
+  }
+  sedra-widget #sedra-widget .ui.items > .item > .image:not(.ui) {
+    width: 150px;
+  }
+  sedra-widget #sedra-widget .ui.items > .item > .image + .content {
+    display: block;
+    padding: 0em 0em 0em 1em;
+  }
+}
+@media only screen and (max-width: 767px) {
+  sedra-widget #sedra-widget .ui.items > .item {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin: 2em 0em;
+  }
+  sedra-widget #sedra-widget .ui.items > .item > .image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  sedra-widget #sedra-widget .ui.items > .item > .image,
+  sedra-widget #sedra-widget .ui.items > .item > .image > img {
+    max-width: 100% !important;
+    width: auto !important;
+    max-height: 250px !important;
+  }
+  sedra-widget #sedra-widget .ui.items > .item > .image + .content {
+    display: block;
+    padding: 1.5em 0em 0em;
+  }
+}
+sedra-widget #sedra-widget .ui.items > .item > .image + [class*="top aligned"].content {
+  -webkit-align-self: flex-start;
+      -ms-flex-item-align: start;
+          align-self: flex-start;
+}
+sedra-widget #sedra-widget .ui.items > .item > .image + [class*="middle aligned"].content {
+  -webkit-align-self: center;
+      -ms-flex-item-align: center;
+          align-self: center;
+}
+sedra-widget #sedra-widget .ui.items > .item > .image + [class*="bottom aligned"].content {
+  -webkit-align-self: flex-end;
+      -ms-flex-item-align: end;
+          align-self: flex-end;
+}
+sedra-widget #sedra-widget .ui.relaxed.items > .item {
+  margin: 1.5em 0em;
+}
+sedra-widget #sedra-widget .ui[class*="very relaxed"].items > .item {
+  margin: 2em 0em;
+}
+sedra-widget #sedra-widget .ui.divided.items > .item {
+  border-top: 1px solid rgba(34, 36, 38, 0.15);
+  margin: 0em;
+  padding: 1em 0em;
+}
+sedra-widget #sedra-widget .ui.divided.items > .item:first-child {
+  border-top: none;
+  margin-top: 0em !important;
+  padding-top: 0em !important;
+}
+sedra-widget #sedra-widget .ui.divided.items > .item:last-child {
+  margin-bottom: 0em !important;
+  padding-bottom: 0em !important;
+}
+sedra-widget #sedra-widget .ui.relaxed.divided.items > .item {
+  margin: 0em;
+  padding: 1.5em 0em;
+}
+sedra-widget #sedra-widget .ui[class*="very relaxed"].divided.items > .item {
+  margin: 0em;
+  padding: 2em 0em;
+}
+sedra-widget #sedra-widget .ui.items a.item:hover,
+sedra-widget #sedra-widget .ui.link.items > .item:hover {
+  cursor: pointer;
+}
+sedra-widget #sedra-widget .ui.items a.item:hover .content .header,
+sedra-widget #sedra-widget .ui.link.items > .item:hover .content .header {
+  color: #1e70bf;
+}
+sedra-widget #sedra-widget .ui.items > .item {
+  font-size: 1em;
+}
+
+
+/*******************************
+         Theme Overrides
+*******************************/
+
+
+
+/*******************************
+    User Variable Overrides
+*******************************/
+

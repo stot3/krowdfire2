@@ -1,0 +1,150 @@
+<div class="sticky-bar ui sticky" sticky ng-cloak>
+  <div class="sticky-action-bar ui page grid">
+    <div class="column">
+      <button accessible-form ng-click="openModal('setting-add-card');newCard()" class="ui labeled green small button" translate> tab_managecard_addcard  </button>
+      <button class="ui red small button" ng-click="deleteMultiCard()" translate ng-show="hascard" ng-if="testMode">  tab_managecard_deletecard </button>
+      <button class="ui red small button" ng-click="eraseAccount()" ng-show="account[0]" translate ng-if="testMode">  tab_managecard_delete_erase </button>
+    </div>
+  </div>
+</div>
+
+<div class="ui page grid">
+  <div class="column">
+    <div ng-include src="'views/templates/partials/no-data-available.html'" ng-show="!account[0].cards"></div>
+    <div class="cc-wrap ui grid" ng-if="account[0].cards">
+      <div class="column">
+        <!-- Without Stripe Tokenization -->
+        <table class="ui table card-table">
+          <thead>
+            <tr>
+              <th class="one wide center check-box" ng-if="testMode">
+                <div class="ui checkbox" ng-click="checkall($event)">
+                  <input type="checkbox">
+                  <label></label>
+                </div>
+              </th>
+              <th class="one wide center address-id" translate> tab_managecard_id </th>
+              <th class="four wide center address-name" translate> tab_managecard_cardnumber </th>
+              <th class="three wide center address-description" translate> tab_managecard_cardtype </th>
+              <th class="three wide center address-description" translate> tab_managecard_expire </th>
+              <th class="three wide center edit-button"> </th>
+              <th class="three wide center address-description"> </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="card-row" ng-repeat="card in account[0].cards" href="/">
+              <td class="t-check-box" ng-if="testMode">
+                <div class="ui checkbox manage-cards">
+                  <input type="checkbox">
+                  <label></label>
+                </div>
+              </td>
+              <td class="t-address-id">
+                {{card.stripe_account_card_id}}
+              </td>
+              <td class="t-address-name">
+                **** **** **** {{card.last4}}
+              </td>
+              <td class="t-address-description">
+                {{card.stripe_account_card_type}}
+              </td>
+              <td class="t-address-description">
+                {{card.exp_month}}/{{card.exp_year}}
+                <label class="ui red label" ng-if="card.exp_year < currentYear || card.exp_year == currentYear && card.exp_month < currentMonth" translate>
+									tab_managecard_expired
+								</label>
+              </td>
+              <td class="t-edit-button">
+                <a class="ui green button edit-button" ng-click="setEditCard(card);openEditModal('setting-edit-card');" translate>tab_managecard_edit_card</a>
+              </td>
+              <td class="t-address-edit">
+                <a class="ui button set-default-button" ng-click="propagateCard(card);openModal('setting-propagate-card')" id="propagatebtn" ng-show="!card.default_card" translate>tab_managecard_edit</a>
+                <a class="ui  green button set-default-button" id="disableClick" ng-show="card.default_card" translate>tab_managecard_Default_Card</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- column end -->
+</div>
+<!-- ui page grid end -->
+
+<!-- Edit cards view -->
+<ng-include src="'views/templates/partials/payment-setting/edit-card-modal.html'"></ng-include>
+
+<!-- add cards -->
+<div class="ui small modal" id="setting-add-card">
+  <i class="close icon"></i>
+  <div class="header" translate>
+    tab_managecard_add_card
+  </div>
+
+  <div ng-if="!site_stripe_tokenization_settings.toggle" class="credit-card-content content">
+    <ng-include src="'views/templates/partials/credit-card-wrap.html'"></ng-include>
+  </div>
+  <div ng-if="site_stripe_tokenization_settings.toggle" class="credit-card-content content">
+    <ng-include src="'views/templates/partials/stripe-token-credit-card-wrap.html'"></ng-include>
+  </div>
+  <!-- CONTENT END -->
+
+  <div class="actions">
+    <div class="ui approve button green" translate>
+      tab_managecard_save
+    </div>
+    <div class="ui button" translate>
+      tab_managecard_cancel
+    </div>
+  </div>
+  <!-- ACTIONS END -->
+
+</div>
+<!-- UI MODAL END -->
+
+<div class="ui small modal" id="setting-propagate-card">
+  <i class="close icon"></i>
+  <div class="header" translate>
+    tab_managecard_Confirm_Default_Card
+  </div>
+  <div class=" content" translate>
+    tab_managecard_Confirm_Default_message
+  </div>
+  <!-- CONTENT END -->
+  <div class="actions">
+    <div class="ui approve button green" translate>
+      tab_managecard_save
+    </div>
+    <div class="ui button" translate>
+      tab_managecard_cancel
+    </div>
+  </div>
+  <!-- ACTIONS END -->
+
+</div>
+
+
+<!-- confirm erase account -->
+<div class="ui small modal" id="erase-account-confirm">
+  <i class="close icon"></i>
+  <div class="header" translate>
+    tab_managecard_are_yousure
+  </div>
+
+  <div class="credit-card-content content" translate>
+    tab_managecard_erase_mesage
+  </div>
+  <!-- CONTENT END -->
+
+  <div class="actions">
+    <div class="ui approve button green" translate>
+      tab_managecard_yes
+    </div>
+    <div class="ui button" translate>
+      tab_managecard_cancel
+    </div>
+  </div>
+  <!-- ACTIONS END -->
+
+</div>
+<!-- UI MODAL END -->

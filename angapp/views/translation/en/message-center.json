@@ -1,0 +1,20 @@
+{
+	"message_center_main_heading": " Message Center",
+	"message_center_inbox": "Inbox",
+	"message_center_compose": "Compose",
+	"message_center_sent": "Sent",
+	"message_center_from": "From:",
+	"message_center_to": "To:",
+	"message_center_to_me": "to me",
+	"message_center_inbox_empty": "Your inbox is currently empty.",
+	"message_center_from_me": "from me",
+	"message_center_no_sent_message": "You have not sent any messages.",
+	"message_center_reply_message": "Reply message to ",
+	"message_center_send_message": "Send Message",
+	"message_center_delete_message": "Delete can not be reverted",
+	"message_center_are_you_sure": "Are you sure you want to proceed?",
+	"message_center_are_you_sure_yes": "Yes",
+	"message_center_are_you_sure_no": "No",
+	"message_center_sent_success": "Message has been sent successfully",
+	"message_center_delete_success": "Message has been deleted"
+}

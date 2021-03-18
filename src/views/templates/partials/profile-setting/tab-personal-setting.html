@@ -1,0 +1,208 @@
+<div class="ui page grid" ng-cloak>
+  <div class="column">
+    <h2 class="ui inverted top attached header" translate> tab_personal_setting_edit_profile </h2>
+    <form class="ui fluid form personal-setting-form">
+      <div class="ui basic middle attached campaign-bg segment profile-tab-content">
+        <div class="ui two column stackable formbg grid">
+          <div class="five wide column">
+            <h3 class="ui header" translate> tab_personal_setting_profileimage </h3>
+            <p translate> tab_personal_setting_imagetype </p>
+            <p translate>tab_personal_setting_imagedeimension </p>
+          </div>
+
+          <div class="center aligned eleven wide column profilePersonal">
+            <div class="profile-image-thumbnail ui imagePlace">
+              <img class="pp_placeholder" src="images/placeholder-images/placeholder_profile_photo.png" ng-if="!profileImage.length">
+              <img class="uploadedImage" ng-src="{{server + '/image/campaign_profile/' + profileImage[0].path_external}}" ng-if="profileImage.length" imageonload />
+              <div class="ui dimmer">
+                <div class="content">
+                  <div class="center">
+                    <div class="ui small indicating progress upload-bar">
+                      <div class="bar"></div>
+                    </div>
+                    <div class="ui loader download-loader"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ui basic segment">
+              <thrinacia-file-upload upload-id="profileImageUpload" upload-file="uploadProfileImage" upload-translate="tab_personal_setting_uploadimage"></thrinacia-file-upload>
+              <button class="ui red labeled icon button" ng-click="deleteProfileImage(profileImage)"><i class="remove icon"></i> {{'tab_personal_setting_deleteimage'|translate}} </button>
+            </div>
+          </div>
+        </div>
+        <!-- COLUMN GRID END -->
+
+        <div class="ui two column stackable formbg grid">
+          <div class="ui corner red label" data-content="Required Field" sui-popup>
+            <i class="white asterisk icon"></i>
+          </div>
+          <div class="five wide column">
+            <h3 class="ui header" translate> tab_personal_setting_name </h3>
+            <p translate>
+              tab_personal_setting_name_note
+            </p>
+          </div>
+
+          <div class="eleven wide column">
+            <div class="two fields">
+
+              <div class="field">
+                <label translate>tab_personal_setting_fname</label>
+                <input type="text" name="first_name" ng-model="profile.first_name" ng-attr-value="profile.first_name" ng-attr-placeholder="{{'tab_personal_setting_fname' | translate}}" onkeydown="if (event.keyCode == 13) return false;">
+              </div>
+              <div class="field">
+                <label translate>tab_personal_setting_lname</label>
+                <input type="text" name="last_name" ng-model="profile.last_name" ng-attr-value="profile.last_name" ng-attr-placeholder="{{'tab_personal_setting_lname' | translate}}" onkeydown="if (event.keyCode == 13) return false;">
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- GRID END -->
+
+        <div class="ui two column stackable formbg grid" ng-if="!isRemoveUserProfileBio">
+          <div class="five wide column">
+            <h3 class="ui header" translate> tab_personal_setting_biography </h3>
+            <p translate> tab_personal_setting_biography_mesage </p>
+          </div>
+
+          <div class="eleven wide column">
+            <div class="field">
+              <textarea class="user-bio" maxlength="300" ng-model="profile.bio"></textarea>
+              <label> {{profile.bio.length}}/300 <span translate="tab_personal_setting_max_characters"></span> </label>
+            </div>
+          </div>
+        </div>
+        <!-- GRID END -->
+
+        <div class="ui two column stackable formbg grid profilelinks-section">
+          <div class="five wide column">
+            <h3 class="ui header" translate> tab_personal_setting_profilelinks </h3>
+            <p translate> tab_personal_setting_profilelinks_message</p>
+          </div>
+          <div class="eleven wide column">
+            <div class="ui fluid form">
+              <div class="ui stackable grid campaign-links" ng-repeat="link in profileLinks">
+                <div class="five wide column">
+                  <input class="left" name="link_label" type="text" ng-model="link.uri_text" placeholder=" {{'tab_personal_setting_link_placeholder' | translate}} " onkeydown="if (event.keyCode == 13) return false;">
+                </div>
+                <div class="nine wide column">
+                  <div class="url-input ui left labeled input fluid">
+                    <div class="ui dropdown profile-link-protocol label">
+                      <input name="profile_link_protocol" type="hidden">
+                      <div class="text protocol_text" ng-if="!link.profile_link_default_protocol">{{profile_link_default_protocol.value}}</div>
+                      <div class="text protocol_text" ng-if="link.profile_link_default_protocol">{{link.profile_link_default_protocol}}</div>
+                      <div class="menu">
+                        <div ng-repeat="protocol in profile_protocols" class="item" ng-class="{'active':link.profile_link_default_protocol == protocol.value}">{{protocol.value}}</div>
+                      </div>
+                      <i class="dropdown icon"></i>
+                    </div>
+                    <input maxlength="50" type="text" class="right" name="link_url" ng-model="link.uri" ng-class="{'has-error': profileLinks[$index].uri_text.length && profileLinks[$index].uri.length == 0}" placeholder="{{'tab_personal_setting_url_placeholder' | translate}} "
+                      onkeydown="if (event.keyCode == 13) return false;">
+                  </div>
+                </div>
+                <div class="two wide column">
+                  <button class="ui icon red button" ng-click="removeProfileLink(link, $index)">
+										<i class="remove icon"></i>
+									</button>
+                </div>
+              </div>
+            </div>
+            <!-- FORM -->
+            <div class="add-btn-link">
+              <div ng-show="profileLinks.length < 5" class="ui green right labeled icon button" ng-click="addLink(profileLinks)"> <span translate>tab_personal_setting_add_link </span> <i class="add icon"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui two column stackable formbg grid" ng-show="public_settings.site_campaign_enable_organization_name">
+          <div class="five wide column">
+            <h3 class="ui header" translate>organization_name_label</h3>
+          </div>
+
+          <div class="eleven wide column">
+            <div class="field">
+              <input type="text" name="organization_name" ng-model="organization_name.value">
+            </div>
+          </div>
+        </div>
+        <div class="ui two column stackable formbg grid" ng-show="public_settings.site_campaign_enable_organization_name">
+          <div class="five wide column">
+            <h3 class="ui header" translate>ein_field_label</h3>
+          </div>
+
+          <div class="eleven wide column">
+            <div class="field">
+              <input type="text" name="ein" ng-model="organization_name.ein">
+            </div>
+          </div>
+        </div>
+
+        <div class="ui two column stackable grid formbg" ng-show="public_settings.site_campaign_personal_section_custom.length >0" ng-repeat="field in pcustom" ng-if="public_settings.site_campaign_personal_section_enhanced && (field.profile_setting_register_show || field.profile_setting_show)">
+          <div class="ui corner red label" data-content="Required Field" sui-popup ng-if="field.required">
+            <i class="white asterisk icon"></i>
+          </div>
+          <div class="five wide column">
+            <h3 class="ui header" translate>{{field.name}}</h3>
+          </div>
+          <div class="eleven wide column">
+            <div class="ui fluid form" ng-if="field.option === 'Text'">
+              <div class="field">
+                <input name="{{field.identifier}}" type="text" ng-model="field.value" placeholder="{{field.placeholder}}">
+              </div>
+            </div>
+            <div class="field" ng-if="field.option === 'Dropdown'">
+              <div class="ui fluid selection dropdown menu-selector">
+                <input type="hidden" name="{{field.identifier}}" value="{{field.value}}">
+                <div class="default text" ng-if="field.placeholder && !field.value"> {{field.placeholder}}</div>
+                <div class="default text" ng-if="!field.placeholder && !field.value"></div>
+                <div class="text" ng-if="(!field.placeholder || field.placeholder) && field.value"> {{field.value}}</div>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                  <div class="item" ng-repeat="options in field.dropdown_array" ng-click="customFieldDropdown(options, field)"> {{options | translate}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui two column stackable grid formbg" ng-show="public_settings.site_campaign_personal_section_custom.length >0" ng-repeat="field in pcustom" ng-if="public_settings.site_campaign_personal_section_enhanced && (field.profile_setting_register_show || field.profile_setting_show) && field.option === 'Date'">
+          <div class="ui corner red label" data-content="Required Field" sui-popup ng-if="field.required">
+            <i class="white asterisk icon"></i>
+          </div>
+          <div class="five wide column">
+            <h3 class="ui header" translate>{{field.name}}</h3>
+          </div>
+          <div class="eleven wide column">
+            <div class="ui fluid form">
+              <div class="field">
+                <quick-datepicker ng-model="field.value" disable-clear-button="true" date-format='EEEE, yyyy/MM/d' placeholder="{{get_started_funding_startdate_placeholder}}"></quick-datepicker>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- GRID END -->
+      </div>
+      <div class="bottom-btn-wrap">
+        <button ng-click="saveData($event)" class="ui right aligned labeled green button" translate>tab_personal_setting_save_changes
+				</button>
+      </div>
+    </form>
+  </div>
+  <!-- column end -->
+</div>
+<!-- ui page grid end -->
+<!-- Modal -->
+<div class="ui small modal wrong-filetype">
+  <i class="close icon"></i>
+  <div class="header">
+    <h3 class="ui header" translate>get_started_wrong_filetype_header</h3>
+  </div>
+  <div class="content" translate>
+    get_started_wrong_filetype_body
+  </div>
+  <div class="actions">
+    <div class="ui green button" translate>get_started_wrong_filetype_ok</div>
+  </div>
+</div>

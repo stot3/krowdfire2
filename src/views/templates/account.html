@@ -1,0 +1,95 @@
+<div class="ui page grid" ng-controller="AccountCtrl" ng-cloak>
+	<div class="column">
+		<h2 class="ui inverted top attached header" translate> tab_account_setting_header_message </h2>
+		<div class="ui basic middle attached campaign-bg segment account-tab-content">
+			<form name="account_setting_form" class="ui form account-form">
+				<div class="ui two column stackable formbg grid">
+					<div class="four wide column">
+						<h3 class="ui header" translate>tab_account_setting_changeemail </h3>
+						<p translate>
+							tab_account_setting_changeemail_note
+						</p>
+					</div>
+					<div class="twelve wide column">
+						<div class="ui fluid form field">
+							<div class="ui positive message" ng-if="emailshow" translate>{{email_sent}}</div>
+							<div class="ui green button" ng-click="sentChangeEmail()" translate>tab_account_setting_send_link </div>
+						</div>
+					</div>
+				</div>
+				<div class="ui two column stackable formbg grid">
+					<div class="four wide column">
+						<h3 class="ui header" translate>tab_account_setting_change_password</h3>
+						<p translate>
+							tab_account_setting_change_password_note
+						</p>
+					</div>
+					<div class="twelve wide column">
+						<div class="field">
+							<label translate> tab_account_setting_current_password </label>
+							<input type="password" placeholder="{{'tab_account_setting_current_password' | translate}}" ng-model="formData.old_password" name="current_password">
+						</div>
+						<div class="two fields">
+							<div class="field">
+								<label translate> tab_account_setting_new_password </label>
+								<input type="password" name="new_password" placeholder="{{'tab_account_setting_new_password' | translate}}" ng-model="formData.new_password">
+							</div>
+							<div class="field">
+								<label translate> tab_account_setting_confirm_password </label>
+								<input type="password" placeholder="{{'tab_account_setting_confirm_password' | translate}}" ng-model="formData.confirm_password" name="confirm_password">
+							</div>
+						</div>
+						<div class="bottom-btn-wrap">
+							<div class="ui right aligned button green save-settings" ng-click="changePassword()" translate> tab_account_setting_submit</div>
+						</div>
+					</div>
+				</div>
+				<div class="ui two column stackable formbg grid">
+					<div class="four wide column">
+						<!-- left side -->
+						<h3 class="ui header" translate>tab_account_setting_export_data</h3>
+						<p translate>
+								tab_account_setting_export_data_note
+						</p>	
+					</div>
+					<div class="twelve wide column">
+						<!-- right side -->
+						<!-- <div class="ui green button" ng-csv="exportCSV()" filename="user-data.csv" add-bom="true" translate>tab_account_setting_export_data_link </div> -->
+						<div class="ui green button" ng-csv="exportCSV()" lazy-load="true" filename="user-data.csv" add-bom="true">{{'tab_account_setting_export_data_link'|translate}}</div>
+					</div>
+				</div>
+				<div class="ui two column stackable formbg grid">
+					<div class="four wide column">
+						<!-- left side -->
+						<h3 class="ui header" translate>tab_account_setting_forget_me</h3>
+						<p translate>
+							tab_account_setting_forget_me_note
+						</p>	
+					</div>
+					<div class="twelve wide column">
+						<!-- right side -->
+						<div class="ui red button" ng-click="deleteAccount()" translate>tab_account_setting_forget_me_link </div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="ui small modal delete-user-modal">
+			<i class="close icon"></i>
+			<div class="header">
+				<h3 class="ui header" translate>tab_account_setting_forget_me_confirm</h3>
+			</div>
+			<div class="content">
+				<p translate> tab_account_setting_forget_me_confirm_note </p>
+			</div>
+			<!-- CONTENT END -->
+			<div class="actions">
+				<div class="ui positive button" translate>
+					tab_account_setting_forget_me_confirm_ok
+				</div>
+				<div class="ui negative button" translate>
+					tab_account_setting_forget_me_confirm_cancel
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

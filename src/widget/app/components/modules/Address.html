@@ -1,0 +1,20 @@
+<div class="address-form ui large form">
+  <div class="field fluid">
+    <input type="text" name="Street" [(ngModel)]="addressObj.street1" placeholder="{{translate('campaign_address_street_placeholder')}}">
+  </div>
+  <div class="two fields">
+    <div class="field">
+      <div class="ui search selection dropdown cityDropdown" ngSemantic>
+        <input type="hidden" name="City">
+        <input class="search" autocomplete="off" tabindex="0" [(ngModel)]="addressCity2" (ngModelChange)="onChangeCity($event)" (blur)="onSearchBlur()">
+        <div class="default text">{{translate("campaign_address_select_city_text")}}</div>
+        <div class="menu">
+          <div class="item" *ngFor="let address of addressRes; let i = index" [ngClass]="{selected: i === 0}" [attr.id]="address.city_id" (click)="onSelectAddress(address)">{{address.name}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <input type="text" name="MailCode" [(ngModel)]="addressObj.mail_code" placeholder="{{translate('campaign_address_mailcode_placeholder')}}">
+    </div>
+  </div>
+</div>

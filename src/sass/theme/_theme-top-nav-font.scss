@@ -1,0 +1,56 @@
+@mixin theme($name, $font-color) {
+  .container.main-color.#{$name} {
+    .top-nav-bar {
+      a {
+        color: $font-color;
+      }
+      .dropdown{
+        a, i {
+          color: $font-color;
+        }
+      }
+      .child-menu-dropdown {
+        a.item{
+          color: $font-color !important;
+        }
+      }
+    }
+
+    #mobile-sidebar {
+      a {
+        color: $font-color;
+      }
+    }
+
+    .mobile-menu-header {
+      color: $font-color;
+    }
+
+    .ui.dropdown.collapsible,
+    .user-greeting {
+      color: $font-color;
+    }
+
+    .collapsible-settings {
+      i.setting {
+        color: $font-color;
+      }
+    }
+
+    .main-menu.ui.inverted.menu {
+      .nav-wrap {
+        .nav-main-right {
+          .collapsible-settings {
+
+            .header,
+            .item {
+              color: $font-color !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include theme(theme-top-nav-font, $top-nav-font-color);

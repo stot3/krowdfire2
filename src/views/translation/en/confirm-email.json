@@ -1,0 +1,13 @@
+{
+	"confirm_email_confirm_text": "Confirm Email",
+	"confirm_email_new_email": "New Email",
+	"confirm_email_new_email_message": "Please enter a valid email.",
+	"confirm_email_new_email_confirm": "Confirm Email",
+	"confirm_email_new_email_error": "Emails do not match",
+	"confirm_email_reset_email": " Reset Email",
+	"confirm_email_email_invalid_expired_error": "Reset email link invalid or expired.",
+	"confirm_email_email_sent": "Email has been reset successfully",
+	"confirm_email_email_please_login": "Please login first",
+	"confirm_email_changed_successfully": "You have changed your email successfullly",
+	"confirm_email_modal_home": "Back to home page"
+}

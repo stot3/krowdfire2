@@ -1,0 +1,9 @@
+<a ng-href="{{backUrl}}" id="campaign-create-prev-button" ng-hide="firstPage" ng-if="(splitUserNameAddressToSteps && !stepTwo) || currentPath !== 'profile-setup' || !splitUserNameAddressToSteps"
+  ng-click="saveData($event)" class="backbtn ui left labeled icon blue button">
+  <span>{{'campaignsave_previousbutton'|translate}}</span>
+  <i class="left arrow icon"></i>
+</a>
+<a id="campaign-create-prev-button" ng-click="switchProfileStep($event)" ng-if="splitUserNameAddressToSteps && stepTwo" class="backbtn ui left labeled icon blue button">
+  <span>{{'campaignsave_previousbutton'|translate}}</span>
+  <i class="left arrow icon"></i>
+</a>

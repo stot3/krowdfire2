@@ -1,0 +1,5 @@
+// Calculate px to rem
+@mixin fontSize($size){
+  font-size: $size;
+  font-size: calculateRem($size);
+}

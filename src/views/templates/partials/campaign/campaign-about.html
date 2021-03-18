@@ -1,0 +1,359 @@
+<h3 class="campaign-page-header-title ui header" translate>campaign_page_header_title</h3>
+<div ng-if="note.description" class="ui label notes-label">
+  {{'campaign_review_notes'|translate}}
+  <i class="delete icon" ng-click="removeNote('description')" ng-if="note.description"></i>
+</div>
+<div class="notes" ng-class="{'has-note ui basic segment' : note.description, 'field-empty': !campaign.description}" ng-click="addNotes('campaign_review_description_note_title', 'description')">
+  <div ng-show="campaign.description" class="campaign-story">
+    <div html-render html="campaign.description" class="fr-view"></div>
+  </div>
+</div>
+<div ng-if="noDescription" class="ui warning message">
+  <div class="header" translate>
+    campaign_page_nodescription
+  </div>
+</div>
+
+<div id="stream-list" class="campaign-info addborder ui accordion" ng-Accord ng-if="isUpdatesOnMainBlock">
+  <h3 id="streams" class="main-block-heading ui inverted block header title">{{' campaign_page_streams' | translate}}
+    <span class="count-label ui label">{{campaign.streams.length}}</span>
+    <i class="collapse-indicator icon"></i>
+  </h3>
+
+  <div class="content">
+    <div class="ui warning message" ng-show="campaign.streams.length==0" translate>campaign_page_nostream</div>
+    <!-- stream-full end -->
+    <div class="stream-partial">
+      <div class="stream-item ui segment" ng-repeat="stream in campaign.streams">
+        <div>
+          <div id='stream-{{stream.id}}' class="stream-header">
+            <h4 class="ui header left floated">{{'campaign_page_stream_text' | translate}} #{{campaign.streams.length - $index}}
+            </h4>
+            <h4 class="ui header right floated">{{toDate(stream.modified) | formatDate:"MMM D, YYYY h:mm A"}}</h4>
+          </div>
+          <div class="stream-content">
+            <h3 class="stream-title ui header">
+              <a class="text-link">{{stream.title}}</a>
+            </h3>
+            <div html-render html="stream.message" id="streamfull" class="fr-view"></div>
+          </div>
+        </div>
+      </div>
+      <div class="stream-pagi">
+        <pagination ng-show="stream_pagination.numpages.length>1" ng-model="stream_filter.page" total-items="campaign.streams.length"
+          max-size="10" boundary-links="true" rotate="false" items-per-page="stream_pagination.entriesperpage" previous-text="&lsaquo;"
+          next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="creator-info" class="ui accordion" ng-Accord ng-if="isCreatorInfoOnMainBlock && !site_campaign_hide_creator_info || isCreatorInfoTopBottomOfCampaign">
+  <h3 class="main-block-heading ui inverted block header title">{{' campaign_page_creator_info' | translate}}
+    <i class="collapse-indicator icon"></i>
+  </h3>
+  <div class="content">
+    <div ng-if="note.managers" class="ui label notes-label">
+      {{'campaign_review_notes'|translate}}
+      <i class="delete icon" ng-click="removeNote('managers')" ng-if="note.managers"></i>
+    </div>
+    <div class="notes" ng-class="{'has-note ui basic segment' : note.managers}"
+      ng-click="addNotes('campaign_review_profile_note_title', 'managers')">
+      <div class="cp-menu-tabs ui top attached tabular menu" ng-show="!site_campaign_hide_creator_info">
+        <a class="item" data-tab="personal-profile" ng-class="{active: campaign.profile_type_id == 1 && !campaign.toggle_profile_type_view_advance || !campaign.business_organizations || (campaign.toggle_profile_type_view_advance && campaign.profile_type_view_id == 2)|| (campaign.toggle_profile_type_view_advance && campaign.profile_type_view_id == 0 && campaign.profile_type_id == 1)}"
+          ng-show="!(campaign.toggle_profile_type_view_advance && campaign.profile_type_view_id == 1)" translate>campaign_page_creator</a>
+        <a class="item" data-tab="business-profile" ng-class="{active: campaign.profile_type_id == 2 && campaign.business_organizations || (campaign.toggle_profile_type_view_advance && campaign.profile_type_view_id == 1)}"
+          ng-show="(campaign.business_organizations && !campaign.toggle_profile_type_view_advance) || (campaign.toggle_profile_type_view_advance && campaign.business_organizations && (campaign.profile_type_view_id == 0 || campaign.profile_type_view_id == 1))"
+          translate>campaign_page_company</a>
+      </div>
+      <div class="ui bottom attached tab" ng-class="{active: (campaign.profile_type_id == 1 && !campaign.toggle_profile_type_view_advance) || !campaign.business_organizations || (campaign.toggle_profile_type_view_advance && campaign.profile_type_view_id == 2) || (campaign.toggle_profile_type_view_advance && campaign.profile_type_view_id == 0 && campaign.profile_type_id == 1)}"
+        ng-show="!site_campaign_hide_creator_info" data-tab="personal-profile">
+        <div ng-repeat="manager in campaign.managers">
+          <div class="campaign-user ui two column stackable grid">
+            <div class="user-info-col ten wide column" ng-if="!site_campaign_hide_creator_info">
+              <h2 class="ui campaign-user-name header" ng-if="!public_settings.site_campaign_enable_organization_name">{{manager.first_name
+                + ' ' + manager.last_name}}</h2>
+              <h2 class="ui campaign-user-name header" ng-if="public_settings.site_campaign_enable_organization_name">{{organization_name.value}}</h2>
+              <p class="ui campaign-user-name header" ng-if="public_settings.site_campaign_enable_organization_name">{{'ein_label'
+                | translate}}{{organization_name.ein}}</p>
+              <p ng-show="!public_settings.site_campaign_enable_campaign_bio">{{manager.bio}}</p>
+              <p ng-show="public_settings.site_campaign_enable_campaign_bio">{{campaign.settings.bio_enable}}</p>
+              <div class="campaign-user-links" ng-show="manager.person_websites && manager.person_websites.length">
+                <h4 class="site-link-title ui header" translate>
+                  <i class="globe icon"></i> campaign_page_wbsite_link</h4>
+                <div class="ui divided vertical list">
+                  <div class="item" ng-repeat="website in manager.person_websites">
+                    <a href="{{website.uri}}" target="_blank" class="site-link text-link">{{website.uri_text}}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- column end -->
+            <div class="user-img-col center aligned six wide column" ng-class="{'right floated': site_campaign_hide_creator_info }">
+              <a ng-if="!site_campaign_hide_creator_info" class="user-img-wrap" href="" ng-click="showManager()">
+                <img width="200" height="200" class="ui circular image pp_placeholder" ng-hide="manager.person_files[0]" src="images/placeholder-images/placeholder_profile_photo.png">
+                <img width="200" height="200" ng-if="manager.person_files[0]" ng-src="{{server + '/image/campaign_profile/' + manager.person_files[0].path_external}}"
+                  class="ui circular image" id="campaign-user-pic">
+              </a>
+              <div class="contact-btn ui button" ng-click="showContactModal(manager);" ng-if="!removeContactUser" translate>campaign_page_contact_creator</div>
+            </div>
+            <!-- column end -->
+          </div>
+        </div>
+      </div>
+      <div class="ui bottom attached tab" ng-class="{active: campaign.profile_type_id == 2 && campaign.business_organizations && !campaign.toggle_profile_type_view_advance || (campaign.toggle_profile_type_view_advance && campaign.profile_type_view_id == 1 && campaign.business_organizations) || (campaign.toggle_profile_type_view_advance && campaign.profile_type_view_id == 0 && campaign.business_organizations && campaign.profile_type_id == 2)}"
+        data-tab="business-profile">
+        <div ng-repeat="company in campaign.business_organizations">
+          <div class="campaign-company ui two column stackable grid">
+            <div class="company-info-col ten wide column" ng-if="!site_campaign_hide_creator_info">
+              <h2 class="ui campaign-user header">{{company.name}}</h2>
+              <p html-render html=company.description></p>
+              <div class="campaign-company-links" ng-show="company.business_websites">
+                <h4 class="site-link-title ui header" translate>
+                  <i class="globe icon"></i>campaign_page_wbsite_link </h4>
+                <div class="ui divided vertical list">
+                  <div class="item" ng-repeat="website in company.business_websites">
+                    <a href="{{website.uri}}" target="_blank" class="site-link text-link">{{website.uri_text | limitTo :
+                      50}}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="company-img-col center aligned six wide column" ng-class="{'right floated': site_campaign_hide_creator_info || isCreatorNameOnly}">
+              <div class="company-img-wrap" ng-if="!site_campaign_hide_creator_info">
+                <img width="200" height="200" class="ui circular image pp_placeholder" ng-hide="company.business_files[0]" src="images/placeholder-images/placeholder_profile_photo.png"
+                  ng-click="showManager()">
+                <img width="200" height="200" ng-if="company.business_files[0]" ng-src="{{server + '/image/campaign_profile/' + company.business_files[0].path_external}}"
+                  class="ui circular image" id="campaign-company-pic">
+              </div>
+              <div class="contact-btn ui button" ng-click="showContactModal(campaign.managers[0]);" ng-if="!removeContactUser" translate>campaign_page_contact_creator</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="backer-list" class="mobile-only campaign-info addborder ui accordion" ng-Accord ng-if="moveBackersBelowCreatorAccordionMobile"
+  ng-show="backer_show && !isBackersOnSidebar">
+  <h3 class="sidebar-heading ui inverted block header title">{{' campaign_page_backers' | translate}}
+    <span class="count-label ui label">{{backer_length}}</span>
+    <i class="collapse-indicator icon"></i>
+  </h3>
+  <div class="backer-content content">
+    <div class="ui warning message" ng-show="backer_length==0" translate>campaign_page_nobackers </div>
+    <div ng-repeat="backer in campaign.backers" class="campaign-backerbox" ng-class="{'no-profile-link' : isHideBackerProfileLink || backer.anonymous_contribution || backer.anonymous_contribution_partial}"
+      ng-click="visitProfile(backer, $event)">
+      <div class="campaign-backer ui segment">
+        <div class="campaign-backer-top ui two column stackable grid">
+          <div class="left-col ten wide column">
+            <div class="linkdiv header backer-user" id="linkdiv">
+              <img class="ui avatar image" ng-src="{{server + '/image/campaign_profile/'+backer.person_files[0].path_external}}" ng-if="backer.person_files">
+              <img src="images/placeholder-images/placeholder_profile_photo.png" class="ui avatar image pp_placeholder" ng-if="!backer.person_files">
+              <span>{{backer.first_name}} {{backer.last_name}}</span>
+              <span ng-if="backer.anonymous_contribution" translate>campaign_page_anonymous_backer</span>
+            </div>
+          </div>
+          <div class="right-col six wide column">
+            <h3 class="backed-amount ui header" ng-bind-html="backer.total_amount | formatCurrency:campaign.currencies[0].code_iso4217_alpha:public_setting.site_campaign_decimal_option"></h3>
+          </div>
+        </div>
+        <div class="backed-campaigns" ng-if="backer.total_backed<2 && !isHideBackedCampaignsAmount">
+          <i class="certificate icon"></i>{{'campaign_page_backed' | translate}} {{backer.total_backed}} {{'campaign_page_backed_campaign'
+          | translate}}</div>
+        <div class="backed-campaigns" ng-if="backer.total_backed>1 && !isHideBackedCampaignsAmount">
+          <i class="certificate icon"></i>{{'campaign_page_backed' | translate}} {{backer.total_backed}} {{'campaign_page_backed_campaigns'
+          | translate}}</div>
+        <div class="ui message" ng-repeat="pledge in backer.notes" ng-if="pledge.note">
+          <small>{{pledge.created | formatDate:"MMMM DD, YYYY"}}</small>
+          <p>{{pledge.note}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="semantic-pagination" semantic-pagination ng-model="backers_pagination.page" total-pages="backers_pagination.numpages"
+      update-function="getBackers()"></div>
+  </div>
+</div>
+
+<div class="a2a_kit a2a_kit_size_32 a2a_default_style social-media-share-about" data-a2a-url="{{shortenedUrl}}" ng-if="public_settings.site_campaign_page_about_share_btn">
+  <a class="a2a_button_facebook"><span class="label" ng-if="!public_settings.site_campaign_page_alternate_share_btn" translate>campaign_social_media_button_text_label</span><span
+      class="label" ng-if="public_settings.site_campaign_page_alternate_share_btn" translate>campaign_social_media_button_text_label_facebook</span><i
+      class="fa fa-facebook"></i></i></a>
+  <div class="extra-share-buttons">
+    <a class="a2a_button_twitter"><span class="label" ng-if="public_settings.site_campaign_page_alternate_share_btn" translate>campaign_social_media_button_text_label_twitter</span><i
+        class="fa fa-twitter"></i></a>
+    <a class="a2a_button_email"><span class="label" ng-if="public_settings.site_campaign_page_alternate_share_btn" translate>campaign_social_media_button_text_label_email</span><i
+        class="fa fa-envelope"></i></a>
+  </div>
+</div>
+
+<div class="comments-list ui accordion" ng-Accord class="campaign-info" ng-if="isCommentsOnMainBlock">
+  <h3 class="main-block-heading ui inverted block header active title">{{ 'campaign_page_comments' | translate }}
+    <span ng-if="comment_system =='custom'" class="count-label ui label">{{sortOrFiltersComments.pagination.totalentries}}</span>
+    <i class="collapse-indicator icon"></i>
+  </h3>
+  <div class="content active">
+    <div class="insert-fb-comments" ng-if="comment_system == 'facebook'">
+      <div id="fb-comment-box" dyn-fb-comment-box page-href="{{currentAbsUrl}}" numposts="5" colorscheme="light">
+      </div>
+    </div>
+    <div ng-if="comment_system =='disqus' && !disqus_shortname">
+        {{'campaign_comment_disqus_shortname_missing_msg'|translate}}
+    </div>
+    <div id="insert_disqus" ng-if="comment_system =='disqus'"></div>
+    <!-- DISQUS End -->
+    <!-- Custom Comment start -->
+    <div class="ui comments" ng-if="comment_system =='custom'">
+      <h3 class="ui dividing header" translate>custom_comment_header</h3>
+      <div data-ng-cloak>
+        <div class="ui selection dropdown">
+          <input type="hidden" name="gender">
+          <div class="text" translate>custom_comment_sort_order_descend</div>
+          <i class="dropdown icon"></i>
+          <div class="menu">
+            <div class="item" ng-click="getComments(_,'created')" data-value="created" translate>custom_comment_sort_order_ascend</div>
+            <div class="item active selected" ng-click="getComments(_,'-created')" data-value="-created" translate>custom_comment_sort_order_descend</div>
+          </div>
+        </div>
+        <div class="item" data-ng-repeat="comment in comments track by $index">
+          <div class="comment" ng-style="comments_background_style">
+            <a class="avatar" ng-href="/profile/{{comment.comment_person[0].id}}" ng-if="comments_show_comment_picture && comment.comment_person[0].id != null">
+              <img ng-if="comment.comment_person[0].person_files[0].path_external" ng-src="{{server +'/image/campaign_profile/'+ comment.comment_person[0].person_files[0].path_external}}">
+              <img ng-if="!comment.comment_person[0].person_files[0].path_external" ng-src="images/placeholder-images/placeholder_profile_photo.png">
+            </a>
+            <div class="avatar" ng-if="comment.comment_person[0].id == null">
+              <img ng-src="images/placeholder-images/placeholder_profile_photo.png">
+            </div>
+            <div class="content">
+              <a class="author" ng-style="comments_font_color" ng-show="comment.comment_person[0].id != null" ng-href="/profile/{{comment.comment_person[0].id}}">{{comment.comment_person[0].first_name}}
+                {{comment.comment_person[0].last_name}}
+              </a>
+              <span class="author" ng-style="comments_font_color" ng-show="comment.comment_person[0].id == null" translate="custom_comment_anonymous_user"></span>
+              <div class="metadata">
+                <span class="date" ng-if="!public_settings.site_campaign_comments_display_verbose_date" ng-style="comments_font_color">{{'custom_comment_time'
+                  | translate}} {{comment.created | formatDate:"MMM D, YYYY h:mm A"}}</span>
+                <span class="date" ng-if="public_settings.site_campaign_comments_display_verbose_date" ng-style="comments_font_color">{{'custom_comment_commented_text'
+                  | translate}} {{comment.timeNumber}}{{comment.timePeriod
+                  | translate}}</span>
+              </div>
+              <div class="text subject" ng-style="comments_font_color" ng-if="comment.title">
+                {{comment.title}}
+              </div>
+              <div class="text" ng-style="comments_font_color">
+                {{comment.message}}
+              </div>
+              <div class="actions">
+                <!-- can only vote and reply to other people's comments  -->
+                <span ng-if="comment.person_id != user.person_id">
+                  <a class="upvote ui label " ng-class="{'active': comment.logged_in_person_has_voted_up == 't'}" ng-click="commentAction('upvote',comment.comment_id)">
+                    <i class="chevron up icon"></i>{{comment.total_votes_up}}</a>
+                  <a class="downvote ui label" ng-class="{'active': comment.logged_in_person_has_voted_down == 't'}" ng-click="commentAction('downvote',comment.comment_id)">
+                    <i class="chevron down icon"></i>{{comment.total_votes_down}}</a>
+                  <a class="reply ui label" ng-if="user.person_id" ng-click="commentAction('reply',comment.comment_person[0].first_name+' '+comment.comment_person[0].last_name)">
+                    <i class="reply icon"></i>{{'custom_comment_reply_button' | translate}}</a>
+                </span>
+                <!-- can only edit/delete their own comments  -->
+                <span ng-if="comment.person_id == user.person_id || user.person_type_id == 1">
+                  <a ng-if="comment.person_id == user.person_id" class="upvote ui label">
+                    <i class="chevron up icon"></i>{{comment.total_votes_up}}</a>
+                  <a ng-if="comment.person_id == user.person_id" class="downvote ui label">
+                    <i class="chevron down icon"></i>{{comment.total_votes_down}}</a>
+                  <a class="delete ui label" ng-click="openModalById('delete-comment',comment.comment_id)" translate>custom_comment_delete_button</a>
+                  <a class="update ui label" ng-click="openModalById('update-comment',comment.comment_id)" translate>custom_comment_update_button</a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ui basic segment center aligned" style="margin-top:3rem;" ng-show="comments.length">
+        <div semantic-pagination ng-model="sortOrFiltersComments.page" total-pages="sortOrFiltersComments.pagination.numpages" update-function="getComments()"></div>
+      </div>
+      <div class="ui warning message" ng-show="!comments.length" translate>
+        custom_comment_no_comment_message
+      </div>
+      <div class="ui warning message" ng-if="!user.person_id" translate>
+        custom_comment_login_message
+      </div>
+      <form class="ui form comment-form" validate ng-model="comment_form" ng-if="user.person_id">
+        <div class="ui divider"></div>
+        <h2 class="ui header" translate>custom_comment_form_header</h2>
+        <div class="field">
+          <label translate>custom_comment_form_subject</label>
+          <input type="text" name="comment_title" ng-model="comment_form.comment_title">
+        </div>
+        <div class="field">
+          <label translate>custom_comment_form_comment</label>
+          <textarea class="custom_comment_message" name="comment_message" ng-model="comment_form.message" required></textarea>
+        </div>
+        <div class="field">
+          <div class="ui blue labeled submit button" ng-click="addComment(comment_form);" translate>
+            custom_comment_form_submit
+          </div>
+          <div class="ui checkbox" ng-model="comment_form.anonymous" ng-if="is_anonymous_available && !public_settings.custom_comment_anonymous_force">
+            <input type="checkbox" name="anonymous">
+            <label translate="custom_comment_anonymous_message"></label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="ui modal" id="vote-anonymous" ng-if="comment_system =='custom'">
+    <i class="close icon"></i>
+    <div class="content" translate="custom_comment_vote_anonymous_content"></div>
+    <div class="actions">
+      <div class="ui green button" ng-click="setUpVote(true)" translate="custom_comment_vote_anonymous_action"></div>
+      <div class="ui blue button" ng-click="setUpVote(false)" translate="custom_comment_vote_not_anonymous_action"></div>
+    </div>
+  </div>
+  <div class="ui modal" id="update-comment" ng-if="comment_system =='custom'">
+    <i class="close icon"></i>
+    <div class="header">
+      <h3 class="ui header" translate>custom_comment_update_form_header</h3>
+    </div>
+    <div class="content">
+      <div class="fluid ui form">
+        <div class="field">
+          <label translate>custom_comment_update_form_subject</label>
+          <input type="text" ng-model="old_comment[0].title" placeholder="Subject" required>
+        </div>
+        <div class="field">
+          <label translate>custom_comment_update_form_comment</label>
+          <textarea placeholder="Comment Text" ng-model="old_comment[0].message" required></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui green button" ng-click="updateComment(old_comment[0])" translate>custom_comment_update_form_submit
+      </div>
+    </div>
+  </div>
+  <div class="ui small modal" id="delete-comment" ng-if="comment_system =='custom'">
+    <i class="close icon"></i>
+    <div class="header">
+      <h3 class="ui header" translate>custom_comment_delete_form_header</h3>
+    </div>
+    <div class="content" translate>
+      custom_comment_delete_form_message
+    </div>
+    <div class="actions">
+      <div class="ui green button" ng-click="deleteComment(current_selected_comment_id)" translate> custom_comment_delete_form_submit</div>
+    </div>
+  </div>
+</div>
+<div ng-if="moveEmbedBelowCommentsAccordionMobile" class="mobile-only embed-campaign ui floating dropdown labeled icon button huge fluid"
+  id="mob-view1">
+  <i class="code icon"></i>
+  <span class="text" translate>campaign_page_embed</span>
+  <div class="menu">
+    <textarea rows="4" cols="50" ng-show="!isPrivateCampaign">
+                                <iframe width="260" height="650" src="{{embed_path}}" frameborder="0" scrolling="no">
+                                </iframe>
+                            </textarea>
+    <textarea rows="4" cols="50" ng-show="isPrivateCampaign">
+                                <iframe width="260" height="650" src="{{embed_path}}?privatepath={{currentLoc}}" frameborder="0" scrolling="no"> </iframe>
+                            </textarea>
+  </div>
+</div>

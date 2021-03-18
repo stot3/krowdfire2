@@ -1,0 +1,304 @@
+/*!
+ * # Semantic UI 2.1.8 - Image
+ * http://github.com/semantic-org/semantic-ui/
+ *
+ *
+ * Copyright 2015 Contributors
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+
+/*******************************
+             Image
+*******************************/
+
+sedra-widget #sedra-widget {
+  
+
+/*******************************
+  States
+  *******************************/
+
+  
+
+/*******************************
+  Variations
+  *******************************/
+
+  
+/*--------------
+  Inline
+  ---------------*/
+
+  
+/*------------------
+  Vertical Aligned
+  -------------------*/
+
+  
+/*--------------
+  Rounded
+  ---------------*/
+
+  
+/*--------------
+  Bordered
+  ---------------*/
+
+  
+/*--------------
+  Circular
+  ---------------*/
+
+  
+/*--------------
+  Fluid
+  ---------------*/
+
+  
+/*--------------
+  Avatar
+  ---------------*/
+
+  
+/*-------------------
+  Spaced
+  --------------------*/
+
+  
+/*-------------------
+  Floated
+  --------------------*/
+
+  
+/*--------------
+  Sizes
+  ---------------*/
+
+  
+
+/*******************************
+  Groups
+  *******************************/
+
+}
+sedra-widget #sedra-widget .ui.image {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 100%;
+  background-color: transparent;
+}
+sedra-widget #sedra-widget img.ui.image {
+  display: block;
+}
+sedra-widget #sedra-widget .ui.image svg,
+sedra-widget #sedra-widget .ui.image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+sedra-widget #sedra-widget .ui.hidden.images,
+sedra-widget #sedra-widget .ui.hidden.image {
+  display: none;
+}
+sedra-widget #sedra-widget .ui.disabled.images,
+sedra-widget #sedra-widget .ui.disabled.image {
+  cursor: default;
+  opacity: 0.45;
+}
+sedra-widget #sedra-widget .ui.inline.image,
+sedra-widget #sedra-widget .ui.inline.image svg,
+sedra-widget #sedra-widget .ui.inline.image img {
+  display: inline-block;
+}
+sedra-widget #sedra-widget .ui.top.aligned.images .image,
+sedra-widget #sedra-widget .ui.top.aligned.image,
+sedra-widget #sedra-widget .ui.top.aligned.image svg,
+sedra-widget #sedra-widget .ui.top.aligned.image img {
+  display: inline-block;
+  vertical-align: top;
+}
+sedra-widget #sedra-widget .ui.middle.aligned.images .image,
+sedra-widget #sedra-widget .ui.middle.aligned.image,
+sedra-widget #sedra-widget .ui.middle.aligned.image svg,
+sedra-widget #sedra-widget .ui.middle.aligned.image img {
+  display: inline-block;
+  vertical-align: middle;
+}
+sedra-widget #sedra-widget .ui.bottom.aligned.images .image,
+sedra-widget #sedra-widget .ui.bottom.aligned.image,
+sedra-widget #sedra-widget .ui.bottom.aligned.image svg,
+sedra-widget #sedra-widget .ui.bottom.aligned.image img {
+  display: inline-block;
+  vertical-align: bottom;
+}
+sedra-widget #sedra-widget .ui.rounded.images .image,
+sedra-widget #sedra-widget .ui.rounded.image,
+sedra-widget #sedra-widget .ui.rounded.images .image > *,
+sedra-widget #sedra-widget .ui.rounded.image > * {
+  border-radius: 0.3125em;
+}
+sedra-widget #sedra-widget .ui.bordered.images .image,
+sedra-widget #sedra-widget .ui.bordered.images img,
+sedra-widget #sedra-widget .ui.bordered.images svg,
+sedra-widget #sedra-widget .ui.bordered.image img,
+sedra-widget #sedra-widget .ui.bordered.image svg,
+sedra-widget #sedra-widget img.ui.bordered.image {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+sedra-widget #sedra-widget .ui.circular.images,
+sedra-widget #sedra-widget .ui.circular.image {
+  overflow: hidden;
+}
+sedra-widget #sedra-widget .ui.circular.images .image,
+sedra-widget #sedra-widget .ui.circular.image,
+sedra-widget #sedra-widget .ui.circular.images .image > *,
+sedra-widget #sedra-widget .ui.circular.image > * {
+  border-radius: 500rem;
+}
+sedra-widget #sedra-widget .ui.fluid.images,
+sedra-widget #sedra-widget .ui.fluid.image,
+sedra-widget #sedra-widget .ui.fluid.images img,
+sedra-widget #sedra-widget .ui.fluid.images svg,
+sedra-widget #sedra-widget .ui.fluid.image svg,
+sedra-widget #sedra-widget .ui.fluid.image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+sedra-widget #sedra-widget .ui.avatar.images .image,
+sedra-widget #sedra-widget .ui.avatar.images img,
+sedra-widget #sedra-widget .ui.avatar.images svg,
+sedra-widget #sedra-widget .ui.avatar.image img,
+sedra-widget #sedra-widget .ui.avatar.image svg,
+sedra-widget #sedra-widget .ui.avatar.image {
+  margin-right: 0.25em;
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  border-radius: 500rem;
+}
+sedra-widget #sedra-widget .ui.spaced.image {
+  display: inline-block !important;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+sedra-widget #sedra-widget .ui[class*="left spaced"].image {
+  margin-left: 0.5em;
+  margin-right: 0em;
+}
+sedra-widget #sedra-widget .ui[class*="right spaced"].image {
+  margin-left: 0em;
+  margin-right: 0.5em;
+}
+sedra-widget #sedra-widget .ui.floated.image,
+sedra-widget #sedra-widget .ui.floated.images {
+  float: left;
+  margin-right: 1em;
+  margin-bottom: 1em;
+}
+sedra-widget #sedra-widget .ui.right.floated.images,
+sedra-widget #sedra-widget .ui.right.floated.image {
+  float: right;
+  margin-right: 0em;
+  margin-bottom: 1em;
+  margin-left: 1em;
+}
+sedra-widget #sedra-widget .ui.floated.images:last-child,
+sedra-widget #sedra-widget .ui.floated.image:last-child {
+  margin-bottom: 0em;
+}
+sedra-widget #sedra-widget .ui.centered.images,
+sedra-widget #sedra-widget .ui.centered.image {
+  margin-left: auto;
+  margin-right: auto;
+}
+sedra-widget #sedra-widget .ui.mini.images .image,
+sedra-widget #sedra-widget .ui.mini.images img,
+sedra-widget #sedra-widget .ui.mini.images svg,
+sedra-widget #sedra-widget .ui.mini.image {
+  width: 35px;
+  height: auto;
+  font-size: 0.71428571rem;
+}
+sedra-widget #sedra-widget .ui.tiny.images .image,
+sedra-widget #sedra-widget .ui.tiny.images img,
+sedra-widget #sedra-widget .ui.tiny.images svg,
+sedra-widget #sedra-widget .ui.tiny.image {
+  width: 80px;
+  height: auto;
+  font-size: 0.85714286rem;
+}
+sedra-widget #sedra-widget .ui.small.images .image,
+sedra-widget #sedra-widget .ui.small.images img,
+sedra-widget #sedra-widget .ui.small.images svg,
+sedra-widget #sedra-widget .ui.small.image {
+  width: 150px;
+  height: auto;
+  font-size: 0.92857143rem;
+}
+sedra-widget #sedra-widget .ui.medium.images .image,
+sedra-widget #sedra-widget .ui.medium.images img,
+sedra-widget #sedra-widget .ui.medium.images svg,
+sedra-widget #sedra-widget .ui.medium.image {
+  width: 300px;
+  height: auto;
+  font-size: 1rem;
+}
+sedra-widget #sedra-widget .ui.large.images .image,
+sedra-widget #sedra-widget .ui.large.images img,
+sedra-widget #sedra-widget .ui.large.images svg,
+sedra-widget #sedra-widget .ui.large.image {
+  width: 450px;
+  height: auto;
+  font-size: 1.14285714rem;
+}
+sedra-widget #sedra-widget .ui.big.images .image,
+sedra-widget #sedra-widget .ui.big.images img,
+sedra-widget #sedra-widget .ui.big.images svg,
+sedra-widget #sedra-widget .ui.big.image {
+  width: 600px;
+  height: auto;
+  font-size: 1.28571429rem;
+}
+sedra-widget #sedra-widget .ui.huge.images .image,
+sedra-widget #sedra-widget .ui.huge.images img,
+sedra-widget #sedra-widget .ui.huge.images svg,
+sedra-widget #sedra-widget .ui.huge.image {
+  width: 800px;
+  height: auto;
+  font-size: 1.42857143rem;
+}
+sedra-widget #sedra-widget .ui.massive.images .image,
+sedra-widget #sedra-widget .ui.massive.images img,
+sedra-widget #sedra-widget .ui.massive.images svg,
+sedra-widget #sedra-widget .ui.massive.image {
+  width: 960px;
+  height: auto;
+  font-size: 1.71428571rem;
+}
+sedra-widget #sedra-widget .ui.images {
+  font-size: 0em;
+  margin: 0em -0.25rem 0rem;
+}
+sedra-widget #sedra-widget .ui.images .image,
+sedra-widget #sedra-widget .ui.images img,
+sedra-widget #sedra-widget .ui.images svg {
+  display: inline-block;
+  margin: 0em 0.25rem 0.5rem;
+}
+
+
+/*******************************
+         Theme Overrides
+*******************************/
+
+
+
+/*******************************
+         Site Overrides
+*******************************/
+

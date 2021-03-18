@@ -1,0 +1,105 @@
+@media only screen and (max-width: 767px) {
+  sedra-widget {
+    #sedra-widget {
+      .button-wrap {
+        .button {
+          width: 100%;
+        }
+      }
+      #campaign-body {
+        #campaign-body-top {
+          #campaign-tabs {
+            margin-left: 0 !important;
+            width: 100% !important;
+            display: block;
+            margin-right: 0 !important;
+            >.item {
+              display: block;
+              width: 100%;
+              text-align: center;
+              padding: 15px 10px;
+              border-bottom: 1px solid #D4D4D4;
+              &:first-child {
+                border-top: 1px solid #D4D4D4;
+              }
+            }
+          }
+        }
+      }
+      #contribution-view {
+        #contribution-header-top {
+          .right-col {
+            text-align: center;
+          }
+        }
+        #contribution-rewards {
+          .website-tip {
+            .tip-option-selection-wrap {
+              .tip-option-selection {
+                -webkit-flex-wrap: wrap;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                -webkit-box-pack: center;
+                -webkit-justify-content: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                .ui.button {
+                  width: 100%;
+                  border-radius: .28571429rem;
+                }
+                .or {
+                  margin: -12px 0;
+                  font-size: 12px;
+                }
+              }
+            }
+            .tipping-option {
+              .field {
+                .ui.dropdown.selection,
+                input {
+                  max-width: 100%;
+                }
+              }
+            }
+          }
+          .contrib-actions {
+            text-align: center;
+            .right-col {
+              text-align: center;
+            }
+          }
+          .credit-card-form {
+            .card-expiry-cvc {
+              .cc-field {
+                width: 50% !important;
+                &:first-child {
+                  padding-right: 5px;
+                }
+                &:last-child {
+                  padding-left: 5px;
+                }
+              }
+            }
+          }
+          #account-info {
+            .phone-type {
+              text-align: center;
+            }
+            .account-info-tab-menu {
+              .item {
+                padding: 10px;
+              }
+            }
+          }
+          #review-payment {
+            tr {
+              td {
+                text-align: left;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

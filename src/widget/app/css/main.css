@@ -1,0 +1,980 @@
+@import url(//fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|Open+Sans:400,300,600,700,800|Lato:400,100,300,700,900);
+/*/////////////////////////////////////////////////////////////////////////////////////////*/
+/* Override any semantic ui css properties*/
+/*/////////////////////////////////////////////////////////////////////////////////////////*/
+sedra-widget img {
+  max-width: 100%;
+  height: auto;
+}
+sedra-widget .widget-loader {
+  min-height: 150px;
+}
+sedra-widget .reach-error-message {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 20px 0;
+}
+sedra-widget .reach-error-message .message-subcontainer {
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 25px;
+  border-radius: 4px;
+}
+sedra-widget .reach-error-message .message-subcontainer h2.icon-holder,
+sedra-widget .reach-error-message .message-subcontainer h2.ui.header {
+  margin-top: 0;
+}
+sedra-widget .reach-error-message .message-subcontainer .content {
+  color: #07B6AD;
+}
+sedra-widget .reach-error-message .message-subcontainer .icon {
+  color: #F1592A;
+}
+sedra-widget .reach-error-message .message-subcontainer h1.ui.header {
+  color: #F1592A;
+  margin-bottom: 15px;
+}
+sedra-widget .reach-error-message .message-subcontainer .footer {
+  border-top: 3px solid #eeeeee;
+  padding-top: 1rem;
+}
+sedra-widget .reach-error-message .message-subcontainer .footer .thrin-logo {
+  width: 130px;
+  margin: 0 auto;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  -webkit-filter: gray;
+  filter: gray;
+  filter: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' height='0'><filter id='greyscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0' /></filter></svg>#greyscale");
+  transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+}
+sedra-widget .reach-error-message .message-subcontainer .footer .thrin-logo:hover {
+  filter: none;
+  -webkit-filter: grayscale(0%);
+  filter: grayscale(0%);
+}
+sedra-widget #sedra-widget {
+  font-family: "Roboto", sans-serif;
+}
+sedra-widget #sedra-widget h1.ui.header {
+  font-size: 42px;
+}
+sedra-widget #sedra-widget h2.ui.header {
+  font-size: 24px;
+}
+sedra-widget #sedra-widget h3.ui.header {
+  font-size: 18px;
+}
+sedra-widget #sedra-widget h4.ui.header {
+  font-size: 14px;
+}
+sedra-widget #sedra-widget h1,
+sedra-widget #sedra-widget h2,
+sedra-widget #sedra-widget h3,
+sedra-widget #sedra-widget h4,
+sedra-widget #sedra-widget h5 {
+  font-family: "Roboto", sans-serif;
+}
+sedra-widget #sedra-widget .ui.basic.segment {
+  border-radius: 4px;
+}
+sedra-widget #sedra-widget .ui.button,
+sedra-widget #sedra-widget .ui.header {
+  font-family: "Roboto", sans-serif !important;
+}
+sedra-widget #sedra-widget .ui.buttons .ui.button {
+  font-size: 14px;
+}
+sedra-widget #sedra-widget .ui.button {
+  font-size: 15px;
+}
+sedra-widget #sedra-widget .ui.button.large {
+  font-size: 16px;
+}
+sedra-widget #sedra-widget .ui.menu {
+  font-size: 14px;
+}
+sedra-widget #sedra-widget .ui.menu.dropdown > .item {
+  font-size: 14px;
+}
+sedra-widget #sedra-widget .ui.input.large {
+  font-size: 16px;
+}
+sedra-widget #sedra-widget .ui.list {
+  font-size: 14px;
+}
+sedra-widget #sedra-widget .ui.list.horizontal > .item {
+  font-size: 14px;
+}
+sedra-widget #sedra-widget .ui.list.horizontal.small > .item {
+  font-size: 13px;
+}
+sedra-widget #sedra-widget i.icon {
+  font-size: 14px;
+}
+sedra-widget #sedra-widget .ui.label {
+  font-size: 12px;
+}
+sedra-widget #sedra-widget .ui.label.large {
+  font-size: 14px;
+}
+sedra-widget #sedra-widget .ui.form.large {
+  font-size: 16px;
+}
+sedra-widget #sedra-widget .ui.form .field > label {
+  font-size: 15px;
+}
+sedra-widget #sedra-widget .ui.dropdown,
+sedra-widget #sedra-widget input:not([type]),
+sedra-widget #sedra-widget input[type=date],
+sedra-widget #sedra-widget input[type=datetime-local],
+sedra-widget #sedra-widget input[type=email],
+sedra-widget #sedra-widget input[type=number],
+sedra-widget #sedra-widget input[type=password],
+sedra-widget #sedra-widget input[type=search],
+sedra-widget #sedra-widget input[type=tel],
+sedra-widget #sedra-widget input[type=text],
+sedra-widget #sedra-widget input[type=time],
+sedra-widget #sedra-widget input[type=url] {
+  border-radius: 0 !important;
+}
+sedra-widget #sedra-widget .campaign-footer {
+  padding: 15px 0;
+  border-top: 3px solid #eee;
+}
+sedra-widget #sedra-widget .campaign-footer .campaign-footer-grid .right-column {
+  -webkit-box-align: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+sedra-widget #sedra-widget .campaign-footer .campaign-footer-grid .right-column .footer-link-list {
+  width: 100%;
+}
+sedra-widget #sedra-widget .campaign-footer .campaign-footer-grid .powered-by-label {
+  margin: 0;
+  color: #909090;
+}
+sedra-widget #sedra-widget .campaign-footer .thrin-logo {
+  max-width: 130px;
+  margin: 0 auto;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  -webkit-filter: gray;
+  filter: gray;
+  filter: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' height='0'><filter id='greyscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0' /></filter></svg>#greyscale");
+  transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+}
+sedra-widget #sedra-widget .campaign-footer .thrin-logo:hover {
+  filter: none;
+  -webkit-filter: grayscale(0%);
+  filter: grayscale(0%);
+}
+sedra-widget #sedra-widget .message-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+sedra-widget #sedra-widget .message-container .message-subcontainer {
+  width: 100%;
+  text-align: center;
+}
+sedra-widget #sedra-widget .message-container .message-subcontainer .ui.message.message-content {
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+sedra-widget #sedra-widget .message-container .message-subcontainer .ui.message.message-content .header {
+  margin-right: 20px !important;
+  color: #fff;
+}
+sedra-widget #sedra-widget .stripe-elements-form #card-number-element-wrap {
+  position: relative;
+}
+sedra-widget #sedra-widget .stripe-elements-form #brand-icon {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAcCAYAAAAX4C3rAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAALNJREFUeNpinDlzpgADA8N6IHZgGJzgABAHMg1yRzJA3baeaZA7Eu5YJoYhAkYdSm3Agi6gq6vLwMbGRpZhv379Yrh8+TJ9HGppaUmRgW/fvmV49uzZaBoddeioQ0cdOtgc+vPnT/qUo2vXrmVgZ2cn25GgcpQuDqWVRaNpdNA3Ss6ePYtXg7GxMV41hORJUTMa9aMOBQJGYHf5/2iIjlSHHhgC7jwAcmjgIHcsyG2BAAEGANjdMoqS1DgpAAAAAElFTkSuQmCC");
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 36px;
+  height: 24px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+sedra-widget #sedra-widget .stripe-elements-form #card-number-element {
+  padding-left: 55px;
+}
+sedra-widget #sedra-widget .stripe-elements-form .StripeElement {
+  background: #ffffff;
+  padding: 0.67861em 1em;
+  border: 1px solid rgba(39, 41, 43, 0.15);
+}
+sedra-widget #sedra-widget .stripe-elements-form .StripeElement.StripeElement--focus {
+  border-color: #BDBEBF;
+}
+sedra-widget #sedra-widget .stripe-elements-form .StripeElement.StripeElement--invalid {
+  background: #FFF6F6;
+  border-color: #E0B4B4;
+  color: #9F3A38;
+}
+sedra-widget #sedra-widget .stripe-elements-form #card-errors {
+  color: #9F3A38 !important;
+  font-size: 12px;
+  font-weight: bold;
+}
+sedra-widget .pagination-menu .item-wrap {
+  display: inline-block;
+  margin-right: 5px;
+}
+sedra-widget .pagination-menu .item-wrap:last-child {
+  margin-right: 0;
+}
+sedra-widget .pagination-menu .item-wrap:hover {
+  background: #ccc;
+}
+sedra-widget .pagination-menu .item-wrap:hover .item {
+  color: #fff;
+}
+sedra-widget .pagination-menu .item-wrap.current .item {
+  background: #ccc;
+  color: #fff;
+}
+sedra-widget .pagination-menu .item-wrap .item {
+  color: #0a0a0a;
+  padding: 5px;
+  cursor: pointer;
+  min-width: 30px;
+  text-align: center;
+  height: 30px;
+  display: inline-block;
+}
+sedra-widget .ng2-pagination {
+  padding: 0;
+  text-align: center;
+}
+sedra-widget .ng2-pagination li {
+  cursor: pointer;
+}
+sedra-widget .ng2-pagination li.disabled {
+  cursor: default;
+}
+sedra-widget .ng2-pagination li.pagination-previous:before, sedra-widget .ng2-pagination li.pagination-next:after, sedra-widget .ng2-pagination li.pagination-next a:after, sedra-widget .ng2-pagination li.pagination-previous a:before {
+  content: "" !important;
+}
+sedra-widget input[type=number] {
+  -moz-appearance: textfield;
+}
+sedra-widget input[type=number]::-webkit-inner-spin-button,
+sedra-widget input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+sedra-widget #okta-sign-in {
+  margin-top: 0px !important;
+  border: none !important;
+  max-width: 100% !important;
+  width: unset !important;
+}
+sedra-widget .okta-sign-in-header, sedra-widget .okta-form-title {
+  display: none !important;
+}
+sedra-widget #okta-sign-in .auth-content {
+  padding: 0px 5px 0px 5px !important;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////*/
+/* Stylesheet for the campaign page*/
+/*/////////////////////////////////////////////////////////////////////////////////////////*/
+/*/////////////////////////////*/
+/* Campaign Page START*/
+/*/////////////////////////////*/
+#sedra-widget {
+  position: relative;
+  /*/////////////////////////////*/
+  /* Contribution Page END*/
+  /*/////////////////////////////*/
+  /*/////////////////////////////*/
+  /* Contribution Page START*/
+  /*/////////////////////////////*/
+}
+#sedra-widget #campaign-header #campaign-header-top {
+  text-align: center;
+  padding: 35px 0;
+}
+#sedra-widget #campaign-header #campaign-header-top .campaign-info-span {
+  font-weight: bold;
+}
+#sedra-widget #campaign-header #campaign-header-top #campaign-header-title {
+  word-wrap: break-word;
+}
+@media screen and (min-width: 768px) {
+  #sedra-widget #campaign-header #campaign-header-top .profile-nav {
+    position: absolute;
+    right: 15px;
+    top: 25px;
+  }
+  #sedra-widget #campaign-header #campaign-header-top #campaign-header-title {
+    margin-top: 0;
+  }
+}
+#sedra-widget #campaign-header #campaign-header-middle .campaign-header-middle-grid {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  -ms-grid-row-align: center;
+  align-items: center;
+}
+#sedra-widget #campaign-header #campaign-header-middle .campaign-header-middle-grid .featured-image img {
+  width: 100%;
+}
+#sedra-widget #campaign-header #campaign-header-middle .campaign-fund-details .value {
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 1;
+}
+#sedra-widget #campaign-header #campaign-header-middle .campaign-fund-details > .item {
+  padding: 10px 0;
+}
+#sedra-widget #campaign-header #campaign-header-middle .campaign-fund-details > .item:first-child {
+  padding-top: 0;
+}
+#sedra-widget #campaign-header #campaign-header-middle .campaign-fund-details > .item:last-child {
+  padding-bottom: 0;
+}
+#sedra-widget #campaign-header #campaign-header-middle .campaign-fund-details .progress-bar-fund {
+  margin: 0 0 5px;
+  border-radius: 0;
+  height: 25px;
+}
+#sedra-widget #campaign-header #campaign-header-middle .campaign-fund-details .progress-bar-fund .bar {
+  height: 25px;
+  border-radius: 0;
+}
+#sedra-widget #campaign-header #campaign-header-middle .campaign-fund-details .funding-duration-note-text {
+  font-weight: normal;
+  text-align: center;
+}
+#sedra-widget #campaign-header #campaign-header-middle .campaign-fund-details .funding-duration-note-text .campaign-end-date {
+  margin-top: 5px;
+}
+#sedra-widget #campaign-header #campaign-header-middle .campaign-fund-details .contribute-button {
+  font-size: 20px;
+}
+#sedra-widget #campaign-header #campaign-header-middle .campaign-fund-details .share-campaign {
+  font-size: 20px;
+  text-align: center;
+  border-radius: 4px !important;
+}
+#sedra-widget #campaign-header #campaign-header-middle .campaign-fund-details .share-campaign .menu .item {
+  cursor: default;
+}
+#sedra-widget #campaign-header #campaign-header-middle .campaign-fund-details .share-campaign .menu .item:hover {
+  background: transparent;
+}
+#sedra-widget #campaign-header #campaign-header-middle .campaign-fund-details .share-campaign .a2a_kit {
+  text-align: center;
+  line-height: 1 !important;
+}
+#sedra-widget #campaign-header #campaign-header-middle .campaign-fund-details .share-campaign .a2a_kit .sm-link {
+  float: none;
+  display: inline-block;
+}
+#sedra-widget #campaign-header #campaign-header-middle .campaign-fund-details .total-progress-funded .funded_goal {
+  font-weight: bold;
+}
+#sedra-widget #campaign-header #campaign-header-bottom {
+  padding: 20px 0;
+}
+#sedra-widget #campaign-header #campaign-header-bottom .campaign-header-meta {
+  margin-bottom: 5px;
+}
+#sedra-widget #campaign-header #campaign-header-bottom .campaign-header-meta .category-item .icon,
+#sedra-widget #campaign-header #campaign-header-bottom .campaign-header-meta .location-item .icon {
+  vertical-align: middle;
+  font-size: 17px;
+  font-size: 1.0625rem;
+}
+#sedra-widget #campaign-header #campaign-header-bottom .campaign-header-meta .category-item .meta,
+#sedra-widget #campaign-header #campaign-header-bottom .campaign-header-meta .location-item .meta {
+  vertical-align: middle;
+}
+#sedra-widget #campaign-header #campaign-header-bottom #campaign-header-blurb {
+  font-size: 16px;
+}
+#sedra-widget #campaign-body #campaign-body-middle {
+  padding: 40px 0;
+}
+#sedra-widget #campaign-body #campaign-body-middle iframe {
+  max-width: 100%;
+}
+@media screen and (max-width: 767px) {
+  #sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #campaign-tabs {
+    overflow-x: scroll;
+  }
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #campaign-tabs {
+  margin-bottom: 15px;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #streams-tab-body .stream-list {
+  cursor: pointer;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #streams-tab-body .stream-content {
+  background: #f5f5f5;
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: 14px;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #streams-tab-body .stream-content .stream-top {
+  margin-bottom: 20px;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #streams-tab-body .stream-content .stream-top .stream-number,
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #streams-tab-body .stream-content .stream-top .stream-post-date {
+  display: inline-block;
+  width: 49.666%;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #streams-tab-body .stream-content .stream-top .stream-post-date {
+  text-align: right;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #faq-tab-body .faq-info .faq-content {
+  margin-top: 15px;
+  border-radius: 4px;
+  background: #f5f5f5;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #faq-tab-body .faq-info .faq-content .title {
+  padding: 15px;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #faq-tab-body .faq-info .faq-content .content {
+  padding: 0 15px 15px 15px;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #backers-tab-body .campaign-backer {
+  background: #f5f5f5;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #backers-tab-body .campaign-backer .header {
+  margin: 0;
+  border: 0;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #comment-tab-body .ui.comments {
+  margin: 0;
+  max-width: 100%;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #comment-tab-body .ui.comments .comment {
+  background: #f5f5f5;
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: 15px;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #comment-tab-body .ui.comments .comment .comment-title {
+  margin-top: 10px;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #comment-tab-body .button-wrap {
+  text-align: right;
+  margin-bottom: 8px;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #comment-tab-body .login-signup {
+  text-align: center;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #comment-tab-body .login-signup .buttons {
+  padding-bottom: 8px;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #comment-tab-body .ui.message {
+  margin-top: 8px;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #contact-manager-tab-body .contact-form .contact-header {
+  display: inline;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #contact-manager-tab-body .button-wrap {
+  text-align: right;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #contact-manager-tab-body .button-wrap .buttons {
+  margin: 8px;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #contact-manager-tab-body .login-signup {
+  text-align: center;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #contact-manager-tab-body .login-signup .buttons {
+  padding-bottom: 8px;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #contact-manager-tab-body .contact-message .actions .button {
+  margin-top: 1em;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-tab-content #contact-manager-tab-body .contact-message .account-dropdown {
+  float: right;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-bio-tab {
+  margin-bottom: 1em;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-bio-tab .campaign-profile-info,
+#sedra-widget #campaign-body #campaign-body-middle .campaign-bio-tab .campaign-business-info {
+  text-align: center;
+}
+#sedra-widget #campaign-body #campaign-body-middle .campaign-bio-tab .campaign-profile-info img,
+#sedra-widget #campaign-body #campaign-body-middle .campaign-bio-tab .campaign-business-info img {
+  margin: 0 auto;
+}
+#sedra-widget .campaign-rewards .campaign-reward, #sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward {
+  background: #EFEFEF;
+  padding: 15px !important;
+  margin-bottom: 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  -webkit-transition: all ease-in 0.25s;
+  transition: all ease-in 0.25s;
+  position: relative;
+}
+#sedra-widget .campaign-rewards .campaign-reward:hover .campaign-reward-hover, #sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward:hover .campaign-reward-hover {
+  opacity: 0.9;
+}
+#sedra-widget .campaign-rewards .campaign-reward.disabled .sold-out-content, #sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward.disabled .sold-out-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 15px;
+  background: rgba(255, 255, 255, 0.9);
+  text-align: center;
+}
+#sedra-widget .campaign-rewards .campaign-reward.disabled .sold-out-content .ui.header, #sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward.disabled .sold-out-content .ui.header {
+  color: #8e8e8e;
+}
+#sedra-widget .campaign-rewards .campaign-reward.disabled .campaign-reward-content *, #sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward.disabled .campaign-reward-content * {
+  color: initial !important;
+}
+#sedra-widget .campaign-rewards .campaign-reward .campaign-reward-content, #sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward .campaign-reward-content {
+  background: #ffffff;
+  padding: 15px;
+  position: relative;
+}
+#sedra-widget .campaign-rewards .campaign-reward .campaign-reward-content .reward-amount .amount, #sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward .campaign-reward-content .reward-amount .amount {
+  vertical-align: text-bottom;
+  margin-right: 2px;
+}
+#sedra-widget .campaign-rewards .campaign-reward .campaign-reward-content .reward-amount .currency, #sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward .campaign-reward-content .reward-amount .currency,
+#sedra-widget .campaign-rewards .campaign-reward .campaign-reward-content .reward-amount .shipping,
+#sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward .campaign-reward-content .reward-amount .shipping {
+  font-size: 16px;
+  font-size: 1rem;
+  vertical-align: super;
+}
+#sedra-widget .campaign-rewards .campaign-reward .campaign-reward-content .reward-title, #sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward .campaign-reward-content .reward-title {
+  margin: 0;
+}
+#sedra-widget .campaign-rewards .campaign-reward .campaign-reward-content .reward-description, #sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward .campaign-reward-content .reward-description {
+  margin: 5px 0 15px;
+}
+#sedra-widget .campaign-rewards .campaign-reward .campaign-reward-content .reward-backer-count, #sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward .campaign-reward-content .reward-backer-count,
+#sedra-widget .campaign-rewards .campaign-reward .campaign-reward-content .reward-limit,
+#sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward .campaign-reward-content .reward-limit {
+  display: inline-block;
+  width: 49%;
+}
+#sedra-widget .campaign-rewards .campaign-reward .campaign-reward-content .reward-backer-count, #sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward .campaign-reward-content .reward-backer-count {
+  padding-right: 5px;
+}
+#sedra-widget .campaign-rewards .campaign-reward .campaign-reward-content .reward-limit, #sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward .campaign-reward-content .reward-limit {
+  padding-left: 5px;
+  text-align: right;
+}
+#sedra-widget .campaign-rewards .campaign-reward .campaign-reward-content .reward-meta-wrap .reward-meta, #sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward .campaign-reward-content .reward-meta-wrap .reward-meta {
+  padding: 3px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+#sedra-widget .campaign-rewards .campaign-reward .campaign-reward-content .reward-meta-wrap .reward-meta:first-child, #sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward .campaign-reward-content .reward-meta-wrap .reward-meta:first-child {
+  padding-top: 0;
+}
+#sedra-widget .campaign-rewards .campaign-reward .campaign-reward-content .reward-meta-wrap .reward-meta:last-child, #sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward .campaign-reward-content .reward-meta-wrap .reward-meta:last-child {
+  padding-bottom: 0;
+}
+#sedra-widget .campaign-rewards .campaign-reward .campaign-reward-content .reward-meta-wrap .reward-delivery-date span:not(:last-child), #sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward .campaign-reward-content .reward-meta-wrap .reward-delivery-date span:not(:last-child) {
+  margin-right: 5px;
+}
+#sedra-widget .campaign-rewards .campaign-reward .campaign-reward-hover, #sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward .campaign-reward-hover {
+  -webkit-transition: all ease-in 0.25s;
+  transition: all ease-in 0.25s;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #898989;
+  padding: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+}
+#sedra-widget .campaign-rewards .campaign-reward .campaign-reward-hover .hover-label, #sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward .campaign-reward-hover .hover-label {
+  width: 100%;
+  color: #fff !important;
+}
+#sedra-widget #contribution-header-top {
+  padding-top: 30px;
+}
+#sedra-widget #contribution-header-top .campaign-image {
+  margin: 0 auto;
+}
+#sedra-widget #contribution-header-top .campaign-info-span {
+  font-weight: bold;
+}
+#sedra-widget #contribution-header-top #contribution-header-title {
+  word-wrap: break-word;
+}
+#sedra-widget #contribution-rewards {
+  padding: 30px 0;
+}
+#sedra-widget #contribution-rewards .contrib-actions {
+  padding-bottom: 20px;
+}
+#sedra-widget #contribution-rewards .contrib-actions .right-col {
+  text-align: right;
+}
+#sedra-widget #contribution-rewards .website-tip {
+  padding-top: 40px;
+}
+#sedra-widget #contribution-rewards .website-tip .tip-option-selection-wrap .tip-option-selection .choose-tip-button {
+  border-top-left-radius: 0.28571429rem;
+  border-bottom-left-radius: 0.28571429rem;
+}
+#sedra-widget #contribution-rewards .website-tip .tip-option-selection-wrap .tip-option-selection .no-tip-button {
+  border-top-right-radius: 0.28571429rem;
+  border-bottom-right-radius: 0.28571429rem;
+}
+#sedra-widget #contribution-rewards .website-tip .tipping-option {
+  margin-top: 15px;
+}
+#sedra-widget #contribution-rewards .website-tip .tipping-option .field .ui.dropdown.selection,
+#sedra-widget #contribution-rewards .website-tip .tipping-option .field input {
+  max-width: 100px;
+}
+#sedra-widget #contribution-rewards .attributes-info {
+  padding-top: 40px;
+}
+#sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward {
+  cursor: default;
+}
+#sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward .campaign-reward-content {
+  padding: 0;
+}
+#sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward .campaign-reward-content .reward-top {
+  padding: 15px;
+}
+#sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward .campaign-reward-content .reward-top.active {
+  padding-bottom: 0;
+  cursor: default;
+}
+#sedra-widget #contribution-rewards #contribution-campaign-rewards .campaign-reward .campaign-reward-content .reward-bottom {
+  padding: 0 15px 15px;
+}
+#sedra-widget #contribution-rewards #contribution-campaign-rewards .no-reward-text {
+  margin: 0;
+}
+#sedra-widget #contribution-rewards #contribution-campaign-rewards .reward-bottom .contribution-input {
+  margin-top: 20px;
+}
+#sedra-widget #contribution-rewards #contribution-campaign-rewards .reward-bottom .contribution-input .label {
+  cursor: default;
+}
+#sedra-widget #contribution-rewards .card-info .credit-card-dropdown .text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+#sedra-widget #contribution-rewards .card-info .credit-card-dropdown i.dropdown {
+  margin: 0;
+}
+#sedra-widget #contribution-rewards .card-info .button-wrap {
+  margin-top: 15px;
+  text-align: center;
+}
+#sedra-widget #contribution-rewards #account-info .account-info-tab {
+  padding-top: 30px;
+}
+#sedra-widget #contribution-rewards #account-info #login-form .button-wrap,
+#sedra-widget #contribution-rewards #account-info #register-form .button-wrap {
+  text-align: right;
+}
+#sedra-widget #contribution-rewards #account-info #guest-form {
+  margin-bottom: 24px;
+}
+#sedra-widget #contribution-rewards #review-payment {
+  padding-top: 40px;
+}
+#sedra-widget #contribution-rewards #review-payment tr td:nth-child(2) {
+  text-align: right;
+}
+#sedra-widget #contribution-rewards #review-payment .total-contribution {
+  font-size: 18px;
+  font-weight: bold;
+}
+#sedra-widget #contribution-rewards #review-payment tfoot tr:first-child td {
+  padding-top: 15px;
+}
+#sedra-widget #contribution-rewards #review-payment tfoot tr:last-child td {
+  padding-bottom: 0;
+}
+#sedra-widget #contribution-rewards #review-payment tfoot tr td {
+  padding-top: 0;
+  padding-bottom: 5px;
+  border: 0;
+}
+#sedra-widget #contribution-rewards #review-payment .button-wrap .submit-button.ui.button:disabled {
+  color: #484848;
+  background-color: #a5a5a5 !important;
+}
+#sedra-widget #contribution-rewards .address-info,
+#sedra-widget #contribution-rewards .phone-info {
+  padding-top: 40px;
+}
+#sedra-widget #contribution-rewards .address-info .button-wrap,
+#sedra-widget #contribution-rewards .phone-info .button-wrap {
+  text-align: center;
+  margin-top: 15px;
+}
+#sedra-widget #contribution-rewards .contribution-message-info {
+  padding-top: 40px;
+}
+#sedra-widget #contribution-rewards .info-buttons {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+#sedra-widget .pledge-message-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+#sedra-widget .pledge-message-container .message-subcontainer {
+  width: 100%;
+  text-align: center;
+}
+#sedra-widget .pledge-message-container .message-subcontainer .ui.success.message {
+  display: inline-block;
+}
+#sedra-widget .pledge-message-container .message-subcontainer .ui.success.message .header {
+  margin-right: 20px;
+}
+#sedra-widget [hidden] {
+  display: none !important;
+}
+#sedra-widget .forgotPassword.nonSocialLogin {
+  text-align: right;
+  padding-top: 12.5px;
+  padding-right: 10px;
+}
+#sedra-widget .forgotPassword.socialLogin {
+  text-align: center;
+}
+#sedra-widget .forgotPassword.socialLogin a {
+  font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif !important;
+  font-size: 14px;
+}
+
+/*/////////////////////////////*/
+/* Contribution Page END*/
+/*/////////////////////////////*/
+sedra-widget #sedra-widget div#profile-page .password-edit,
+sedra-widget #sedra-widget div#profile-page .profile-edit {
+  text-align: center;
+}
+sedra-widget #sedra-widget div#profile-page .progress-bar-fund {
+  margin-bottom: 5px;
+}
+sedra-widget #sedra-widget div#profile-page .progress-bar-fund .bar {
+  height: 22px;
+  border-radius: 0;
+}
+sedra-widget #sedra-widget div#profile-page .transaction-wrap-content {
+  margin-top: 15px;
+}
+@media screen and (min-width: 768px) {
+  sedra-widget #sedra-widget div#profile-page .view-campaign-button {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+  }
+  sedra-widget #sedra-widget div#profile-page .profile-image {
+    margin-top: 0;
+  }
+}
+@media screen and (max-width: 767px) {
+  sedra-widget #sedra-widget div#profile-page .profile-image {
+    margin-top: 12px;
+  }
+}
+sedra-widget #sedra-widget div#profile-page div.profile-info-view {
+  margin-top: 8px;
+}
+sedra-widget #sedra-widget div#profile-page form.ui.form.info-form,
+sedra-widget #sedra-widget div#profile-page form.ui.form.password-form {
+  margin-top: 12px;
+}
+sedra-widget #sedra-widget div#profile-page form.ui.form.info-form .field,
+sedra-widget #sedra-widget div#profile-page form.ui.form.password-form .field {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 400px;
+}
+sedra-widget #sedra-widget div#profile-page .ui.buttons.profile-edit-buttons {
+  margin-top: 12px;
+}
+sedra-widget #sedra-widget div#profile-page .image-wrap {
+  max-width: 150px;
+  margin: 0 auto;
+  position: relative;
+}
+sedra-widget #sedra-widget div#profile-page .image-wrap .text-overlay {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+sedra-widget #sedra-widget div#profile-page .image-wrap .text-overlay .image-upload {
+  width: 100%;
+  color: white;
+  margin: 0;
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.5);
+  border: 0;
+}
+
+#campaign-comment .avatar img {
+  height: auto !important;
+}
+#campaign-comment .content .comment-title {
+  padding-top: 4px;
+  font-weight: 600;
+}
+#campaign-comment .content .edit-box {
+  display: block !important;
+}
+#campaign-comment .comment-list {
+  padding-bottom: 16px;
+}
+#campaign-comment .account-dropdown {
+  float: right;
+}
+
+@media only screen and (max-width: 767px) {
+  sedra-widget #sedra-widget .button-wrap .button {
+    width: 100%;
+  }
+  sedra-widget #sedra-widget #campaign-body #campaign-body-top #campaign-tabs {
+    margin-left: 0 !important;
+    width: 100% !important;
+    display: block;
+    margin-right: 0 !important;
+  }
+  sedra-widget #sedra-widget #campaign-body #campaign-body-top #campaign-tabs > .item {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 15px 10px;
+    border-bottom: 1px solid #D4D4D4;
+  }
+  sedra-widget #sedra-widget #campaign-body #campaign-body-top #campaign-tabs > .item:first-child {
+    border-top: 1px solid #D4D4D4;
+  }
+  sedra-widget #sedra-widget #contribution-view #contribution-header-top .right-col {
+    text-align: center;
+  }
+  sedra-widget #sedra-widget #contribution-view #contribution-rewards .website-tip .tip-option-selection-wrap .tip-option-selection {
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  sedra-widget #sedra-widget #contribution-view #contribution-rewards .website-tip .tip-option-selection-wrap .tip-option-selection .ui.button {
+    width: 100%;
+    border-radius: 0.28571429rem;
+  }
+  sedra-widget #sedra-widget #contribution-view #contribution-rewards .website-tip .tip-option-selection-wrap .tip-option-selection .or {
+    margin: -12px 0;
+    font-size: 12px;
+  }
+  sedra-widget #sedra-widget #contribution-view #contribution-rewards .website-tip .tipping-option .field .ui.dropdown.selection,
+sedra-widget #sedra-widget #contribution-view #contribution-rewards .website-tip .tipping-option .field input {
+    max-width: 100%;
+  }
+  sedra-widget #sedra-widget #contribution-view #contribution-rewards .contrib-actions {
+    text-align: center;
+  }
+  sedra-widget #sedra-widget #contribution-view #contribution-rewards .contrib-actions .right-col {
+    text-align: center;
+  }
+  sedra-widget #sedra-widget #contribution-view #contribution-rewards .credit-card-form .card-expiry-cvc .cc-field {
+    width: 50% !important;
+  }
+  sedra-widget #sedra-widget #contribution-view #contribution-rewards .credit-card-form .card-expiry-cvc .cc-field:first-child {
+    padding-right: 5px;
+  }
+  sedra-widget #sedra-widget #contribution-view #contribution-rewards .credit-card-form .card-expiry-cvc .cc-field:last-child {
+    padding-left: 5px;
+  }
+  sedra-widget #sedra-widget #contribution-view #contribution-rewards #account-info .phone-type {
+    text-align: center;
+  }
+  sedra-widget #sedra-widget #contribution-view #contribution-rewards #account-info .account-info-tab-menu .item {
+    padding: 10px;
+  }
+  sedra-widget #sedra-widget #contribution-view #contribution-rewards #review-payment tr td {
+    text-align: left;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */

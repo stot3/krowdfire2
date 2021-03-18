@@ -1,0 +1,17 @@
+{
+	"tab_apisetting_background_processor": "Background Processor",
+	"tab_apisetting_background_processor_message":"This feature allows you to set callback URL’s (webhooks) for various processing events. You can read more about this feature <a href='https://www.thrinacia.com/blog/post/processing-webhooks' target='_blank'>here.</a>",
+	"tab_apisetting_ending": "Process Ending URL",
+	"tab_apisetting_process_preauth": "Process PreAuth URL",
+	"tab_apisetting_accepted_capture": "Process Accepted Capture URL",
+	"tab_apisetting_capture": "Process Capture URL",
+	"tab_apisetting_cancelled": "Process Cancelled URL",
+	"tab_apisetting_campaign_processor": "Campaign",
+	"tab_apisetting_campaign_processor_pledge":"Pledge Operations URL",
+	"tab_apisetting_save_button": "Save Processor Settings",
+	"tab_apisetting_insecure_modal_title": "Processor Settings",
+	"tab_apisetting_insecure_modal_confirm_button": "Yes",
+	"tab_apisetting_insecure_modal_deny_button": "No",
+	"tab_apisetting_insecure_modal_message": "One or more of your URLs are insecure (non-https). Do you want to continue saving?"
+
+}

@@ -1,0 +1,174 @@
+@import 'colors';
+
+#front-page {
+	///////////////////////////////////////////////
+	// Top Banner
+	///////////////////////////////////////////////
+	#topbanner-main {
+		position: relative;
+		.banner-image-style {
+			height: 500px;
+		}
+		.banner-content {
+			position: absolute;
+			z-index: 100;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-webkit-flex-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			background: rgba(0,0,0,0);
+
+			.banner-content-grid {
+				width: 100%;
+				text-align: center;
+			}
+			.header-title-one {
+				font-size: 4rem;
+				margin-bottom: 1.5rem;
+			}
+			.header-title-two {
+				font-size: 3rem;
+				margin-bottom: 0;
+				margin-top: 0;
+			}
+			.header-description { 
+				font-size: 2rem; 
+			}
+			.masthead-button-wrap {
+				margin-top: 4em;
+			}
+		}
+		#video-wrapper {
+			overflow: hidden;
+			position: relative;
+			&.video-iframe-tag {
+				.video-banner {
+					position: relative;
+					padding-bottom: 56.25%; //proportion value to aspect ratio 16:9 (9 / 16 = 0.5625 or 56.25%)
+					height: 0;
+					overflow: hidden;
+					iframe {
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 100%;
+						height: 100%;
+						bottom: 0;
+						right: 0;
+					}
+				}
+			}
+			&.video-video-tag {
+				.video-banner {
+					video {
+						width: 100%;
+						height: 100%;
+					}
+				}
+			}
+		}
+		#bgimage-wrapper {
+			-ms-background-size: cover;
+			background-size: cover;
+			background-position: center center;
+			background-repeat: no-repeat;
+			color: #fff;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-webkit-flex-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			height: 500px;
+			align-items: center;
+			position: relative;
+		}
+	}
+
+	///////////////////////////////////////////////
+	// Category Promo
+	///////////////////////////////////////////////
+	.promo-wrap {
+		margin: 0;
+		padding: 2.5rem 0; 
+		background: #F5F5F5; 
+		.ui.label{
+			margin: 0.5em 0.25em 0em;
+		}
+	}
+	
+	///////////////////////////////////////////////
+	// Front Campaign List
+	///////////////////////////////////////////////
+	.campaign-list-wrap {
+		.front-campaign-list {
+			padding: 2.5rem 0;
+			.campaign-list-items {
+				.campaign-section-title {
+					width: 100%;
+					margin-top: 1rem;
+					.icon { 			
+						margin:0;
+						padding: 0;
+					}
+				}
+			}
+		}
+	}
+
+	///////////////////////////////////////////////
+	// Learn More
+	///////////////////////////////////////////////
+	#learnmore-wrap {
+		padding: 4% 0;
+		.lm-grid-wrap {
+			max-width: 1200px;
+			margin: 1rem auto;
+			.lm-column-grid {
+				.ui.header { color: #fff; }
+				.icon-header {
+					i.circular.icon {
+						-webkit-box-shadow: 0em 0em 0em 0.1em rgba(255, 255, 255, 1) inset;
+						box-shadow: 0em 0em 0em 0.1em rgba(255, 255, 255, 1) inset;
+					}
+					.sub.header {
+						color: #333333;
+
+					}
+				}
+			}
+		}
+		.lm-footer{
+			.btn-wrap{
+				margin-top:40px;
+			}
+		}
+	}
+	/* LOGO */
+	.partner-logos{
+		padding: 40px 0;
+		.partner-logos-grid {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			        align-items: center;
+		}
+		.partner-logos-title{
+			color: #00b5ad;
+			padding-bottom: 10px;
+		}
+		.company-logo {
+			margin: 0 auto;
+		}
+	}
+}

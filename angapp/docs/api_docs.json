@@ -1,0 +1,3409 @@
+[
+  {
+    "package": "Thrinacia::Controller::Service::RESTv1::Authenticate",
+    "segments": [ {
+      "name": "authenticate/confirm",
+      "call_syntax": "authenticate/forgot/confirm",
+      "method": "POST",
+      "description": "user authentication password change confirmation",
+      "profile": "profile_authenticate_forgot_password_confirm",
+      "request": {
+        "token": {
+          "description": "token field",
+          "required": true,
+          "type": "string"
+        }, 
+        "password": {
+          "description": "password field",
+          "required": true,
+          "type": "string"
+        }, 
+        "password_confirm": {
+          "description": "password_confirm field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "authenticate/forgot",
+      "call_syntax": "authenticate/forgot",
+      "method": "GET",
+      "description": "forgot password - check to see if token is valid",
+      "profile": "profile_authenticate_forgot_password_retrieve",
+      "request": {
+        "token": {
+          "description": "token field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "authenticate/forgot",
+      "call_syntax": "authenticate/forgot",
+      "method": "POST",
+      "description": "forgot password - make a new request",
+      "profile": "profile_authenticate_forgot_password_submit",
+      "request": {
+        "email": {
+          "description": "email field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "authenticate",
+      "call_syntax": "authenticate",
+      "method": "GET",
+      "description": "returns current authentication info",
+      "profile": "profile_authenticate_retrieve",
+      "request": {
+      }
+    },  {
+      "name": "authenticate",
+      "call_syntax": "authenticate",
+      "method": "POST",
+      "description": "user authentication",
+      "profile": "profile_authenticate_submit",
+      "request": {
+        "email": {
+          "description": "email field",
+          "required": true,
+          "type": "string"
+        }, 
+        "password": {
+          "description": "password field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    } ]
+  }, 
+  {
+    "package": "Thrinacia::Controller::Service::RESTv1::Register",
+    "segments": [ {
+      "name": "register/confirm",
+      "call_syntax": "register/confirm",
+      "method": "POST",
+      "description": "confirm registered account",
+      "profile": "profile_register_confirm",
+      "request": {
+        "token": {
+          "description": "token field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "register/reconfirm",
+      "call_syntax": "register/reconfirm",
+      "method": "POST",
+      "description": "reconfirm registered account",
+      "profile": "profile_register_reconfirm",
+      "request": {
+        "email": {
+          "description": "email field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "register",
+      "call_syntax": "register",
+      "method": "POST",
+      "description": "register new account",
+      "profile": "profile_register_submit",
+      "request": {
+        "first_name": {
+          "description": "first_name field",
+          "required": true,
+          "type": "string"
+        }, 
+        "last_name": {
+          "description": "last_name field",
+          "required": true,
+          "type": "string"
+        }, 
+        "email": {
+          "description": "email field",
+          "required": true,
+          "type": "string"
+        }, 
+        "password": {
+          "description": "password field",
+          "required": true,
+          "type": "string"
+        }, 
+        "password_confirm": {
+          "description": "password_confirm field",
+          "required": true,
+          "type": "string"
+        }, 
+        "inline_registration": {
+          "description": "inline_registration field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    } ]
+  }, 
+  {
+    "package": "Thrinacia::Controller::Service::RESTv1::Account::Campaign",
+    "segments": [ {
+      "name": "account/campaign/backer",
+      "call_syntax": "campaign/<Campaign ID>/backer/[<Backer ID>]",
+      "method": "GET",
+      "description": "retrieve specific or all campaign backers",
+      "filters": "person_name",
+      "profile": "profile_backer_retrieve",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "entry_backer_id": {
+          "description": "entry_backer_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "filters": {
+          "description": "filters field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/campaign",
+      "call_syntax": "campaign",
+      "method": "POST",
+      "description": "create core campaign resource",
+      "profile": "profile_campaign_create",
+      "request": {
+        "name": {
+          "description": "name field",
+          "required": true,
+          "type": "string"
+        }, 
+        "description": {
+          "description": "description field",
+          "required": false,
+          "type": "string"
+        }, 
+        "blurb": {
+          "description": "blurb field",
+          "required": false,
+          "type": "string"
+        }, 
+        "funding_goal": {
+          "description": "funding_goal field",
+          "required": false,
+          "type": "string"
+        }, 
+        "starts": {
+          "description": "starts field",
+          "required": false,
+          "type": "string"
+        }, 
+        "ends": {
+          "description": "ends field",
+          "required": false,
+          "type": "string"
+        }, 
+        "runtime_days": {
+          "description": "runtime_days field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "city_id": {
+          "description": "city_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "category_id": {
+          "description": "category_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "currency_id": {
+          "description": "currency_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "stripe_account_id": {
+          "description": "stripe_account_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "manager_id": {
+          "description": "manager_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "raise_mode_id": {
+          "description": "raise_mode_id field",
+          "required": true,
+          "type": "string"
+        }, 
+        "profile_type_id": {
+          "description": "profile_type_id field",
+          "required": true,
+          "type": "string"
+        }, 
+        "business_organization_id": {
+          "description": "business_organization_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "featured": {
+          "description": "featured field",
+          "required": false,
+          "type": "string"
+        }, 
+        "display_priority": {
+          "description": "display_priority field",
+          "required": false,
+          "type": "string"
+        }, 
+        "pledge_processing_started": {
+          "description": "pledge_processing_started field",
+          "required": false,
+          "type": "string"
+        }, 
+        "hidden": {
+          "description": "hidden field",
+          "required": false,
+          "type": "string"
+        }, 
+        "maximum_allowed_funds_raised": {
+          "description": "maximum_allowed_funds_raised field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/campaign",
+      "call_syntax": "campaign/<Campaign ID>",
+      "method": "DELETE",
+      "description": "delete core campaign resource",
+      "profile": "profile_campaign_delete",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/campaign/raise_mode",
+      "call_syntax": "campaign/raise-mode/[<Raise Mode ID>]",
+      "method": "GET",
+      "description": "get a specific allowed raise mode or list of all allowed raise modes if Raise Mode ID is not supplied",
+      "profile": "profile_campaign_raise_mode_retrieve",
+      "request": {
+        "raise_mode_id": {
+          "description": "raise_mode_id field",
+          "required": false,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/campaign",
+      "call_syntax": "campaign/[<Campaign ID>|<Campaign URI Path>]",
+      "method": "GET",
+      "description": "get a specific campaign or list of all campaigns if campaign ID is not supplied",
+      "filters"    : "category, location, name, entry_status_id, featured, description, backer, manager, hidden",
+      "profile": "profile_campaign_retrieve",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "entry_status_id": {
+          "description": "entry_status_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "person_id": {
+          "description": "person_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "category_id": {
+          "description": "category_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "city_id": {
+          "description": "city_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "currency_id": {
+          "description": "currency_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "name": {
+          "description": "name field",
+          "required": false,
+          "type": "string"
+        }, 
+        "funding_goal": {
+          "description": "funding_goal field",
+          "required": false,
+          "type": "string"
+        }, 
+        "starts": {
+          "description": "starts field",
+          "required": false,
+          "type": "string"
+        }, 
+        "ends": {
+          "description": "ends field",
+          "required": false,
+          "type": "string"
+        }, 
+        "runtime_days": {
+          "description": "runtime_days field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "filters": {
+          "description": "filters field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/campaign/status",
+      "call_syntax": "campaign/status/[<Campaign Status ID>]",
+      "method": "GET",
+      "description": "get a specific campaign status or list of all campaign statuses if Campaign Status ID is not supplied",
+      "profile": "profile_campaign_status_retrieve",
+      "request": {
+        "entry_status_id": {
+          "description": "entry_status_id field",
+          "required": false,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/campaign/stripe_account",
+      "call_syntax": "campaign/<Campaign ID>/stripe-account",
+      "method": "GET",
+      "description": "get a list of all campaign stripe accounts for currently logged in user",
+      "profile": "profile_campaign_stripe_account_retrieve",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": false,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/campaign",
+      "call_syntax": "campaign/<Campaign ID>",
+      "method": "PUT",
+      "description": "update core campaign resource",
+      "profile": "profile_campaign_update",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "name": {
+          "description": "name field",
+          "required": false,
+          "type": "string"
+        }, 
+        "description": {
+          "description": "description field",
+          "required": false,
+          "type": "string"
+        }, 
+        "blurb": {
+          "description": "blurb field",
+          "required": false,
+          "type": "string"
+        }, 
+        "funding_goal": {
+          "description": "funding_goal field",
+          "required": false,
+          "type": "string"
+        }, 
+        "starts": {
+          "description": "starts field",
+          "required": false,
+          "type": "string"
+        }, 
+        "ends": {
+          "description": "ends field",
+          "required": false,
+          "type": "string"
+        }, 
+        "runtime_days": {
+          "description": "runtime_days field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "city_id": {
+          "description": "city_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "category_id": {
+          "description": "category_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "currency_id": {
+          "description": "currency_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "stripe_account_id": {
+          "description": "stripe_account_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "manager_id": {
+          "description": "manager_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "entry_status_id": {
+          "description": "entry_status_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "raise_mode_id": {
+          "description": "raise_mode_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "profile_type_id": {
+          "description": "profile_type_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "business_organization_id": {
+          "description": "business_organization_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "featured": {
+          "description": "featured field",
+          "required": false,
+          "type": "string"
+        }, 
+        "display_priority": {
+          "description": "display_priority field",
+          "required": false,
+          "type": "string"
+        }, 
+        "pledge_processing_started": {
+          "description": "pledge_processing_started field",
+          "required": false,
+          "type": "string"
+        }, 
+        "hidden": {
+          "description": "hidden field",
+          "required": false,
+          "type": "string"
+        }, 
+        "maximum_allowed_funds_raised": {
+          "description": "maximum_allowed_funds_raised field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/campaign/faq",
+      "call_syntax": "campaign/<Campaign ID>/faq",
+      "method": "POST",
+      "description": "create campaign faq",
+      "profile": "profile_faq_create",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "name": {
+          "description": "name field",
+          "required": true,
+          "type": "string"
+        }, 
+        "description": {
+          "description": "description field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/campaign/faq",
+      "call_syntax": "campaign/<Campaign ID>/faq/<FAQ ID>",
+      "method": "DELETE",
+      "description": "delete campaign faq",
+      "profile": "profile_faq_delete",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "faq_id": {
+          "description": "faq_id field",
+          "required": true,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/campaign/faq_pair",
+      "call_syntax": "campaign/<Campaign ID>/faq/<FAQ ID>/faq-pair",
+      "method": "POST",
+      "description": "create campaign faq pair, pairs is an array containing question, answer and display_priority",
+      "profile": "profile_faq_pair_create",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "faq_id": {
+          "description": "faq_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "pairs": {
+          "description": "pairs field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/campaign/faq_pair",
+      "call_syntax": "campaign/<Campaign ID>/faq/<FAQ ID>/faq-pair/<FAQ Pair ID>",
+      "method": "DELETE",
+      "description": "delete campaign faq pair",
+      "profile": "profile_faq_pair_delete",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "faq_id": {
+          "description": "faq_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "faq_pair_id": {
+          "description": "faq_pair_id field",
+          "required": true,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/campaign/faq_pair",
+      "call_syntax": "campaign/<Campaign ID>/faq/<FAQ ID>/faq-pair/[<FAQ Pair ID>]",
+      "method": "GET",
+      "description": "retrieve campaign faq pair",
+      "profile": "profile_faq_pair_retrieve",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "faq_id": {
+          "description": "faq_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "faq_pair_id": {
+          "description": "faq_pair_id field",
+          "required": false,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/campaign/faq_pair",
+      "call_syntax": "campaign/<Campaign ID>/faq/<FAQ ID>/faq-pair/<FAQ Pair ID>",
+      "method": "PUT",
+      "description": "update campaign faq pair",
+      "profile": "profile_faq_pair_update",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "faq_id": {
+          "description": "faq_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "faq_pair_id": {
+          "description": "faq_pair_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "question": {
+          "description": "question field",
+          "required": true,
+          "type": "string"
+        }, 
+        "answer": {
+          "description": "answer field",
+          "required": true,
+          "type": "string"
+        }, 
+        "display_priority": {
+          "description": "display_priority field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/campaign/faq",
+      "call_syntax": "campaign/<Campaign ID>/faq/[<FAQ ID>]",
+      "method": "GET",
+      "description": "retrieve campaign faq",
+      "profile": "profile_faq_retrieve",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "faq_id": {
+          "description": "faq_id field",
+          "required": false,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/campaign/faq",
+      "call_syntax": "campaign/<Campaign ID>/faq/<FAQ ID>",
+      "method": "PUT",
+      "description": "update campaign faq",
+      "profile": "profile_faq_update",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "faq_id": {
+          "description": "faq_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "name": {
+          "description": "name field",
+          "required": true,
+          "type": "string"
+        }, 
+        "description": {
+          "description": "description field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/campaign/note",
+      "call_syntax": "campaign/<Campaign ID>/note",
+      "method": "POST",
+      "description": "create campaign note",
+      "profile": "profile_note_create",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "value": {
+          "description": "value field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/campaign/note",
+      "call_syntax": "campaign/<Campaign ID>/note/<Note ID>",
+      "method": "DELETE",
+      "description": "delete campaign note",
+      "profile": "profile_note_delete",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "entry_note_id": {
+          "description": "entry_note_id field",
+          "required": true,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/campaign/note",
+      "call_syntax": "campaign/<Campaign ID>/note/[<Note ID>]",
+      "method": "GET",
+      "description": "retrieve campaign note",
+      "profile": "profile_note_retrieve",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "entry_note_id": {
+          "description": "entry_note_id field",
+          "required": false,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/campaign/note",
+      "call_syntax": "campaign/<Campaign ID>/note/<Note ID>",
+      "method": "PUT",
+      "description": "update campaign note",
+      "profile": "profile_note_update",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "entry_note_id": {
+          "description": "entry_note_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "value": {
+          "description": "value field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/campaign/pledge",
+      "call_syntax": "campaign/<Campaign ID>/pledge",
+      "method": "POST",
+      "description": "create campaign pledge",
+      "profile": "profile_pledge_create",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "stripe_account_card_id": {
+          "description": "stripe_account_card_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "pledge_level_id": {
+          "description": "pledge_level_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "amount": {
+          "description": "amount field",
+          "required": true,
+          "type": "string"
+        }, 
+        "anonymous_contribution": {
+          "description": "anonymous_contribution field",
+          "required": false,
+          "type": "string"
+        }, 
+        "shipping_address_id": {
+          "description": "shipping_address_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "inline_token": {
+          "description": "inline_token field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/campaign/pledge/guest",
+      "call_syntax": "campaign/<Campaign ID>/pledge/guest",
+      "method": "POST",
+      "description": "create guest campaign pledge",
+      "profile": "profile_pledge_create_guest",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "pledge_level_id": {
+          "description": "pledge_level_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "amount": {
+          "description": "amount field",
+          "required": true,
+          "type": "string"
+        }, 
+        "shipping_address_id": {
+          "description": "shipping_address_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "card_id": {
+          "description": "card_id field",
+          "required": true,
+          "type": "string"
+        }, 
+        "fingerprint": {
+          "description": "fingerprint field",
+          "required": true,
+          "type": "string"
+        }, 
+        "email": {
+          "description": "email field",
+          "required": true,
+          "type": "string"
+        }, 
+        "first_name": {
+          "description": "first_name field",
+          "required": false,
+          "type": "string"
+        }, 
+        "last_name": {
+          "description": "last_name field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/campaign/pledge",
+      "call_syntax": "campaign/<Campaign ID>/pledge/<Pledge ID>",
+      "method": "DELETE",
+      "description": "delete campaign pledge",
+      "profile": "profile_pledge_delete",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "entry_backer_id": {
+          "description": "entry_backer_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "inline_token": {
+          "description": "inline_token field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/campaign/pledge_level",
+      "call_syntax": "campaign/<Campaign ID>/pledge-level",
+      "method": "POST",
+      "description": "create pledge level",
+      "profile": "profile_pledge_level_create",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "name": {
+          "description": "name field",
+          "required": true,
+          "type": "string"
+        }, 
+        "description": {
+          "description": "description field",
+          "required": true,
+          "type": "string"
+        }, 
+        "amount": {
+          "description": "amount field",
+          "required": false,
+          "type": "string"
+        }, 
+        "estimated_delivery_time": {
+          "description": "estimated_delivery_time field",
+          "required": false,
+          "type": "string"
+        }, 
+        "item_limit": {
+          "description": "item_limit field",
+          "required": false,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/campaign/pledge_level",
+      "call_syntax": "campaign/<Campaign ID>/pledge-level/<Pledge Level ID>",
+      "method": "DELETE",
+      "description": "delete pledge level",
+      "profile": "profile_pledge_level_delete",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "pledge_level_id": {
+          "description": "pledge_level_id field",
+          "required": true,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/campaign/pledge_level",
+      "call_syntax": "campaign/<Campaign ID>/pledge-level/[<Pledge Level ID>]",
+      "method": "GET",
+      "description": "retrieve pledge level",
+      "profile": "profile_pledge_level_retrieve",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "pledge_level_id": {
+          "description": "pledge_level_id field",
+          "required": false,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/campaign/shipping_option",
+      "call_syntax": "campaign/<Campaign ID>/pledge-level/<Pledge Level ID>/shipping-option",
+      "method": "POST",
+      "description": "create pledge level shipping option",
+      "profile": "profile_pledge_level_shipping_option_create",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "pledge_level_id": {
+          "description": "pledge_level_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "shipping_option_type_id": {
+          "description": "shipping_option_type_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "country_id": {
+          "description": "country_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "name": {
+          "description": "name field",
+          "required": false,
+          "type": "string"
+        }, 
+        "description": {
+          "description": "description field",
+          "required": false,
+          "type": "string"
+        }, 
+        "cost": {
+          "description": "cost field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/campaign/shipping_option",
+      "call_syntax": "campaign/<Campaign ID>/pledge-level/<Pledge Level ID>/shipping-option/<Shipping Option ID>",
+      "method": "DELETE",
+      "description": "delete pledge level shipping option",
+      "profile": "profile_pledge_level_shipping_option_delete",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "pledge_level_id": {
+          "description": "pledge_level_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "shipping_option_id": {
+          "description": "shipping_option_id field",
+          "required": true,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/campaign/shipping_option",
+      "call_syntax": "campaign/<Campaign ID>/pledge-level/<Pledge Level ID>/shipping-option/[<Shipping Option ID>]",
+      "method": "GET",
+      "description": "retrieve pledge level shipping option",
+      "profile": "profile_pledge_level_shipping_option_retrieve",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "pledge_level_id": {
+          "description": "pledge_level_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "shipping_option_id": {
+          "description": "shipping_option_id field",
+          "required": false,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/campaign/shipping_option",
+      "call_syntax": "campaign/<Campaign ID>/pledge-level/<Pledge Level ID>/shipping-option/<Shipping Option ID>",
+      "method": "PUT",
+      "description": "update pledge level shipping option",
+      "profile": "profile_pledge_level_shipping_option_update",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "pledge_level_id": {
+          "description": "pledge_level_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "shipping_option_id": {
+          "description": "shipping_option_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "shipping_option_type_id": {
+          "description": "shipping_option_type_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "country_id": {
+          "description": "country_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "name": {
+          "description": "name field",
+          "required": false,
+          "type": "string"
+        }, 
+        "description": {
+          "description": "description field",
+          "required": false,
+          "type": "string"
+        }, 
+        "cost": {
+          "description": "cost field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/campaign/pledge_level",
+      "call_syntax": "campaign/<Campaign ID>/pledge-level/<Pledge Level ID>",
+      "method": "PUT",
+      "description": "update pledge level",
+      "profile": "profile_pledge_level_update",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "pledge_level_id": {
+          "description": "pledge_level_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "name": {
+          "description": "name field",
+          "required": false,
+          "type": "string"
+        }, 
+        "description": {
+          "description": "description field",
+          "required": false,
+          "type": "string"
+        }, 
+        "amount": {
+          "description": "amount field",
+          "required": false,
+          "type": "string"
+        }, 
+        "estimated_delivery_time": {
+          "description": "estimated_delivery_time field",
+          "required": false,
+          "type": "string"
+        }, 
+        "item_limit": {
+          "description": "item_limit field",
+          "required": false,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/campaign/pledge",
+      "call_syntax": "campaign/<Campaign ID>/pledge/[<Pledge ID>]",
+      "method": "GET",
+      "description": "retrieve campaign pledge",
+      "profile": "profile_pledge_retrieve",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "entry_backer_id": {
+          "description": "entry_backer_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "inline_token": {
+          "description": "inline_token field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/campaign/pledge_transaction",
+      "call_syntax": "campaign/<Campaign ID>/pledge-transaction/[<Pledge Transaction ID>]",
+      "method": "GET",
+      "description": "retrieve pre-auth pledge transaction",
+      "profile": "profile_pledge_transaction_retrieve",
+      "request": {
+        "stripe_transaction_entry_backer_id": {
+          "description": "stripe_transaction_entry_backer_id field",
+          "required": false,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/campaign/pledge_transaction",
+      "call_syntax": "campaign/<Campaign ID>/pledge-transaction/<Pledge Transaction ID>",
+      "method": "PUT",
+      "description": "attempt to re-try the failed pledge pre-auth transaction",
+      "profile": "profile_pledge_transaction_update",
+      "request": {
+        "stripe_transaction_entry_backer_id": {
+          "description": "stripe_transaction_entry_backer_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "stripe_account_card_id": {
+          "description": "stripe_account_card_id field",
+          "required": true,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/campaign/pledge",
+      "call_syntax": "campaign/<Campaign ID>/pledge/<Pledge ID>",
+      "method": "PUT",
+      "description": "update campaign pledge",
+      "profile": "profile_pledge_update",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "entry_backer_id": {
+          "description": "entry_backer_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "stripe_account_card_id": {
+          "description": "stripe_account_card_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "pledge_level_id": {
+          "description": "pledge_level_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "amount": {
+          "description": "amount field",
+          "required": true,
+          "type": "string"
+        }, 
+        "anonymous_contribution": {
+          "description": "anonymous_contribution field",
+          "required": false,
+          "type": "string"
+        }, 
+        "shipping_address_id": {
+          "description": "shipping_address_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "inline_token": {
+          "description": "inline_token field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/campaign/resource",
+      "call_syntax": "campaign/<Campaign ID>/resource/<Resource Type>",
+      "method": "POST",
+      "description": "create campaign resource",
+      "profile": "profile_resource_create",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "resource_type": {
+          "description": "resource_type field",
+          "required": true,
+          "type": "string"
+        }, 
+        "resource_content_type": {
+          "description": "resource_content_type field",
+          "required": false,
+          "type": "string"
+        }, 
+        "resource": {
+          "description": "resource field",
+          "required": true,
+          "type": "string"
+        }, 
+        "region_id": {
+          "description": "region_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "label": {
+          "description": "label field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/campaign/resource",
+      "call_syntax": "campaign/<Campaign ID>/resource/<Resource Type>/<Resource ID>",
+      "method": "DELETE",
+      "description": "delete campaign resource",
+      "profile": "profile_resource_delete",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "resource_id": {
+          "description": "resource_id field",
+          "required": true,
+          "type": "string"
+        }, 
+        "resource_type": {
+          "description": "resource_type field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/campaign/resource",
+      "call_syntax": "campaign/<Campaign ID>/resource/<Resource Type>/[<Resource ID>]",
+      "method": "GET",
+      "description": "retrieve campaign resource",
+      "profile": "profile_resource_retrieve",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "resource_id": {
+          "description": "resource_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "resource_type": {
+          "description": "resource_type field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/campaign/resource",
+      "call_syntax": "campaign/<Campaign ID>/resource/<Resource Type>/<Resource ID>",
+      "method": "PUT",
+      "description": "update campaign resource",
+      "profile": "profile_resource_update",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "resource_id": {
+          "description": "resource_id field",
+          "required": true,
+          "type": "string"
+        }, 
+        "resource_type": {
+          "description": "resource_type field",
+          "required": true,
+          "type": "string"
+        }, 
+        "resource_content_type": {
+          "description": "resource_content_type field",
+          "required": false,
+          "type": "string"
+        }, 
+        "resource": {
+          "description": "resource field",
+          "required": true,
+          "type": "string"
+        }, 
+        "region_id": {
+          "description": "region_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "label": {
+          "description": "label field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/campaign/stats",
+      "call_syntax": "campaign/<Campaign ID>/stats",
+      "method": "GET",
+      "description": "get campaign processing stats",
+      "extra_params": "summary ( either 1 or 0 )",
+      "profile": "profile_stats_retrieve",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "summary": {
+          "description": "summary field",
+          "required": false,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/campaign/stream",
+      "call_syntax": "campaign/<Campaign ID>/stream",
+      "method": "POST",
+      "description": "create campaign stream",
+      "profile": "profile_stream_create",
+      "request": {
+        "stream_type_id": {
+          "description": "stream_type_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "person_id": {
+          "description": "person_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "title": {
+          "description": "title field",
+          "required": true,
+          "type": "string"
+        }, 
+        "message": {
+          "description": "message field",
+          "required": true,
+          "type": "string"
+        }, 
+        "published": {
+          "description": "published field",
+          "required": false,
+          "type": "string"
+        }, 
+        "display_priority": {
+          "description": "display_priority field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/campaign/stream",
+      "call_syntax": "campaign/<Campaign ID>/stream/<Stream ID>",
+      "method": "DELETE",
+      "description": "delete campaign stream",
+      "profile": "profile_stream_delete",
+      "request": {
+        "stream_id": {
+          "description": "stream_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/campaign/stream_notify",
+      "call_syntax": "campaign/<Campaign ID>/stream-notify/<Stream ID>",
+      "method": "POST",
+      "description": "notify stream subscribers via email that update has been published",
+      "profile": "profile_stream_notify_create",
+      "request": {
+        "stream_id": {
+          "description": "stream_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/campaign/stream",
+      "call_syntax": "campaign/<Campaign ID>/stream/[<Stream ID>]",
+      "method": "GET",
+      "description": "get campaign streams",
+      "profile": "profile_stream_retrieve",
+      "request": {
+        "stream_id": {
+          "description": "stream_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/campaign/stream",
+      "call_syntax": "campaign/<Campaign ID>/stream/<Stream ID>",
+      "method": "PUT",
+      "description": "update campaign stream",
+      "profile": "profile_stream_update",
+      "request": {
+        "stream_id": {
+          "description": "stream_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "stream_type_id": {
+          "description": "stream_type_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "person_id": {
+          "description": "person_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "title": {
+          "description": "title field",
+          "required": false,
+          "type": "string"
+        }, 
+        "message": {
+          "description": "message field",
+          "required": false,
+          "type": "string"
+        }, 
+        "published": {
+          "description": "published field",
+          "required": false,
+          "type": "string"
+        }, 
+        "display_priority": {
+          "description": "display_priority field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/campaign/verify",
+      "call_syntax": "campaign/<Campaign ID>/verify/[<Verify Type ID>]",
+      "method": "POST",
+      "description": "create verification data for campaign",
+      "profile": "profile_verify_create",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "verify_type_id": {
+          "description": "verify_type_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "data": {
+          "description": "data field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/campaign/verify",
+      "call_syntax": "campaign/<Campaign ID>/verify/[<Verify Type ID>]",
+      "method": "GET",
+      "description": "retrieve verification data for campaign",
+      "profile": "profile_verify_retrieve",
+      "request": {
+        "entry_id": {
+          "description": "entry_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "verify_type_id": {
+          "description": "verify_type_id field",
+          "required": false,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/campaign/video_check",
+      "call_syntax": "campaign/video-check/URL",
+      "method": "GET",
+      "description": "check provided video link and return result, takes Base64 encoded URL",
+      "profile": "profile_video_check_retrieve",
+      "request": {
+        "link": {
+          "description": "link field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    } ]
+  }, 
+  {
+    "package": "Thrinacia::Controller::Service::RESTv1::Account::Locale",
+    "segments": [ {
+      "name"       : "account/locale/city",
+      "call_syntax": "locale/city/[City Prefix]",
+      "method"     : "GET",
+      "description": "retrieves cities",
+      "profile": "profile_locale_city_retrieve",
+      "request": {
+        "city_prefix": {
+          "description": "city_prefix field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/locale/country",
+      "call_syntax": "locale/country",
+      "method"     : "GET",
+      "description": "retrieves countries",
+      "profile": "profile_locale_country_retrieve",
+      "request": {
+      }
+    },  {
+      "name"       : "account/locale/currency",
+      "call_syntax": "locale/currency",
+      "method"     : "GET",
+      "description": "retrieves currencies",
+      "profile": "profile_locale_currency_retrieve",
+      "request": {
+      }
+    } ]
+  }, 
+  {
+    "package": "Thrinacia::Controller::Service::RESTv1::Account::Profile",
+    "segments": [ {
+      "name": "account/profile/confirm",
+      "call_syntax": "account/email/confirm/<Validation Token>",
+      "method": "GET",
+      "description": "check to see if provided email change request token is valid",
+      "profile": "profile_account_change_email_confirm_retrieve",
+      "request": {
+        "token": {
+          "description": "token field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/profile/confirm",
+      "call_syntax": "account/email/confirm",
+      "method": "POST",
+      "description": "perform email change request",
+      "profile": "profile_account_change_email_confirm_submit",
+      "request": {
+        "token": {
+          "description": "token field",
+          "required": true,
+          "type": "string"
+        }, 
+        "email": {
+          "description": "email field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/profile/message",
+      "call_syntax": "account/message",
+      "method"     : "POST",
+      "description": "create user message",
+      "profile": "profile_account_message_create",
+      "request": {
+        "person_id": {
+          "description": "person_id field",
+          "required": true,
+          "type": "string"
+        }, 
+        "subject": {
+          "description": "subject field",
+          "required": true,
+          "type": "string"
+        }, 
+        "body": {
+          "description": "body field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/profile/message",
+      "call_syntax": "account/message/<Message ID>",
+      "method"     : "DELETE",
+      "description": "delete user message",
+      "profile": "profile_account_message_delete",
+      "request": {
+        "message_id": {
+          "description": "message_id field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/profile/message",
+      "call_syntax": "account/message/[<Message ID>]",
+      "method"     : "GET",
+      "description": "retrieve user message",
+      "filters"    : "subject, body",
+      "profile": "profile_account_message_retrieve",
+      "request": {
+        "message_id": {
+          "description": "message_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "filters": {
+          "description": "filters field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/profile/person",
+      "call_syntax": "account/person/<Person ID>",
+      "method"     : "GET",
+      "description": "retrieve public profile of a person",
+      "profile": "profile_account_person_retrieve",
+      "request": {
+        "person_id": {
+          "description": "person_id field",
+          "required": true,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name"       : "account/profile/email",
+      "call_syntax": "account/email/<Email Address>",
+      "method"     : "GET",
+      "description": "retrieves user account information via provided email address ( portal_admin only )",
+      "profile": "profile_account_retrieve_email",
+      "request": {
+        "email": {
+          "description": "email field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/profile/email",
+      "call_syntax": "account/email",
+      "method"     : "POST",
+      "description": "request email address update for currently logged in user",
+      "profile": "profile_account_submit_email",
+      "request": {
+      }
+    },  {
+      "name"       : "account/profile",
+      "call_syntax": "account",
+      "method"     : "PUT",
+      "description": "updates user account information",
+      "profile": "profile_account_update",
+      "request": {
+        "first_name": {
+          "description": "first_name field",
+          "required": false,
+          "type": "string"
+        }, 
+        "last_name": {
+          "description": "last_name field",
+          "required": false,
+          "type": "string"
+        }, 
+        "bio": {
+          "description": "bio field",
+          "required": false,
+          "type": "string"
+        }, 
+        "password_old": {
+          "description": "password_old field",
+          "required": false,
+          "type": "string"
+        }, 
+        "password": {
+          "description": "password field",
+          "required": false,
+          "type": "string"
+        }, 
+        "password_confirm": {
+          "description": "password_confirm field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/profile/address",
+      "call_syntax": "account/address",
+      "method"     : "POST",
+      "description": "creates address",
+      "profile": "profile_address_create",
+      "request": {
+        "business_organization_id": {
+          "description": "business_organization_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "person_id": {
+          "description": "person_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "city_id": {
+          "description": "city_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "mail_code": {
+          "description": "mail_code field",
+          "required": true,
+          "type": "string"
+        }, 
+        "street1": {
+          "description": "street1 field",
+          "required": true,
+          "type": "string"
+        }, 
+        "street2": {
+          "description": "street2 field",
+          "required": false,
+          "type": "string"
+        }, 
+        "description": {
+          "description": "description field",
+          "required": false,
+          "type": "string"
+        }, 
+        "primary_address": {
+          "description": "primary_address field",
+          "required": false,
+          "type": "string"
+        }, 
+        "inline_token": {
+          "description": "inline_token field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/profile/address_guest",
+      "call_syntax": "account/address/guest",
+      "method"     : "POST",
+      "description": "creates guest address",
+      "profile": "profile_address_create_guest",
+      "request": {
+        "business_organization_id": {
+          "description": "business_organization_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "city_id": {
+          "description": "city_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "mail_code": {
+          "description": "mail_code field",
+          "required": true,
+          "type": "string"
+        }, 
+        "street1": {
+          "description": "street1 field",
+          "required": true,
+          "type": "string"
+        }, 
+        "street2": {
+          "description": "street2 field",
+          "required": false,
+          "type": "string"
+        }, 
+        "description": {
+          "description": "description field",
+          "required": false,
+          "type": "string"
+        }, 
+        "primary_address": {
+          "description": "primary_address field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/profile/address",
+      "call_syntax": "account/address/<Address ID>",
+      "method"     : "DELETE",
+      "description": "deletes address",
+      "profile": "profile_address_delete",
+      "request": {
+        "business_organization_id": {
+          "description": "business_organization_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "person_id": {
+          "description": "person_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "address_id": {
+          "description": "address_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "inline_token": {
+          "description": "inline_token field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/profile/address",
+      "call_syntax": "account/address/[<Address ID>]",
+      "method"     : "GET",
+      "description": "retrieves address",
+      "profile": "profile_address_retrieve",
+      "request": {
+        "person_id": {
+          "description": "person_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "address_id": {
+          "description": "address_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "inline_token": {
+          "description": "inline_token field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/profile/address",
+      "call_syntax": "account/address/<Address ID>",
+      "method"     : "PUT",
+      "description": "updates address",
+      "profile": "profile_address_update",
+      "request": {
+        "address_id": {
+          "description": "address_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "person_id": {
+          "description": "person_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "business_organization_id": {
+          "description": "business_organization_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "city_id": {
+          "description": "city_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "mail_code": {
+          "description": "mail_code field",
+          "required": false,
+          "type": "string"
+        }, 
+        "street1": {
+          "description": "street1 field",
+          "required": false,
+          "type": "string"
+        }, 
+        "street2": {
+          "description": "street2 field",
+          "required": false,
+          "type": "string"
+        }, 
+        "description": {
+          "description": "description field",
+          "required": false,
+          "type": "string"
+        }, 
+        "primary_address": {
+          "description": "primary_address field",
+          "required": false,
+          "type": "string"
+        }, 
+        "inline_token": {
+          "description": "inline_token field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/profile/business_organization",
+      "call_syntax": "account/business",
+      "method"     : "POST",
+      "description": "creates business organization",
+      "profile": "profile_business_organization_create",
+      "request": {
+        "person_id": {
+          "description": "person_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "name": {
+          "description": "name field",
+          "required": true,
+          "type": "string"
+        }, 
+        "description": {
+          "description": "description field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/profile/business_organization_guest",
+      "call_syntax": "account/business/guest",
+      "method"     : "POST",
+      "description": "creates guest business organization",
+      "profile": "profile_business_organization_create_guest",
+      "request": {
+        "name": {
+          "description": "name field",
+          "required": true,
+          "type": "string"
+        }, 
+        "description": {
+          "description": "description field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/profile/business_organization",
+      "call_syntax": "account/business/<Business Organization ID>",
+      "method"     : "DELETE",
+      "description": "deletes business organization",
+      "profile": "profile_business_organization_delete",
+      "request": {
+        "business_organization_id": {
+          "description": "business_organization_id field",
+          "required": true,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name"       : "account/profile/business_organization",
+      "call_syntax": "account/business/[<Business Organization ID>]",
+      "method"     : "GET",
+      "description": "retrieves business organization",
+      "profile": "profile_business_organization_retrieve",
+      "request": {
+        "person_id": {
+          "description": "person_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "business_organization_id": {
+          "description": "business_organization_id field",
+          "required": false,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name"       : "account/profile/business_organization",
+      "call_syntax": "account/business/<Business Organization ID>",
+      "method"     : "PUT",
+      "description": "updates business organization",
+      "profile": "profile_business_organization_update",
+      "request": {
+        "person_id": {
+          "description": "person_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "business_organization_id": {
+          "description": "business_organization_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "name": {
+          "description": "name field",
+          "required": false,
+          "type": "string"
+        }, 
+        "description": {
+          "description": "description field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/profile/logout",
+      "call_syntax": "logout",
+      "method"     : "POST",
+      "description": "destroys the active session",
+      "profile": "profile_logout",
+      "request": {
+      }
+    },  {
+      "name": "account/profile/resource",
+      "call_syntax": "account/resource/<Resource Type>",
+      "method": "POST",
+      "description": "create account resource",
+      "profile": "profile_resource_create",
+      "request": {
+        "resource_type": {
+          "description": "resource_type field",
+          "required": true,
+          "type": "string"
+        }, 
+        "resource_content_type": {
+          "description": "resource_content_type field",
+          "required": true,
+          "type": "string"
+        }, 
+        "resource": {
+          "description": "resource field",
+          "required": true,
+          "type": "string"
+        }, 
+        "business_organization_id": {
+          "description": "business_organization_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "person_id": {
+          "description": "person_id field",
+          "required": false,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/profile/resource",
+      "call_syntax": "account/resource/<Resource Type>/<Resource ID>",
+      "method": "DELETE",
+      "description": "delete account resource",
+      "extra_params" : "business_organization_id ( if passed, resource belonging to organization will be deleted instead )",
+      "profile": "profile_resource_delete",
+      "request": {
+        "resource_id": {
+          "description": "resource_id field",
+          "required": true,
+          "type": "string"
+        }, 
+        "resource_type": {
+          "description": "resource_type field",
+          "required": true,
+          "type": "string"
+        }, 
+        "business_organization_id": {
+          "description": "business_organization_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "person_id": {
+          "description": "person_id field",
+          "required": false,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name": "account/profile/resource",
+      "call_syntax": "account/resource/<Resource Type>/[<Resource ID>]",
+      "method": "GET",
+      "description": "retrieve account resource",
+      "extra_params" : "business_organization_id ( returned in descending file.created order ), person_id ( only available for portal admin )",
+      "profile": "profile_resource_retrieve",
+      "request": {
+        "resource_id": {
+          "description": "resource_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "resource_type": {
+          "description": "resource_type field",
+          "required": true,
+          "type": "string"
+        }, 
+        "business_organization_id": {
+          "description": "business_organization_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "person_id": {
+          "description": "person_id field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/profile/resource",
+      "call_syntax": "account/resource/<Resource Type>/<Resource ID>",
+      "method": "PUT",
+      "description": "update account resource",
+      "extra_params" : "business_organization_id ( if supplied business organization resource is updated instead )",
+      "profile": "profile_resource_update",
+      "request": {
+        "resource_id": {
+          "description": "resource_id field",
+          "required": true,
+          "type": "string"
+        }, 
+        "resource_type": {
+          "description": "resource_type field",
+          "required": true,
+          "type": "string"
+        }, 
+        "resource_content_type": {
+          "description": "resource_content_type field",
+          "required": true,
+          "type": "string"
+        }, 
+        "resource": {
+          "description": "resource field",
+          "required": true,
+          "type": "string"
+        }, 
+        "business_organization_id": {
+          "description": "business_organization_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "person_id": {
+          "description": "person_id field",
+          "required": false,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name"       : "account/profile/setting",
+      "call_syntax": "account/setting/[Setting ID|Setting Name]",
+      "method"     : "GET",
+      "description": "retrieves user settings",
+      "profile": "profile_setting_retrieve",
+      "request": {
+        "setting": {
+          "description": "setting field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/profile/setting",
+      "call_syntax": "account/setting",
+      "method"     : "PUT",
+      "description": "updates user settings",
+      "profile": "profile_setting_update",
+      "request": {
+      }
+    },  {
+      "name"       : "account/profile/website",
+      "call_syntax": "account/website",
+      "method"     : "POST",
+      "description": "creates website link",
+      "profile": "profile_website_create",
+      "request": {
+        "business_organization_id": {
+          "description": "business_organization_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "uri": {
+          "description": "uri field",
+          "required": false,
+          "type": "string"
+        }, 
+        "uri_text": {
+          "description": "uri_text field",
+          "required": false,
+          "type": "string"
+        }, 
+        "person_id": {
+          "description": "person_id field",
+          "required": false,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name"       : "account/profile/website",
+      "call_syntax": "account/website/<URI ID>",
+      "method"     : "DELETE",
+      "description": "deletes website link",
+      "profile": "profile_website_delete",
+      "request": {
+        "business_organization_id": {
+          "description": "business_organization_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "person_id": {
+          "description": "person_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "uri_id": {
+          "description": "uri_id field",
+          "required": true,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name"       : "account/profile/website",
+      "call_syntax": "account/website/[<URI ID>]",
+      "method"     : "GET",
+      "description": "retrieves website link",
+      "extra_params" : "person_id ( only available for portal admin )",
+      "profile": "profile_website_retrieve",
+      "request": {
+        "uri_id": {
+          "description": "uri_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "business_organization_id": {
+          "description": "business_organization_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "person_id": {
+          "description": "person_id field",
+          "required": false,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name"       : "account/profile/website",
+      "call_syntax": "account/website/<URI ID>",
+      "method"     : "PUT",
+      "description": "updates website link",
+      "profile": "profile_website_update",
+      "request": {
+        "business_organization_id": {
+          "description": "business_organization_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "person_id": {
+          "description": "person_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "uri_id": {
+          "description": "uri_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "uri": {
+          "description": "uri field",
+          "required": false,
+          "type": "string"
+        }, 
+        "uri_text": {
+          "description": "uri_text field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    } ]
+  }, 
+  {
+    "package": "Thrinacia::Controller::Service::RESTv1::Account::Portal",
+    "segments": [ {
+      "name"       : "account/portal/category",
+      "call_syntax": "portal/category",
+      "method"     : "POST",
+      "description": "creates portal category",
+      "profile": "profile_category_create",
+      "request": {
+        "name": {
+          "description": "name field",
+          "required": true,
+          "type": "string"
+        }, 
+        "description": {
+          "description": "description field",
+          "required": false,
+          "type": "string"
+        }, 
+        "parent_category_id": {
+          "description": "parent_category_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "display_priority": {
+          "description": "display_priority field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/portal/category",
+      "call_syntax": "portal/category/<Category ID>",
+      "method"     : "DELETE",
+      "description": "deletes portal category",
+      "profile": "profile_category_delete",
+      "request": {
+        "category_id": {
+          "description": "category_id field",
+          "required": true,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name"       : "account/portal/category",
+      "call_syntax": "portal/category/<[Category ID|Category Name]/",
+      "method"     : "GET",
+      "description": "retrieves portal categories",
+      "profile": "profile_category_retrieve",
+      "request": {
+        "category_id": {
+          "description": "category_id field",
+          "required": false,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name"       : "account/portal/category",
+      "call_syntax": "portal/category/<Category ID>",
+      "method"     : "PUT",
+      "description": "updates portal category",
+      "profile": "profile_category_update",
+      "request": {
+        "category_id": {
+          "description": "category_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "name": {
+          "description": "name field",
+          "required": true,
+          "type": "string"
+        }, 
+        "description": {
+          "description": "description field",
+          "required": false,
+          "type": "string"
+        }, 
+        "parent_category_id": {
+          "description": "parent_category_id field",
+          "required": false,
+          "type": "integer"
+        }, 
+        "display_priority": {
+          "description": "display_priority field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/portal/contact",
+      "call_syntax": "portal/contact",
+      "method"     : "POST",
+      "description": "submits portal contact form",
+      "profile": "profile_contact_submit",
+      "request": {
+        "name": {
+          "description": "name field",
+          "required": true,
+          "type": "string"
+        }, 
+        "description": {
+          "description": "description field",
+          "required": true,
+          "type": "string"
+        }, 
+        "email": {
+          "description": "email field",
+          "required": true,
+          "type": "string"
+        }, 
+        "phone": {
+          "description": "phone field",
+          "required": false,
+          "type": "string"
+        }, 
+        "business_organization": {
+          "description": "business_organization field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/portal/page",
+      "call_syntax": "portal/page",
+      "method"     : "POST",
+      "description": "creates portal page",
+      "profile": "profile_page_create",
+      "request": {
+        "name": {
+          "description": "name field",
+          "required": true,
+          "type": "string"
+        }, 
+        "content": {
+          "description": "content field",
+          "required": false,
+          "type": "string"
+        }, 
+        "path": {
+          "description": "path field",
+          "required": false,
+          "type": "string"
+        }, 
+        "path_text": {
+          "description": "path_text field",
+          "required": false,
+          "type": "string"
+        }, 
+        "meta": {
+          "description": "meta field",
+          "required": false,
+          "type": "string"
+        }, 
+        "display_priority": {
+          "description": "display_priority field",
+          "required": false,
+          "type": "string"
+        }, 
+        "published": {
+          "description": "published field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/portal/page",
+      "call_syntax": "portal/page/<Page ID>",
+      "method"     : "DELETE",
+      "description": "delete portal page",
+      "profile": "profile_page_delete",
+      "request": {
+        "page_id": {
+          "description": "page_id field",
+          "required": true,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name"       : "account/portal/page",
+      "call_syntax": "portal/page/[<Page ID>]",
+      "method"     : "GET",
+      "description": "retrieve portal page",
+      "profile": "profile_page_retrieve",
+      "request": {
+        "page_id": {
+          "description": "page_id field",
+          "required": false,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name"       : "account/portal/page",
+      "call_syntax": "portal/page/<Page ID>",
+      "method"     : "PUT",
+      "description": "creates portal page",
+      "profile": "profile_page_update",
+      "request": {
+        "page_id": {
+          "description": "page_id field",
+          "required": true,
+          "type": "integer"
+        }, 
+        "name": {
+          "description": "name field",
+          "required": false,
+          "type": "string"
+        }, 
+        "content": {
+          "description": "content field",
+          "required": false,
+          "type": "string"
+        }, 
+        "path": {
+          "description": "path field",
+          "required": false,
+          "type": "string"
+        }, 
+        "path_text": {
+          "description": "path_text field",
+          "required": false,
+          "type": "string"
+        }, 
+        "meta": {
+          "description": "meta field",
+          "required": false,
+          "type": "string"
+        }, 
+        "display_priority": {
+          "description": "display_priority field",
+          "required": false,
+          "type": "string"
+        }, 
+        "published": {
+          "description": "published field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/portal/person",
+      "call_syntax": "portal/person",
+      "method"     : "POST",
+      "description": "creates portal users",
+      "profile": "profile_person_create",
+      "request": {
+        "first_name": {
+          "description": "first_name field",
+          "required": true,
+          "type": "string"
+        }, 
+        "last_name": {
+          "description": "last_name field",
+          "required": true,
+          "type": "string"
+        }, 
+        "bio": {
+          "description": "bio field",
+          "required": false,
+          "type": "string"
+        }, 
+        "person_status_id": {
+          "description": "person_status_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "person_type_id": {
+          "description": "person_type_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "email": {
+          "description": "email field",
+          "required": false,
+          "type": "string"
+        }, 
+        "password": {
+          "description": "password field",
+          "required": false,
+          "type": "string"
+        }, 
+        "password_confirm": {
+          "description": "password_confirm field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/portal/person",
+      "call_syntax": "portal/person/<Person ID>",
+      "method"     : "DELETE",
+      "description": "deletes portal users",
+      "profile": "profile_person_delete",
+      "request": {
+        "person_id": {
+          "description": "person_id field",
+          "required": true,
+          "type": "integer"
+        }
+      }
+    },  {
+      "name"       : "account/portal/person",
+      "call_syntax": "portal/person",
+      "method"     : "GET",
+      "description": "retrieves portal users",
+      "filters"    : "person_type, person_status, person_id, name, email",
+      "profile": "profile_person_retrieve",
+      "request": {
+        "filters": {
+          "description": "filters field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/portal/person",
+      "call_syntax": "portal/person/<Person ID>",
+      "method"     : "PUT",
+      "description": "updates portal users",
+      "profile": "profile_person_update",
+      "request": {
+        "first_name": {
+          "description": "first_name field",
+          "required": false,
+          "type": "string"
+        }, 
+        "last_name": {
+          "description": "last_name field",
+          "required": false,
+          "type": "string"
+        }, 
+        "bio": {
+          "description": "bio field",
+          "required": false,
+          "type": "string"
+        }, 
+        "person_id": {
+          "description": "person_id field",
+          "required": true,
+          "type": "string"
+        }, 
+        "person_status_id": {
+          "description": "person_status_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "person_type_id": {
+          "description": "person_type_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "email": {
+          "description": "email field",
+          "required": false,
+          "type": "string"
+        }, 
+        "password": {
+          "description": "password field",
+          "required": false,
+          "type": "string"
+        }, 
+        "password_confirm": {
+          "description": "password_confirm field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/portal/resource",
+      "call_syntax": "portal/resource/<Resource Type>",
+      "method": "POST",
+      "description": "create portal resource",
+      "profile": "profile_resource_create",
+      "request": {
+        "resource_type": {
+          "description": "resource_type field",
+          "required": true,
+          "type": "string"
+        }, 
+        "resource_content_type": {
+          "description": "resource_content_type field",
+          "required": true,
+          "type": "string"
+        }, 
+        "resource": {
+          "description": "resource field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/portal/resource",
+      "call_syntax": "portal/resource/<Resource Type>/<Resource ID>",
+      "method": "DELETE",
+      "description": "delete portal resource",
+      "profile": "profile_resource_delete",
+      "request": {
+        "resource_id": {
+          "description": "resource_id field",
+          "required": true,
+          "type": "string"
+        }, 
+        "resource_type": {
+          "description": "resource_type field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/portal/resource",
+      "call_syntax": "portal/resource/<Resource Type>/[<Resource ID>]",
+      "method": "GET",
+      "description": "retrieve portal resource",
+      "profile": "profile_resource_retrieve",
+      "request": {
+        "resource_id": {
+          "description": "resource_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "resource_type": {
+          "description": "resource_type field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/portal/resource",
+      "call_syntax": "portal/resource/<Resource Type>/<Resource ID>",
+      "method": "PUT",
+      "description": "update portal resource",
+      "profile": "profile_resource_update",
+      "request": {
+        "resource_id": {
+          "description": "resource_id field",
+          "required": true,
+          "type": "string"
+        }, 
+        "resource_type": {
+          "description": "resource_type field",
+          "required": true,
+          "type": "string"
+        }, 
+        "resource_content_type": {
+          "description": "resource_content_type field",
+          "required": true,
+          "type": "string"
+        }, 
+        "resource": {
+          "description": "resource field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/portal/setting",
+      "call_syntax": "portal/setting/[Setting ID|Setting Name]",
+      "method"     : "GET",
+      "description": "retrieves portal settings",
+      "profile": "profile_setting_retrieve",
+      "request": {
+        "setting": {
+          "description": "setting field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/portal/setting",
+      "call_syntax": "portal/setting/[public]",
+      "method"     : "PUT",
+      "description": "updates portal settings",
+      "profile": "profile_setting_update",
+      "request": {
+        "site_campaign_raise_modes": {
+          "description": "site_campaign_raise_modes field",
+          "required": false,
+          "type": "string"
+        }, 
+        "public": {
+          "description": "public field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/portal/stats",
+      "call_syntax": "portal/stats",
+      "method"     : "GET",
+      "description": "retrieves portal stats",
+      "profile": "profile_stats_retrieve",
+      "request": {
+      }
+    } ]
+  }, 
+  {
+    "package": "Thrinacia::Controller::Service::RESTv1::Account::Profile::Stripe",
+    "segments": [ {
+      "name"       : "account/profile/stripe/application",
+      "call_syntax": "account/stripe/application",
+      "method"     : "GET",
+      "description": "retrieve stripe application information (client_id)",
+      "profile": "profile_stripe_application_retrieve",
+      "request": {
+      }
+    },  {
+      "name"       : "account/profile/stripe/application",
+      "call_syntax": "account/stripe/application",
+      "method"     : "PUT",
+      "description": "update stripe application information",
+      "profile": "profile_stripe_application_update",
+      "request": {
+        "secret_key": {
+          "description": "secret_key field",
+          "required": true,
+          "type": "string"
+        }, 
+        "client_id": {
+          "description": "client_id field",
+          "required": true,
+          "type": "string"
+        }, 
+        "publishable_key": {
+          "description": "publishable_key field",
+          "required": false,
+          "type": "string"
+        }, 
+        "country_id": {
+          "description": "country_id field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/profile/stripe/connect",
+      "call_syntax": "account/stripe/connect",
+      "method": "POST",
+      "description": "create stripe application connection",
+      "profile": "profile_stripe_connect_create",
+      "request": {
+        "code": {
+          "description": "code field",
+          "required": true,
+          "type": "string"
+        }, 
+        "scope": {
+          "description": "scope field",
+          "required": true,
+          "type": "string"
+        }, 
+        "state": {
+          "description": "state field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/profile/stripe/connect",
+      "call_syntax": "account/stripe/connect/<Stripe Account ID>",
+      "method": "DELETE",
+      "description": "delete stripe application connection",
+      "profile": "profile_stripe_connect_delete",
+      "request": {
+        "stripe_account_id": {
+          "description": "stripe_account_id field",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/profile/stripe/connect",
+      "call_syntax": "account/stripe/connect/[<Stripe Account ID>]",
+      "method"     : "GET",
+      "description": "retrieve stripe application connections for currently logged in user",
+      "profile": "profile_stripe_connect_retrieve",
+      "request": {
+        "stripe_account_id": {
+          "description": "stripe_account_id field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/profile/stripe/currency",
+      "call_syntax": "account/stripe/currency/[Currency ID]",
+      "method"     : "GET",
+      "description": "retrieve stripe currency information (list of currencies for stripe application account country)",
+      "profile": "profile_stripe_country_currency_retrieve",
+      "request": {
+        "currency_id": {
+          "description": "currency_id field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name"       : "account/profile/stripe/country",
+      "call_syntax": "account/stripe/country",
+      "method"     : "GET",
+      "description": "retrieve stripe country information (list of countries where stripe is available)",
+      "profile": "profile_stripe_country_retrieve",
+      "request": {
+      }
+    },  {
+      "name": "account/profile/stripe/account_card",
+      "call_syntax": "account/stripe/<Stripe Account ID>/card",
+      "method": "POST",
+      "description": "create stripe account card",
+      "profile": "profile_stripe_pledger_card_create",
+      "request": {
+        "stripe_account_id": {
+          "description": "stripe_account_id field",
+          "required": true,
+          "type": "string"
+        }, 
+        "number": {
+          "description": "number field",
+          "required": true,
+          "type": "string"
+        }, 
+        "exp_month": {
+          "description": "exp_month field",
+          "required": true,
+          "type": "string"
+        }, 
+        "exp_year": {
+          "description": "exp_year field",
+          "required": true,
+          "type": "string"
+        }, 
+        "cvc": {
+          "description": "cvc field",
+          "required": true,
+          "type": "string"
+        }, 
+        "name": {
+          "description": "name field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_line1": {
+          "description": "address_line1 field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_line2": {
+          "description": "address_line2 field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_zip": {
+          "description": "address_zip field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_state": {
+          "description": "address_state field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_country": {
+          "description": "address_country field",
+          "required": false,
+          "type": "string"
+        }, 
+        "inline_token": {
+          "description": "inline_token field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/profile/stripe/account_card",
+      "call_syntax": "account/stripe/<Stripe Account ID>/card/<Stripe Account Card ID>",
+      "method": "DELETE",
+      "description": "delete stripe account card",
+      "profile": "profile_stripe_pledger_card_delete",
+      "request": {
+        "stripe_account_id": {
+          "description": "stripe_account_id field",
+          "required": true,
+          "type": "string"
+        }, 
+        "stripe_account_card_id": {
+          "description": "stripe_account_card_id field",
+          "required": true,
+          "type": "string"
+        }, 
+        "inline_token": {
+          "description": "inline_token field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/profile/stripe/account_card",
+      "call_syntax": "account/stripe/<Stripe Account ID>/card/[<Stripe Account Card ID>]",
+      "method": "GET",
+      "description": "retrieve specific stripe account card or all cards",
+      "profile": "profile_stripe_pledger_card_retrieve",
+      "request": {
+        "stripe_account_id": {
+          "description": "stripe_account_id field",
+          "required": true,
+          "type": "string"
+        }, 
+        "stripe_account_card_id": {
+          "description": "stripe_account_card_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "inline_token": {
+          "description": "inline_token field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/profile/stripe/account_card",
+      "call_syntax": "account/stripe/<Stripe Account ID>/card/<Stripe Account Card ID>",
+      "method": "PUT",
+      "description": "update stripe account card",
+      "profile": "profile_stripe_pledger_card_update",
+      "request": {
+        "stripe_account_id": {
+          "description": "stripe_account_id field",
+          "required": true,
+          "type": "string"
+        }, 
+        "stripe_account_card_id": {
+          "description": "stripe_account_card_id field",
+          "required": true,
+          "type": "string"
+        }, 
+        "number": {
+          "description": "number field",
+          "required": true,
+          "type": "string"
+        }, 
+        "exp_month": {
+          "description": "exp_month field",
+          "required": true,
+          "type": "string"
+        }, 
+        "exp_year": {
+          "description": "exp_year field",
+          "required": true,
+          "type": "string"
+        }, 
+        "cvc": {
+          "description": "cvc field",
+          "required": true,
+          "type": "string"
+        }, 
+        "name": {
+          "description": "name field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_line1": {
+          "description": "address_line1 field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_line2": {
+          "description": "address_line2 field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_zip": {
+          "description": "address_zip field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_state": {
+          "description": "address_state field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_country": {
+          "description": "address_country field",
+          "required": false,
+          "type": "string"
+        }, 
+        "inline_token": {
+          "description": "inline_token field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/profile/stripe",
+      "call_syntax": "account/stripe",
+      "method": "POST",
+      "description": "create stripe pledger account and default card data",
+      "profile": "profile_stripe_pledger_create",
+      "request": {
+        "number": {
+          "description": "number field",
+          "required": true,
+          "type": "string"
+        }, 
+        "exp_month": {
+          "description": "exp_month field",
+          "required": true,
+          "type": "string"
+        }, 
+        "exp_year": {
+          "description": "exp_year field",
+          "required": true,
+          "type": "string"
+        }, 
+        "cvc": {
+          "description": "cvc field",
+          "required": true,
+          "type": "string"
+        }, 
+        "inline_token": {
+          "description": "inline_token field",
+          "required": false,
+          "type": "string"
+        }, 
+        "name": {
+          "description": "name field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_line1": {
+          "description": "address_line1 field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_line2": {
+          "description": "address_line2 field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_zip": {
+          "description": "address_zip field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_state": {
+          "description": "address_state field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_country": {
+          "description": "address_country field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/profile/stripe/guest",
+      "call_syntax": "account/stripe/guest",
+      "method": "POST",
+      "description": "create stripe guest pledger account and default card data",
+      "profile": "profile_stripe_pledger_create_guest",
+      "request": {
+        "email": {
+          "description": "email field",
+          "required": true,
+          "type": "string"
+        }, 
+        "number": {
+          "description": "number field",
+          "required": true,
+          "type": "string"
+        }, 
+        "exp_month": {
+          "description": "exp_month field",
+          "required": true,
+          "type": "string"
+        }, 
+        "exp_year": {
+          "description": "exp_year field",
+          "required": true,
+          "type": "string"
+        }, 
+        "cvc": {
+          "description": "cvc field",
+          "required": true,
+          "type": "string"
+        }, 
+        "first_name": {
+          "description": "first_name field",
+          "required": false,
+          "type": "string"
+        }, 
+        "last_name": {
+          "description": "last_name field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_line1": {
+          "description": "address_line1 field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_line2": {
+          "description": "address_line2 field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_zip": {
+          "description": "address_zip field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_state": {
+          "description": "address_state field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_country": {
+          "description": "address_country field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/profile/stripe",
+      "call_syntax": "account/stripe/<Stripe Account ID>",
+      "method": "DELETE",
+      "description": "delete stripe pledger account and card data",
+      "profile": "profile_stripe_pledger_delete",
+      "request": {
+        "stripe_account_id": {
+          "description": "stripe_account_id field",
+          "required": true,
+          "type": "string"
+        }, 
+        "inline_token": {
+          "description": "inline_token field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/profile/stripe",
+      "call_syntax": "account/stripe/[<Stripe Account ID>]",
+      "method": "GET",
+      "description": "retrieve stripe pledger account and card data ( specific account or all attached accounts )",
+      "profile": "profile_stripe_pledger_retrieve",
+      "request": {
+        "stripe_account_id": {
+          "description": "stripe_account_id field",
+          "required": false,
+          "type": "string"
+        }, 
+        "inline_token": {
+          "description": "inline_token field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },  {
+      "name": "account/profile/stripe",
+      "call_syntax": "account/stripe/<Stripe Account ID>",
+      "method": "PUT",
+      "description": "update stripe pledger account and card data",
+      "profile": "profile_stripe_pledger_update",
+      "request": {
+        "stripe_account_id": {
+          "description": "stripe_account_id field",
+          "required": true,
+          "type": "string"
+        }, 
+        "number": {
+          "description": "number field",
+          "required": true,
+          "type": "string"
+        }, 
+        "exp_month": {
+          "description": "exp_month field",
+          "required": true,
+          "type": "string"
+        }, 
+        "exp_year": {
+          "description": "exp_year field",
+          "required": true,
+          "type": "string"
+        }, 
+        "cvc": {
+          "description": "cvc field",
+          "required": true,
+          "type": "string"
+        }, 
+        "inline_token": {
+          "description": "inline_token field",
+          "required": false,
+          "type": "string"
+        }, 
+        "name": {
+          "description": "name field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_line1": {
+          "description": "address_line1 field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_line2": {
+          "description": "address_line2 field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_zip": {
+          "description": "address_zip field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_state": {
+          "description": "address_state field",
+          "required": false,
+          "type": "string"
+        }, 
+        "address_country": {
+          "description": "address_country field",
+          "required": false,
+          "type": "string"
+        }
+      }
+    } ]
+  }
+]

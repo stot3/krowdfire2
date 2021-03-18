@@ -1,0 +1,142 @@
+<div id="post-content" class="blog-wrap wrapper" ng-cloak>
+  <div class="ui basic top-header segment">
+    <h2 class="ui header page-title"> Blog </h2>
+  </div>
+  <!-- blog-header end -->
+
+  <div class="blog-header">
+    <div class="ui page grid">
+      <div class="ui column">
+        <a href="/blog" class="text-link">
+          <i class="angle left icon"></i>Back to Blog
+        </a>
+      </div>
+      <!-- ui column end -->
+    </div>
+    <!-- ui page grid end -->
+  </div>
+  <!-- blog-header end -->
+  <!-- <div class="ui divider"></div> -->
+
+  <div class="blog-body">
+    <div class="wp-blog-post">
+
+      <div class="wp-post">
+        <div class="ui two column stackable page grid">
+          <div class="twelve wide column">
+            <div class="post-title-wrap">
+              <h2 class="ui header post-title" ng-bind-html="post.title"></h2>
+            </div>
+
+            <div class="wp-post-meta-wrap ui two column stackable grid">
+              <div class="post-author-avatar two wide column">
+                <div class="img-wrap">
+                  <img src="{{post.author_avatar}}" class="ui circular image">
+                </div>
+              </div>
+              <div class="post-meta fourteen wide column">
+                <p class="author">
+                  <i class="user icon"></i> Posted By {{post._embedded.author[0].name}}
+                </p>
+                <p class="date">
+                  <i class="calendar icon"></i> {{post.dateString.substring(4,15)}}
+                </p>
+              </div>
+              <!-- post-meta end -->
+            </div>
+
+
+          </div>
+          <!-- column end -->
+
+          <div class="four wide column">
+            <div class="social-share">
+              <div class="social-links">
+                <a ng-href="https://www.twitter.com/home?status={{current_url_escaped}}" target="_blank">
+                  <i class="twitter large orange inverted bordered icon"></i>
+                </a>
+                <a ng-href="https://www.linkedin.com/shareArticle?mini=true&url={{current_url}}" target="_blank">
+                  <i class="linkedin large orange inverted bordered icon"></i>
+                </a>
+                <a ng-href="https://plus.google.com/share?url={{current_url}}" target="_blank">
+                  <i class="google plus large orange inverted bordered icon"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="blog-divider ui divider"></div>
+
+          </div>
+          <!-- column end -->
+        </div>
+        <!-- ui grid end -->
+
+
+        <div class="ui two column stackable page grid post-content-grid">
+          <div class="twelve wide column">
+            <div class="post-blurb" ng-bind-html="post.content"></div>
+            <div class="ui divider"></div>
+            <p class="entry-meta">
+              <span ng-if="post._embedded['wp:term'][0].length" class="wp-categories">
+								Categories: 
+								<span ng-repeat="category in post._embedded['wp:term'][0]">
+									<a ng-href="/blog?category={{category.id}}" ng-click="updateCategory(category)" class="text-link">{{category.name}}</a>
+									<span ng-if="!$last">, </span>
+              </span>
+              </span>
+              <span ng-if="post._embedded['wp:term'][1].length" class="wp-tags">
+								Tags: 
+								<span ng-repeat="tag in post._embedded['wp:term'][1]">
+									<a ng-href="/blog?tag={{tag.slug}}" class="text-link">{{tag.name}}</a>
+									<span ng-if="!$last">, </span>
+              </span>
+              </span>
+            </p>
+            <div id="insert-disqus"></div>
+          </div>
+          <!-- column end -->
+
+          <div class="four wide column post-categories">
+            <div class="blog-cat-search ui icon fluid input">
+              <input type="text" placeholder="Search Categories" ng-model="s" ng-keypress="searchEnterPress($event)">
+              <i class="search icon" ng-click="searchIconClick()"></i>
+            </div>
+            <div class="ui secondary vertical fluid menu categories-menu">
+              <div class="header item categories-header">
+                <h3 class="ui header cat-title">Categories</h3>
+              </div>
+              <a href="" class="post-category-item item" ng-click="updateCategory()">All Categories</a>
+              <div class="category-item ui accordion" ng-repeat="category in categories">
+                <div class="title">
+                  <i class="dropdown icon" ng-show="category.children"></i>
+                  <a ng-href="/blog?category={{category.name}}" class="post-category-item">{{category.name}}</a>
+                </div>
+
+                <div class="content">
+                  <div class="second-level ui accordion" ng-repeat="child_category in category.children">
+                    <div class="title">
+                      <i class="dropdown icon" ng-show="child_category.children"></i>
+                      <a class="post-category-item" ng-href="/blog?category={{child_category.name}}">{{child_category.name}}</a>
+                    </div>
+                    <div class="content">
+                      <a href="" class="post-category-item third-level" ng-repeat="third_level in child_category.children" ng-href="/blog?category={{third_level.name}}">{{third_level.name}}</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- categories-menu end -->
+          </div>
+          <!-- column end -->
+        </div>
+        <!-- ui grid end -->
+
+      </div>
+      <!-- wp-post-end -->
+    </div>
+    <!-- wp-blog-post end -->
+
+  </div>
+  <!-- blog-body end -->
+</div>
+<!-- blog-wrap end -->

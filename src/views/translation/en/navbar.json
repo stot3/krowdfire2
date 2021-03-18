@@ -1,0 +1,29 @@
+{
+	"navbar_welcome": "Welcome,",
+	"navbar_dashBoard": "My Dashboards",
+	"navbar_adminstrator": "Administration ",
+	"navbar_mytitle": "My Campaigns",
+	"navbar_mycontribution": "My Contributions",
+	"navbar_mymessage": "My Messages",
+	"navbar_myprofile": "My Profile",
+	"navbar_profilesetting": "Profile Settings",
+	"navbar_paymentsetting": "Payment Settings",
+	"navbar_logout": "Log Out",
+	"navbar_signup_login": "Sign Up/Log In",
+	"navbar_search": "Search for Campaign...",
+	"navbar_unsubscribe": "Unsubscribe",
+
+	"page404_error_header": "404",
+	"page404_error_message": "Error, page not found.",
+	"page404_error_message2": "Sorry, but it seems like the page you were trying to view does not exist.",
+	"page404_error_message3": "What would you like to do?",
+	"page404_goback": "Go back",
+	"page404_gotohome": "Go to home page",
+
+	"campaignsave_savebutton": 		"Save Changes",
+	"campaignsave_previousbutton":  "Previous Step",
+	"campaignsave_nextbutton": 		"Next Step",
+	"campaignsave_save_success": 	"Your changes have been saved",
+	"campaignsave_save_error": "Error",
+	"campaignsave_save_invalid_error": "Please fill out the necessary fields"
+}

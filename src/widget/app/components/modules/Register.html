@@ -1,0 +1,30 @@
+<div id="register-form" class="ui large form">
+  <div class="two fields">
+    <div class="field">
+      <input type="text" name="FirstName" placeholder="{{translate('campaign_register_first_name_placeholder')}}" [(ngModel)]="registerInfo.first_name">
+    </div>
+    <div class="field">
+      <input type="text" name="LastName" placeholder="{{translate('campaign_register_last_name_placeholder')}}" [(ngModel)]="registerInfo.last_name">
+    </div>
+  </div>
+  <div class="field">
+    <input type="email" name="registerEmail" placeholder="{{translate('campaign_register_email_placeholder')}}" [(ngModel)]="registerInfo.email">
+  </div>
+  <div class="two fields">
+    <div class="field">
+      <input type="password" name="Pass" placeholder="{{translate('campaign_register_password_placeholder')}}" [(ngModel)]="registerInfo.password">
+    </div>
+    <div class="field">
+      <input type="password" name="PasswordConfirm" placeholder="{{translate('campaign_register_confirm_password_placeholder')}}" [(ngModel)]="registerInfo.password_confirm">
+    </div>
+  </div>
+  <div class="button-wrap">
+    <button class="submit-button ui blue large button" ThemeColor type="submit" (click)="register()" *ngIf="!isHiddingCreateAccountButton">{{translate('campaign_register_create_account_button')}}</button>
+  </div>
+  <div class="ui positive message" *ngIf="registerSuccess">
+    {{registerSuccess}}
+  </div>
+  <div class="ui negative message" *ngIf="registerError">
+    {{translate(registerError)}}
+  </div>
+</div>

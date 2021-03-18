@@ -1,0 +1,12 @@
+{
+
+	"start_stripemessage": "Stripe not enabled. Please contact your Portal Administrator.",
+	"start_startmessage": "Start Your Own Campaign",
+	"start_placeholdertext": "Enter Campaign Title",
+	"start_errormessage": "Please enter a campaign title.",
+	"start_stripeerrormessage": "Please go to your Administration area and click on Payment Settings. Once you setup your payment settings you will be able to create campaigns.",
+	"start_country_errormessage": "Please select a country.",
+	"start_buttontext": "Start Campaign",
+	"start_buttoncountrytext": "Select Your Country"
+
+}

@@ -1,0 +1,150 @@
+/*!
+ * # Semantic UI 2.1.8 - Container
+ * http://github.com/semantic-org/semantic-ui/
+ *
+ *
+ * Copyright 2015 Contributors
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+
+/*******************************
+            Container
+*******************************/
+
+sedra-widget {
+  
+/* All Sizes */
+  
+/* Mobile */
+  
+/* Tablet */
+  
+/* Small Monitor */
+  
+/* Large Monitor */
+  
+
+/*******************************
+  Types
+  *******************************/
+
+  
+/* Text Container */
+  
+/* Fluid */
+  
+
+/*******************************
+  Variations
+  *******************************/
+
+}
+sedra-widget .ui.container {
+  display: block;
+  max-width: 100% !important;
+}
+@media only screen and (max-width: 767px) {
+  sedra-widget .ui.container {
+    width: auto !important;
+    margin-left: 1em !important;
+    margin-right: 1em !important;
+  }
+  sedra-widget .ui.grid.container {
+    width: auto !important;
+  }
+  sedra-widget .ui.relaxed.grid.container {
+    width: auto !important;
+  }
+  sedra-widget .ui.very.relaxed.grid.container {
+    width: auto !important;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  sedra-widget .ui.container {
+    width: 723px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  sedra-widget .ui.grid.container {
+    width: calc( 723px  +  2rem ) !important;
+  }
+  sedra-widget .ui.relaxed.grid.container {
+    width: calc( 723px  +  3rem ) !important;
+  }
+  sedra-widget .ui.very.relaxed.grid.container {
+    width: calc( 723px  +  5rem ) !important;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  sedra-widget .ui.container {
+    width: 933px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  sedra-widget .ui.grid.container {
+    width: calc( 933px  +  2rem ) !important;
+  }
+  sedra-widget .ui.relaxed.grid.container {
+    width: calc( 933px  +  3rem ) !important;
+  }
+  sedra-widget .ui.very.relaxed.grid.container {
+    width: calc( 933px  +  5rem ) !important;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  sedra-widget .ui.container {
+    width: 1127px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  sedra-widget .ui.grid.container {
+    width: calc( 1127px  +  2rem ) !important;
+  }
+  sedra-widget .ui.relaxed.grid.container {
+    width: calc( 1127px  +  3rem ) !important;
+  }
+  sedra-widget .ui.very.relaxed.grid.container {
+    width: calc( 1127px  +  5rem ) !important;
+  }
+}
+sedra-widget .ui.text.container {
+  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  max-width: 700px !important;
+  line-height: 1.5;
+}
+sedra-widget .ui.text.container {
+  font-size: 1.14285714rem;
+}
+sedra-widget .ui.fluid.container {
+  width: 100%;
+}
+sedra-widget .ui[class*="left aligned"].container {
+  text-align: left;
+}
+sedra-widget .ui[class*="center aligned"].container {
+  text-align: center;
+}
+sedra-widget .ui[class*="right aligned"].container {
+  text-align: right;
+}
+sedra-widget .ui.justified.container {
+  text-align: justify;
+  -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+          hyphens: auto;
+}
+
+
+/*******************************
+         Theme Overrides
+*******************************/
+
+
+
+/*******************************
+         Site Overrides
+*******************************/
+

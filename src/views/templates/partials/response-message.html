@@ -1,0 +1,17 @@
+<div class="floating-message" ng-show="floatingMessage.header || floatingMessage.loading">
+	<div class="ui page grid">
+		<div class="center aligned column">
+			<div class="ui message">
+				<i class="close icon" ng-show="floatingMessage.header" ng-click="removeFloatingMessage()"></i>
+				<div class="closable-text header" ng-show="floatingMessage.header">
+					{{floatingMessage.header | translate}}
+					<div ng-if="floatingMessage.extra_message" ng-bind="floatingMessage.extra_message"></div>
+				</div>
+				<div class="success-text header" ng-show="floatingMessage.loading">
+					<i class="spinner loading icon"></i>
+					<span>{{floatingMessage.loading_message | translate}} </span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

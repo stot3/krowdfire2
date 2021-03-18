@@ -1,0 +1,21 @@
+{
+  "connect_a_stripe_account": "Please connect a Stripe Account!",
+  "stripe_tokenize_error": "Cannot use Stripe Tokenization with missing Stripe Keys",
+  "saving_settings": "Saving Settings...",
+  "pcustom_name_error": "Custom Field Name cannot be empty",
+  "retrieving_email_notification": "Retrieving Email Notifications...",
+  "retrieving_email_notification_success": "Success",
+  "in_progress": "In Progress...",
+  "action_sending": "Sending...",
+  "action_success": "Success",
+  "link_removed": "Link has been Removed",
+  "success_message_save_changes_button": "Your changes have been saved!",
+  "success_message_save_changes_not_admin_button": "Your changes have been saved! Please note that you cannot adjust the Date or Funding Goal if there are campaign contributions.",
+  "success_message_save_changes_reward_save_error": "Your changes have been saved! Please note that 1 or more of your Rewards could not be saved since there are already existing pledges made towards it.",
+  "fail_message_save_changes_button": "We detected some problems. Please correct the errors shown and try again.",
+  "updating_campaign_status": "Updating Campaign Status",
+  "disapprove_campaign": "Campaign has been dissaproved",
+  "approve_campaign": "Campaign has been approved",
+  "success_message_save_changes_button_revision": "Your revision has been saved!",
+  "success_message_save_changes_button_admin_revision": "The revision has been synced to the campaign!"
+}

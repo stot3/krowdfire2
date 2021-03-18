@@ -1,0 +1,17 @@
+<div class="phone-form ui large form">
+  <div class="two fields">
+    <div class="field">
+      <input type="text" name="phoneNumber" placeholder="{{translate('campaign_phone_number_placeholder')}}" [(ngModel)]="phoneObj.number">
+    </div>
+    <div class="field">
+      <div class="ui selection dropdown phone-type-dropdown ngSemantic">
+        <input type="hidden" name="phoneType" [attr.value]="PHONE_TYPES[1].name">
+        <i class="dropdown icon"></i>
+        <div class="text">{{translate('campaign_phone_mobile_text')}}</div>
+        <div class="menu">
+          <div class="item" *ngFor="let type of PHONE_TYPES" (click)="onPhoneTypeSelected(type.id)">{{type.name}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+{
+  "forgot_password_resetmessage": "Password Reset",
+	"forgot_password_note": "Make sure your password is unique and difficult to guess!",
+	"forgot_password_newpassword": "New Password",
+	"forgot_password_password_message": "Your password must be at least 6 characters",
+	"forgot_password_password_confirm": "Confirm Password",
+	"forgot_password_password_nomatch": "Passwords do not match",
+	"forgot_password_reset_buton": "Reset Password"
+}

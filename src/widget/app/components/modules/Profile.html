@@ -1,0 +1,189 @@
+<div id="profile-page">
+  <div class="profile-edit ui basic segment">
+    <div class="ui black button view-campaign-button" (click)="onBackToCampaign()">{{translate("user_profile_view_campaign")}}</div>
+    <div class="image-wrap">
+      <img *ngIf="userInfo.profile_image" alt="" class="ui small image profile-image" [ngStyle]="profileImageStyle">
+      <img src="data:image/png;base64,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"
+        alt="" class="ui small image profile-image" *ngIf="!userInfo.profile_image">
+      <div class="text-overlay" *ngIf="isProfileEditing">
+        <label for="file" class="ui button image-upload">
+          {{translate("user_profile_profile_image_upload")}}
+        <input type="file" id="file" ng2FileSelect [uploader]="fileUploader" (change)="onUploadedProfileImageChange($event)" hidden />
+        </label>
+      </div>
+    </div>
+    <div class="profile-info-view" *ngIf="!isProfileEditing">
+      <h1 ProfileFontColor>{{userInfo.first_name}} {{userInfo.last_name}}</h1>
+      <h4 ProfileFontColor>{{userInfo.bio}}</h4>
+    </div>
+    <form action="" class="ui form info-form" *ngIf="isProfileEditing">
+      <div class="field">
+        <div class="ui input">
+          <input type="text" [(ngModel)]="userInfo.first_name" name="first_name" [attr.placeholder]="translate('user_profile_first_name_placeholder')">
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui input">
+          <input type="text" [(ngModel)]="userInfo.last_name" name="last_name" [attr.placeholder]="translate('user_profile_last_name_placeholder')">
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui input">
+          <input type="text" [(ngModel)]="userInfo.bio" name="bio" [attr.placeholder]="translate('user_profile_bio_placeholder')">
+        </div>
+      </div>
+    </form>
+    <div class="ui buttons profile-edit-buttons">
+      <div class="ui button" [ngClass]="{'blue': isProfileEditing, 'loading': isProfileInfoSaving || isProfileImageSaving}" (click)="editProfile(true)">
+        <span *ngIf="isProfileSavedSuccess">
+          <i class="checkmark icon"></i>
+        </span>
+        <span *ngIf="!isProfileEditing">{{translate("user_profile_profile_edit")}}</span>
+        <span *ngIf="isProfileEditing">{{translate("user_profile_profile_save")}}</span>
+      </div>
+      <div class="ui red button" *ngIf="isProfileEditing" (click)="editProfile(false)">
+        {{translate("user_profile_profile_cancel")}}
+      </div>
+    </div>
+    <form action="" class="ui form password-form" *ngIf="isPasswordEditing">
+      <div class="field">
+        <div class="ui input">
+          <input type="text" [(ngModel)]="passwordObj.password_old" [attr.placeholder]="translate('user_profile_current_password_placeholder')"
+            name="password_old" type="password">
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui input">
+          <input type="text" [(ngModel)]="passwordObj.password" [attr.placeholder]="translate('user_profile_new_password_placeholder')"
+            name="password" type="password">
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui input">
+          <input type="text" [(ngModel)]="passwordObj.password_confirm" [attr.placeholder]="translate('user_profile_confirm_password_placeholder')"
+            name="password_confirm" type="password">
+        </div>
+      </div>
+    </form>
+    <div class="ui buttons profile-edit-buttons">
+      <div class="ui green button" [ngClass]="{'blue': isPasswordEditing, 'loading': isProfilePasswordSaving}" (click)="editPassword(true)">
+        <span *ngIf="isProfilePasswordSuccess">
+          <i class="checkmark icon"></i>
+        </span>
+        <span *ngIf="!isPasswordEditing">{{translate("user_profile_password_edit")}}</span>
+        <span *ngIf="isPasswordEditing">{{translate("user_profile_password_save")}}</span>
+      </div>
+      <div class="ui red button" *ngIf="isPasswordEditing" (click)="editPassword(false)">
+        {{translate("user_profile_password_cancel")}}
+      </div>
+    </div>
+  </div>
+  <div class="password-edit ui basic segment" *ngIf="false">
+    <form action="" class="ui form password-form" *ngIf="isPasswordEditing">
+      <div class="field">
+        <div class="ui input">
+          <input type="text" [(ngModel)]="passwordObj.password_old" [attr.placeholder]="'Current Password'" name="password_old">
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui input">
+          <input type="text" [(ngModel)]="passwordObj.password" [attr.placeholder]="'New Password'" name="password">
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui input">
+          <input type="text" [(ngModel)]="passwordObj.password_confirm" [attr.placeholder]="'Confirm New Password'" name="password_confirm">
+        </div>
+      </div>
+    </form>
+    <div class="ui buttons">
+      <div class="ui button" (click)="editPassword(true)">
+        <span *ngIf="!isPasswordEditing">{{translate("user_profile_password_edit")}}</span>
+        <span *ngIf="isPasswordEditing">{{translate("user_profile_password_save")}}</span>
+      </div>
+      <div class="ui button" *ngIf="isPasswordEditing" (click)="editPassword(false)">
+        {{translate("user_profile_password_cancel")}}
+      </div>
+    </div>
+  </div>
+  <h2 class="ui header center aligned" ProfileFontColor>{{translate("user_profile_contributions")}}</h2>
+  <div class="ui basic segment">
+    <div class="ui active large loader" *ngIf="isContributionsLoading"></div>
+    <h2 class="ui header center aligned" *ngIf="!isContributionsLoading && !profileMyContributionsCampaigns.length" ProfileFontColor>{{translate("user_profile_no_contributions")}}</h2>
+    <div class="ui stackable grid" *ngIf="!isContributionsLoading && profileMyContributionsCampaigns.length">
+      <div class="sixteen wide column" *ngFor="let campaign of profileMyContributionsCampaigns | paginate: campaignsContributionsPageConfig; let last = last">
+        <div class="ui grid stackable">
+          <div class="four wide column">
+            <div class="ui small circular image">
+              <img [src]="campaign.campaign_thumbnail_image" alt="" *ngIf="campaign.campaign_thumbnail_image">
+              <img src="data:image/png;base64,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"
+                alt="" *ngIf="!campaign.campaign_thumbnail_image">
+            </div>
+          </div>
+          <div class="twelve wide column">
+            <h2 class="ui header">
+              <div class="content" ProfileFontColor>
+                {{campaign.name}}
+                <div class="sub header" ProfileFontColor>
+                  {{translate("user_profile_campaign_manager_by")}} {{campaign.managers[0].first_name}} {{campaign.managers[0].last_name}}
+                </div>
+              </div>
+            </h2>
+            <ng-prog [progressValue]="campaign.funded_percentage_shipping_excluded" [progressID]="campaign.id" [isProfile]="true"></ng-prog>
+            <div *ngIf="campaign.currencies && campaign.currencies.length" ProfileFontColor>
+              <span *ngIf="settingDecimalOption == 1 || settingDecimalOption == 2" ProfileFontColor>{{campaign.funded_amount | currency:campaign.currencies[0].code_iso4217_alpha:true}}</span>
+              <span *ngIf="settingDecimalOption == 3" ProfileFontColor>{{campaign.funded_amount | currency:campaign.currencies[0].code_iso4217_alpha:true:'1.0-0'}}</span>
+              {{translate("user_profile_amount_funded")}}
+            </div>
+            <div *ngIf="!campaign.currencies && campaign.currencies.length">
+              <div>
+                {{translate("user_profile_amount_not_set")}}
+              </div>
+            </div>
+            <div class="transaction-wrap-content ui fluid accordion" ngSemantic *ngIf="campaign.pledge_history">
+              <div class="latest-pledge-content title" ProfileFontColor>
+                {{translate("user_profile_latest_contribution")}}
+                <span *ngIf="settingDecimalOption == 1 || settingDecimalOption == 2" ProfileFontColor>{{campaign.pledge_history[campaign.pledge_history.length - 1].amount | currency:campaign.currencies[0].code_iso4217_alpha:true}}</span>
+                <span *ngIf="settingDecimalOption == 3" ProfileFontColor>{{campaign.pledge_history[campaign.pledge_history.length - 1].amount | currency:campaign.currencies[0].code_iso4217_alpha:true:'1.0-0'}}</span>
+                <i class="angle down icon"></i>
+              </div>
+              <div class="content">
+                <div class="transition hidden" *ngIf="pledgeHistoryPaginationObjects['campaignid' + campaign.id]">
+                  <table class="ui green striped table">
+                    <thead>
+                      <tr>
+                        <th ProfileFontColor>{{translate("user_profile_table_reward")}}</th>
+                        <th ProfileFontColor>{{translate("user_profile_table_date")}}</th>
+                        <th ProfileFontColor>{{translate("user_profile_table_amount")}}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let pledge of campaign.pledge_history | paginate: pledgeHistoryPaginationObjects['campaignid' + campaign.id]">
+                        <td>
+                          <span *ngIf="pledge.pledge_levels" ProfileFontColor>{{pledge.pledge_levels[0].name}}</span>
+                          <span *ngIf="!pledge.pledge_levels" ProfileFontColor>Direct Contribution</span>
+                        </td>
+                        <td ProfileFontColor>
+                          {{pledge.created | amDateFormat:'ll'}}
+                        </td>
+                        <td>
+                          <span *ngIf="settingDecimalOption == 1 || settingDecimalOption == 2" ProfileFontColor>{{pledge.amount | currency:campaign.currencies[0].code_iso4217_alpha:true}}</span>
+                          <span *ngIf="settingDecimalOption == 3" ProfileFontColor>{{pledge.amount | currency:campaign.currencies[0].code_iso4217_alpha:true:'1.0-0'}}</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <pagination-controls [id]="'campaign-pledge-' + campaign.id" (pageChange)="onPledgePageChange($event, campaign.id)" directionLinks="false"
+                    maxSize="5" autoHide="true"></pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui divider campaign-pledge-history-divider" *ngIf="!last"></div>
+      </div>
+    </div>
+    <pagination-controls id="profile-campaign-contributions-pagination" (pageChange)="onProfileCampaignContributionsPageChanged($event)"
+      directionLinks="false" maxSize="5" autoHide="true" *ngIf="profileMyContributionsCampaigns && profileMyContributionsCampaigns.length > 6"></pagination-controls>
+  </div>
+</div>

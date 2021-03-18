@@ -1,0 +1,29 @@
+<div class="ui basic top-header segment" ng-cloak>
+	<h2 class="ui header" translate="confirm_email_confirm_text"></h2>
+</div>
+<div class="ui page grid">
+	<div class="ui basic account-bg segment">
+		<div class="ui one column grid">
+			<div class="six centered wide column confirm-email-content" ng-if="success">
+				<div class="ui fluid form email-content">
+					<form class="ui form" name="email_form">
+						<div class="field">
+							<label translate="confirm_email_new_email"></label>
+							<input type="email" name="new_email" placeholder="New Email" ng-model="formData.new_email" required>
+						</div>
+						<div class="field">
+							<label translate="confirm_email_new_email_confirm"></label>
+							<input type="email" name="confirm_email" placeholder="Confirm Email" ng-model="formData.confirm_email" required>
+						</div>
+						<div class="ui right floated black button" ng-click="confirmResetEmail()" translate="confirm_email_reset_email"></div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="ui page grid">
+  <div class="column">
+    <div ng-include src="'views/templates/partials/response-message.html'"></div>
+  </div>
+</div>

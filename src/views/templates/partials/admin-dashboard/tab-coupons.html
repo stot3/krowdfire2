@@ -1,0 +1,276 @@
+<div ng-controller="AdminCouponsCtrl" ng-cloak>
+	<div ng-hide="userShown">
+		<div class="sticky-bar ui sticky" sticky>
+			<div class="sticky-action-bar ui page grid">
+				<div class="left-col left aligned ten wide column">
+					<div class="action-btn ui blue labeled icon top left pointing button dropdown">
+						{{'tab_user_actions'| translate}}
+						<i class="settings icon"></i>
+						<div class="menu">
+							<div class="item" ng-click="addCoupon()" translate> tab_coupon_add_coupon</div>
+							<div class="item" ng-click="deleteMultiUser()" translate> tab_coupon_delete_coupon </div>
+						</div>
+					</div>
+				</div>
+
+				<div class="right-col right aligned six wide column">
+					<!--COUPON MANAGEMENT TOGGLE-->
+					<div class="ui toggle checkbox defaultForm" ng-click="applyToggle()" ng-model="public_settings.site_campaign_coupon_management.toggle">
+						<input type="checkbox" name="public">
+						<label ng-show="public_settings.site_campaign_coupon_management.toggle" translate>tab_portalsetting_campaign_coupon_management_toggle_label_on</label>
+						<label ng-show="!public_settings.site_campaign_coupon_management.toggle" translate>tab_portalsetting_campaign_coupon_management_toggle_label_off</label>
+					</div>
+					<!--COUPON SEARCH-->
+					<div style = "margin-left: 20px" class="ui right labeled input user-search-input">
+						<input type="text" keyboard-poster post-function="searchUserBy" name="name" ng-attr-placeholder="{{'tab_coupon_search_placeholder' | translate}}"
+						 ng-model="userSearch.searchInput">
+						<!-- <i class="search link icon"></i> -->
+						<div class="ui dropdown label">
+							<div class="text" translate>tab_coupon_search_by_name</div>
+							<i class="dropdown icon"></i>
+							<div class="menu">
+								<div class="item" ng-click="searchType(1)">{{'tab_coupon_search_by_name' | translate}}</div>
+								<div class="item" ng-click="searchType(2)">{{'tab_coupon_search_by_code' | translate}}</div>							
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- COLUMN END -->
+			</div>
+		</div>
+		<div class="ui page grid">
+			<div class="column" ng-if="coupons.length==0">
+				<div ng-include src="'views/templates/partials/no-data-available.html'"></div>
+			</div>
+		</div>
+		<div class="ui page grid user-table">
+			<div class="column">
+				<table class="admin-table ui table" ng-show="coupons.length>0">
+					<thead>
+						<tr>
+							<th class="one wide center check-box">
+								<div class="ui checkbox" ng-click="checkall($event, '.user-table .t-check-box')">
+									<input type="checkbox" name="select-user">
+									<label></label>
+								</div>
+							</th>
+							<th class = "three wide center" translate> tab_coupon_name </th>
+							<th class="three wide center" translate> tab_coupon_code </th>
+							<th class="three wide center" translate> tab_coupon_desc </th>
+							<th class="three wide center" translate> tab_coupon_amount </th>
+							<th class="two wide center"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="coupon-row" ng-repeat="coupon in coupons | limitTo:sortOrFiltersPerson.pagination.entriesperpage">
+							<td class="t-check-box">
+								<div class="ui checkbox">
+									<input type="checkbox" name="select-user">
+									<label></label>
+								</div>
+							</td>
+							<td class="t-user-name">
+								<p title="{{coupon.name}}">{{(coupon.name).slice(0,15)}}<span
+									 ng-show="(coupon.name).length>15">...</span></p>
+							</td>
+							<td class="t-user-email" title="{{coupon.code}}">
+								<div>{{(coupon.code).slice(0,18)}}<span ng-show="coupon.code.length>18">...</span></div>
+							</td>
+							<td class="t-coupon-desc" title="{{coupon.description}}">
+								<div>{{(coupon.description).slice(0,36)}}<span ng-show="coupon.description.length>36">...</span></div>
+							</td>
+							<td class="t-coupon-amount">
+								<div ng-show="coupon.discount_amount > 0">{{"$"+(coupon.discount_amount)}}</div>
+								<div ng-show="coupon.discount_percentage > 0">{{(coupon.discount_percentage)+"%"}}</div>
+							</td>
+							<td class="t-edit">
+								<div class="ui small basic button" ng-click="editCoupon(coupon)">
+									{{'tab_user_edit'|translate}}
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- TABLE END -->
+				<div>
+					<div>
+						<button type="button" ng-csv="getAllCouponsCSV()" filename="all-coupons.csv" lazy-load="true" add-bom="true" class="ui green button"
+						 id="exportbtn">{{'tab_coupon_export_all_csv'|translate}}</button>
+					</div>
+					<div id="searchbox1">
+						<label class="per-page-label">{{'tab_user_items_per_page'|translate}} </label>&nbsp;
+						<div class="ui selection  dropdown searchbtn" id="searchbtn">
+							<span class="text" id="resultValuev" ng-model="entries">{{totalentry[0]}}</span>
+							<i class="dropdown icon"></i>
+							<div class="menu" ng-click="checkentry()">
+								<div class="item" ng-repeat="entry in totalentry">
+									{{entry}}
+								</div>
+							</div>
+						</div>
+						<label class="per-page-label" translate>tab_user_results </label>
+					</div>
+				</div>
+				<div class="ui center aligned basic segment">
+					<div semantic-pagination ng-model="sortOrFiltersPerson.page" total-pages="sortOrFiltersPerson.pagination.numpages"
+					 update-function="updateUserListing()"></div>
+				</div>
+			</div>
+		</div>
+		<!-- USER TABLE END -->
+	</div>
+
+	<div class="user-edit" ng-show="userShown">
+		<div class="user-edit-header ui page grid">
+			<div class="column">
+				<div class="action-btn ui icon labeled black button" ng-click="goBackUser()">
+					<i class="left angle icon"></i>
+					<span translate>tab_user_back</span>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="ui tab" data-tab="account-settings" ng-controller="UserAccountTabCtrl">
+			<div class="menu-tab-content" ng-include src="'views/templates/account.html'" ng-hide="isAccSetEnabled"></div>
+		</div> -->
+		<div class="user-edit-body ui page grid tab" data-tab="profile-details">
+			<div class="content column">
+				<h2 class="section-title ui top attached inverted header"> {{'tab_coupon_edit_coupon'|translate}}</h2>
+				<form name="edit_user_form" class="ui form middle attached segment" id="edit-user-form">
+					<div class="edit-user-wrap">
+						<div class="profile-image-thumbnail userProfileImage">
+
+							<div class="user-edit-profile-form ui basic segment">
+								<div class="three fields">
+									<div class="field">
+										<label> {{'tab_coupon_name' | translate}} <i class="asterisk red small icon"></i></label>
+										<input type='text' name='coupon_name' ng-attr-placeholder=" {{'tab_coupon_name' | translate}} " ng-model="formData.name"
+										 ng-attr-value="formData.name">
+									</div>
+									<!-- field end -->
+									<div class="field">
+										<label> {{'tab_coupon_code' | translate}} <i class="asterisk red small icon"></i></label>
+										<input type='text' name='coupon_code' ng-attr-placeholder="{{'tab_coupon_code' | translate}}" ng-model="formData.code">
+									</div>
+									<!-- field end -->
+									<div class="field">
+										<label> {{'tab_coupon_desc' | translate}} <i class="asterisk red small icon"></i></label>
+										<input type='text' name='coupon_desc' ng-attr-placeholder="{{'tab_coupon_desc' | translate}}" ng-model="formData.description">
+									</div>
+									<!-- field end -->
+								</div>
+								<!-- field end -->
+								<div class="two fields">
+									<div class="field">
+										<label> {{'tab_coupon_amount' | translate}} <i class="asterisk red icon"></i></label>
+										<input type='number' name='coupon_amount' ng-attr-placeholder=" {{'tab_coupon_amount' | translate}} " ng-model="formData.amount">
+									</div>
+									<!-- field end -->
+									<div class="field">
+										<label>{{'tab_coupon_discount_type' | translate}}</label>
+										<div class="ui fluid selection dropdown coupon-discount-type">
+											<input type="hidden" name="coupon_discount_type">
+											<div class="default text" translate> tab_coupon_choose_discount </div>
+											<i class="dropdown icon"></i>
+											<div class="menu" ng-model="formData.type">
+												<div class="item" data-value="1" translate> tab_coupon_dollar </div>
+												<div class="item" data-value="2" translate> tab_coupon_percent </div>
+											</div>
+										</div>
+										<!-- DROPDOWN END -->
+									</div>
+									<!-- field end -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+
+
+				<div class="bottom-btn-wrap">
+
+					<button class="ui right aligned positive apply button" ng-click="confirmUserEdit()">
+						{{'tab_user_applychanges' | translate}} </button>
+
+				</div>
+				<!-- CONTENT END -->
+			</div>
+		</div>
+	</div>
+
+	<div class="ui modal add-coupon-modal">
+		<i class="close icon"></i>
+		<div class="header">
+			<h3 class="ui header" translate> tab_coupon_add_coupon</h3>
+		</div>
+		<div class="content">
+			<form name="add_user_form" class="ui form" id="add-user-form">
+				<div class="three fields">
+					<div class="field">
+						<label> {{'tab_coupon_name' | translate}} <i class="asterisk red icon"></i> </label>
+						<input type='text' name='coupon_name' ng-attr-placeholder=" {{'tab_coupon_name' | translate}} " ng-model="formData.name">
+					</div>
+					<div class="field">
+						<label> {{'tab_coupon_code' | translate}} <i class="asterisk red icon"></i></label>
+						<input type='text' name='coupon_code' ng-attr-placeholder=" {{'tab_coupon_code' | translate}} " ng-model="formData.code">
+					</div>
+					<div class="field">
+						<label> {{'tab_coupon_desc' | translate}} </label>
+						<input type='text' name='coupon_desc' ng-attr-placeholder=" {{'tab_coupon_desc' | translate}} " ng-model="formData.description">
+					</div>
+					<!-- field end -->
+				</div>
+				<!-- field end -->
+				<div class="two fields">
+					<div class="field">
+						<label> {{'tab_coupon_amount' | translate}} <i class="asterisk red icon"></i></label>
+						<input type='number' name='coupon_amount' ng-attr-placeholder=" {{'tab_coupon_amount' | translate}} " ng-model="formData.amount">
+					</div>
+					<!-- field end -->
+					<div class="field">
+						<label>{{'tab_coupon_discount_type' | translate}} <i class="asterisk red icon"></i></label>
+						<div class="ui fluid selection dropdown">
+							<input type="hidden" name="coupon_discount_type">
+							<div class="default text" translate> tab_coupon_choose_discount </div>
+							<i class="dropdown icon"></i>
+							<div class="menu">
+								<div class="item" data-value="1" translate> tab_coupon_dollar </div>
+								<div class="item" data-value="2" translate> tab_coupon_percent </div>
+							</div>
+						</div>
+						<!-- DROPDOWN END -->
+					</div>
+					<!-- field end -->
+				</div>
+			</form>
+		</div>
+		<!-- CONTENT END -->
+		<div class="actions">
+			<div class="buttons">
+				<button class="ui positive apply button" ng-click="confirmUserAdd()" translate> tab_user_applychanges</button>
+			</div>
+		</div>
+	</div>
+	<!-- MODAL END -->
+	<div class="ui small modal delete-multi-user-modal">
+		<i class="close icon"></i>
+		<div class="header">
+			<h3 class="ui header" translate>tab_coupon_delete_coupon</h3>
+		</div>
+		<div class="content">
+			<p translate> tab_coupon_delete_message </p>
+			<div class="item" ng-repeat="person_name in personsToDelete">
+				{{person_name.name}}
+			</div>
+		</div>
+		<!-- CONTENT END -->
+		<div class="actions">
+			<div class="ui positive button" translate>
+				tab_coupon_delete_confirm
+			</div>
+			<div class="ui negative button" translate>
+				tab_coupon_delete_cancel
+			</div>
+		</div>
+	</div>
+
+</div>

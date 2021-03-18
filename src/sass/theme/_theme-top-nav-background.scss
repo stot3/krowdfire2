@@ -1,0 +1,33 @@
+@mixin theme($name, $background-color) {
+  .container.main-color.#{$name} {
+    .top-nav-bar {
+      background-color: $background-color;
+    }
+
+    #mobile-sidebar {
+      background-color: $background-color;
+    }
+    .child-menu-dropdown{
+      background-color: $background-color !important;
+    }
+    .main-menu.ui.inverted.menu {
+      .nav-wrap {
+        .nav-main-right {
+          .collapsible-settings {
+            .collapsible-settings-inner {
+              @if $background-color==#ffffff {
+								background-color: #ffffff;
+              }
+
+              @else {
+                background-color: $background-color;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include theme(theme-top-nav-background, $top-nav-bg-color);

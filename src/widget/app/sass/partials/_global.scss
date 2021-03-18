@@ -1,0 +1,336 @@
+/*/////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+/* Override any semantic ui css properties*/
+
+
+/*/////////////////////////////////////////////////////////////////////////////////////////*/
+
+sedra-widget {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  .widget-loader {
+    min-height: 150px;
+  }
+  .reach-error-message {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 20px 0;
+    .message-subcontainer {
+      width: 100%;
+      text-align: center;
+      margin: 0 auto;
+      background: rgba(0, 0, 0, 0.04);
+      padding: 25px;
+      border-radius: 4px;
+      h2.icon-holder,
+      h2.ui.header {
+        margin-top: 0;
+      }
+      .content {
+        color: #07B6AD;
+      }
+      .icon {
+        color: #F1592A;
+      }
+      h1.ui.header {
+        color: #F1592A;
+        margin-bottom: 15px;
+      }
+      .footer {
+        border-top: 3px solid #eeeeee;
+        padding-top: 1rem;
+        .thrin-logo {
+          width: 130px;
+          margin: 0 auto;
+          -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
+          -webkit-filter: gray;
+          filter: gray;
+          filter: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' height='0'><filter id='greyscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0' /></filter></svg>#greyscale");
+          transition: all 0.25s ease-in-out;
+          -webkit-transition: all 0.25s ease-in-out;
+          &:hover {
+            filter: none;
+            -webkit-filter: grayscale(0%);
+            filter: grayscale(0%);
+          }
+        }
+      }
+    }
+  }
+  #sedra-widget {
+    font-family: 'Roboto', sans-serif;
+    h1.ui.header {
+      font-size: 42px;
+    }
+    h2.ui.header {
+      font-size: 24px;
+    }
+    h3.ui.header {
+      font-size: 18px;
+    }
+    h4.ui.header {
+      font-size: 14px;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: 'Roboto', sans-serif;
+    }
+    .ui.basic.segment {
+      border-radius: 4px;
+    }
+    .ui.button,
+    .ui.header {
+      font-family: 'Roboto', sans-serif !important;
+    }
+    .ui.buttons {
+      .ui.button {
+        font-size: 14px;
+      }
+    }
+    .ui.button {
+      font-size: 15px;
+      &.large {
+        font-size: 16px;
+      }
+    }
+    .ui.menu {
+      font-size: 14px;
+      &.dropdown {
+        >.item {
+          font-size: 14px;
+        }
+      }
+    }
+    .ui.input {
+      &.large {
+        font-size: 16px;
+      }
+    }
+    .ui.list {
+      font-size: 14px;
+      &.horizontal {
+        >.item {
+          font-size: 14px;
+        }
+        &.small {
+          >.item {
+            font-size: 13px;
+          }
+        }
+      }
+    }
+    i.icon {
+      font-size: 14px;
+    }
+    .ui.label {
+      font-size: 12px;
+      &.large {
+        font-size: 14px;
+      }
+    }
+    .ui.form {
+      &.large {
+        font-size: 16px;
+      }
+      .field {
+        >label {
+          font-size: 15px;
+        }
+      }
+    }
+    .ui.dropdown,
+    input:not([type]),
+    input[type=date],
+    input[type=datetime-local],
+    input[type=email],
+    input[type=number],
+    input[type=password],
+    input[type=search],
+    input[type=tel],
+    input[type=text],
+    input[type=time],
+    input[type=url] {
+      border-radius: 0 !important;
+    }
+    .campaign-footer {
+      padding: 15px 0;
+      border-top: 3px solid #eee;
+      .campaign-footer-grid {
+        .right-column {
+          -webkit-box-align: center !important;
+          -ms-flex-align: center !important;
+          align-items: center !important;
+          display: -webkit-box !important;
+          display: -ms-flexbox !important;
+          display: flex !important;
+          .footer-link-list {
+            width: 100%;
+          }
+        }
+        .powered-by-label {
+          margin: 0;
+          color: #909090;
+        }
+      }
+      .thrin-logo {
+        max-width: 130px;
+        margin: 0 auto;
+        -webkit-filter: grayscale(100%);
+        filter: grayscale(100%);
+        -webkit-filter: gray;
+        filter: gray;
+        filter: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' height='0'><filter id='greyscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0' /></filter></svg>#greyscale");
+        transition: all 0.25s ease-in-out;
+        -webkit-transition: all 0.25s ease-in-out;
+        &:hover {
+          filter: none;
+          -webkit-filter: grayscale(0%);
+          filter: grayscale(0%);
+        }
+      }
+    }
+    .message-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      .message-subcontainer {
+        width: 100%;
+        text-align: center;
+        .ui.message.message-content {
+          display: inline-block;
+          background-color: rgba(0, 0, 0, 0.7);
+          color: #fff;
+          -webkit-box-shadow: none;
+          box-shadow: none;
+          .header {
+            margin-right: 20px !important;
+            color: #fff;
+          }
+        }
+      }
+    }
+    .stripe-elements-form {
+      #card-number-element-wrap {
+        position: relative;
+      }
+      #brand-icon {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAcCAYAAAAX4C3rAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAALNJREFUeNpinDlzpgADA8N6IHZgGJzgABAHMg1yRzJA3baeaZA7Eu5YJoYhAkYdSm3Agi6gq6vLwMbGRpZhv379Yrh8+TJ9HGppaUmRgW/fvmV49uzZaBoddeioQ0cdOtgc+vPnT/qUo2vXrmVgZ2cn25GgcpQuDqWVRaNpdNA3Ss6ePYtXg7GxMV41hORJUTMa9aMOBQJGYHf5/2iIjlSHHhgC7jwAcmjgIHcsyG2BAAEGANjdMoqS1DgpAAAAAElFTkSuQmCC');
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        width: 36px;
+        height: 24px;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center center;
+      }
+      #card-number-element {
+        padding-left: 55px;
+      }
+      .StripeElement {
+        background: #ffffff;
+        padding: .67861em 1em;
+        border: 1px solid rgba(39, 41, 43, .15);
+        &.StripeElement--focus {
+          border-color: #BDBEBF;
+        }
+        &.StripeElement--invalid {
+          background: #FFF6F6;
+          border-color: #E0B4B4;
+          color: #9F3A38;
+        }
+      }
+      #card-errors {
+        color: #9F3A38 !important;
+        font-size: 12px;
+        font-weight: bold;
+      }
+    }
+  }
+  .pagination-menu {
+    .item-wrap {
+      display: inline-block;
+      margin-right: 5px;
+      &:last-child {
+        margin-right: 0;
+      }
+      &:hover {
+        background: #ccc;
+        .item {
+          color: #fff;
+        }
+      }
+      &.current {
+        .item {
+          background: #ccc;
+          color: #fff;
+        }
+      }
+      .item {
+        color: #0a0a0a;
+        padding: 5px;
+        cursor: pointer;
+        min-width: 30px;
+        text-align: center;
+        height: 30px;
+        display: inline-block;
+      }
+    }
+  }
+  .ng2-pagination {
+    padding: 0;
+    text-align: center;
+    li {
+      cursor: pointer;
+      &.disabled {
+        cursor: default;
+      }
+      &.pagination-previous:before,
+      &.pagination-next:after,
+      &.pagination-next a:after,
+      &.pagination-previous a:before,
+      {
+        content: "" !important;
+      }
+    }
+  }
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  #okta-sign-in {
+    margin-top: 0px !important;
+    border: none !important;
+    max-width: 100% !important;
+    width: unset !important;
+  }
+  .okta-sign-in-header, .okta-form-title {
+    display: none !important;
+  }
+  #okta-sign-in .auth-content {
+    padding: 0px 5px 0px 5px !important;
+  }
+}

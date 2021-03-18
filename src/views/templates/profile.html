@@ -1,0 +1,147 @@
+<div class="user-profile-page-wrap" ng-cloak>
+  <div class="user-profile-info">
+    <div class="ui page grid">
+      <div class="column">
+        <div class="ui three column stackable grid">
+          <div class="profile-image three wide column">
+            <img width="200" height="200" ng-hide="person.files[0]" src="images/placeholder-images/placeholder_profile_photo.png" class="ui left floated circular image pp_placeholder">
+            <img width="200" height="200" ng-if="person.files[0]" ng-src="{{server + '/image/campaign_profile/' + person.files[0].path_external}}" class="ui left floated circular image">
+          </div>
+          <!-- column end -->
+          <div class="ten wide column">
+            <h2 class="ui header" ng-if="!public_settings.site_campaign_enable_organization_name">{{person.first_name}} {{person.last_name}}</h2>
+            <h2 class="ui header" ng-if="public_settings.site_campaign_enable_organization_name">{{organization_name.value}}</h2>
+            <p class="ui header" ng-if="public_settings.site_campaign_enable_organization_name">{{'ein_label' | translate}}{{organization_name.ein}}</p>
+            <div class="user-location" ng-if="person.addresses.length>0">
+              <i class="map marker icon"></i> {{person.addresses[0].city}} {{person.addresses[0].subcountry}}, {{person.addresses[0].country}}
+            </div>
+            <p class="user-bio">{{person.bio}}</p>
+          </div>
+          <!-- column end -->
+          <div class="three wide column" ng-controller="ContactMessageCtrl">
+            <div class="user-site-header" ng-if="person.websites.length>0"><i class="fa fa-globe"></i> {{'profile_website'|translate}} </div>
+            <div class="user-site-links ui link list" ng-show="person.websites">
+              <div ng-repeat="link in person.websites">
+                <a class="item" ng-href="{{link.uri}}" ng-if="link.uri_text" target="_blank">{{link.uri_text}}</a>
+                <a class="item" ng-href="{{link.uri}}" ng-if="!link.uri_text" target="_blank">{{link.uri}}</a>
+              </div>
+            </div>
+            <!-- user-site-links -->
+            <div ng-include src="'views/templates/partials/contact-message-modal.html'"></div>
+            <div class="ui button contact-button" ng-click="showContactModal(person)" ng-if="!removeContactUser" translate> profile_contact </div>
+          </div>
+          <!-- column end -->
+        </div>
+      </div>
+      <!-- column end -->
+    </div>
+    <!-- ui page grid end -->
+  </div>
+  <!-- user-profile-info end -->
+
+  <div class="user-profile-campaigns">
+    <div class="ui page grid">
+      <div class="column">
+        <div ng-include src="'views/templates/partials/response-message.html'"></div>
+
+        <div class="ui warning message" ng-show="createdCampaigns == 0 && backedCampaignFilter.pagination.totalentries == 0" translate>
+          profile_no_data
+        </div>
+
+        <div id="user-profile-tabs">
+          <div class="menu-tabs ui top attached secondary pointing menu">
+
+            <a class="item" ng-class="{'active' : (createdCampaigns.length && !backedCampaignFilter.pagination.totalentries) || (createdCampaigns.length && backedCampaignFilter.pagination.totalentries) }" data-tab="campaigns-created" ng-show="createdCampaigns.length">
+              <h3 class="ui header">{{'profile_campaign_created'|translate}}
+                <span class="created-number ui green label">{{createdCampaignFilter.pagination.totalentries}}</span>
+              </h3>
+            </a>
+            <a class="item" ng-class="{'active' : (!createdCampaigns.length && backedCampaignFilter.pagination.totalentries) }" data-tab="campaigns-backed" ng-show="backedCampaignFilter.pagination.totalentries">
+              <h3 class="ui header"> {{'profile_campaign_backed'|translate}}
+                <span class="backed-number ui green label">{{backedCampaignFilter.pagination.totalentries}}</span>
+              </h3>
+            </a>
+          </div>
+          <!-- menu-tabs end -->
+          <div class="campaigns-created-tab ui middle attached tab" ng-class="{'active' : (createdCampaigns.length && !backedCampaignFilter.pagination.totalentries) || (createdCampaigns.length && backedCampaignFilter.pagination.totalentries) }" data-tab="campaigns-created">
+            <div class="ui warning message" ng-show="createdCampaigns==0" translate> profile_no_campaign </div>
+            <div class="campaign-list-items ui four column stackable grid" ng-show="createdCampaigns.length>0">
+              <div class="campaign-thumb four wide column" ng-repeat="campaign in createdCampaigns">
+                <a class="campaign-card ui fluid card" ng-href="{{campaign.uri_paths[0].path}}">
+                  <div class="image">
+                    <div ng-show="campaign.featured" class="ui right corner blue label"><i class="star icon"></i></div>
+                    <img width="510" height="510" ng-repeat="file in campaign.files | filter:{region_id: RESOURCE_REGIONS.campaign.thumbnail} | orderBy:'-file_id' | limitTo: 1" ng-if="campaign.files[0].path_external" ng-src="{{server + '/image/campaign_thumbnail_xl/' + file.path_external}}"
+                      class="ui image" />
+                    <img ng-if="!campaign.files[0].path_external" src="images/placeholder-images/placeholder_campaign_thumb.png" class="ui image" />
+                  </div>
+                  <div class="campaign-desc content">
+                    <div class="campaign-title header name">
+                      {{campaign.name | limitTo: 50}}
+                      <span ng-if="campaign.name.length > 50">...</span>
+                    </div>
+                    <div class="campaign-created meta" am-time-ago="campaign.created"></div>
+                    <div class="description" html-render html=campaign.blurb></div>
+                  </div>
+                  <!-- campaign-desc end -->
+                </a>
+              </div>
+            </div>
+            <div class="ui basic center aligned segment" ng-show="!infiniteScroller.profile">
+              <div semantic-pagination ng-model="createdCampaignFilter.page" total-pages="createdCampaignFilter.pagination.numpages" update-function="updateCreateCampaignList()"></div>
+            </div>
+            <div>
+              <div class="ui large centered inline active text loader" ng-show="loadingCreated" ng-class="{'active': loadingCreated}">Loading</div>
+              <div class="btn-wrap ui center aligned basic segment" id="createdDiscovered" ng-show="!loadingCreated" ng-click="loadMoreCreatedCampaigns()" ng-if="infiniteScroller.profile && !(createdCampaigns.length == createdCampaignFilter.pagination.totalentries)">
+                <div class="ui large button view-more-btn" translate='infinite_scroller_button_label'></div>
+              </div>
+            </div>
+          </div>
+          <!-- tab end -->
+          <div class="campaigns-backed-tab ui middle attached tab" ng-class="{'active' : (!createdCampaigns.length && backedCampaignFilter.pagination.totalentries)}" data-tab="campaigns-backed">
+            <div class="ui warning message" ng-show="noCampaignBacked" translate>{{'profile_no_backer'| translate}} </div>
+            <div class="campaign-list-items ui four column stackable grid" ng-show="backedCampaigns.length>0">
+              <div class="campaign-thumb four wide column" ng-repeat="campaign in backedCampaigns">
+                <a class="campaign-card ui fluid card" ng-href="{{campaign.uri_paths[0].path}}">
+                  <div class="image">
+                    <div ng-show="campaign.featured" class="ui right corner blue label"><i class="star icon"></i></div>
+                    <img width="510" height="510" ng-repeat="file in campaign.files | filter:{region_id: RESOURCE_REGIONS.campaign.thumbnail} | orderBy:'-file_id' | limitTo: 1" ng-if="campaign.files[0].path_external" ng-src="{{server + '/image/campaign_thumbnail_xl/' + file.path_external}}"
+                      class="ui image" />
+                    <img ng-if="!campaign.files[0].path_external" src="images/placeholder-images/placeholder_campaign_thumb.png" class="ui image" />
+                  </div>
+                  <div class="campaign-desc content">
+                    <div class="campaign-title header name">
+                      {{campaign.name | limitTo: 50}}
+                      <span ng-if="campaign.name.length > 50">...</span>
+                    </div>
+                    <div class="campaign-creator ui ribbon label" ng-if="!isHideCampaignCardCreatorCategory">
+                      by {{campaign.managers[0].first_name + " " + campaign.managers[0].last_name | limitTo : 20}}
+                      <span ng-if="(campaign.managers[0].first_name.length + campaign.managers[0].last_name.length) > 20">...</span>
+                    </div>
+                    <div class="campaign-created meta" am-time-ago="campaign.created"></div>
+                    <div class="description" html-render html=campaign.blurb></div>
+                  </div>
+                  <!-- campaign-desc end -->
+                </a>
+              </div>
+            </div>
+            <div class="ui basic center aligned segment">
+              <div semantic-pagination ng-model="backedCampaignFilter.page" total-pages="backedCampaignFilter.pagination.numpages" ng-show="!infiniteScroller.profile" update-function="updateBackedCampaignList()"></div>
+            </div>
+            <div>
+              <div class="ui large centered inline active text loader" ng-show="loadingBacked" ng-class="{'active': loadingBacked}">Loading</div>
+              <div class="btn-wrap ui center aligned basic segment" id="backedDiscovered" ng-show="!loadingBacked" ng-click="loadMoreBackedCampaigns()" ng-if="infiniteScroller.profile && !(backedCampaigns.length == backedCampaignFilter.pagination.totalentries)">
+                <div class="ui large button view-more-btn" translate='infinite_scroller_button_label'></div>
+              </div>
+            </div>
+          </div>
+          <!-- tab end -->
+        </div>
+        <!-- user-profile-tabs end -->
+      </div>
+      <!-- column end -->
+    </div>
+    <!-- ui page grid end -->
+  </div>
+  <!-- user-profile-campaigns end -->
+</div>
+<!-- user-profile-page-wrap end -->

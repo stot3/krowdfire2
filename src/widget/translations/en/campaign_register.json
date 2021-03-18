@@ -1,0 +1,11 @@
+{
+  "campaign_register_first_name_placeholder": "First Name",
+  "campaign_register_last_name_placeholder": "Last Name",
+  "campaign_register_email_placeholder": "Email Address",
+  "campaign_register_password_placeholder": "Password",
+  "campaign_register_confirm_password_placeholder": "Confirm Password",
+  "campaign_register_create_account_button": "Create Account",
+  "campaign_register_success_text": "You have successfully registered your account",
+  "campaign_register_api_register_invalid_email": "Email field is not valid",
+  "campaign_register_api_register_invalid_email_exists": "Provided email address has already been registered. Please login with your existing email and password instead."
+}

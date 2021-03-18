@@ -1,0 +1,155 @@
+<div class="sticky-bar ui sticky" sticky ng-cloak>
+	<div class="sticky-action-bar ui page grid">
+		<div class="column">
+			<div class="button stripe-connect" ng-click="stripeConnect()" ><span>{{'tab_stripeconnect_connect_srtipe'|translate}}  </span></div>
+			<div class="ui red button small" ng-click="deleteConfirm()" translate> tab_stripeconnect_delete_account  </div>
+		</div><!-- SC-ACTIONS END -->
+	</div>
+</div>
+
+<!-- 
+<div class="ui page grid">
+	<div class="column">
+		<div ng-include src="'views/templates/partials/no-data-available.html'" ng-show="stripeAccounts.length==0"></div>
+		<div ng-if="stripeAccounts.length" >
+			<table class="ui table stripe-connect-table segment">
+				<thead>
+					<tr>
+						<th class="one wide center check-box">
+							<div class="ui checkbox" ng-click="checkall($event)" check-all>
+								<input type="checkbox">
+								<label></label>
+							</div>
+						</th>
+						<th class="one wide center address-status" translate> tab_stripeconnect_status </th>
+						<th class="one wide center address-id" translate> tab_stripeconnect_id </th>
+						<th class="two wide center address-name" translate> tab_stripeconnect_stripe_email  </th>
+						<th class="two wide center address-key" translate> tab_stripeconnect_stripe_key  </th>
+						<th class="two wide center address-description" translate>  tab_stripeconnect_country  </th>
+						<th class="one wide center address-description" translate> </th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="stripe-connect-row" ng-repeat="account in stripeAccounts" href="/">
+						<td class="t-check-box">
+							<div class="ui checkbox">
+								<input type="checkbox">
+								<label></label>
+							</div>
+						</td>
+						<td class="t-address-status">
+							<a class="ui yellow label" ng-show="account.access_token.indexOf('test') > -1">Test Account</a>
+							<a class="ui green label" ng-show="account.access_token.indexOf('live') > -1">Live Account</a>
+						</td>
+						<td class="t-address-id">
+							{{account.stripe_account_id}}
+						</td>
+						<td class="t-address-name" title="{{account.email}}">
+							{{account.email}}
+						</td>
+						<td class="t-address-key" title="{{account.publishable_key}}">
+							{{account.publishable_key}}
+						</td>
+						<td class="t-address-description">
+							{{account.country_name}}
+						</td>
+						<td class="t-address-id">
+							<button class="ui button" ng-click="getPayout(account.id)">Payout</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+-->
+
+<!-- ORIGINAL STRIPE GRID -->
+<div class="ui page grid">
+	<div class="column">
+		<div ng-include src="'views/templates/partials/no-data-available.html'" ng-show="stripeAccounts.length==0"></div>
+		<div ng-if="stripeAccounts.length" >
+			<div class="ui eight column stackable grid contribution card-row ng-scope stripe-connect-row" ng-repeat="account in stripeAccounts">
+				<!--status and check box-->
+				<div class="two wide left-col column address-id">
+					<div class="contribution-header" translate> tab_stripeconnect_status </div>
+					<div class="data">
+						<div class="ui checkbox t-check-box">
+							<input type="checkbox">
+							<label></label>
+						</div> 
+						<a class="ui yellow label" ng-show="account.access_token.indexOf('test') > -1" translate>tab_stripeconnect_test_account</a>
+						<a class="ui green label" ng-show="account.access_token.indexOf('live') > -1" translate>tab_stripeconnect_live_account</a>
+					</div>
+				</div>
+				<!--label editor-->
+				<div class="four wide left-col column address-id" style="overflow: hidden;">
+					<div class="contribution-header" translate> tab_stripeconnect_label </div>
+					<div class="data">
+						<div class="ui input">
+						<input type="text" ng-model="account.name" placeholder="{{ 'tab_stripeconnect_account_name' | translate }}" value="account.name"></input>
+						<button style="margin-left:10px" class="ui button small" ng-show="account.name" ng-click="updateLabel(account.id, account.name)" translate>tab_stripeconnect_update_label</button>
+						</div>
+					</div>
+				</div>
+				<!--stripe account id-->
+				<div class="one wide left-col column address-id">
+					<div class="contribution-header" translate> tab_stripeconnect_id </div>
+					<div class="data">
+						{{account.stripe_account_id}}
+					</div>
+				</div>
+				<!--stripe account email-->
+				<div class="three wide left-col column address-id">
+					<div class="contribution-header" translate> tab_stripeconnect_stripe_email </div>
+					<div class="data">
+						{{account.email}}
+					</div>
+				</div>
+				<!--stripe account key-->
+				<div class="two wide left-col column address-id" style="overflow: hidden;">
+					<div class="contribution-header" translate> tab_stripeconnect_stripe_key </div>
+					<div class="data" title = "{{account.publishable_key}}" ng-show = "account.publishable_key">
+						{{account.publishable_key.substring(0, 16)+"..."}}
+					</div>
+				</div>
+				<!--stripe account country-->
+				<div class="two wide left-col column address-id">
+					<div class="contribution-header" translate> tab_stripeconnect_country </div>
+					<div class="data">
+						{{account.country_name}}
+					</div>
+				</div>
+				<!--stripe account payout button-->
+				<div class="two wide left-col column address-id" >
+					<div class="contribution-header" translate> tab_stripeconnect_payout </div>
+					<div class="data">
+						<div></div>
+						<button class="ui button" ng-click="getPayout(account.id)">{{'tab_stripeconnect_payout'|translate}}</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- delete stripe connection modal -->
+<div class="ui modal" id="connection-delete-confirm">
+	<i class="close icon"></i>
+	<div class="header" translate>
+		tab_stripeconnect_deleteaccount
+	</div>
+	<div class="content">
+		<div translate> tab_stripeconnect_deleteaccount_message
+		</div>
+		<div translate>  tab_stripeconnect_deleteaccount_continue  </div>
+	</div>
+	<div class="actions">
+		<div class="ui green button" ng-click="deleteMultiAccount()" translate>
+			tab_stripeconnect_deleteaccount_yes
+		</div>
+		<div class="ui red button" translate>
+			tab_stripeconnect_deleteaccount_cancel
+		</div>
+	</div>
+</div>

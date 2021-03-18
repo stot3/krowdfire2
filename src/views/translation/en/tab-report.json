@@ -1,0 +1,26 @@
+{
+	"tab_report_updated": " Updated:",
+	"tab_report_total": " Total Campaigns",
+	"tab_report_beingedited": "Being Edited",
+	"tab_report_running": "Running",
+	"tab_report_notapproved": " Not Approved",
+	"tab_report_paused": " Paused ",
+	"tab_report_sentfor_review": " Sent For Review",
+	"tab_report_being_review": " Being Reviewed",
+	"tab_report_canceled": "Cancelled",
+	"tab_report_notfunded": " Not Funded",
+	"tab_report_pre_auth": "Pre Authorizing",
+	"tab_report_processing_capture": " Processing Capture",
+	"tab_report_captur_accepted": " Capture Accepted",
+	"tab_report_captur_declined": " Capture Declined",
+	"tab_report_captur_complete": " Capture Completed",
+	"tab_report_total_earning": "Total Earned",
+	"tab_report_funding_sought": "Funding Sought Total",
+	"tab_report_funding_sought_running": " Funding Sought Running",
+	"tab_report_funding_sought_captured": "Funding Sought Captured",
+	"tab_report_funding_raised_running": " Funding Raised Running",
+	"tab_report_sought_capture_complete": "Sought Capture Completed",
+	"tab_report_raised_capture_complete": " Raised Capture Completed",
+	"tab_report_select_currency": " Select Currency"
+
+}

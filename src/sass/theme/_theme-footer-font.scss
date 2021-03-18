@@ -1,0 +1,15 @@
+@mixin theme($name, $font-color){
+	.container.main-color.#{$name}{
+		#footer-wrap{
+			.ui.header,
+			a{
+				color: $font-color;
+			}
+			.copyright{
+				color: $font-color;
+			}
+		}
+	}
+}
+
+@include theme(theme-footer-font, $footer-font-color);

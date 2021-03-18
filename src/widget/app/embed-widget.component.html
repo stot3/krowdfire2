@@ -1,0 +1,1399 @@
+<div id="sedra-widget" *ngIf="mCampaign != undefined">
+  <profile [userInfo]="userInfo" [profileResourceId]="profileResourceId" [settingDecimalOption]="settingDecimalOption" (onBackToCampaignPage)="onBackToCampaignPage($event)" (onUpdateUserInfo)="onUpdateUserInfo($event)" (onUpdateProfileResourceId)="onUpdateProfileResourceId($event)"
+    *ngIf="isProfileShown"></profile>
+  <div *ngIf="!isProfileShown">
+    <div class="campaign-disclaimer-msg ui basic segment" *ngIf="disclaimerMsg.toggle && disclaimerMsg.text">
+      <div class="ui warning message" [innerHTML]="disclaimerMsg.text"></div>
+    </div>
+    <div id="campaign-detail" [hidden]="isContributionView">
+      <div id="campaign-header">
+        <div id="campaign-header-top">
+          <div class="ui basic segment center aligned">
+            <div class="ui dropdown profile-nav" *ngIf="personId" ngSemantic>
+              <img [src]="userInfo.profile_image" *ngIf="userInfo.profile_image" alt="" class="ui avatar image"> {{userInfo.first_name}}
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                <div class="item" (click)="showLoggedInUserProfile()">
+                  {{translate("campaign_page_profile_text")}}
+                </div>
+                <div class="item" (click)="logout()">
+                  {{translate("campaign_page_log_out_text")}}
+                </div>
+              </div>
+            </div>
+            <h1 id="campaign-header-title" TopFontColor class="ui header">{{mCampaign.name}}</h1>
+            <span class="by-label" TopFontColor>by</span>
+            <span class="campaign-info-span">
+              <span class="campaign-manager-popup" *ngIf="mCampaignManagerInfo.name" ngSemantic TopFontColor>{{mCampaignManagerInfo.name}}</span>
+            <span *ngIf="mCampaignShowSlash" TopFontColor>/</span>
+            <span class="campaign-business-popup" *ngIf="mCampaignBusinessInfo.name" ngSemantic TopFontColor>{{mCampaignBusinessInfo.name}}</span>
+            </span>
+          </div>
+        </div>
+        <div id="campaign-header-middle">
+          <div class="ui basic segment">
+            <div class="campaign-header-middle-grid ui stackable grid">
+              <div class="eleven wide column">
+                <div class="featured-image" [hidden]="mCampaign.videoObj">
+                  <img class="ui image" [src]="mCampaign.featured_image_full_path" alt="Featured campaign image">
+                </div>
+                <div class="featured-video" [hidden]="!mCampaign.videoObj">
+                  <div class="ui embed" videoEmbed [campaign]="mCampaign"></div>
+                </div>
+              </div>
+              <div class="five wide column">
+                <div class="campaign-fund-details ui list">
+                  <div class="item r-mode">
+                    <strong class="c-raise-mode">
+                      <div class="ui label black">{{translate("campaign_page_raise_mode_title")}}</div>
+                      <span *ngIf="mCampaign.raise_mode_id == 1" FundingFontColor>{{translate("campaign_page_raise_mode_allnothing")}}</span>
+                      <span *ngIf="mCampaign.raise_mode_id == 2" FundingFontColor>{{translate("campaign_page_raise_mode_keep")}}</span>
+                    </strong>
+                  </div>
+                  <div class="total-raised item">
+                    <div class="value" FontColor *ngIf="settingDecimalOption == 1 || settingDecimalOption == 2" FundingFontColor>
+                      {{ mCampaign.currencies[0].code_iso4217_alpha | currencySymbolNumber}} {{mCampaign.funded_amount | number:'1.2-2' }} {{mCampaign.currencies[0].code_iso4217_alpha}}
+                    </div>
+                    <div class="value" FontColor *ngIf="settingDecimalOption == 3" FundingFontColor>
+                      {{ mCampaign.currencies[0].code_iso4217_alpha | currencySymbolNumber}} {{mCampaign.funded_amount | number:'1.0-0' }} {{mCampaign.currencies[0].code_iso4217_alpha}}
+                    </div>
+                    <div class="val-label" *ngIf="mCampaign.campaign_started == 't'" FundingFontColor>
+                      <span>{{translate("campaign_page_raise_in_text")}}
+                      </span>
+                      <span FundingFontColor>{{getRaisedInPeriod().elapsed}} {{translate(getRaisedInPeriod().unit)}}</span>
+                    </div>
+                  </div>
+                  <div class="total-progress-funded item">
+                    <ng-prog [progressValue]="campaignPercentage" [progressID]="mCampaign.progressID"></ng-prog>
+                    <div class="value" FontColor *ngIf="settingDecimalOption == 1 || settingDecimalOption == 2" FundingFontColor>{{mCampaign.funded_amount / (mCampaign.funding_goal || 1)| percent:'1.1-2'}}</div>
+                    <div class="value" FontColor *ngIf="settingDecimalOption == 3" FundingFontColor>{{mCampaign.funded_amount / (mCampaign.funding_goal || 1)| percent:'1.0-0'}}</div>
+                    <div class="val-label" FundingFontColor>{{translate("campaign_page_fund_of_text")}}
+                      <span class="funded_goal" *ngIf="settingDecimalOption == 1 || settingDecimalOption == 2" FundingFontColor>
+                        {{ mCampaign.currencies[0].code_iso4217_alpha | currencySymbolNumber}} {{mCampaign.funding_goal | number:'1.2-2' }}
+                        {{mCampaign.currencies[0].code_iso4217_alpha}}
+                      </span>
+                      <span class="funded_goal" *ngIf="settingDecimalOption == 3" FundingFontColor>
+                        {{ mCampaign.currencies[0].code_iso4217_alpha | currencySymbolNumber}} {{mCampaign.funding_goal | number:'1.0-0' }}
+                        {{mCampaign.currencies[0].code_iso4217_alpha}}
+                      </span> {{translate("campaign_page_goal_text")}}
+                    </div>
+                  </div>
+                  <div class="total-backers item">
+                    <div class="value" FontColor FundingFontColor>{{mCampaign.total_backers}}</div>
+                    <div class="val-label" FundingFontColor>{{translate(mCampaign.backers_text)}}</div>
+                  </div>
+                  <div class="funding-duration item">
+                    <div class="value" FontColor FundingFontColor>
+                      <div *ngIf="mCampaign.campaign_started == 't'">
+                        <div>
+                          <div *ngIf="mCampaign.remaining >= 1">{{mCampaign.remaining}} {{translate(mCampaign.remaining_text)}}
+                          </div>
+                          <div *ngIf="mCampaign.remaining == 0">{{translate(mCampaign.remaining_text)}}</div>
+                          <div *ngIf="mCampaign.remaining <= -1">{{translate("ended")}} {{mCampaign.remaining * -1}} {{translate(mCampaign.remaining_text)}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="funding-duration-note item">
+                    <div class="funding-duration-note-text ui large label fluid">
+                      <div class="campaign-start-date">
+                        <span *ngIf="mCampaign.campaign_started == 'f'">
+                          {{translate("campaign_page_starts_on_text")}}
+                        </span>
+                        <span *ngIf="mCampaign.campaign_started == 't'">
+                          {{translate("campaign_page_started_on_text")}}
+                        </span>
+                        <span>{{mCampaign.starts | amDateFormat:'lll'}} {{mCampaign.timezone_abbrev}}</span>
+                      </div>
+                      <div class="campaign-end-date" *ngIf="mCampaign.ends">
+                        <span>{{translate("campaign_page_ends_on_text")}}</span>
+                        <span>{{mCampaign.ends | amDateFormat:'lll'}} {{mCampaign.timezone_abbrev}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="contribute-action item">
+                    <button class="contribute-button ui green button huge fluid" *ngIf="isCampaignShown" ThemeColor (click)="selectReward(0, true)" [ngClass]="{'disabled': isCampaignAvailable()}">{{translate("campaign_page_contribute_button")}}</button>
+                  </div>
+                  <div class="contribution-action item">
+                    <div class="share-campaign green ui center pointing dropdown button fluid huge" ngSemantic>
+                      <span class="text">{{translate("campaign_page_share_button")}}</span>
+                      <div class="menu">
+                        <div class="item">
+                          <div class="a2a_kit a2a_kit_size_32 a2a_default_style" [attr.data-a2a-url]="a2aUrl">
+                            <a class="sm-link a2a_dd" href="https://www.addtoany.com/share"></a>
+                            <a class="sm-link a2a_button_facebook"></a>
+                            <a class="sm-link a2a_button_twitter"></a>
+                            <a class="sm-link a2a_button_google_plus"></a>
+                            <a class="sm-link a2a_button_email"></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="campaign-header-bottom">
+          <div class="ui basic segment center aligned">
+            <div class="ui grid stackable">
+              <div class="eleven wide column">
+                <div id="campaign-header-blurb fr-view" BlurbFontColor [innerHTML]="mCampaign.blurb"></div>
+              </div>
+              <div class="five wide column"></div>
+            </div>
+            <!-- <div class="campaign-header-meta ui large horizontal list">
+              <div class="location-item item" *ngFor="let location of mCampaign.cities">
+                <i class="marker icon"></i>
+                <span class="meta location-meta">{{location.city_full}}</span>
+              </div>
+              <div class="category-item item" *ngFor="let category of mCampaign.categories">
+                <i class="tag icon"></i>
+                <span class="meta category-meta">{{category.name}}</span>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <div id="campaign-body">
+        <div id="campaign-body-middle">
+          <div class="ui basic segment">
+            <div class="ui stackable grid">
+              <div class="campaign-tab-content eleven wide column">
+                <div id="campaign-tabs-wrap">
+                  <div id="campaign-tabs" class="ui menu" ngSemantic [ngClass]="{'tabular': !isMobile, 'secondary pointing': isMobile}">
+                    <a class="item active" (click)="setCurrentTab('campaign')" *ngIf="currentTab == 'campaign'" TabBackgroundColor TabSelectedFontColor>{{translate("campaign_page_campaign_tab")}}</a>
+                    <a class="item" (click)="setCurrentTab('campaign')" *ngIf="currentTab != 'campaign'" TabUnselectedFontColor>{{translate("campaign_page_campaign_tab")}}</a>
+                    <a class="item active" [hidden]="!mCampaignFAQs.length" (click)="setCurrentTab('faq')" *ngIf="currentTab == 'faq'" TabBackgroundColor TabSelectedFontColor>{{translate("campaign_page_faq_tab")}}</a>
+                    <a class="item" [hidden]="!mCampaignFAQs.length" (click)="setCurrentTab('faq')" *ngIf="currentTab != 'faq'" TabUnselectedFontColor>{{translate("campaign_page_faq_tab")}}</a>
+                    <a class="item active" [hidden]="!mCampaignBackers.length" (click)="setCurrentTab('backers')" *ngIf="currentTab == 'backers'" TabBackgroundColor TabSelectedFontColor>{{translate("campaign_page_backers_tab")}}</a>
+                    <a class="item" [hidden]="!mCampaignBackers.length" (click)="setCurrentTab('backers')" *ngIf="currentTab != 'backers'" TabUnselectedFontColor>{{translate("campaign_page_backers_tab")}}</a>
+                    <a class="item active" [hidden]="!mCampaignStreams.length" (click)="setCurrentTab('streams')" *ngIf="currentTab == 'streams'" TabBackgroundColor TabSelectedFontColor>{{translate("campaign_page_streams_tab")}}</a>
+                    <a class="item" [hidden]="!mCampaignStreams.length" (click)="setCurrentTab('streams')" *ngIf="currentTab != 'streams'" TabUnselectedFontColor>{{translate("campaign_page_streams_tab")}}</a>
+                    <a class="item active" (click)="setCurrentTab('comments')" *ngIf="currentTab == 'comments'" TabBackgroundColor TabSelectedFontColor>{{translate("campaign_page_comments_tab")}}</a>
+                    <a class="item" (click)="setCurrentTab('comments')" *ngIf="currentTab != 'comments'" TabUnselectedFontColor>{{translate("campaign_page_comments_tab")}}</a>
+                    <a class="item active" (click)="setCurrentTab('contact')" *ngIf="currentTab == 'contact'" TabBackgroundColor TabSelectedFontColor>{{translate("campaign_page_contact_tab")}}</a>
+                    <a class="item" (click)="setCurrentTab('contact')" *ngIf="currentTab != 'contact'" TabUnselectedFontColor>{{translate("campaign_page_contact_tab")}}</a>
+                  </div>
+                </div>
+                <div id="campaign-tab-body" class="ui" *ngIf="isCampaignTab">
+                  <div CampaignFontColor>
+                    <span class="fr-view" [innerHTML]="mCampaign.description"></span>
+                  </div>
+                </div>
+                <div id="faq-tab-body" class="ui" *ngIf="isFAQTab" [hidden]="!mCampaignFAQs.length" FaqFontColor>
+                  <div class="faq-info" *ngFor="let faq of mCampaign.faqs">
+                    <div class="campaign-faq-header">
+                      <h2 class="ui header" FaqFontColor>
+                        {{faq.name}}
+                      </h2>
+                      <p>
+                        {{faq.description}}
+                      </p>
+                    </div>
+                    <div class="ui accordion" *ngIf="faq.faq_pairs && faq.faq_pairs.length" ngSemantic>
+                      <div class="faq-content" *ngFor="let pair of faq.faq_pairs | paginate: campaignFaqsConfig">
+                        <div class="title">
+                          <h3 class="ui header" FaqFontColor>
+                            <i class="dropdown icon"></i> {{pair.question}}
+                          </h3>
+                        </div>
+                        <div class="content" FaqFontColor>
+                          {{pair.answer}}
+                        </div>
+                      </div>
+                      <pagination-controls id="campaign-faqs-pagination" (pageChange)="onCamapginFaqsChange($event)" directionLinks="false" maxSize="5" autoHide="true" *ngIf="faq.faq_pairs && faq.faq_pairs.length > 10"></pagination-controls>
+                    </div>
+                  </div>
+                </div>
+                <div id="backers-tab-body" class="ui" *ngIf="isBackersTab" [hidden]="!mCampaignBackers.length" BackersFontColor>
+                  <div *ngIf="mCampaignBackers.length">
+                    <div class="campaign-backer ui basic segment" *ngFor="let backer of mCampaignBackers | paginate: campaignBackersConfig">
+                      <div class="ui column stackable grid">
+                        <div class="six wide column">
+                          <div class="header">
+                            <img class="ui avatar image" [src]="API_HOST + 'image/campaign_profile/' + backer.person_files[0].path_external" *ngIf="backer.person_files">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAIAAABEtEjdAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+                              bWFnZVJlYWR5ccllPAAAG5dJREFUeNrs3Q9zE9e5B2BiqchoQY5FbCzXBjvGMRBuppl+jnzAfKg7
+                              zaS9SYzjQrCLCQQZq5FBEzm9x9bUYQI4/iOt9px9HlyG0DaYo93fvufds2c/+PLLLy8BkJYJQwAg
+                              3AEQ7gAIdwCEOwDCHUC4AyDcARDuAAh3AIQ7gHAHQLgDINwBEO4ACHcAhDuAcAdAuAMg3AEQ7gAI
+                              dwDhDoBwB0C4AyDcARDuAAh3AOEOgHAHQLgDINwBEO4Awh0A4Q6AcAdAuAMg3AEQ7gDCHQDhDoBw
+                              B0C4AyDcAYQ7AMIdAOEOgHAHQLgDINwBhDsAwh0A4Q6AcAdAuAMIdwCEOwDCHQDhDoBwB0C4Awh3
+                              AIQ7AMIdAOEOgHAHEO4ApKRqCEjtmK5W6/Xszd/JsqxS/e1Q7+ztvfnf9nqve72ecUO4Q1ESvBZM
+                              TtaOVCvVepad6v+8sPjO3+4den2Y/p3O4BpwcNDvdrtGG+EOo9JoTIUCPMR3yPHw61H8EYOLxODP
+                              evMasN/thtTv7ndD3CvzEe5w0agNIduYmgqJftqSfDTqRxeV6WZzEPch3EPcdzp74Utdj3CHUxyO
+                              1er0dDMEeoj1QRFdzKtOcJj1ly4d9PudQ4Ie4Q5vybIspPnMzOx4K/RzqISrUbM5CPpQ0e+2X4SU
+                              b7fbPlOEO6XO9BDo083rhS3Sz1rRz7Xmw1co59u74ccLKY9wp0RCCDab10MIppHp7yznw0UrfA1S
+                              /unOEx0bhDspC3kXYn3QxCiD45Tv9Xoh4p8/f9bv9x0GCHfSKdVnZm+05lpvPklUthG4tbQcvkK+
+                              P3/2rNPZc1Qg3IlYlmVzrflQuhqK47lL+NrvdneOCnkDgnAnMo3G1MLi4oieNopdPctWbq8uLN7c
+                              3nq8u9vWq0G4I9bTUavVQsQf9Ps7T8OPJyIe4Y5YT0elWl1YWGzNtba3t3Z2nhgQhDsFkmXZraVl
+                              sX6RiA8DONea3956rBePcKcAB9BRKrllOhSDRs3M7Oz21pYVNQh3xmZh8WaZFziOSJgA3ft0KtTv
+                              oYq3AyXCnbwDKNSYqT5iWgSHD3xNNzXiEe7kdcQc3QCca80bilGr/Lfltbm5YQMDznz8fPHFF0aB
+                              U2o2m/fu3W9MuXGanz9dvnzjxtylDz7QhUflzkgK9pWV1fJsC1M0YbbUnG4q4VG5M0yNxtSdu59e
+                              vXbNUCjhUbmTSs24eHPhPW+UZiwlfKPReLD+nSdaOdmEIeC9V/5q9d6n9yV7ASdSn3/+V4+MIdyR
+                              IKmpDK67izcNBe8tzgwBb2u15m8tLRuHgtOiQeXOqa/21erK7VXJHtEE6969+1lsLxZHuJN3soek
+                              sFFMXOpZFj61plWqCHfeKVR/n3/+17oaMEKVavWTtbuuygh33pHsofqzBVjUVm6vLumncTwRNwSE
+                              ii/kgnFIwFxrPlyhN7/fMBQId8ku2VP7QMPPPzx6aAlNyWnLSHbJnuDHeu/e/aomm3BHspOYwRIa
+                              +S7ckezId4Q7kh35jnBHsjPGfP9k7Y5xEO5IdlIzeOGtcRDuOMlxUUe4E4ksy9ZMz8ud7y2vNRfu
+                              JGawI5jdBUru1tKy/WeEO5KdBK3cXrU/sHAnlfN5ZdVejxyzOFK4k4KFxZvTdvrmDZWjmZx8F+5E
+                              rNlser01bwszOS/bEu7EqlarraxY/ca7zczMurkq3InS2tpdN1E5wdLSspurwp34zls3UTlZuPaH
+                              uZ3mu3AnGs1mc87jKpyC5rtwJxrVo3LMOHBKMzOzTeuphDvFF5Jdq52zHjOaM8KdQgslmFXtnFXF
+                              bE+4U2QaMpxbqAk0Z4Q7xZ1ca8hwkeNHc0a4UzgaMlxQqAysnBHuFEv18LT82DhwQTMzs43GlHEQ
+                              7hTFXGu+VqsZBy7OC5uEO0URYt3uYAzxcPLCJuFOISxpyDBUoVZwZ1W4M2aNxpT7qAxXpVo1FxTu
+                              jLvIWnQSMnzu4gh3xsnaBkZZN9w0CMIdpx9KB4Q7Qzr3TJwZcfWg6SfcUbaTnFC5K96FO8p2EmTN
+                              u3BH2U6CpptNZYRwJydN5xsqCYR7erwflTzpAQp38pBlmXtc5J3vszcMgnBH2U5qWnMtgyDcGaFq
+                              tRrmyMaBnFUceMKd0c6OnWCM69ibdewJd0ZGT4ZxaTSm3FYV7oxElmXOLsbIA03CHWU7CZpuXjcI
+                              wp3ha057KQfjFCaOTW+GEe4MOdmbzYo3n6F4R7g7qcD0UbjjpII/FqaPOjPCneElu54MJpEId6cT
+                              mEQi3CNgpzCKI0wiHZDCnSHw7BKFK9613YU7ynYckwh33mFalUTB1LOs6g6/cEeVRIqHZcMgCHck
+                              O45MhDtvnkJTTiGEO8Ld5Bdyoe0u3LmQrJ4ZBAqa7w5O4c45kz3L7DpAcaeVeobCHZURCYa7nqFw
+                              59yVu0GgsGq1SYMg3DlX5S7cKXS419xTFe6cq3LXlqHg9YdDVLhzVqEmcjeVotcfJpfCHTUR6bFf
+                              qXBHTUSKJYijVLhzVnoyxFC5WzAj3Dkji4iJIdy1ZYQ7IN8R7lgHSSThrjMj3DkLPXeiUK1WDIJw
+                              5/QnjGQnDvXsqkEQ7pz6hNGTAYQ7AMIdGBprdoU7ZzlhvAYBEO4ACHcA4Q6AcAdKxaPUwh1IkEep
+                              hTsAwh0A4Q6AcAeGo9frGQThDqQX7q8NgnAHQLgDINyTmuq+NtUFhHt64e4mFZE46B8YBOEOpKa7
+                              3zUIwh0A4V5inc6eQSAKB/2+QRDuQGq6XW0Z4c5ZuKcKCPckw91qSCKw74aqcEflTnr6eu7CHeFO
+                              amW7hrtw5+ynzc8GgaKX7QfKduHOmWe7Hvyj6DqdjkEQ7pz1tLHUnaKzCZJw51xnjrY7DlGEe4pn
+                              jrII80uEe4JnjoYmxWWpjHDn3CePBTMUl/0ghTvnPXlURqjcEe7p6R0xDig+EO6KI8iJu6nCHecP
+                              jkyEO04hIjgyLeUS7lxAt9v1phuKGO57yg7hjhIJc0qEO7/Tbr8wCBTKbrttEIQ7SiQckwh33tLr
+                              9SyIxGwS4a5QgtFWG56tE+4Mx/PnzwwCBbGrbBfuDEu321UrodRAuCuXYCRCkWFLGeGOcglFBsKd
+                              E+nMUAQ7O08MgnBnyJ46rxirfRWGcGcULC5mvPQGhTsjEYomj30j3BHuSZ5dPxoExpXsfRuUCndG
+                              pN1ua3oynnB/pmwX7pgak5b9btceGMKd0bJmhvxZASncGbl+v694J08HDjnhTj62tx4bBPIr25/u
+                              GAThTh6siSTPsl0nULiTYzHlfCOvst0KSOFOfjqdPasXULYj3BO0vbVlEFC2I9wV76BsF+7EYPP7
+                              DYOAsh3hnpper2cBMsp2hHuCtrceHyivGLZHjx4q24U7Yy7ePWPCcO13u2aEwp3xC9NnW0Uy3LLd
+                              IAh3xi9Mn3949E/jwFDstttWYQl3iqLthGQYDvr9RwoF4U6hbH6/4c4qF7S9vaXFJ9wpFndWuaD9
+                              bteeRcKdQpZdW4/D+WkcOOfkb9MzccId5yeJVQbbW12VgXCnsML5Gc5S48CZhAmfN8AIdwpfgm09
+                              tnKG0zvo99fXvzUOwp0IWDnD6T169NAKGeFOHMK5qvnOaey223YaEO7EpN1u29UPRYBwJ83ptpWR
+                              vM9Bv/9g/VtbPwp3orS+/q3mO++79lv7KNyJeN69vv6dceB3nj9/ptUu3Ilbp7PnbXw4JIQ7yjRS
+                              tt/tPjCZE+4kI1RqnmzioN/f3NxwE1W4k5RQr1k8U/Jk/+abf7iJKtxJTf/o3PYsYmlZHiPcSTnf
+                              H1gcWUqb32+47yLcSVmo3UL9Lt8lO8Id+Y5kR7gj35HsCHfkO5Id4Y58R7Ij3JHvkh3hTmnz/euv
+                              v/J8k2RHuJOaXq8X6nf5HrswA/v7119JdoQ7vxk8vyoXYr9CewaVY1VDwHG+hxl9yIiFhUWjEZf9
+                              o3sndgRDuPNe21uPe69fLy0tV6qOjTiE+Zb92RHunCos9ve7n6zdrdVqRqPg3D7lffTceYdut/v3
+                              r7/abbcNRWH1ej23TxHunFm/319f//aHRw8NRQGF625IdrdPOYG2DCfZ2XnS6exp0RRKuOKGz8U4
+                              oHLnQgYtGtP/Itg/+iwkOyr3pD+5ajW3pW+DVZK77RcrK6tW0YzL050nj/LtkuV5jDF0lS+++MIo
+                              RKfRmLp//7Nffvllfz+/ruurV6+ePfvxypX6lStXfAQ5F+wbGw9+/PFpnn9olmWfffaXy5cvv3z5
+                              0kcg3MnDzMzs2p27ExMTzeb1Xq+XZ77/+uuvL1781Ol0GlNTVSV8Lra3tzY21nN++W1I9nv37odZ
+                              2tVr12qTk//udMJH77MQ7ozQ0tLyzVtLx/+Yf75fOlqE99PzZ7/+5z9hAuETGZ1OZ++b//tH/gtS
+                              j5P9+B8//HA6XNTlu3BnJEKlvPzxyo0bc7/7/bHkezjPQ/Q8f/4snPm12qRPZ+iXz39ubjx+/MPB
+                              wcF4k33gT5cvX/9o5t+dvV9++cWnI9wZcrKHUy4UUO/8b8eS70GInpDvujTDHNJ+/8mTf4VkH8sa
+                              9ncm+/ER+NH1j/b2Xsp34c6Qk72eZSf8b8aV74My8+nOk/Bzll0V8RcRrpTffffNy5e7Y2mAnJDs
+                              AxMTEyHfc76Nj3BP1mDRQm3yj1sfY8z3IPy5g0Z8Vs9CCvjgzhrrD9a/DT+Pq6/9h8l+nO/jPcwQ
+                              7ukk+2lOuTfzPdTO41q7NmjEP3v2o4g/R6zn316/yGEWvtuff/63j0+4k8cpNzBYuzbGPb+OI/7V
+                              q1caNe9z0O+/ePHT2GP90tHK2tXVtbMeZh9+OD3ewwzhHqvznXLHV4WQqnt7L8e4di380WHmPujF
+                              h3y3oubY4S2Kpzvfbzx48dNP4431wWG2cnv1fHOsw4VS8l24k9spN3DlypWCrE0OER+K093ddvjr
+                              TNZqZe7VhAnN9tbW5uZG+EUR1oyHY2xh8eYFJ5fyXbhztmS/+L/nT5cv37gxV5C1a+F7CBEw6NVM
+                              1ibD91aqUv2n5882Ntaf7uwU5D5kmEuFeeH1jz66+L9Kvgt3ck32gcHatdevQ6K+KsLfbtCr+fHH
+                              p6GW/+Do8pNwR37QVf/X9uOH/9x8+fLl2Dswx2q12t27nzamhvZ0sXwvpg++/PJLo5Bksr9pe3tr
+                              e+txAf/KIRfC33q6eT2Z/eJDprd3w48X7UKGXaMxtbZ2ZxRbe3qVa9FYyZB+sgcLC4tZPdvc3Cja
+                              Dq7dQw8fPXoYUj7kznSzGel+Nb1eLwR6p7PXLnAB22rN31paHt0BfOnona7OZZU7OSX7mwH0YP3b
+                              gr+brVqtNg5Nha+TH8otQqCHNO/s7YWfc9618RyjurKyGq6do/6D1O/Cnd80m81P1u7m9sdF9JK2
+                              EEn1etaYCkHfCDOPIrwnJOT4/tF0o/iBfizMivJ8UaJ8L8rpYwjGfuKFkirPPzFMzENRXMAWzdvC
+                              d3hYGnf2Bv9YOzQZsv7oF7UcGjghx0OCd/fDj58PfxHhC6lH2op53zT0kv6McJfs53gG9eLC9Px/
+                              sr+E0+84N6PQO/K773kQ8YO1H4PQPzysK9VTtnSO/pWvLx3eCD3oHq1TDDne7x+E34ylMD9h3pNP
+                              K+ad+d7Z2/PeXeEu2ccghOC9T+8XdhXN6Q2yPq6rVA6azeZ4X3g7uIck34V7+ca9Wv1k7e7Ym8gL
+                              C4vN6ebmmHYPJ7GCXb4XioeYxnP6hZq9IK+ZHjzIeumDDxS/aRTsf7j1f77fz/Xd3bb3ewj3srh/
+                              /7OiLfJrNKZmZm8M7h/6gCKtGFZX1xYWbxZt9x7vbxLuZRHmqu97W97Y02Fmdtar7mPUas2vrd0p
+                              5mMBgz0wDnf5d1AJ94QtLS2//YbrQsmyLHyHXqUWi6PtBO6Gq3KRt9sM31tB9igV7ozEzMzszVtL
+                              xf8+B69SC1+vXr3SpSmsMNNa/ngllAtRbLEZvskrV+oh331wwj3FCuvO3Yi+4XA2Dro0+91ucXY0
+                              ZBDr839eWF395Oq1axF921euXLF5ZK7HiSHIQZZla2t3Ip1thK+nO0+2t7eK/0RrSeZ/C4s3I91E
+                              08NNwj21Omu8j5Nc3FxrPpyWO0/DjyciXqxfxMrt1bcfM2YUtGVG7s7de3FNn99pYmKi0Zi6cWNu
+                              olLZ3++6M5ZzrK/dObxrmsa7TZrNpsWRwj16S0vL1z+aSeavI+LF+lCOomtXr1k8I9zjPjOjWB5z
+                              7oi/fPnyq1ev3G4duhDl169/lF6sH7N4RrhHLMuy1dW1Iq8+vnjEX712rdWar01OHhxuo2jR5BDU
+                              arXW/J9XVz8JE76EXzB76WjxjE0vRlsiGIIRVV5F2BcstwlK+Nrvdnd2nuzutt1xPZ+jHSBmB5uh
+                              l8TCwuLgPVY+feEejZWV1WTe+HxK9Sxbub06eD30050ntpk8fR0QAn0uTIBKdsAMrK3d+frrr0z7
+                              hHsk9cjizSJsuDoWlaOoGhTyz58/C18K+fdpNpszMzdKe6gcHzBra3dDvjsehHsEk+sw2TQOoZC/
+                              lS3fWlrebQcvtGvezPTp5vXwn5J07U5zqCwtLT969NBQCPdCT7EjfRJ1dKYPs+ywOC15ysv0E8y1
+                              5judvbadCYR7YX2ydsep+4cpP+jYhJM5+b58uNhPh79z83qj0XBgnGxlZbXb1XwX7oW0sHhz8LJm
+                              /nAafitbvnT0cuoQ8YP1Eimd1SHOw5EQvoq5wXoxab4L94LSaj+HWq02uPv6ZtDvh8I+too+VOiN
+                              Q4dp7gJ/kau+5rtwL9y5PXgXMEMJ+oN+v7vf7XQ6+92fQ+gXMOtrhyYbU1NZPfzIyrmKcRTmWvPt
+                              dtvKd+FeFCVc1T7qGfqgrXH8O4OXu4bED3Hf7x/kfPJnWVapVEOUVyuVEOUhzjXQR2dt7c7f/va/
+                              1lYJ9/ELxWbJlyrnM2EPX78b50HE944cXQAOc/+w8D/on6nYH5Thv+X4UXA3Go3Df5Tj47i0h2pp
+                              ff1bQyHcxzw9X1paNg5jobudqnAVb7Xmd3aeGIqLmDAEF7Fye1VlB0O3sLCo1SncxyYUF4pHGIWK
+                              RQrCfVyyLLP2EUYnVE6hfjIOwj1vsb8WFYrv1tJy5kEw4Z6nhcWbHj6EfKoogyDcc1Kr1TRkIB+h
+                              itKcEe55lRLu80CeE2UrZ4R7DqyQgZxZOSPcR05DBsbCyhnhPlpLSx9bIQNjEeqqqrNPuI9C87/v
+                              mgDyN9hzxjgI9yELJcOtpY+NA4zR9NFbUIyDcB/ylND9ehg7d1aF+zBlWTbnZg4UwOGihsWbxkG4
+                              D8ctm/pCYbTmWqbRwn0IZmZmtfmgOCrV6pIbYML9gqqHh5GyHYrFnVXhflFzrXkL26GA3FkV7ufn
+                              eVQo9OnpzqpwPx99PSiy1lzLM6vC/cwajSnPo0KRVQ4fLXRLTLifuWx30EDRzczMWhYp3M92xHjR
+                              EkTBnVXhflrVatWNGohFozFlWaRwP5W51ryJHkREE1W4n6psb821jANEpJ5lMzOzxkG4n2RhYdFT
+                              SxDfmauVKtxPUKvV7P4IkZ68infh7uIPCVpaWvZMk3B35YfUVKpVM2/hrmyHBNmQQLgr20HxLtyV
+                              7YDiXbgr2wHFu3BXtgOKd+GubAcU78Jd2Q6Kd+GubAcU78Jd2Q4UuHgX7sp2IMHiveQneHnDfWb2
+                              hhMATM2Fe1Ls2w5m58I9QXOtefu2Q/JaJb6tWtJw122HMqhnWWnfsFrGcA/J7i2poHgX7qmxAhLK
+                              Y7rZLGcxV7pwD3M0ZTuo54S7ORoQt+Z0s4S7EZQr3EPNHuZojnUolXI+0FSucFe2QzmVcKuZEoV7
+                              tfSPI0NphVl7s2Sz9hKF+/R004NLoHgX7qnRk4EyK9tKuYnyfK71LHN8Q5mVqsIrS7jPzOq2Q9mV
+                              6q5bKcLdrVTgUsnWRJYi3CU7ULZJfCnC3dsUgYHy3FZNP9yzLLOZDHCsJLdV0w93ZTvwppL0aRMP
+                              92q12py2mQzwm5LcVk083D2VCryt2bwu3COff1neDrxd9pXgDR4ph3v48Er7+kSg5MV7yuE+M3vD
+                              EQy8Ox9Sb7tP+PCAEqpnh4R7fCxvB8pc/0342IBymk667S7cgZJKe81FmuHebFreDpyiCkx3tXSa
+                              4T5dgicUgCEUguk+wT7hAwNKK0zxU31xdoLhricDmOhP+KiAMkt1oj/howLKLNXOTGrhricDmO4n
+                              GO56MoDpfoqVu54McEZJdmaSCvcsy/RkgHNI71HVpMLdlgPA+aTX0Z3w8QDUarXEdgBOJ9zt8Quo
+                              DhMMd2/UAy4iseUY6YS7hjtwEfW0Zv+JhHu1Wq0n/cYsQAOgjOE+bXk7cGHNhNruiYR7Y0rDHbh4
+                              5d4Q7gW73qrcgQurVKvJdGZSCHcPpgJDqxRT2YcghXD37BIwLCr3Qn0YDUckMBT1LKsm0QmIPtyr
+                              CfXIgEI0A5K4hxd9uCvbgSGnShKr7xIId2U7IFWEO8CJakeE+zjZdQAYhQQeVY073DXcAS2BJMNd
+                              TwZQOAp3gFOoVKuxv5gp4nDXcAfUjgmGu4Y7MDp1lbvrKqByF+6GHohA7KvdIw53DXdABZlauCvb
+                              gVGLesFMtOHuvXqAIjK9cM/qejLAaNVV7uO4oloHCSje0wr3Wq3mpalAHuE+JdxzlFknA+STNtF2
+                              gKMMd0tlgHzE23afMNwA71Or1SJ9X7bKHeDEajLOzkx84a7hDuRaTcZ5TzW+cK9b4Q7kWVCq3FXu
+                              QHoivck3YaABThDpPdUIK3dtGSDnmjLC2Iks3D2bCuQvxnuq0YX7pOMMyL+sFO6un0BqMm0ZQwyk
+                              J8Z1HPH13B1nwBgqy9jyPbJwtw4SUFmmFu4eXwLGV1leFe6unEBqorvhF1O4R3flBJKhLePKCSSo
+                              7obq6FSqFUcYoHhPLdy9owMYa7jH9IR8NOFetaUMMN76Mqon5KMJd+/oAMZcYlZi6gxHE+4WuQNj
+                              LjGjSqFowt1Ov8B46bmPpnLXlgHGHO5Wy4ykcrcOEpDvyYW7dZBAAcI9ms7MhE8L4JQiWtkRR7gr
+                              24EiiGhlh8od4NSVe13lPtzK3atTgUJU7tGs7FC5A5yWG6rlnQoBSYe7pZBlnQoBaYtlE8M4wj2u
+                              p36BhMWyiWEs4e7tqQBphbud3IHiiGXxXgThbid3gATDHaA4YukSRxDuXtMBCPcEw91rOgASDHeA
+                              4sgshSzbUAJlUPEQ0/CG0uOpAMmFO0ChRLHKQ1sG4GwqlQg6M1bLACRIWwbgbKJY6l70cLexDFC4
+                              cJ+MYJ/aooe7jWUAEgx3AIQ7wMhFsYSv+D13TzABxRLFk5WF77lnVx1JAKmFOwDCHQDhDnB2jUYE
+                              r1Et/A3VihuqAMmFe9079gDSC3cAhDsAwh1AuAMwUPxdf4U7wDnCvei7/gp3gAQVPdyLf3kEEO7n
+                              CPeaDwngrP5fgAEAIM/y6bOfIqoAAAAASUVORK5CYII=" class="ui avatar image pp_placeholder" *ngIf="!backer.person_files">
+                            <span>{{backer.first_name}} {{backer.last_name}}
+                            </span>
+                            <span [hidden]="!backer.anonymous_contribution">{{translate("campaign_page_anonymous_text")}}</span>
+                          </div>
+                        </div>
+                        <div class="five wide column">
+                          <div *ngIf="settingDecimalOption == 1 || settingDecimalOption == 2">
+                            {{ mCampaign.currencies[0].code_iso4217_alpha | currencySymbolNumber}} {{backer.total_amount | number:'1.2-2' }} {{mCampaign.currencies[0]["code_iso4217_alpha"]}}
+                          </div>
+                          <div *ngIf="settingDecimalOption == 3">
+                            {{ mCampaign.currencies[0].code_iso4217_alpha | currencySymbolNumber}} {{backer.total_amount | number:'1.0-0' }} {{mCampaign.currencies[0]["code_iso4217_alpha"]}}
+                          </div>
+                        </div>
+                        <div class="five wide column">
+                          <div *ngIf="backer.total_backed < 2">
+                            <i class="certificate icon"></i>{{translate("campaign_page_backed_text")}} {{backer.total_backed}} {{translate("campaign_page_campaign_text")}}
+                          </div>
+                          <div *ngIf="backer.total_backed > 1">
+                            <i class="certificate icon"></i>{{translate("campaign_page_backed_text")}} {{backer.total_backed}} {{translate("campaign_page_campaigns_text")}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <pagination-controls id="campaign-backers-pagination" (pageChange)="onCampaignBackerPageChange($event)" *ngIf="mCampaignBackers.length > 10" directionLinks="false" maxSize="5" autoHide="true"></pagination-controls>
+                  </div>
+                </div>
+                <div id="streams-tab-body" class="ui" *ngIf="isStreamsTab" [hidden]="!mCampaignStreams.length" StreamsFontColor>
+                  <div class="ui button black" (click)="isStreamSelected = !isStreamSelected" *ngIf="isStreamSelected">{{translate("campaign_page_back_text")}}</div>
+                  <div [hidden]="isStreamSelected">
+                    <div class="stream-content stream-list" *ngFor="let stream of mCampaignStreams | paginate: campaignStreamsConfig; let index = index">
+                      <div *ngIf="stream" (click)="getSelectedStream(stream, index)">
+                        <div class="stream-top">
+                          <!--<div class="stream-number">
+                            <h4 class="ui header" FontColor>{{translate("campaign_page_update_text")}} #{{index + 1 + campaignStreamsConfig.itemsPerPage
+                              * (campaignStreamsConfig.currentPage - 1)} }
+                            </h4>
+                          </div>-->
+                          <div class="stream-date">
+                            <h4 class="ui header" FontColor StreamsFontColor>{{stream.created | amDateFormat:'lll'}}
+                            </h4>
+                          </div>
+                        </div>
+                        <div class="stream-middle">
+                          <h2 class="ui header" StreamsFontColor>{{stream.title}}</h2>
+                          <div class="stream-description fr-view" [innerHTML]="stream.message | streamMessage" StreamsFontColor></div>
+                        </div>
+                      </div>
+                    </div>
+                    <pagination-controls id="campaign-streams-pagination" (pageChange)="onCampaignStreamsPageChange($event)" *ngIf="mCampaignStreams.length > 7" directionLinks="false" maxSize="5" autoHide="true"></pagination-controls>
+                  </div>
+                  <div class="stream-content" *ngIf="isStreamSelected">
+                    <div class="stream-top">
+                      <!--<div class="stream-number">
+                        <h4 class="ui header" FontColor>{{translate("campaign_page_update_text")}} #{{selectedStream.index}}</h4>
+                      </div>-->
+                      <div class="stream-date">
+                        <h4 class="ui header" FontColor StreamsFontColor>{{selectedStream.created | amDateFormat:'lll'}}</h4>
+                      </div>
+                    </div>
+                    <div class="stream-middle">
+                      <h2 class="ui header" StreamsFontColor>{{selectedStream.title}}</h2>
+                      <div class="stream-description fr-view" [innerHTML]="selectedStream.message" StreamsFontColor></div>
+                    </div>
+                  </div>
+                </div>
+                <div id="comment-tab-body" class="ui" *ngIf="isCommentTab">
+                  <comment [personId]="personId" [userInfo]="userInfo" (onLogOut)="logout()"></comment>
+                  <div *ngIf="!personId && !isContributionView && isCommentTab">
+                    <div class="ui warning message">
+                      {{translate("campaign_page_must_be_logged_in_comment")}}
+                    </div>
+                    <div class="login-signup">
+                      <div class="ui buttons">
+                        <div class="ui button" (click)="showLoginOrSignup('login')" [ngClass]="{'active positive': isFormLogin}">{{translate("campaign_page_log_in_text")}}</div>
+                        <div class="or"></div>
+                        <div class="ui button" (click)="showLoginOrSignup('signup')" [ngClass]="{'active positive': !isFormLogin}">{{translate("campaign_page_sign_up_text")}}</div>
+                      </div>
+                      <login-form (onSuccess)="onLoginSuccess($event)" (onFailed)="onLoginFailed($event)" *ngIf="isFormLogin"></login-form>
+                      <register-form (onSuccess)="onRegisterSuccess($event)" *ngIf="!isFormLogin" [isContributing]="false"></register-form>
+                    </div>
+                  </div>
+                </div>
+                <div id="contact-manager-tab-body" class="ui" *ngIf="isContactTab" ContactFontColor>
+                  <div *ngIf="!personId && !isContributionView && isContactTab">
+                    <div class="ui warning message">
+                      {{translate("campaign_page_must_be_logged_in_message")}}
+                    </div>
+                    <div class="login-signup">
+                      <div class="ui buttons">
+                        <div class="ui button" (click)="showLoginOrSignup('login')" [ngClass]="{'active positive': isFormLogin}">{{translate("campaign_page_log_in_text")}}</div>
+                        <div class="or"></div>
+                        <div class="ui button" (click)="showLoginOrSignup('signup')" [ngClass]="{'active positive': !isFormLogin}">{{translate("campaign_page_sign_up_text")}}</div>
+                      </div>
+                      <login-form (onSuccess)="onLoginSuccess($event)" (onFailed)="onLoginFailed($event)" *ngIf="isFormLogin"></login-form>
+                      <register-form (onSuccess)="onRegisterSuccess($event)" *ngIf="!isFormLogin" [isContributing]="false"></register-form>
+                    </div>
+                  </div>
+                  <div class="contact-message" *ngIf="personId">
+                    <div class="fluid ui large form contact-form">
+                      <div class="ui grid">
+                        <div class="eight wide column">
+                          <h2 FontColor ContactFontColor class="contact-header ui header">
+                            {{translate("campaign_page_contact_send_message_button")}}
+                          </h2>
+                        </div>
+                        <!--<div class="eight wide column">
+                          <div class="account-dropdown ui inline dropdown" ngSemantic>
+                            <div class="text ui header">
+                              <img [src]="userInfo.profile_image" alt="" class="ui avatar image" *ngIf="userInfo.profile_image">
+                              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAIAAABEtEjdAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+                            bWFnZVJlYWR5ccllPAAAG5dJREFUeNrs3Q9zE9e5B2BiqchoQY5FbCzXBjvGMRBuppl+jnzAfKg7
+                            zaS9SYzjQrCLCQQZq5FBEzm9x9bUYQI4/iOt9px9HlyG0DaYo93fvufds2c/+PLLLy8BkJYJQwAg
+                            3AEQ7gAIdwCEOwDCHUC4AyDcARDuAAh3AIQ7gHAHQLgDINwBEO4ACHcAhDuAcAdAuAMg3AEQ7gAI
+                            dwDhDoBwB0C4AyDcARDuAAh3AOEOgHAHQLgDINwBEO4Awh0A4Q6AcAdAuAMg3AEQ7gDCHQDhDoBw
+                            B0C4AyDcAYQ7AMIdAOEOgHAHQLgDINwBhDsAwh0A4Q6AcAdAuAMIdwCEOwDCHQDhDoBwB0C4Awh3
+                            AIQ7AMIdAOEOgHAHEO4ApKRqCEjtmK5W6/Xszd/JsqxS/e1Q7+ztvfnf9nqve72ecUO4Q1ESvBZM
+                            TtaOVCvVepad6v+8sPjO3+4den2Y/p3O4BpwcNDvdrtGG+EOo9JoTIUCPMR3yPHw61H8EYOLxODP
+                            evMasN/thtTv7ndD3CvzEe5w0agNIduYmgqJftqSfDTqRxeV6WZzEPch3EPcdzp74Utdj3CHUxyO
+                            1er0dDMEeoj1QRFdzKtOcJj1ly4d9PudQ4Ie4Q5vybIspPnMzOx4K/RzqISrUbM5CPpQ0e+2X4SU
+                            b7fbPlOEO6XO9BDo083rhS3Sz1rRz7Xmw1co59u74ccLKY9wp0RCCDab10MIppHp7yznw0UrfA1S
+                            /unOEx0bhDspC3kXYn3QxCiD45Tv9Xoh4p8/f9bv9x0GCHfSKdVnZm+05lpvPklUthG4tbQcvkK+
+                            P3/2rNPZc1Qg3IlYlmVzrflQuhqK47lL+NrvdneOCnkDgnAnMo3G1MLi4oieNopdPctWbq8uLN7c
+                            3nq8u9vWq0G4I9bTUavVQsQf9Ps7T8OPJyIe4Y5YT0elWl1YWGzNtba3t3Z2nhgQhDsFkmXZraVl
+                            sX6RiA8DONea3956rBePcKcAB9BRKrllOhSDRs3M7Oz21pYVNQh3xmZh8WaZFziOSJgA3ft0KtTv
+                            oYq3AyXCnbwDKNSYqT5iWgSHD3xNNzXiEe7kdcQc3QCca80bilGr/Lfltbm5YQMDznz8fPHFF0aB
+                            U2o2m/fu3W9MuXGanz9dvnzjxtylDz7QhUflzkgK9pWV1fJsC1M0YbbUnG4q4VG5M0yNxtSdu59e
+                            vXbNUCjhUbmTSs24eHPhPW+UZiwlfKPReLD+nSdaOdmEIeC9V/5q9d6n9yV7ASdSn3/+V4+MIdyR
+                            IKmpDK67izcNBe8tzgwBb2u15m8tLRuHgtOiQeXOqa/21erK7VXJHtEE6969+1lsLxZHuJN3soek
+                            sFFMXOpZFj61plWqCHfeKVR/n3/+17oaMEKVavWTtbuuygh33pHsofqzBVjUVm6vLumncTwRNwSE
+                            ii/kgnFIwFxrPlyhN7/fMBQId8ku2VP7QMPPPzx6aAlNyWnLSHbJnuDHeu/e/aomm3BHspOYwRIa
+                            +S7ckezId4Q7kh35jnBHsjPGfP9k7Y5xEO5IdlIzeOGtcRDuOMlxUUe4E4ksy9ZMz8ud7y2vNRfu
+                            JGawI5jdBUru1tKy/WeEO5KdBK3cXrU/sHAnlfN5ZdVejxyzOFK4k4KFxZvTdvrmDZWjmZx8F+5E
+                            rNlser01bwszOS/bEu7EqlarraxY/ca7zczMurkq3InS2tpdN1E5wdLSspurwp34zls3UTlZuPaH
+                            uZ3mu3AnGs1mc87jKpyC5rtwJxrVo3LMOHBKMzOzTeuphDvFF5Jdq52zHjOaM8KdQgslmFXtnFXF
+                            bE+4U2QaMpxbqAk0Z4Q7xZ1ca8hwkeNHc0a4UzgaMlxQqAysnBHuFEv18LT82DhwQTMzs43GlHEQ
+                            7hTFXGu+VqsZBy7OC5uEO0URYt3uYAzxcPLCJuFOISxpyDBUoVZwZ1W4M2aNxpT7qAxXpVo1FxTu
+                            jLvIWnQSMnzu4gh3xsnaBkZZN9w0CMIdpx9KB4Q7Qzr3TJwZcfWg6SfcUbaTnFC5K96FO8p2EmTN
+                            u3BH2U6CpptNZYRwJydN5xsqCYR7erwflTzpAQp38pBlmXtc5J3vszcMgnBH2U5qWnMtgyDcGaFq
+                            tRrmyMaBnFUceMKd0c6OnWCM69ibdewJd0ZGT4ZxaTSm3FYV7oxElmXOLsbIA03CHWU7CZpuXjcI
+                            wp3ha057KQfjFCaOTW+GEe4MOdmbzYo3n6F4R7g7qcD0UbjjpII/FqaPOjPCneElu54MJpEId6cT
+                            mEQi3CNgpzCKI0wiHZDCnSHw7BKFK9613YU7ynYckwh33mFalUTB1LOs6g6/cEeVRIqHZcMgCHck
+                            O45MhDtvnkJTTiGEO8Ld5Bdyoe0u3LmQrJ4ZBAqa7w5O4c45kz3L7DpAcaeVeobCHZURCYa7nqFw
+                            59yVu0GgsGq1SYMg3DlX5S7cKXS419xTFe6cq3LXlqHg9YdDVLhzVqEmcjeVotcfJpfCHTUR6bFf
+                            qXBHTUSKJYijVLhzVnoyxFC5WzAj3Dkji4iJIdy1ZYQ7IN8R7lgHSSThrjMj3DkLPXeiUK1WDIJw
+                            5/QnjGQnDvXsqkEQ7pz6hNGTAYQ7AMIdGBprdoU7ZzlhvAYBEO4ACHcA4Q6AcAdKxaPUwh1IkEep
+                            hTsAwh0A4Q6AcAeGo9frGQThDqQX7q8NgnAHQLgDINyTmuq+NtUFhHt64e4mFZE46B8YBOEOpKa7
+                            3zUIwh0A4V5inc6eQSAKB/2+QRDuQGq6XW0Z4c5ZuKcKCPckw91qSCKw74aqcEflTnr6eu7CHeFO
+                            amW7hrtw5+ynzc8GgaKX7QfKduHOmWe7Hvyj6DqdjkEQ7pz1tLHUnaKzCZJw51xnjrY7DlGEe4pn
+                            jrII80uEe4JnjoYmxWWpjHDn3CePBTMUl/0ghTvnPXlURqjcEe7p6R0xDig+EO6KI8iJu6nCHecP
+                            jkyEO04hIjgyLeUS7lxAt9v1phuKGO57yg7hjhIJc0qEO7/Tbr8wCBTKbrttEIQ7SiQckwh33tLr
+                            9SyIxGwS4a5QgtFWG56tE+4Mx/PnzwwCBbGrbBfuDEu321UrodRAuCuXYCRCkWFLGeGOcglFBsKd
+                            E+nMUAQ7O08MgnBnyJ46rxirfRWGcGcULC5mvPQGhTsjEYomj30j3BHuSZ5dPxoExpXsfRuUCndG
+                            pN1ua3oynnB/pmwX7pgak5b9btceGMKd0bJmhvxZASncGbl+v694J08HDjnhTj62tx4bBPIr25/u
+                            GAThTh6siSTPsl0nULiTYzHlfCOvst0KSOFOfjqdPasXULYj3BO0vbVlEFC2I9wV76BsF+7EYPP7
+                            DYOAsh3hnpper2cBMsp2hHuCtrceHyivGLZHjx4q24U7Yy7ePWPCcO13u2aEwp3xC9NnW0Uy3LLd
+                            IAh3xi9Mn3949E/jwFDstttWYQl3iqLthGQYDvr9RwoF4U6hbH6/4c4qF7S9vaXFJ9wpFndWuaD9
+                            bteeRcKdQpZdW4/D+WkcOOfkb9MzccId5yeJVQbbW12VgXCnsML5Gc5S48CZhAmfN8AIdwpfgm09
+                            tnKG0zvo99fXvzUOwp0IWDnD6T169NAKGeFOHMK5qvnOaey223YaEO7EpN1u29UPRYBwJ83ptpWR
+                            vM9Bv/9g/VtbPwp3orS+/q3mO++79lv7KNyJeN69vv6dceB3nj9/ptUu3Ilbp7PnbXw4JIQ7yjRS
+                            tt/tPjCZE+4kI1RqnmzioN/f3NxwE1W4k5RQr1k8U/Jk/+abf7iJKtxJTf/o3PYsYmlZHiPcSTnf
+                            H1gcWUqb32+47yLcSVmo3UL9Lt8lO8Id+Y5kR7gj35HsCHfkO5Id4Y58R7Ij3JHvkh3hTmnz/euv
+                            v/J8k2RHuJOaXq8X6nf5HrswA/v7119JdoQ7vxk8vyoXYr9CewaVY1VDwHG+hxl9yIiFhUWjEZf9
+                            o3sndgRDuPNe21uPe69fLy0tV6qOjTiE+Zb92RHunCos9ve7n6zdrdVqRqPg3D7lffTceYdut/v3
+                            r7/abbcNRWH1ej23TxHunFm/319f//aHRw8NRQGF625IdrdPOYG2DCfZ2XnS6exp0RRKuOKGz8U4
+                            oHLnQgYtGtP/Itg/+iwkOyr3pD+5ajW3pW+DVZK77RcrK6tW0YzL050nj/LtkuV5jDF0lS+++MIo
+                            RKfRmLp//7Nffvllfz+/ruurV6+ePfvxypX6lStXfAQ5F+wbGw9+/PFpnn9olmWfffaXy5cvv3z5
+                            0kcg3MnDzMzs2p27ExMTzeb1Xq+XZ77/+uuvL1781Ol0GlNTVSV8Lra3tzY21nN++W1I9nv37odZ
+                            2tVr12qTk//udMJH77MQ7ozQ0tLyzVtLx/+Yf75fOlqE99PzZ7/+5z9hAuETGZ1OZ++b//tH/gtS
+                            j5P9+B8//HA6XNTlu3BnJEKlvPzxyo0bc7/7/bHkezjPQ/Q8f/4snPm12qRPZ+iXz39ubjx+/MPB
+                            wcF4k33gT5cvX/9o5t+dvV9++cWnI9wZcrKHUy4UUO/8b8eS70GInpDvujTDHNJ+/8mTf4VkH8sa
+                            9ncm+/ER+NH1j/b2Xsp34c6Qk72eZSf8b8aV74My8+nOk/Bzll0V8RcRrpTffffNy5e7Y2mAnJDs
+                            AxMTEyHfc76Nj3BP1mDRQm3yj1sfY8z3IPy5g0Z8Vs9CCvjgzhrrD9a/DT+Pq6/9h8l+nO/jPcwQ
+                            7ukk+2lOuTfzPdTO41q7NmjEP3v2o4g/R6zn316/yGEWvtuff/63j0+4k8cpNzBYuzbGPb+OI/7V
+                            q1caNe9z0O+/ePHT2GP90tHK2tXVtbMeZh9+OD3ewwzhHqvznXLHV4WQqnt7L8e4di380WHmPujF
+                            h3y3oubY4S2Kpzvfbzx48dNP4431wWG2cnv1fHOsw4VS8l24k9spN3DlypWCrE0OER+K093ddvjr
+                            TNZqZe7VhAnN9tbW5uZG+EUR1oyHY2xh8eYFJ5fyXbhztmS/+L/nT5cv37gxV5C1a+F7CBEw6NVM
+                            1ibD91aqUv2n5882Ntaf7uwU5D5kmEuFeeH1jz66+L9Kvgt3ck32gcHatdevQ6K+KsLfbtCr+fHH
+                            p6GW/+Do8pNwR37QVf/X9uOH/9x8+fLl2Dswx2q12t27nzamhvZ0sXwvpg++/PJLo5Bksr9pe3tr
+                            e+txAf/KIRfC33q6eT2Z/eJDprd3w48X7UKGXaMxtbZ2ZxRbe3qVa9FYyZB+sgcLC4tZPdvc3Cja
+                            Dq7dQw8fPXoYUj7kznSzGel+Nb1eLwR6p7PXLnAB22rN31paHt0BfOnona7OZZU7OSX7mwH0YP3b
+                            gr+brVqtNg5Nha+TH8otQqCHNO/s7YWfc9618RyjurKyGq6do/6D1O/Cnd80m81P1u7m9sdF9JK2
+                            EEn1etaYCkHfCDOPIrwnJOT4/tF0o/iBfizMivJ8UaJ8L8rpYwjGfuKFkirPPzFMzENRXMAWzdvC
+                            d3hYGnf2Bv9YOzQZsv7oF7UcGjghx0OCd/fDj58PfxHhC6lH2op53zT0kv6McJfs53gG9eLC9Px/
+                            sr+E0+84N6PQO/K773kQ8YO1H4PQPzysK9VTtnSO/pWvLx3eCD3oHq1TDDne7x+E34ylMD9h3pNP
+                            K+ad+d7Z2/PeXeEu2ccghOC9T+8XdhXN6Q2yPq6rVA6azeZ4X3g7uIck34V7+ca9Wv1k7e7Ym8gL
+                            C4vN6ebmmHYPJ7GCXb4XioeYxnP6hZq9IK+ZHjzIeumDDxS/aRTsf7j1f77fz/Xd3bb3ewj3srh/
+                            /7OiLfJrNKZmZm8M7h/6gCKtGFZX1xYWbxZt9x7vbxLuZRHmqu97W97Y02Fmdtar7mPUas2vrd0p
+                            5mMBgz0wDnf5d1AJ94QtLS2//YbrQsmyLHyHXqUWi6PtBO6Gq3KRt9sM31tB9igV7ozEzMzszVtL
+                            xf8+B69SC1+vXr3SpSmsMNNa/ngllAtRbLEZvskrV+oh331wwj3FCuvO3Yi+4XA2Dro0+91ucXY0
+                            ZBDr839eWF395Oq1axF921euXLF5ZK7HiSHIQZZla2t3Ip1thK+nO0+2t7eK/0RrSeZ/C4s3I91E
+                            08NNwj21Omu8j5Nc3FxrPpyWO0/DjyciXqxfxMrt1bcfM2YUtGVG7s7de3FNn99pYmKi0Zi6cWNu
+                            olLZ3++6M5ZzrK/dObxrmsa7TZrNpsWRwj16S0vL1z+aSeavI+LF+lCOomtXr1k8I9zjPjOjWB5z
+                            7oi/fPnyq1ev3G4duhDl169/lF6sH7N4RrhHLMuy1dW1Iq8+vnjEX712rdWar01OHhxuo2jR5BDU
+                            arXW/J9XVz8JE76EXzB76WjxjE0vRlsiGIIRVV5F2BcstwlK+Nrvdnd2nuzutt1xPZ+jHSBmB5uh
+                            l8TCwuLgPVY+feEejZWV1WTe+HxK9Sxbub06eD30050ntpk8fR0QAn0uTIBKdsAMrK3d+frrr0z7
+                            hHsk9cjizSJsuDoWlaOoGhTyz58/C18K+fdpNpszMzdKe6gcHzBra3dDvjsehHsEk+sw2TQOoZC/
+                            lS3fWlrebQcvtGvezPTp5vXwn5J07U5zqCwtLT969NBQCPdCT7EjfRJ1dKYPs+ywOC15ysv0E8y1
+                            5judvbadCYR7YX2ydsep+4cpP+jYhJM5+b58uNhPh79z83qj0XBgnGxlZbXb1XwX7oW0sHhz8LJm
+                            /nAafitbvnT0cuoQ8YP1Eimd1SHOw5EQvoq5wXoxab4L94LSaj+HWq02uPv6ZtDvh8I+too+VOiN
+                            Q4dp7gJ/kau+5rtwL9y5PXgXMEMJ+oN+v7vf7XQ6+92fQ+gXMOtrhyYbU1NZPfzIyrmKcRTmWvPt
+                            dtvKd+FeFCVc1T7qGfqgrXH8O4OXu4bED3Hf7x/kfPJnWVapVEOUVyuVEOUhzjXQR2dt7c7f/va/
+                            1lYJ9/ELxWbJlyrnM2EPX78b50HE944cXQAOc/+w8D/on6nYH5Thv+X4UXA3Go3Df5Tj47i0h2pp
+                            ff1bQyHcxzw9X1paNg5jobudqnAVb7Xmd3aeGIqLmDAEF7Fye1VlB0O3sLCo1SncxyYUF4pHGIWK
+                            RQrCfVyyLLP2EUYnVE6hfjIOwj1vsb8WFYrv1tJy5kEw4Z6nhcWbHj6EfKoogyDcc1Kr1TRkIB+h
+                            itKcEe55lRLu80CeE2UrZ4R7DqyQgZxZOSPcR05DBsbCyhnhPlpLSx9bIQNjEeqqqrNPuI9C87/v
+                            mgDyN9hzxjgI9yELJcOtpY+NA4zR9NFbUIyDcB/ylND9ehg7d1aF+zBlWTbnZg4UwOGihsWbxkG4
+                            D8ctm/pCYbTmWqbRwn0IZmZmtfmgOCrV6pIbYML9gqqHh5GyHYrFnVXhflFzrXkL26GA3FkV7ufn
+                            eVQo9OnpzqpwPx99PSiy1lzLM6vC/cwajSnPo0KRVQ4fLXRLTLifuWx30EDRzczMWhYp3M92xHjR
+                            EkTBnVXhflrVatWNGohFozFlWaRwP5W51ryJHkREE1W4n6psb821jANEpJ5lMzOzxkG4n2RhYdFT
+                            SxDfmauVKtxPUKvV7P4IkZ68infh7uIPCVpaWvZMk3B35YfUVKpVM2/hrmyHBNmQQLgr20HxLtyV
+                            7YDiXbgr2wHFu3BXtgOKd+GubAcU78Jd2Q6Kd+GubAcU78Jd2Q4UuHgX7sp2IMHiveQneHnDfWb2
+                            hhMATM2Fe1Ls2w5m58I9QXOtefu2Q/JaJb6tWtJw122HMqhnWWnfsFrGcA/J7i2poHgX7qmxAhLK
+                            Y7rZLGcxV7pwD3M0ZTuo54S7ORoQt+Z0s4S7EZQr3EPNHuZojnUolXI+0FSucFe2QzmVcKuZEoV7
+                            tfSPI0NphVl7s2Sz9hKF+/R004NLoHgX7qnRk4EyK9tKuYnyfK71LHN8Q5mVqsIrS7jPzOq2Q9mV
+                            6q5bKcLdrVTgUsnWRJYi3CU7ULZJfCnC3dsUgYHy3FZNP9yzLLOZDHCsJLdV0w93ZTvwppL0aRMP
+                            92q12py2mQzwm5LcVk083D2VCryt2bwu3COff1neDrxd9pXgDR4ph3v48Er7+kSg5MV7yuE+M3vD
+                            EQy8Ox9Sb7tP+PCAEqpnh4R7fCxvB8pc/0342IBymk667S7cgZJKe81FmuHebFreDpyiCkx3tXSa
+                            4T5dgicUgCEUguk+wT7hAwNKK0zxU31xdoLhricDmOhP+KiAMkt1oj/howLKLNXOTGrhricDmO4n
+                            GO56MoDpfoqVu54McEZJdmaSCvcsy/RkgHNI71HVpMLdlgPA+aTX0Z3w8QDUarXEdgBOJ9zt8Quo
+                            DhMMd2/UAy4iseUY6YS7hjtwEfW0Zv+JhHu1Wq0n/cYsQAOgjOE+bXk7cGHNhNruiYR7Y0rDHbh4
+                            5d4Q7gW73qrcgQurVKvJdGZSCHcPpgJDqxRT2YcghXD37BIwLCr3Qn0YDUckMBT1LKsm0QmIPtyr
+                            CfXIgEI0A5K4hxd9uCvbgSGnShKr7xIId2U7IFWEO8CJakeE+zjZdQAYhQQeVY073DXcAS2BJMNd
+                            TwZQOAp3gFOoVKuxv5gp4nDXcAfUjgmGu4Y7MDp1lbvrKqByF+6GHohA7KvdIw53DXdABZlauCvb
+                            gVGLesFMtOHuvXqAIjK9cM/qejLAaNVV7uO4oloHCSje0wr3Wq3mpalAHuE+JdxzlFknA+STNtF2
+                            gKMMd0tlgHzE23afMNwA71Or1SJ9X7bKHeDEajLOzkx84a7hDuRaTcZ5TzW+cK9b4Q7kWVCq3FXu
+                            QHoivck3YaABThDpPdUIK3dtGSDnmjLC2Iks3D2bCuQvxnuq0YX7pOMMyL+sFO6un0BqMm0ZQwyk
+                            J8Z1HPH13B1nwBgqy9jyPbJwtw4SUFmmFu4eXwLGV1leFe6unEBqorvhF1O4R3flBJKhLePKCSSo
+                            7obq6FSqFUcYoHhPLdy9owMYa7jH9IR8NOFetaUMMN76Mqon5KMJd+/oAMZcYlZi6gxHE+4WuQNj
+                            LjGjSqFowt1Ov8B46bmPpnLXlgHGHO5Wy4ykcrcOEpDvyYW7dZBAAcI9ms7MhE8L4JQiWtkRR7gr
+                            24EiiGhlh8od4NSVe13lPtzK3atTgUJU7tGs7FC5A5yWG6rlnQoBSYe7pZBlnQoBaYtlE8M4wj2u
+                            p36BhMWyiWEs4e7tqQBphbud3IHiiGXxXgThbid3gATDHaA4YukSRxDuXtMBCPcEw91rOgASDHeA
+                            4sgshSzbUAJlUPEQ0/CG0uOpAMmFO0ChRLHKQ1sG4GwqlQg6M1bLACRIWwbgbKJY6l70cLexDFC4
+                            cJ+MYJ/aooe7jWUAEgx3AIQ7wMhFsYSv+D13TzABxRLFk5WF77lnVx1JAKmFOwDCHQDhDnB2jUYE
+                            r1Et/A3VihuqAMmFe9079gDSC3cAhDsAwh1AuAMwUPxdf4U7wDnCvei7/gp3gAQVPdyLf3kEEO7n
+                            CPeaDwngrP5fgAEAIM/y6bOfIqoAAAAASUVORK5CYII=" alt="" *ngIf="!userInfo.profile_image" class="ui circular image">                              {{userInfo.first_name}}
+                            </div>
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                              <div class="item" (click)="showLoggedInUserProfile()">
+                                {{translate("campaign_page_profile_text")}}
+                              </div>
+                              <div class="item" (click)="logout()">
+                                {{translate("campaign_page_log_out_text")}}
+                              </div>
+                            </div>
+                          </div>
+                        </div>-->
+                      </div>
+                      <div class="field">
+                        <span>{{translate("campaign_page_contact_to_text")}}</span> {{mCampaign.managers[0].full_name}}
+                      </div>
+                      <div class="field">
+                        <input type="text" name="Subject" [(ngModel)]="contactManagerMessage.subject" placeholder="{{translate('campaign_page_comment_subject_placeholder')}}" required id="subject">
+                      </div>
+                      <div class="field">
+                        <textarea name="Body" placeholder="{{translate('campaign_page_comment_message_placeholder')}}" [(ngModel)]="contactManagerMessage.body" required id="message"></textarea>
+                      </div>
+                      <div class="button-wrap">
+                        <div class="ui teal button" ThemeColor (click)="setMessageToManager()">{{translate("campaign_page_send_message_button")}}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="ui positive message" *ngIf="isContactMessageSent">
+                    <div class="header">
+                      {{translate("campaign_page_contact_success")}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="campaign-tab-rewards five wide column">
+                <div class="campaign-bio-tab">
+                  <div class="ui top attached tabular menu" ngSemantic>
+                    <a class="active item" (click)="setCurrentCreatorTab('creator')" *ngIf="currentCreatorTab == 'creator'" [hidden]="!mCampaignManagerInfo.name" TabBackgroundColor TabSelectedFontColor>{{translate("campaign_page_creator_text")}}</a>
+                    <a class="item" (click)="setCurrentCreatorTab('creator')" *ngIf="currentCreatorTab != 'creator'" [hidden]="!mCampaignManagerInfo.name" TabUnselectedFontColor>{{translate("campaign_page_creator_text")}}</a>
+                    <a class="active item" (click)="setCurrentCreatorTab('company')" *ngIf="currentCreatorTab == 'company'" [hidden]="!mCampaignBusinessInfo.name" TabBackgroundColor TabSelectedFontColor>{{translate("campaign_page_company_text")}}</a>
+                    <a class="item" (click)="setCurrentCreatorTab('company')" *ngIf="currentCreatorTab != 'company'" [hidden]="!mCampaignBusinessInfo.name" TabUnselectedFontColor>{{translate("campaign_page_company_text")}}</a>
+                  </div>
+                  <div class="ui bottom attached segment" *ngIf="isCreatorTab" [hidden]="!mCampaignManagerInfo.name">
+                    <div class="campaign-profile-info">
+                      <img class="ui tiny circular image" [src]="mCampaignManagerInfo.image" *ngIf="mCampaignManagerInfo.image" alt="" />
+                      <h3 class="ui header" CreatorFontColor>{{mCampaignManagerInfo.name}}</h3>
+                      <p CreatorFontColor>{{mCampaignManagerInfo.description}}</p>
+                      <h4 class="links-label">
+                        <strong *ngIf="mCampaignManagerInfo.links && mCampaignManagerInfo.links.length" CreatorFontColor>{{translate("campaign_page_website_link_text")}}</strong>
+                      </h4>
+                      <div class="ui divided horizontal list">
+                        <div class="item" *ngFor="let item of mCampaignManagerInfo.links">
+                          <a [href]="item.uri" class="item" target="_blank" CreatorFontColor>{{item.uri_text}}</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="ui bottom attached segment" *ngIf="isCompanyTab" [hidden]="!mCampaignBusinessInfo.name">
+                    <div class="campaign-business-info">
+                      <img class="ui tiny circular image" [src]="mCampaignBusinessInfo.image" *ngIf="mCampaignBusinessInfo.image" alt="" />
+                      <h3 class="ui header" CreatorFontColor>{{mCampaignBusinessInfo.name}}</h3>
+                      <p CreatorFontColor>{{mCampaignBusinessInfo.description}}</p>
+                      <h4 class="links-label">
+                        <strong *ngIf="mCampaignBusinessInfo.links && mCampaignBusinessInfo.links.length" CreatorFontColor>{{translate("campaign_page_website_link_text")}}</strong>
+                      </h4>
+                      <div class="ui divided horizontal list">
+                        <div class="item" *ngFor="let item of mCampaignBusinessInfo.links">
+                          <a [href]="item.uri" class="item" target="_blank" CreatorFontColor>{{item.uri_text}}</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="mCampaign.pledges">
+                  <h2 class="campaign-reward-header ui center aligned header" FontColor RewardsFontColor>{{translate("campaign_page_`ward")}}</h2>
+                  <div class="campaign-rewards ui list">
+                    <div class="campaign-reward item" *ngFor="let reward of mCampaign.pledges | paginate:rewardContributionPageConfig; let index = index" [ngClass]="{'disabled': reward.total_pledges == reward.item_limit || isCampaignAvailable()}">
+                      <div class="sold-out-content" *ngIf="reward.total_pledges == reward.item_limit">
+                        <h2 class="ui header">{{translate("campaign_reward_sold_out_text")}}</h2>
+                      </div>
+                      <div class="campaign-reward-content">
+                        <h2 class="reward-amount">
+                          <span class="amount" *ngIf="settingDecimalOption == 1 || settingDecimalOption == 2" RewardsFontColor>
+                            {{ mCampaign.currencies[0].code_iso4217_alpha | currencySymbolNumber}} {{reward.amount | number:'1.2-2' }}
+                          </span>
+                          <span class="amount" *ngIf="settingDecimalOption == 3" RewardsFontColor>
+                            {{ mCampaign.currencies[0].code_iso4217_alpha | currencySymbolNumber}} {{reward.amount | number:'1.0-0' }}
+                          </span>
+                          <span class="currency" RewardsFontColor>{{mCampaign.currencies[0].code_iso4217_alpha}}</span>
+                          <span class="shipping" *ngIf="reward.shipping != null && reward.shipping.length" RewardsFontColor> + {{translate("campaign_page_shipping_text")}}</span>
+                        </h2>
+                        <h4 class="reward-title ui header" [ngClass]="{'disabled': reward.total_pledges == reward.item_limit || isCampaignAvailable()}" RewardsFontColor>{{reward.name}}</h4>
+                        <div class="reward-description fr-view" [innerHTML]="reward.description" RewardsFontColor></div>
+                        <div class="reward-meta-wrap">
+                          <div class="reward-meta">
+                            <div class="reward-backer-count" *ngIf="!reward.total_backers" RewardsFontColor>
+                              <i class="users icon"></i>{{translate("campaign_page_no_backer_text")}}</div>
+                            <div class="reward-backer-count" *ngIf="reward.total_backers" RewardsFontColor>
+                              <i class="users icon"></i>{{translate("backers")}}</div>
+                            <div class="reward-limit" *ngIf="!reward.item_limit">
+                              <span RewardsFontColor>{{reward.total_pledges}}</span>
+                              <span RewardsFontColor>{{translate("campaign_page_claimed_text")}}</span>
+                            </div>
+                            <div class="reward-limit" *ngIf="reward.item_limit">
+                              <span RewardsFontColor>{{reward.total_pledges}}</span>
+                              <span RewardsFontColor>{{translate("campaign_page_claimed_of_text")}} {{reward.item_limit}}
+                              </span>
+                            </div>
+                          </div>
+                          <div class="reward-meta reward-delivery-date" *ngIf="reward.estimated_delivery_time" RewardsFontColor><span>{{translate("campaign_page_estimated_delivery_text")}} </span>
+                            <span RewardsFontColor>{{reward.estimated_delivery_time | amDateFormat:'ll'}}</span>
+                          </div>
+                        </div>
+                        <div class="campaign-reward-hover" ThemeColor (click)="selectReward(index + 1, true)">
+                          <h2 class="hover-label ui header">{{translate("campaign_page_choose_reward_text")}}</h2>
+                        </div>
+                      </div>
+                    </div>
+                    <pagination-controls id="rewards-contribution-pagination" (pageChange)="onRewardsContributionPageChange($event)" directionLinks="false" maxSize="5" autoHide="true" *ngIf="mCampaign.pledges && mCampaign.pledges.length > 3"></pagination-controls>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="message-container" *ngIf="isPledgingSuccess">
+        <div class="message-subcontainer">
+          <div class="message-content ui message" (click)="closeMessage()">
+            <h2 class="ui header center aligned">
+              {{translate("campaign_page_contribute_thank_you_text")}}
+            </h2>
+            <i class="large close icon"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="message-container" *ngIf="isPledgingSuccess">
+      <div class="message-subcontainer">
+        <div class="message-content ui message" (click)="closeMessage()">
+          <h2 class="ui header center aligned">
+            {{translate("campaign_page_contribute_thank_you_text")}}
+          </h2>
+          <i class="large close icon"></i>
+        </div>
+      </div>
+    </div>
+    <div id="contribution-view" [hidden]="!isContributionView">
+      <div id="contribution-header-top">
+        <div class="ui basic segment">
+          <div class="contribution-short-details ui stackable grid">
+            <div class="left-col four wide column">
+              <img class="campaign-image ui small circular image" [src]="mCampaign.explore_image_full_path">
+            </div>
+            <div class="right-col twelve wide column">
+              <h1 class="ui header" id="contribution-header-title" FontColor TopFontColor>{{mCampaign.name}}</h1>
+              <span class="by-label" TopFontColor>{{translate("campaign_page_by_text")}}</span>
+              <span class="campaign-info-span">
+                <span class="campaign-manager-popup" *ngIf="mCampaignManagerInfo.name" ngSemantic TopFontColor>{{mCampaignManagerInfo.name}}</span>
+              <span *ngIf="mCampaignShowSlash" TopFontColor>
+                  /
+                </span>
+              <span class="campaign-business-popup" *ngIf="mCampaignBusinessInfo.name" ngSemantic TopFontColor>{{mCampaignBusinessInfo.name}}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div id="contribution-rewards">
+          <div class="ui basic segment">
+            <div class="ui two column stackable grid">
+              <div class="ten wide column" id="contribute-column">
+                <div class="contrib-actions">
+                  <div class="ui stackable grid">
+                    <div class="left-col column eight wide">
+                      <div class="ui black button" (click)="changeView(false)">{{translate("campaign_page_back_text")}}</div>
+                    </div>
+                    <div class="right-col column eight wide">
+                      <div class="account-dropdown ui inline dropdown" ngSemantic *ngIf="personId">
+                        <div class="text ui header">
+                          <img [src]="userInfo.profile_image" alt="" class="ui avatar image" *ngIf="userInfo.profile_image">
+                          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAIAAABEtEjdAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+                          bWFnZVJlYWR5ccllPAAAG5dJREFUeNrs3Q9zE9e5B2BiqchoQY5FbCzXBjvGMRBuppl+jnzAfKg7
+                          zaS9SYzjQrCLCQQZq5FBEzm9x9bUYQI4/iOt9px9HlyG0DaYo93fvufds2c/+PLLLy8BkJYJQwAg
+                          3AEQ7gAIdwCEOwDCHUC4AyDcARDuAAh3AIQ7gHAHQLgDINwBEO4ACHcAhDuAcAdAuAMg3AEQ7gAI
+                          dwDhDoBwB0C4AyDcARDuAAh3AOEOgHAHQLgDINwBEO4Awh0A4Q6AcAdAuAMg3AEQ7gDCHQDhDoBw
+                          B0C4AyDcAYQ7AMIdAOEOgHAHQLgDINwBhDsAwh0A4Q6AcAdAuAMIdwCEOwDCHQDhDoBwB0C4Awh3
+                          AIQ7AMIdAOEOgHAHEO4ApKRqCEjtmK5W6/Xszd/JsqxS/e1Q7+ztvfnf9nqve72ecUO4Q1ESvBZM
+                          TtaOVCvVepad6v+8sPjO3+4den2Y/p3O4BpwcNDvdrtGG+EOo9JoTIUCPMR3yPHw61H8EYOLxODP
+                          evMasN/thtTv7ndD3CvzEe5w0agNIduYmgqJftqSfDTqRxeV6WZzEPch3EPcdzp74Utdj3CHUxyO
+                          1er0dDMEeoj1QRFdzKtOcJj1ly4d9PudQ4Ie4Q5vybIspPnMzOx4K/RzqISrUbM5CPpQ0e+2X4SU
+                          b7fbPlOEO6XO9BDo083rhS3Sz1rRz7Xmw1co59u74ccLKY9wp0RCCDab10MIppHp7yznw0UrfA1S
+                          /unOEx0bhDspC3kXYn3QxCiD45Tv9Xoh4p8/f9bv9x0GCHfSKdVnZm+05lpvPklUthG4tbQcvkK+
+                          P3/2rNPZc1Qg3IlYlmVzrflQuhqK47lL+NrvdneOCnkDgnAnMo3G1MLi4oieNopdPctWbq8uLN7c
+                          3nq8u9vWq0G4I9bTUavVQsQf9Ps7T8OPJyIe4Y5YT0elWl1YWGzNtba3t3Z2nhgQhDsFkmXZraVl
+                          sX6RiA8DONea3956rBePcKcAB9BRKrllOhSDRs3M7Oz21pYVNQh3xmZh8WaZFziOSJgA3ft0KtTv
+                          oYq3AyXCnbwDKNSYqT5iWgSHD3xNNzXiEe7kdcQc3QCca80bilGr/Lfltbm5YQMDznz8fPHFF0aB
+                          U2o2m/fu3W9MuXGanz9dvnzjxtylDz7QhUflzkgK9pWV1fJsC1M0YbbUnG4q4VG5M0yNxtSdu59e
+                          vXbNUCjhUbmTSs24eHPhPW+UZiwlfKPReLD+nSdaOdmEIeC9V/5q9d6n9yV7ASdSn3/+V4+MIdyR
+                          IKmpDK67izcNBe8tzgwBb2u15m8tLRuHgtOiQeXOqa/21erK7VXJHtEE6969+1lsLxZHuJN3soek
+                          sFFMXOpZFj61plWqCHfeKVR/n3/+17oaMEKVavWTtbuuygh33pHsofqzBVjUVm6vLumncTwRNwSE
+                          ii/kgnFIwFxrPlyhN7/fMBQId8ku2VP7QMPPPzx6aAlNyWnLSHbJnuDHeu/e/aomm3BHspOYwRIa
+                          +S7ckezId4Q7kh35jnBHsjPGfP9k7Y5xEO5IdlIzeOGtcRDuOMlxUUe4E4ksy9ZMz8ud7y2vNRfu
+                          JGawI5jdBUru1tKy/WeEO5KdBK3cXrU/sHAnlfN5ZdVejxyzOFK4k4KFxZvTdvrmDZWjmZx8F+5E
+                          rNlser01bwszOS/bEu7EqlarraxY/ca7zczMurkq3InS2tpdN1E5wdLSspurwp34zls3UTlZuPaH
+                          uZ3mu3AnGs1mc87jKpyC5rtwJxrVo3LMOHBKMzOzTeuphDvFF5Jdq52zHjOaM8KdQgslmFXtnFXF
+                          bE+4U2QaMpxbqAk0Z4Q7xZ1ca8hwkeNHc0a4UzgaMlxQqAysnBHuFEv18LT82DhwQTMzs43GlHEQ
+                          7hTFXGu+VqsZBy7OC5uEO0URYt3uYAzxcPLCJuFOISxpyDBUoVZwZ1W4M2aNxpT7qAxXpVo1FxTu
+                          jLvIWnQSMnzu4gh3xsnaBkZZN9w0CMIdpx9KB4Q7Qzr3TJwZcfWg6SfcUbaTnFC5K96FO8p2EmTN
+                          u3BH2U6CpptNZYRwJydN5xsqCYR7erwflTzpAQp38pBlmXtc5J3vszcMgnBH2U5qWnMtgyDcGaFq
+                          tRrmyMaBnFUceMKd0c6OnWCM69ibdewJd0ZGT4ZxaTSm3FYV7oxElmXOLsbIA03CHWU7CZpuXjcI
+                          wp3ha057KQfjFCaOTW+GEe4MOdmbzYo3n6F4R7g7qcD0UbjjpII/FqaPOjPCneElu54MJpEId6cT
+                          mEQi3CNgpzCKI0wiHZDCnSHw7BKFK9613YU7ynYckwh33mFalUTB1LOs6g6/cEeVRIqHZcMgCHck
+                          O45MhDtvnkJTTiGEO8Ld5Bdyoe0u3LmQrJ4ZBAqa7w5O4c45kz3L7DpAcaeVeobCHZURCYa7nqFw
+                          59yVu0GgsGq1SYMg3DlX5S7cKXS419xTFe6cq3LXlqHg9YdDVLhzVqEmcjeVotcfJpfCHTUR6bFf
+                          qXBHTUSKJYijVLhzVnoyxFC5WzAj3Dkji4iJIdy1ZYQ7IN8R7lgHSSThrjMj3DkLPXeiUK1WDIJw
+                          5/QnjGQnDvXsqkEQ7pz6hNGTAYQ7AMIdGBprdoU7ZzlhvAYBEO4ACHcA4Q6AcAdKxaPUwh1IkEep
+                          hTsAwh0A4Q6AcAeGo9frGQThDqQX7q8NgnAHQLgDINyTmuq+NtUFhHt64e4mFZE46B8YBOEOpKa7
+                          3zUIwh0A4V5inc6eQSAKB/2+QRDuQGq6XW0Z4c5ZuKcKCPckw91qSCKw74aqcEflTnr6eu7CHeFO
+                          amW7hrtw5+ynzc8GgaKX7QfKduHOmWe7Hvyj6DqdjkEQ7pz1tLHUnaKzCZJw51xnjrY7DlGEe4pn
+                          jrII80uEe4JnjoYmxWWpjHDn3CePBTMUl/0ghTvnPXlURqjcEe7p6R0xDig+EO6KI8iJu6nCHecP
+                          jkyEO04hIjgyLeUS7lxAt9v1phuKGO57yg7hjhIJc0qEO7/Tbr8wCBTKbrttEIQ7SiQckwh33tLr
+                          9SyIxGwS4a5QgtFWG56tE+4Mx/PnzwwCBbGrbBfuDEu321UrodRAuCuXYCRCkWFLGeGOcglFBsKd
+                          E+nMUAQ7O08MgnBnyJ46rxirfRWGcGcULC5mvPQGhTsjEYomj30j3BHuSZ5dPxoExpXsfRuUCndG
+                          pN1ua3oynnB/pmwX7pgak5b9btceGMKd0bJmhvxZASncGbl+v694J08HDjnhTj62tx4bBPIr25/u
+                          GAThTh6siSTPsl0nULiTYzHlfCOvst0KSOFOfjqdPasXULYj3BO0vbVlEFC2I9wV76BsF+7EYPP7
+                          DYOAsh3hnpper2cBMsp2hHuCtrceHyivGLZHjx4q24U7Yy7ePWPCcO13u2aEwp3xC9NnW0Uy3LLd
+                          IAh3xi9Mn3949E/jwFDstttWYQl3iqLthGQYDvr9RwoF4U6hbH6/4c4qF7S9vaXFJ9wpFndWuaD9
+                          bteeRcKdQpZdW4/D+WkcOOfkb9MzccId5yeJVQbbW12VgXCnsML5Gc5S48CZhAmfN8AIdwpfgm09
+                          tnKG0zvo99fXvzUOwp0IWDnD6T169NAKGeFOHMK5qvnOaey223YaEO7EpN1u29UPRYBwJ83ptpWR
+                          vM9Bv/9g/VtbPwp3orS+/q3mO++79lv7KNyJeN69vv6dceB3nj9/ptUu3Ilbp7PnbXw4JIQ7yjRS
+                          tt/tPjCZE+4kI1RqnmzioN/f3NxwE1W4k5RQr1k8U/Jk/+abf7iJKtxJTf/o3PYsYmlZHiPcSTnf
+                          H1gcWUqb32+47yLcSVmo3UL9Lt8lO8Id+Y5kR7gj35HsCHfkO5Id4Y58R7Ij3JHvkh3hTmnz/euv
+                          v/J8k2RHuJOaXq8X6nf5HrswA/v7119JdoQ7vxk8vyoXYr9CewaVY1VDwHG+hxl9yIiFhUWjEZf9
+                          o3sndgRDuPNe21uPe69fLy0tV6qOjTiE+Zb92RHunCos9ve7n6zdrdVqRqPg3D7lffTceYdut/v3
+                          r7/abbcNRWH1ej23TxHunFm/319f//aHRw8NRQGF625IdrdPOYG2DCfZ2XnS6exp0RRKuOKGz8U4
+                          oHLnQgYtGtP/Itg/+iwkOyr3pD+5ajW3pW+DVZK77RcrK6tW0YzL050nj/LtkuV5jDF0lS+++MIo
+                          RKfRmLp//7Nffvllfz+/ruurV6+ePfvxypX6lStXfAQ5F+wbGw9+/PFpnn9olmWfffaXy5cvv3z5
+                          0kcg3MnDzMzs2p27ExMTzeb1Xq+XZ77/+uuvL1781Ol0GlNTVSV8Lra3tzY21nN++W1I9nv37odZ
+                          2tVr12qTk//udMJH77MQ7ozQ0tLyzVtLx/+Yf75fOlqE99PzZ7/+5z9hAuETGZ1OZ++b//tH/gtS
+                          j5P9+B8//HA6XNTlu3BnJEKlvPzxyo0bc7/7/bHkezjPQ/Q8f/4snPm12qRPZ+iXz39ubjx+/MPB
+                          wcF4k33gT5cvX/9o5t+dvV9++cWnI9wZcrKHUy4UUO/8b8eS70GInpDvujTDHNJ+/8mTf4VkH8sa
+                          9ncm+/ER+NH1j/b2Xsp34c6Qk72eZSf8b8aV74My8+nOk/Bzll0V8RcRrpTffffNy5e7Y2mAnJDs
+                          AxMTEyHfc76Nj3BP1mDRQm3yj1sfY8z3IPy5g0Z8Vs9CCvjgzhrrD9a/DT+Pq6/9h8l+nO/jPcwQ
+                          7ukk+2lOuTfzPdTO41q7NmjEP3v2o4g/R6zn316/yGEWvtuff/63j0+4k8cpNzBYuzbGPb+OI/7V
+                          q1caNe9z0O+/ePHT2GP90tHK2tXVtbMeZh9+OD3ewwzhHqvznXLHV4WQqnt7L8e4di380WHmPujF
+                          h3y3oubY4S2Kpzvfbzx48dNP4431wWG2cnv1fHOsw4VS8l24k9spN3DlypWCrE0OER+K093ddvjr
+                          TNZqZe7VhAnN9tbW5uZG+EUR1oyHY2xh8eYFJ5fyXbhztmS/+L/nT5cv37gxV5C1a+F7CBEw6NVM
+                          1ibD91aqUv2n5882Ntaf7uwU5D5kmEuFeeH1jz66+L9Kvgt3ck32gcHatdevQ6K+KsLfbtCr+fHH
+                          p6GW/+Do8pNwR37QVf/X9uOH/9x8+fLl2Dswx2q12t27nzamhvZ0sXwvpg++/PJLo5Bksr9pe3tr
+                          e+txAf/KIRfC33q6eT2Z/eJDprd3w48X7UKGXaMxtbZ2ZxRbe3qVa9FYyZB+sgcLC4tZPdvc3Cja
+                          Dq7dQw8fPXoYUj7kznSzGel+Nb1eLwR6p7PXLnAB22rN31paHt0BfOnona7OZZU7OSX7mwH0YP3b
+                          gr+brVqtNg5Nha+TH8otQqCHNO/s7YWfc9618RyjurKyGq6do/6D1O/Cnd80m81P1u7m9sdF9JK2
+                          EEn1etaYCkHfCDOPIrwnJOT4/tF0o/iBfizMivJ8UaJ8L8rpYwjGfuKFkirPPzFMzENRXMAWzdvC
+                          d3hYGnf2Bv9YOzQZsv7oF7UcGjghx0OCd/fDj58PfxHhC6lH2op53zT0kv6McJfs53gG9eLC9Px/
+                          sr+E0+84N6PQO/K773kQ8YO1H4PQPzysK9VTtnSO/pWvLx3eCD3oHq1TDDne7x+E34ylMD9h3pNP
+                          K+ad+d7Z2/PeXeEu2ccghOC9T+8XdhXN6Q2yPq6rVA6azeZ4X3g7uIck34V7+ca9Wv1k7e7Ym8gL
+                          C4vN6ebmmHYPJ7GCXb4XioeYxnP6hZq9IK+ZHjzIeumDDxS/aRTsf7j1f77fz/Xd3bb3ewj3srh/
+                          /7OiLfJrNKZmZm8M7h/6gCKtGFZX1xYWbxZt9x7vbxLuZRHmqu97W97Y02Fmdtar7mPUas2vrd0p
+                          5mMBgz0wDnf5d1AJ94QtLS2//YbrQsmyLHyHXqUWi6PtBO6Gq3KRt9sM31tB9igV7ozEzMzszVtL
+                          xf8+B69SC1+vXr3SpSmsMNNa/ngllAtRbLEZvskrV+oh331wwj3FCuvO3Yi+4XA2Dro0+91ucXY0
+                          ZBDr839eWF395Oq1axF921euXLF5ZK7HiSHIQZZla2t3Ip1thK+nO0+2t7eK/0RrSeZ/C4s3I91E
+                          08NNwj21Omu8j5Nc3FxrPpyWO0/DjyciXqxfxMrt1bcfM2YUtGVG7s7de3FNn99pYmKi0Zi6cWNu
+                          olLZ3++6M5ZzrK/dObxrmsa7TZrNpsWRwj16S0vL1z+aSeavI+LF+lCOomtXr1k8I9zjPjOjWB5z
+                          7oi/fPnyq1ev3G4duhDl169/lF6sH7N4RrhHLMuy1dW1Iq8+vnjEX712rdWar01OHhxuo2jR5BDU
+                          arXW/J9XVz8JE76EXzB76WjxjE0vRlsiGIIRVV5F2BcstwlK+Nrvdnd2nuzutt1xPZ+jHSBmB5uh
+                          l8TCwuLgPVY+feEejZWV1WTe+HxK9Sxbub06eD30050ntpk8fR0QAn0uTIBKdsAMrK3d+frrr0z7
+                          hHsk9cjizSJsuDoWlaOoGhTyz58/C18K+fdpNpszMzdKe6gcHzBra3dDvjsehHsEk+sw2TQOoZC/
+                          lS3fWlrebQcvtGvezPTp5vXwn5J07U5zqCwtLT969NBQCPdCT7EjfRJ1dKYPs+ywOC15ysv0E8y1
+                          5judvbadCYR7YX2ydsep+4cpP+jYhJM5+b58uNhPh79z83qj0XBgnGxlZbXb1XwX7oW0sHhz8LJm
+                          /nAafitbvnT0cuoQ8YP1Eimd1SHOw5EQvoq5wXoxab4L94LSaj+HWq02uPv6ZtDvh8I+too+VOiN
+                          Q4dp7gJ/kau+5rtwL9y5PXgXMEMJ+oN+v7vf7XQ6+92fQ+gXMOtrhyYbU1NZPfzIyrmKcRTmWvPt
+                          dtvKd+FeFCVc1T7qGfqgrXH8O4OXu4bED3Hf7x/kfPJnWVapVEOUVyuVEOUhzjXQR2dt7c7f/va/
+                          1lYJ9/ELxWbJlyrnM2EPX78b50HE944cXQAOc/+w8D/on6nYH5Thv+X4UXA3Go3Df5Tj47i0h2pp
+                          ff1bQyHcxzw9X1paNg5jobudqnAVb7Xmd3aeGIqLmDAEF7Fye1VlB0O3sLCo1SncxyYUF4pHGIWK
+                          RQrCfVyyLLP2EUYnVE6hfjIOwj1vsb8WFYrv1tJy5kEw4Z6nhcWbHj6EfKoogyDcc1Kr1TRkIB+h
+                          itKcEe55lRLu80CeE2UrZ4R7DqyQgZxZOSPcR05DBsbCyhnhPlpLSx9bIQNjEeqqqrNPuI9C87/v
+                          mgDyN9hzxjgI9yELJcOtpY+NA4zR9NFbUIyDcB/ylND9ehg7d1aF+zBlWTbnZg4UwOGihsWbxkG4
+                          D8ctm/pCYbTmWqbRwn0IZmZmtfmgOCrV6pIbYML9gqqHh5GyHYrFnVXhflFzrXkL26GA3FkV7ufn
+                          eVQo9OnpzqpwPx99PSiy1lzLM6vC/cwajSnPo0KRVQ4fLXRLTLifuWx30EDRzczMWhYp3M92xHjR
+                          EkTBnVXhflrVatWNGohFozFlWaRwP5W51ryJHkREE1W4n6psb821jANEpJ5lMzOzxkG4n2RhYdFT
+                          SxDfmauVKtxPUKvV7P4IkZ68infh7uIPCVpaWvZMk3B35YfUVKpVM2/hrmyHBNmQQLgr20HxLtyV
+                          7YDiXbgr2wHFu3BXtgOKd+GubAcU78Jd2Q6Kd+GubAcU78Jd2Q4UuHgX7sp2IMHiveQneHnDfWb2
+                          hhMATM2Fe1Ls2w5m58I9QXOtefu2Q/JaJb6tWtJw122HMqhnWWnfsFrGcA/J7i2poHgX7qmxAhLK
+                          Y7rZLGcxV7pwD3M0ZTuo54S7ORoQt+Z0s4S7EZQr3EPNHuZojnUolXI+0FSucFe2QzmVcKuZEoV7
+                          tfSPI0NphVl7s2Sz9hKF+/R004NLoHgX7qnRk4EyK9tKuYnyfK71LHN8Q5mVqsIrS7jPzOq2Q9mV
+                          6q5bKcLdrVTgUsnWRJYi3CU7ULZJfCnC3dsUgYHy3FZNP9yzLLOZDHCsJLdV0w93ZTvwppL0aRMP
+                          92q12py2mQzwm5LcVk083D2VCryt2bwu3COff1neDrxd9pXgDR4ph3v48Er7+kSg5MV7yuE+M3vD
+                          EQy8Ox9Sb7tP+PCAEqpnh4R7fCxvB8pc/0342IBymk667S7cgZJKe81FmuHebFreDpyiCkx3tXSa
+                          4T5dgicUgCEUguk+wT7hAwNKK0zxU31xdoLhricDmOhP+KiAMkt1oj/howLKLNXOTGrhricDmO4n
+                          GO56MoDpfoqVu54McEZJdmaSCvcsy/RkgHNI71HVpMLdlgPA+aTX0Z3w8QDUarXEdgBOJ9zt8Quo
+                          DhMMd2/UAy4iseUY6YS7hjtwEfW0Zv+JhHu1Wq0n/cYsQAOgjOE+bXk7cGHNhNruiYR7Y0rDHbh4
+                          5d4Q7gW73qrcgQurVKvJdGZSCHcPpgJDqxRT2YcghXD37BIwLCr3Qn0YDUckMBT1LKsm0QmIPtyr
+                          CfXIgEI0A5K4hxd9uCvbgSGnShKr7xIId2U7IFWEO8CJakeE+zjZdQAYhQQeVY073DXcAS2BJMNd
+                          TwZQOAp3gFOoVKuxv5gp4nDXcAfUjgmGu4Y7MDp1lbvrKqByF+6GHohA7KvdIw53DXdABZlauCvb
+                          gVGLesFMtOHuvXqAIjK9cM/qejLAaNVV7uO4oloHCSje0wr3Wq3mpalAHuE+JdxzlFknA+STNtF2
+                          gKMMd0tlgHzE23afMNwA71Or1SJ9X7bKHeDEajLOzkx84a7hDuRaTcZ5TzW+cK9b4Q7kWVCq3FXu
+                          QHoivck3YaABThDpPdUIK3dtGSDnmjLC2Iks3D2bCuQvxnuq0YX7pOMMyL+sFO6un0BqMm0ZQwyk
+                          J8Z1HPH13B1nwBgqy9jyPbJwtw4SUFmmFu4eXwLGV1leFe6unEBqorvhF1O4R3flBJKhLePKCSSo
+                          7obq6FSqFUcYoHhPLdy9owMYa7jH9IR8NOFetaUMMN76Mqon5KMJd+/oAMZcYlZi6gxHE+4WuQNj
+                          LjGjSqFowt1Ov8B46bmPpnLXlgHGHO5Wy4ykcrcOEpDvyYW7dZBAAcI9ms7MhE8L4JQiWtkRR7gr
+                          24EiiGhlh8od4NSVe13lPtzK3atTgUJU7tGs7FC5A5yWG6rlnQoBSYe7pZBlnQoBaYtlE8M4wj2u
+                          p36BhMWyiWEs4e7tqQBphbud3IHiiGXxXgThbid3gATDHaA4YukSRxDuXtMBCPcEw91rOgASDHeA
+                          4sgshSzbUAJlUPEQ0/CG0uOpAMmFO0ChRLHKQ1sG4GwqlQg6M1bLACRIWwbgbKJY6l70cLexDFC4
+                          cJ+MYJ/aooe7jWUAEgx3AIQ7wMhFsYSv+D13TzABxRLFk5WF77lnVx1JAKmFOwDCHQDhDnB2jUYE
+                          r1Et/A3VihuqAMmFe9079gDSC3cAhDsAwh1AuAMwUPxdf4U7wDnCvei7/gp3gAQVPdyLf3kEEO7n
+                          CPeaDwngrP5fgAEAIM/y6bOfIqoAAAAASUVORK5CYII=" alt="" *ngIf="!userInfo.profile_image" class="ui circular image"> {{userInfo.first_name}}
+                        </div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                          <div class="item" (click)="showLoggedInUserProfile()">
+                            {{translate("campaign_page_profile_text")}}
+                          </div>
+                          <div class="item" (click)="logout()">
+                            {{translate("campaign_page_log_out_text")}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="account-info" *ngIf="!personId">
+                  <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_account_information_header")}}</h2>
+                  <div class="ui top attached tabular menu account-info-tab-menu" ngSemantic>
+                    <a class="active item" *ngIf="currentPaymentLoginTab == 'login' && (contributeBehaviour == 1 || contributeBehaviour == 3 || contributeBehaviour == 6 || contributeBehaviour == 8)" (click)="setContributeType(CONTRIBUTION_TYPE_LOGIN); setCurrentLoginTab('login')"
+                      TabBackgroundColor TabSelectedFontColor>{{translate("campaign_page_login_text")}}</a>
+                    <a class="item" *ngIf="currentPaymentLoginTab != 'login' && (contributeBehaviour == 1 || contributeBehaviour == 3 || contributeBehaviour == 6 || contributeBehaviour == 8)" (click)="setContributeType(CONTRIBUTION_TYPE_LOGIN); setCurrentLoginTab('login')"
+                      TabUnselectedFontColor>{{translate("campaign_page_login_text")}}</a>
+                    <a class="item active" *ngIf="currentPaymentLoginTab == 'register' && (contributeBehaviour == 1 || contributeBehaviour == 3 || contributeBehaviour == 6 || contributeBehaviour == 8)" (click)="setCreatingAccount(); setContributeType(CONTRIBUTION_TYPE_REGISTER); setCurrentLoginTab('register')"
+                      TabBackgroundColor TabSelectedFontColor>{{translate("campaign_page_create_account_tab")}}</a>
+                    <a class="item" *ngIf="currentPaymentLoginTab != 'register' && (contributeBehaviour == 1 || contributeBehaviour == 3 || contributeBehaviour == 6 || contributeBehaviour == 8)" (click)="setCreatingAccount(); setContributeType(CONTRIBUTION_TYPE_REGISTER); setCurrentLoginTab('register')"
+                      TabUnselectedFontColor>{{translate("campaign_page_create_account_tab")}}</a>
+                    <a class="item active guestTab" *ngIf="currentPaymentLoginTab == 'guest' && (contributeBehaviour == 2 || contributeBehaviour == 3 || contributeBehaviour == 7 || contributeBehaviour == 8)" (click)="setContributeType(CONTRIBUTION_TYPE_GUEST); setCurrentLoginTab('guest')"
+                      TabBackgroundColor TabSelectedFontColor>{{translate("campaign_page_guest_tab")}}</a>
+                    <a class="item guestTab" *ngIf="currentPaymentLoginTab != 'guest' && (contributeBehaviour == 2 || contributeBehaviour == 3 || contributeBehaviour == 7 || contributeBehaviour == 8)" (click)="setContributeType(CONTRIBUTION_TYPE_GUEST); setCurrentLoginTab('guest')"
+                      TabUnselectedFontColor>{{translate("campaign_page_guest_tab")}}</a>
+                    <a class="item active" *ngIf="currentPaymentLoginTab == 'express' && (contributeBehaviour == 5 || contributeBehaviour == 6 || contributeBehaviour == 7 || contributeBehaviour == 8)" (click)="setContributeType(CONTRIBUTION_TYPE_EXPRESS); setCurrentLoginTab('express')"
+                      TabBackgroundColor TabSelectedFontColor>{{translate("campaign_page_express_tab")}}</a>
+                    <a class="item" *ngIf="currentPaymentLoginTab != 'express' && (contributeBehaviour == 5 || contributeBehaviour == 6 || contributeBehaviour == 7 || contributeBehaviour == 8)" (click)="setContributeType(CONTRIBUTION_TYPE_EXPRESS); setCurrentLoginTab('express')"
+                      TabUnselectedFontColor>{{translate("campaign_page_express_tab")}}</a>
+                  </div>
+                  <div class="account-info-tab ui active" *ngIf="isLoginTab && (contributeBehaviour == 1 || contributeBehaviour == 3 || contributeBehaviour == 6 || contributeBehaviour == 8)">
+                    <div *ngIf="contributionType == CONTRIBUTION_TYPE_LOGIN">
+                      <div class="ui negative message" *ngIf="!socialLogin && !isLoggedInSuccessful">
+                        <div class="content">
+                          {{logginErrorMessage}}
+                        </div>
+                      </div>
+                      <login-form *ngIf="isContributionView" (onSuccess)="onLoginSuccess($event)" (onFailed)="onLoginFailed($event)" [isContributePage]=true></login-form>
+                    </div>
+                  </div>
+                  <div class="account-info-tab ui" *ngIf="isRegisterTab && (contributeBehaviour == 1 || contributeBehaviour == 3 || contributeBehaviour == 6 || contributeBehaviour == 8)">
+                    <div *ngIf="contributionType == CONTRIBUTION_TYPE_REGISTER">
+                      <register-form (onSuccess)="onRegisterContributionSuccess($event)" (onFailed)="onRegisterFailed(data)" [isContributing]="true" [isHiddingCreateAccountButton]=true></register-form>
+                      <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_card_information_header")}}</h2>
+                      <card [ngClass]="{ 'error': stripeElementError }" [cardObj]="cardInfo" (error)="stripeElementValidation($event)" [isSubmitting]="isSubmitting" [stripeElement]="stripeElement"></card>
+                      <div class="address-info" *ngIf="isRewardShipping">
+                        <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_shipping_information_header")}}</h2>
+                        <address-form [addressObj]="addressInfo" (selectedCity)="selectAddress($event)"></address-form>
+                      </div>
+                      <div class="phone-info" *ngIf="isRewardShipping">
+                        <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_phone_information_header")}}</h2>
+                        <phone-form [phoneObj]="phoneInfo"></phone-form>
+                      </div>
+                      <div class="contribution-message-info" *ngIf="isContributionMessageEnabled && !personId">
+                        <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_contribution_message_information_header")}}</h2>
+                        <div class="ui form">
+                          <div class="field">
+                            <textarea [(ngModel)]="pledgeParam.note"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="account-info-tab ui" *ngIf="isGuestTab && (contributeBehaviour == 2 || contributeBehaviour == 3 || contributeBehaviour == 7 || contributeBehaviour == 8)">
+                    <div *ngIf="contributionType == CONTRIBUTION_TYPE_GUEST">
+                      <div id="guest-form" class="ui large form">
+                        <div class="field">
+                          <input type="email" name="guestEmail" placeholder="{{translate('email')}}" [(ngModel)]="cardInfo.email">
+                        </div>
+                      </div>
+                      <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_card_information_header")}}</h2>
+                      <card [ngClass]="{ 'error': stripeElementError }" [cardObj]="cardInfo" (error)="stripeElementValidation($event)" [isSubmitting]="isSubmitting" [stripeElement]="stripeElement"></card>
+                      <div class="address-info" *ngIf="isRewardShipping">
+                        <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_shipping_information_header")}}</h2>
+                        <address-form [addressObj]="addressInfo" (selectedCity)="selectAddress($event)"></address-form>
+                      </div>
+                      <div class="phone-info" *ngIf="isRewardShipping">
+                        <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_phone_information_header")}}</h2>
+                        <phone-form [phoneObj]="phoneInfo"></phone-form>
+                      </div>
+                      <div class="contribution-message-info" *ngIf="isContributionMessageEnabled && !personId">
+                        <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_contribution_message_information_header")}}</h2>
+                        <div class="ui form">
+                          <div class="field">
+                            <textarea [(ngModel)]="guestPledgeParam.note"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="account-info-tab ui" *ngIf="isExpressTab && (contributeBehaviour == 5 || contributeBehaviour == 6 || contributeBehaviour == 7 || contributeBehaviour == 8)">
+                    <div *ngIf="contributionType == CONTRIBUTION_TYPE_EXPRESS">
+                      <div id="express-form" class="ui large form">
+                        <div class="two fields">
+                          <div class="field">
+                            <input type="text" name="expressFirstName" placeholder="{{translate('express_first_name')}}" [(ngModel)]="expressRegisterInfo.first_name">
+                          </div>
+                          <div class="field">
+                            <input type="text" name="expressLastName" placeholder="{{translate('express_last_name')}}" [(ngModel)]="expressRegisterInfo.last_name">
+                          </div>
+                        </div>
+                        <div class="field">
+                          <input type="email" name="expressEmail" placeholder="{{translate('email')}}" [(ngModel)]="expressRegisterInfo.email">
+                        </div>
+                      </div>
+                      <div class="ui negative message" *ngIf="expressRegisterError">
+                        {{translate(expressRegisterError)}}
+                      </div>
+                      <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_card_information_header")}}</h2>
+                      <card [ngClass]="{ 'error': stripeElementError }" [cardObj]="cardInfo" (error)="stripeElementValidation($event)" [isSubmitting]="isSubmitting" [stripeElement]="stripeElement"></card>
+                      <div class="address-info" *ngIf="isRewardShipping">
+                        <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_shipping_information_header")}}</h2>
+                        <address-form [addressObj]="addressInfo" (selectedCity)="selectAddress($event)"></address-form>
+                      </div>
+                      <div class="phone-info" *ngIf="isRewardShipping">
+                        <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_phone_information_header")}}</h2>
+                        <phone-form [phoneObj]="phoneInfo"></phone-form>
+                      </div>
+                      <div class="contribution-message-info" *ngIf="isContributionMessageEnabled && !personId">
+                        <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_contribution_message_information_header")}}</h2>
+                        <div class="ui form">
+                          <div class="field">
+                            <textarea [(ngModel)]="pledgeParam.note"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-info" *ngIf="personId">
+                  <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_card_information_header")}}</h2>
+                  <card [ngClass]="{ 'error': stripeElementError }" [cardObj]="cardInfo" (error)="stripeElementValidation($event)" [isSubmitting]="isSubmitting" [stripeElement]="stripeElement" *ngIf="isAddingCard"></card>
+                  <div class="credit-card-dropdown" *ngIf="!isAddingCard">
+                    <div class="ui selection dropdown fluid" *ngIf="stripeCards.length" ngSemantic>
+                      <input type="hidden" name="cards">
+                      <i class="dropdown icon"></i>
+                      <div class="text">
+                        <img [src]="getCardType(stripeCards[0].stripe_account_card_type_id)">
+                        <span>**** **** **** {{stripeCards[0].last4}}
+                        </span>
+                      </div>
+                      <div class="menu">
+                        <div class="item" *ngFor="let card of stripeCards" (click)="selectCard(card)">
+                          <img [src]="getCardType(card.stripe_account_card_type_id)">
+                          <span>**** **** **** {{card.last4}}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="button-wrap">
+                    <div class="ui button blue info-buttons" ThemeColor (click)="toggleNewCard()" *ngIf="stripeCards && stripeCards.length">
+                      <div class="add-card-text" *ngIf="!isAddingCard">
+                        {{translate("campaign_page_card_add_button")}}
+                      </div>
+                      <div class="select-existing-card-text" *ngIf="isAddingCard">
+                        {{translate("campaign_page_card_existing_card_button")}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="contribution-message-info" *ngIf="isContributionMessageEnabled && personId">
+                  <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_contribution_message_information_header")}}</h2>
+                  <div class="ui form">
+                    <div class="field">
+                      <textarea [(ngModel)]="pledgeParam.note"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="address-info" *ngIf="personId && isRewardShipping">
+                  <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_shipping_information_header")}}</h2>
+                  <address-form [addressObj]="addressInfo" *ngIf="isAddingAddress" (selectedCity)="selectAddress($event)"></address-form>
+                  <div class="address-dropdown" *ngIf="!isAddingAddress">
+                    <div class="ui selection dropdown fluid" *ngIf="addressList.length" ngSemantic>
+                      <input type="hidden" name="address">
+                      <i class="dropdown icon"></i>
+                      <div class="text">{{addressList[0].street1}}, {{addressList[0].city_full}} | {{addressList[0].mail_code}}
+                      </div>
+                      <div class="menu">
+                        <div class="item" *ngFor="let address of addressList" (click)="selectAddress(address)">{{address.street1}}, {{address.city_full}} | {{address.mail_code}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="button-wrap">
+                    <div class="ui button blue info-buttons" ThemeColor (click)="toggleNewAddress()" [hidden]="!personId || !addressList.length">
+                      <div class="add-card-text" [hidden]="isAddingAddress">
+                        {{translate("campaign_page_add_new_address_button")}}
+                      </div>
+                      <div class="select-existing-card-text" [hidden]="!isAddingAddress">
+                        {{translate("campaign_page_existing_address_button")}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="phone-info" *ngIf="personId && isRewardShipping">
+                  <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_phone_information_header")}}</h2>
+                  <phone-form [phoneObj]="phoneInfo" *ngIf="isAddingPhone"></phone-form>
+                  <div class="cards-dropdown" *ngIf="!isAddingPhone">
+                    <div class="ui selection dropdown fluid" *ngIf="phoneList.length" ngSemantic>
+                      <input type="hidden" name="address">
+                      <i class="dropdown icon"></i>
+                      <div class="text">{{phoneList[0].number}} | {{phoneList[0].phone_number_type}}
+                      </div>
+                      <div class="menu">
+                        <div class="item" *ngFor="let phone of phoneList" (click)="selectPhone(phone)">{{phone.number}} | {{phone.phone_number_type}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="button-wrap">
+                    <div class="ui button blue info-buttons" ThemeColor (click)="toggleNewPhone()" [hidden]="!personId || !addressList.length">
+                      <div class="add-phone-text" [hidden]="isAddingPhone">
+                        {{translate("campaign_page_phone_add_button")}}
+                      </div>
+                      <div class="select-existing-phone-text" [hidden]="!isAddingPhone">
+                        {{translate("campaign_page_phone_existing_card_button")}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="website-tip ui form" *ngIf="tippingOptions.toggle">
+                  <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_tipping_header")}}</h2>
+                  <div class="field">
+                    <div class="tip-option-selection-wrap">
+                      <div class="tip-option-selection ui buttons">
+                        <button class="choose-tip-button ui button green" ThemeColor *ngIf="tippingOptions.toggle_tiers" [hidden]="tipType != 'tiers' || (tipType == 'tiers' && tippingOptions.toggle_no_tip !== undefined && tippingOptions.toggle_no_tip == false)" (click)="setTipType('tiers')">{{translate("choose_tip")}}</button>
+                        <button class="choose-tip-button ui button" *ngIf="tippingOptions.toggle_tiers" [hidden]="tipType == 'tiers'" (click)="setTipType('tiers')">{{translate("choose_tip")}}</button>
+                        <div class="or" *ngIf="tippingOptions.toggle_tiers && tippingOptions.toggle_dynamic"></div>
+                        <button class="enter-tip-button ui button green" ThemeColor *ngIf="tippingOptions.toggle_dynamic" [hidden]="tipType != 'dynamic'" (click)="setTipType('dynamic')">{{translate("enter_tip_amount")}}</button>
+                        <button class="enter-tip-button ui button" *ngIf="tippingOptions.toggle_dynamic" [hidden]="tipType == 'dynamic'" (click)="setTipType('dynamic')">{{translate("enter_tip_amount")}}</button>
+                        <div class="or" *ngIf="tippingOptions.toggle_no_tip"></div>
+                        <button class="no-tip-button ui button green" ThemeColor *ngIf="tippingOptions.toggle_no_tip" [hidden]="tipType != 'no_tip'" (click)="setTipType('no_tip')">{{translate("no_tip")}}</button>
+                        <button class="no-tip-button ui button" *ngIf="tippingOptions.toggle_no_tip" [hidden]="tipType == 'no_tip'" (click)="setTipType('no_tip')">{{translate("no_tip")}}</button>
+                      </div>
+                    </div>
+                    <div class="ui basic red pointing prompt label transition visible" *ngIf="tipError">{{translate("select_tip_option")}}</div>
+                  </div>
+                  <div *ngIf="(!tippingOptions.toggle_dynamic && tippingOptions.toggle_tiers && !tippingOptions.toggle_no_tip) || tipType == 'tiers'" class="tipping-option">
+                    <div class="field" *ngIf="tippingOptions.tiers[0]">
+                      <div class="ui dropdown selection tip-tiers" ngSemantic>
+                        <input type="hidden" name="tipTiers">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">
+                          <span *ngIf="tippingOptions.toggle_tier_names">{{tippingOptions.tiers[0].name}} -</span>
+                          <span>{{ tipInfo.code_iso4217_alpha | currencySymbolNumber}}
+                            {{tippingOptions.tiers[0].dollar_amount | number:'1.2-2' }}</span>
+                        </div>
+                        <div class="menu">
+                          <div class="item" *ngFor="let tier of tippingOptions.tiers; let tipI = tipIndex" (click)="tipTierSelection(tier.value, tier.type, tier.dollar_amount, tier.name)">
+                            <span *ngIf="tippingOptions.toggle_tier_names">{{tier.name}} -</span>
+                            <span>{{ tipInfo.code_iso4217_alpha | currencySymbolNumber}} {{tier.dollar_amount  | number:'1.2-2'}}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="(tippingOptions.toggle_dynamic && !tippingOptions.toggle_tiers && !tippingOptions.toggle_no_tip) || tipType == 'dynamic'" class="ui dynamic-tipping-form form tipping-option">
+                    <div class="field">
+                      <div class="ui left labeled input">
+                        <div class="ui label">{{ tipInfo.code_iso4217_alpha | currencySymbolNumber}}</div>
+                        <input type="number" name="dynamic_tip" [(ngModel)]="tip.dollar_amount" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!--COUPON ENTER FIELD-->
+                <div *ngIf = "rewardIndex > 0 && couponManagementEnabled" class="website-tip ui form">
+                  <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_coupon_header")}}</h2>
+                  <div class = "ui large form">
+                    <div class="two fields">
+                      <div class = "field">
+                        <div class="ui left labeled input">
+                          <div class="ui green button" (click)="applyCoupon(couponCode)">
+                            {{translate("campaign_page_coupon_apply")}}
+                          </div>
+                          <input type="text" name="coupon_code" [(ngModel)]="couponCode" (keyup.enter)="applyCoupon(couponCode)"/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <h5 *ngIf="currentCoupon && currentCoupon.discount_amount > 0"><em>{{tipInfo.code_iso4217_alpha | currencySymbolNumber}}{{currentCoupon.discount_amount+" "+translate("campaign_page_discount_applied")}}</em></h5>
+                  <h5 *ngIf="currentCoupon && currentCoupon.discount_percentage > 0"><em>{{currentCoupon.discount_percentage+"% "+translate("campaign_page_discount_applied")}}</em></h5>
+                  <h5 *ngIf="!currentCoupon && couponAppliedMessage"><em>{{couponAppliedMessage}}</em></h5>
+                </div>
+
+                <div class="attributes-info ui form" *ngIf="contribution.attributes">
+                  <div class="fields" *ngIf="contribution.attributes.variation">
+                    <div class="eight wide field" *ngFor="let attribute of contribution.attributes.variation; let vIndex = index">
+                      <label>{{attribute.name}}</label>
+                       <div class="ui dropdown selection fluid" ngSemantic>
+                          <input type="hidden" name="attribute">
+                          <i class="dropdown icon"></i>
+                          <div class="default text">{{attribute.name}}</div>
+                          <div class="menu">
+                          <div class="item" *ngFor="let choice of attribute.choice; let cIndex = index" (click)="chooseAttribute(choice.value, vIndex)">{{choice.value}}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="review-payment" PaymentFontColor>
+                  <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_review_payment_text")}}</h2>
+                  <table class="ui very basic table review-payment-table">
+                    <tbody>
+                      <tr>
+                        <td PaymentFontColor>
+                          <strong>{{contribution.rewardName}}</strong>
+                        </td>
+                        <td *ngIf="settingDecimalOption == 1 || settingDecimalOption == 2" PaymentFontColor>
+                          {{ mCampaign.currencies[0].code_iso4217_alpha | currencySymbolNumber}} {{contribution.amount | number:'1.2-2' }} {{mCampaign.currencies[0]["code_iso4217_alpha"]}}
+                        </td>
+                        <td *ngIf="settingDecimalOption == 3" PaymentFontColor>
+                          {{ mCampaign.currencies[0].code_iso4217_alpha | currencySymbolNumber}} {{contribution.amount | number:'1.0-0' }} {{mCampaign.currencies[0]["code_iso4217_alpha"]}}
+                        </td>
+                      </tr>
+                      <tr *ngIf="isRewardShipping">
+                        <td PaymentFontColor><strong>{{translate("campaign_page_review_shipping_text")}}</strong></td>
+                        <td *ngIf="settingDecimalOption == 1 || settingDecimalOption == 2" PaymentFontColor>
+                          {{ mCampaign.currencies[0].code_iso4217_alpha | currencySymbolNumber}} {{shippingFee | number:'1.2-2' }} {{mCampaign.currencies[0]["code_iso4217_alpha"]}}
+                        </td>
+                        <td *ngIf="settingDecimalOption == 3" PaymentFontColor>
+                          {{ mCampaign.currencies[0].code_iso4217_alpha | currencySymbolNumber}} {{shippingFee | number:'1.0-0'}} {{mCampaign.currencies[0]["code_iso4217_alpha"]}}
+                        </td>
+                      </tr>
+                      <tr *ngIf="currentCoupon && amountDiscounted > 0">
+                        <td PaymentFontColor><strong>{{translate("campaign_page_review_discount_text")}}</strong></td>
+                        <td *ngIf="settingDecimalOption == 1 || settingDecimalOption == 2" PaymentFontColor>
+                          -{{ mCampaign.currencies[0].code_iso4217_alpha | currencySymbolNumber}} {{amountDiscounted | number:'1.2-2' }} {{mCampaign.currencies[0]["code_iso4217_alpha"]}}
+                        </td>
+                        <td *ngIf="settingDecimalOption == 3" PaymentFontColor>
+                          -{{ mCampaign.currencies[0].code_iso4217_alpha | currencySymbolNumber}} {{amountDiscounted | number:'1.0-0'}} {{mCampaign.currencies[0]["code_iso4217_alpha"]}}
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr class="total-contribution" *ngIf="tip.dollar_amount">
+                        <td PaymentFontColor>{{translate("campaign_page_review_tip_text")}}</td>
+                        <td *ngIf="settingDecimalOption == 1 || settingDecimalOption == 2" PaymentFontColor>
+                          <span>{{ tipInfo["code_iso4217_alpha"] | currencySymbolNumber}}
+                            {{tip.dollar_amount | number:'1.2-2' }}
+                            {{tipInfo["code_iso4217_alpha"]}}</span>
+                        </td>
+                        <td *ngIf="settingDecimalOption == 3" PaymentFontColor>
+                          <span>{{ tipInfo["code_iso4217_alpha"] | currencySymbolNumber}}
+                            {{tip.dollar_amount | number:'1.0-0' }}
+                            {{tipInfo["code_iso4217_alpha"]}}</span>
+                        </td>
+                      </tr>
+                      <tr class="total-contribution">
+                        <td PaymentFontColor>{{translate("campaign_page_review_total_contribution_text")}}</td>
+                        <td *ngIf="settingDecimalOption == 1 || settingDecimalOption == 2" PaymentFontColor>
+                          {{ mCampaign.currencies[0].code_iso4217_alpha | currencySymbolNumber}} {{total() | number:'1.2-2' }} {{mCampaign.currencies[0]["code_iso4217_alpha"]}}
+                        </td>
+                        <td *ngIf="settingDecimalOption == 3" PaymentFontColor>
+                          {{ mCampaign.currencies[0].code_iso4217_alpha | currencySymbolNumber}} {{total() | number:'1.0-0' }} {{mCampaign.currencies[0]["code_iso4217_alpha"]}}
+                        </td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                  <!-- <p class="agreement-text">By clicking "Submit Contribution", you agree to Thrinacia's
+                  <a href="https://reach.thrinacia.com/tos" target="_blank">Terms of Service</a>
+                  and
+                  <a href="https://reach.thrinacia.com/privacy" target="_blank">Privacy Policy</a>
+                </p> -->
+                  <div class="ui grid two column stackable" *ngIf="!(contributionType == CONTRIBUTION_TYPE_LOGIN && !personId)">
+                    <div class="column">
+                      <div class="ui dropdown selection fluid" ngSemantic>
+                        <i class="icon dropdown"></i>
+                        <div class="text">{{contributionMethod[0].name}}</div>
+                        <div class="menu">
+                          <div class="item" *ngFor="let method of contributionMethod" (click)="setContributionMethod(method)">
+                            {{method.name}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <div class="button-wrap">
+                        <button class="submit-button ui green large fluid button" [ngClass]="{'loading disabled': isContributionSubmitting}" ThemeColor (click)="submitContribution()">{{translate("campaign_page_contribute_button")}}</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="ui negative message" *ngIf="submitErrorMessage">
+                    <div class="content">{{submitErrorMessage}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="six wide column">
+                <div id="contribution-campaign-rewards" ngSemantic class="ui accordion">
+                  <h2 class="ui header" FontColor RewardsFontColor>{{translate("campaign_page_choose_your_reward_text")}}</h2>
+                  <div class="campaign-reward" [ngClass]="{'selected': rewardIndex == 0}" [hidden]="!isCampaignShown">
+
+                    <div class="campaign-reward-content">
+                      <div class="reward-top title" (click)="selectReward(0)">
+                        <h3 class="no-reward-text ui header " RewardsFontColor>{{translate("campaign_page_no_reward_selected_text")}}</h3>
+                      </div>
+                      <div class="reward-bottom content">
+                        <div class="contribution-input ui form">
+                          <div class="field">
+                            <label RewardsFontColor>{{translate("campaign_page_contribute_amount_text")}}</label>
+                            <div class="ui left labeled large input fluid">
+                              <div class="ui label">{{mCampaign.currencies[0].code_iso4217_alpha | currencySymbolNumber}}</div>
+                              <input type="number" name="amount" [(ngModel)]="contribution.amount" (ngModelChange)="reCalcContributionAmount()" (keypress)="onContributionAmountPressed($event)" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="campaign-reward" *ngFor="let reward of mCampaign.pledges | paginate: rewardContributionPageConfig; let index = index" [ngClass]="{'selected': rewardIndex == index + 1, 'disabled': reward.total_pledges == reward.item_limit}">
+                    <div class="sold-out-content" *ngIf="reward.total_pledges == reward.item_limit">
+                      <h2 class="ui header">{{translate("campaign_reward_sold_out_text")}}</h2>
+                    </div>
+                    <div class="campaign-reward-content">
+                      <div class="reward-top title" (click)="selectReward(index + 1, true)">
+                        <h2 class="reward-amount">
+                          <span class="amount" *ngIf="settingDecimalOption == 1 || settingDecimalOption == 2" RewardsFontColor>
+                            {{ mCampaign.currencies[0].code_iso4217_alpha | currencySymbolNumber}} {{reward.amount | number:'1.2-2' }}
+                          </span>
+                          <span class="amount" *ngIf="settingDecimalOption == 3" RewardsFontColor>
+                            {{ mCampaign.currencies[0].code_iso4217_alpha | currencySymbolNumber}} {{reward.amount | number:'1.0-0' }}
+                          </span>
+                          <span class="currency" RewardsFontColor>{{mCampaign.currencies[0].code_iso4217_alpha}}</span>
+                          <span class="shipping" *ngIf="reward.shipping != null && reward.shipping.length" RewardsFontColor> +  {{translate("campaign_page_shipping_text")}}</span>
+                        </h2>
+                        <h4 class="reward-title ui header" RewardsFontColor>{{reward.name}}</h4>
+                      </div>
+                      <div class="reward-bottom content">
+                        <div class="reward-description fr-view" [innerHTML]="reward.description" RewardsFontColor></div>
+                        <div class="reward-meta-wrap">
+                          <div class="reward-meta">
+                            <div class="reward-backer-count" *ngIf="!reward.total_backers" RewardsFontColor>
+                              <i class="users icon"></i>{{translate("campaign_page_no_backer_text")}}</div>
+                            <div class="reward-backer-count" *ngIf="reward.total_backers" RewardsFontColor>
+                              <i class="users icon"></i>{{translate(backersMapping(reward.total_backers))}}
+                            </div>
+                            <div class="reward-limit" *ngIf="!reward.item_limit">
+                              <span RewardsFontColor>{{reward.total_pledges}}</span>
+                              <span RewardsFontColor>{{translate("campaign_page_claimed_text")}}</span>
+                            </div>
+                            <div class="reward-limit" *ngIf="reward.item_limit">
+                              <span RewardsFontColor>{{reward.total_pledges}}</span>
+                              <span RewardsFontColor>{{translate("campaign_page_claimed_of_text")}} {{reward.item_limit}}
+                              </span>
+                            </div>
+                          </div>
+                          <div class="reward-meta reward-delivery-date" *ngIf="reward.estimated_delivery_time" RewardsFontColor><span>{{translate("campaign_page_estimated_delivery_text")}} </span>
+                            <span RewardsFontColor>{{reward.estimated_delivery_time | amDateFormat:'ll'}}</span>
+                          </div>
+                        </div>
+                        <div class="contribution-input ui form">
+                          <div class="field" [ngClass]="{'disabled': reward.total_pledges == reward.item_limit || isCampaignAvailable()}">
+                            <label RewardsFontColor>{{translate("campaign_page_contribute_amount_text")}}</label>
+                            <div class="ui labeled large input fluid">
+                              <div class="ui label">{{mCampaign.currencies[0].code_iso4217_alpha | currencySymbolNumber}}</div>
+                              <input type="number" name="amount" [(ngModel)]="contribution.amount" (keypress)="onContributionAmountPressed($event)" (keyup)="calculateTotalPayment()">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <pagination-controls id="rewards-contribution-pagination" (pageChange)="onRewardsContributionPageChange($event)" directionLinks="false" maxSize="5" autoHide="true" *ngIf="mCampaign.pledges && mCampaign.pledges.length > 3"></pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ui basic segment">
+      <div class="campaign-footer">
+        <div class="campaign-footer-grid ui grid">
+          <div class="left-column eight wide column">
+            <a [href]="siteLogo.link" target="_blank">
+              <img class="thrin-logo" [src]="siteLogo.image" *ngIf="siteLogo.image" />
+              <img class="thrin-logo" *ngIf="!siteLogo.image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAABQCAIAAADnUzvSAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABNVJREFUeNrsnV1L40AUQN2NRFoQIi0pDVQrFcUFxcX9s/609cWyhUqCwUBFMFDYa2d3iNM2TVLbTvCcB0lK0w4Jx3vnzke/3d3d7QFAPfnOLQBAYABAYABAYAAEBgAEBgAEBgAEBkBgAEBgAFiTfW4BaDzPa7dak8kkjCLuBgJDPThw3Va7Leq6riunzWYTgREYahNy5W/2RdH48PBQ4jD3B4HB0pDrdzpHnqdC7jwqkeZGITDYhZgpSIDNf5u8589oNJ1OuWMIDLaEXLHXcZyFb0jT9CmOg243qzo9YQQG20NuHMeirkqYm42G7g93Oh0ERmCwN+SGYSjqZvNkOdUCU8pCYLA95BokSSJi68oWpSwEBqtD7jzZnjClLAQGq0Pugjc/PVHKQmCoTcg1eEtTSaQpZSEw1CPkLsyiKWUhMNQj5M5DKQuBoU4hd57nJOn4vjqmlIXAYHXInScKQy3wHqUsBAbLQ67BW5rKh+sGUMpCYLA65C78H6EFppSFwLBWyBXEn8nLi7O/L/Fw+y0Mut3JqjVM4/GYR4nAhNwPIVdXgw9n7KqpRb4dgRGYkPuOZMhJkki3U8S+OD/ndgECW8T11dWyrTBeX1+jKHpOEtXL3WHIBQSGxWRHWY2QKwLn5aiPj7Z1ASSP4IEi8NfCGGWN47jgTAnbOpmSICDwbmFj9x2gRln1aaPRYJ4TIHCdkKirj5szuCeAwLXBmIxhdIkB6APXwGHtred5juNUSKTb/8eiJCd/ykR1QGDYLNlSlth75HmlDFRDxDr3brVavu//vr+nO00KDdvAKGX5JbPoIAiMnrOcHvd6FVoiYfzH5SVPBIGhHOuUstqLxm8qDOrI5/T7ffnqXiX5AYG/dDe4cilr2fTpUsg3ir362PiVM0BgWO2wPlalrIIXpmk6/2KpDvBpv29EXXnlIDPH05nBM0JgWEoUhllhjgrHwIUVr+JlMHF1Pt+WBgwGA/krefXZYPDz5mYnSxcBgWtD5VLWeDyOP+oqp6PRqLK9uisu3kperdJpBqgth2Gk3ZPd+0KVsvKXNGgehsMwipRpSZIUvCrH3oU9bYnGjDATgSEvGa5cyhJpxzM2YW/ZpAAQ+Isi8VMflypllaKCvSopYFkyAkMe2T0fS5WyNm2vos2aQQSG/Ew4mwN/eta6jr17s/khB0u2EAEEhneiTBBeZ4GhXHh9dZUd0V3T3n8Ot9s8IwuhCm0Lz0nSm05177fj+w/DYdkPkcv7JyfubKcbQY0zfcqmGdIeNp0kAsNS1LZY+rRaKSu7Pkmp+1lb3qjxJB4TAsNS1ixlnc7WJGyueYwnITDksU4pKwiCTe8vx3gSAsMKzFJWo1HkKklug253C80ji0ZgyENv6a4ospZAoqJeErhpGE9CYMjDKGW5q2yRIH02GGyzhYwnITDkUfyXeB3HOZut/ttm81ifhMCQh1HKyrH34vzc3XpCy3gSAsMKogJB+LjX29V28Iwn2QMzsWzEmJU1z4HrvqWpbb91BggM76hSVs647ru9TGwEUmhrKV7KAiIwWIcqZRm93F+3t9wZIALXg4ggDAhcX4xZWQAIXCeMWVkA9IFrxsNwWGFZPxCBAQCBAQCBAQCBARAYABAYABAYAIEBAIEBAIEBoCh/BRgABqtSli82g3wAAAAASUVORK5CYII="
+              />
+            </a>
+          </div>
+          <div class="right-column right aligned eight wide column">
+            <div class="footer-link-list ui small horizontal list">
+              <a class="item" [href]="urlTos" target="_blank">{{translate("campaign_page_TOS_link")}}</a>
+              <a class="item" [href]="urlPrivacy" target="_blank">{{translate("campaign_page_privacy_link")}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui container" *ngIf="campaignErrorMessage.title">
+    <div class="reach-error-message">
+      <div class="message-subcontainer">
+        <h1 class="ui header">{{campaignErrorMessage.title}}</h1>
+        <h2 class="icon-holder">
+          <i class="frown huge icon"></i>
+        </h2>
+        <h2 class="ui header">
+          <div class="content">
+            {{campaignErrorMessage.message}}
+          </div>
+        </h2>
+      </div>
+    </div>
+  </div>
+
+  <div id="refcandy-popsicle"></div>
+  <div id="refcandy-mint"></div>

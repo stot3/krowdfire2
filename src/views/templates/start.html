@@ -1,0 +1,48 @@
+<div class="mainbody-wrap" ng-cloak>
+	<div class="ui simple dimmer" ng-show="stripe_not_set && public_setting.site_campaign_contributions">
+		<div class="content">
+			<div class="center">
+				<h2 class="ui inverted icon header">
+					<i class="icon emphasized frown"></i>
+					{{'start_stripemessage'| translate}}
+				</h2>
+			</div>
+		</div>
+	</div>
+	<div class="background-wrap">
+		<div class="ui page grid">
+			<div class="column ">
+				<h1 class="ui center aligned header" translate> start_startmessage</h1>
+				
+				<form class="start-campaign ui form ">
+					<div class="ui basic segment start-campaign-wrap">
+						<div class="field">
+							<div class="ui fluid campaign-input input huge">
+								<input maxlength="60" type="text" name="title" ng-model="campaign.name" placeholder="{{'start_placeholdertext' | translate}}">
+								<span class="character-counter" >{{campaign.name.length||0}}/60</span>
+							</div>
+						</div>
+						<div class="field five column wide" ng-if="public_settings.site_campaign_country_funding_step">
+								<div class="ui selection dropdown" ng-model="campaign_country" ng-keypress="stripeCountryEnter($event)">
+									<input name="stripe_country" type="hidden">
+									<div class="default text" translate> start_buttoncountrytext
+									</div>
+									<i class="dropdown icon"></i>
+									<div class="menu">
+										<div class="item" data-value="{{scountry.country_id}}" ng-repeat="scountry in stripeCountries" ng-click="setStripeCountry(scountry)">{{scountry.name}}
+										</div>
+									</div>
+								</div>
+						</div>
+					</div>
+					<div class="btn-wrap ui basic segment center aligned">
+						<button accessible-form ng-click="createCampaign()" class="ui huge start-button button" translate> start_buttontext </button>
+					</div>
+				</form><!-- start-campaign end -->
+
+			</div><!-- column end -->
+		</div><!-- ui page grid end -->
+	</div><!-- background-wrap end -->
+</div><!-- mainbody-wrap end -->
+
+

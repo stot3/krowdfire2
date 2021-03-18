@@ -1,0 +1,11 @@
+{
+
+  "profile_website": "Websites",
+  "profile_contact": "Contact",
+  "profile_campaign_created": "Campaigns Created ",
+  "profile_campaign_backed": "Campaigns Backed",
+  "profile_no_campaign": "No Campaign",
+  "profile_no_data": "No Data Currently Available",
+  "profile_no_backer": "This user hasn’t backed any campaigns yet",
+  "infinite_scroller_button_label": "Discover More"
+}

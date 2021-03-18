@@ -1,0 +1,18 @@
+{
+
+	"campaign_step_basic": "Basics",
+	"campaign_step_detail": "Details",
+	"campaign_step_reward": "Rewards",
+	"campaign_step_profile": "Profile",
+	"campaign_step_funding": "Funding",
+	"campaign_step_preview": "Preview",
+	"campaign_step_widget": "Widget",
+	"campaign_step_editing_message":"Campaign currently being edited. Please submit campaign for review when ready.",
+	"campaign_step_basic_page_title": "Get Started",
+	"campaign_step_detail_page_title": "Campaign Setup",
+	"campaign_step_reward_page_title": "Rewards",
+	"campaign_step_profile_page_title": "Profile Setup",
+	"campaign_step_funding_page_title": "Funding",
+	"campaign_step_widget_page_title": "Widget",
+	"campaign_step_preview_page_title": "Campaign Preview"
+}

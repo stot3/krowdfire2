@@ -1,0 +1,88 @@
+<div class="ui inverted menu top-nav-bar main-menu" ng-class="{ 'sticky-menu' : stickyMenu }" ng-controller="NavbarCtrl" ng-cloak>
+  <div class="nav-wrap">
+
+    <!-- MENU LEFT -->
+    <div class="nav-header">
+      <div class="navlogo left menu">
+
+        <a href="{{site_logo_link}}" id="logo" ng-cloak>
+          <img ng-src="{{logoUrl}}" width="320" height="80">
+        </a>
+      </div>
+      <a href class="item mobile-menu right" ng-click="showMobileSidebar()"><i class="large content icon"></i></a>
+    </div>
+
+    <!-- COLLAPSE -->
+    <div class="nav-collapse">
+      <div class="nav-main-left left menu menu-items">
+          <a ng-if="!checkForSubMenu(page)" ng-class="{active: $location.path() == '/' + page.path}" ng-repeat-start="page in headerMenu" class="item" ng-href="{{page.path}}" my-target="{{page.id}}" ng-bind="page.name" target="_self">
+            <i class="dropdown icon" ng-if="checkForSubMenu(page)"></i>
+          </a>
+
+          <div ng-repeat-end ng-if="checkForSubMenu(page)" class="ui pointing dropdown link item menu-dropdown">
+            <a ng-href="{{page.path}}"  ng-class="{active: $location.path() == '/' + page.path}" my-target="{{page.id}}" ng-bind="page.name" target="_self"></a>
+            <!-- {{page.name}} -->
+            <i class="dropdown icon"></i>
+            <div class="child-menu-dropdown menu">
+              <a ng-repeat="link in page.subpages" ng-href="{{link.path}}" class="item" ng-class="{active: $location.path() == '/' + link.path}" my-target="{{link.id}}" ng-bind="link.name" target="_self"></a>
+            </div>
+          </div>
+
+      </div>
+
+      <!-- MENU RIGHT -->
+      <div class="nav-main-right right menu">
+
+
+        <div class="item collapsible search-item" ng-controller="NavSearchCtrl">
+          <form action="" method="get" autocomplete="off">
+            <div class="ui icon input" on-enter="navSearchCampaign()">
+              <input id="main-nav-campaign-search" ng-change="search()" type="text" ng-model="searchingCampaign" ng-attr-placeholder=" {{'navbar_search' | translate}} " name="nav-search" autocomplete="off">
+              <i class="search link icon" ng-click="navSearchCampaign()"></i>
+            </div>
+          </form>
+        </div>
+        <!-- ITEM END -->
+
+        <div class="item collapsible user-greeting" ng-show="User.isLoggedIn()">
+          {{'navbar_welcome' | translate}} {{User.first_name}}!
+        </div>
+
+        <div class="ui dropdown item collapsible-settings" ng-show="User.isLoggedIn()">
+          <i id="m-user-settings" class="circular user icon"></i>
+          <div class="menu collapsible-settings-inner">
+            <div class="header">
+              <h4 class="ui header">
+                <i class="dashboard icon"></i> {{'navbar_dashBoard' | translate}}
+              </h4>
+            </div>
+            <a ng-if="User.person_type_id != 2" class="item" ng-click="navItem()" ng-class="{active: $location.path() === '/admin/dashboard' && $location.hash() !== 'subscription-settings'}" href="/admin/dashboard/" translate> navbar_adminstrator</a>
+            <a ng-if="User.campaign_manager && !hideCampaignNav" class="item" ng-class="{active: $location.path() === '/campaign-manager'}" href="campaign-manager" translate> navbar_mytitle </a>
+            <a ng-if="User.campaign_backer" class="item" ng-class="{active: $location.path() === '/pledge-history'}" href="pledge-history" translate> navbar_mycontribution </a>
+            <a class="item" ng-class="{active: $location.path() === 'message-center'}" href="message-center" translate>navbar_mymessage</a>
+            <div class="header">
+              <h4 class="ui header" translate>
+                <i class="user icon"></i> navbar_myprofile
+              </h4>
+            </div>
+            <a class="item" ng-class="{active: $location.path() === '/profile-setting'}" href="profile-setting" translate>
+							navbar_profilesetting
+						</a>
+            <a class="item" ng-if="enabledContribution" ng-class="{active: $location.path() === '/payment-setting'}" href="payment-setting" translate ng-hide="payment_gateway==2">
+							navbar_paymentsetting
+						</a>
+            <a ng-if="User.isLoggedIn()" class="item" ng-click="setLoggedOut()" translate>navbar_logout</a>
+
+          </div>
+          <!-- <i data-loading class="loading icon"></i> -->
+        </div>
+
+
+        <a href="login" ng-if="!User.isLoggedIn()" class="item collapsible" translate> navbar_signup_login </a>
+      </div>
+      <!-- RIGHT MENU END -->
+    </div>
+  </div>
+  <!-- NAV WRAP -->
+</div>
+<!-- NAVIGATION -->
