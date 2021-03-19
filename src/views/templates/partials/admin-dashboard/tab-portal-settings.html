@@ -1048,7 +1048,7 @@
           </div>
           
           <!-- Okta Social Login -- -->
-          <div id="socialLogin-options" class="ui two column stackable setting-bg grid"> 
+          <div id="socialLogin-options" class="ui form two column stackable setting-bg grid"> 
             <div class="four wide column">
               <h3 class="ui header main-font-color" translate>tab_portalsetting_social_login</h3>
               <p translate>tab_portalsetting_social_login_note</p>
@@ -1072,13 +1072,13 @@
                 <div class="five wide column">
                   <h4 translate>tab_portalsetting_social_login_okta_domain</h4>
                   <div class="ui fluid form field">
-                    <input type="text" ng-model="public_settings.social_login.okta_domain" id="okta_domain">
+                    <input type="text" ng-model="public_settings.social_login.okta_domain" id="okta_domain" name="okta_domain">
                   </div>
                 </div>
                 <div class="five wide column">
                   <h4 translate>tab_portalsetting_social_login_okta_clientId</h4>
                   <div class="ui fluid form field">
-                    <input type="text" ng-model="public_settings.social_login.okta_clientId">
+                    <input type="text" ng-model="public_settings.social_login.okta_clientId" name="okta_clientId">
                   </div>
                 </div>
               </div>
@@ -1089,13 +1089,13 @@
                 <div class="five wide column">
                   <h4 translate>tab_portalsetting_social_login_okta_apiKey</h4>
                   <div class="ui fluid form field">
-                    <input type="text" ng-model="private_settings.social_login.okta_apiKey">
+                    <input type="text" ng-model="private_settings.social_login.okta_apiKey" name="okta_apiKey">
                   </div>
                 </div>
                 <div class="five wide column">
                   <h4 translate>tab_portalsetting_social_login_okta_groupId</h4>
                   <div class="ui fluid form field">
-                    <input type="text" ng-model="private_settings.social_login.okta_groupId">
+                    <input type="text" ng-model="private_settings.social_login.okta_groupId" name="okta_groupId">
                   </div>
                 </div>
               </div>
@@ -1225,14 +1225,14 @@
               </div>
             </div>
 
-            <div class="sixteen wide column">
+            <div class="sixteen wide column" ng-if="public_settings.social_login.toggle">
               <h4 class="ui dividing header" style="margin-top: 0.5rem" translate>tab_portalsetting_social_login_widget_settings</h4>
             </div>
-            <div class="four wide column">
+            <div class="four wide column" ng-if="public_settings.social_login.toggle">
               <h3 class="ui header main-font-color" translate>tab_portalsetting_social_login_enable_iframe</h3>
               <p translate>tab_portalsetting_social_login_enable_iframe_note</p>
             </div>
-            <div class="twelve wide column">
+            <div class="twelve wide column" ng-if="public_settings.social_login.toggle">
               <div class="ui toggle checkbox defaultForm" ng-model="public_settings.social_login.toggle_iframe">
                 <input type="checkbox" name="public">
                 <label ng-show="public_settings.social_login.toggle_iframe" translate>tab_portalsetting_social_login_enable_iframe_disable</label>

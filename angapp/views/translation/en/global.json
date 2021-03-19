@@ -49,6 +49,8 @@
   "account_profile_invalid_credit_card_number": "Provided credit card number is not valid",
   "account_profile_stripe_pledger_card_create_duplicate": "We detected you tried to create credit card that was previously added. Please select the credit card from the list above instead and try again.",
   "account_profile_stripe_group_pledger_account_create": "Field validation for stripe pledger account create failed",
+  "account_profile_stripe_pledger_transaction_preauth_capture_sca": "Failed to process pre-authorization or capture via stripe API using SCA",
+  "account_profile_stripe_pledger_transaction_preauth_capture": "Failed to process pre-authorization or capture via stripe API",
   "incorrect_number": "Your card number is incorrect",
   "invalid_expiry_month": "Your card's expiration month is invalid",
   "invalid_cvc": "Your card's security code is invalid.",

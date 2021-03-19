@@ -2801,18 +2801,68 @@ app.controller('AdminPortalSettingsCtrl', function($scope, $rootScope, $location
     }).form('validate form');
   }
 
+  $.fn.form.settings.rules.url = function(value) {
+    return (value.indexOf("http://") == 0 || value.indexOf("https://") == 0)
+  };
   $scope.validateOktaSettings = function() {
-    if ($scope.public_settings.social_login.okta_domain.indexOf("http://") == 0 || $scope.public_settings.social_login.okta_domain.indexOf("https://") == 0) {
-      return true;
-    } 
-    var translation = $translate.instant(['tab_portalsetting_social_login_okta_domain_invalid']);
-    msg = {
-      'header': translation.tab_portalsetting_social_login_okta_domain_invalid
+    if ($scope.public_settings.social_login.okta_domain 
+      && $scope.public_settings.social_login.okta_clientId
+      && $scope.private_settings.social_login.okta_apiKey
+      && $scope.private_settings.social_login.okta_groupId){
+      if($scope.public_settings.social_login.okta_domain.indexOf("http://") == 0 || $scope.public_settings.social_login.okta_domain.indexOf("https://") == 0) {
+        return true
+      }
     }
-    $rootScope.floatingMessage = msg;
-    $('html, body').animate({
-      scrollTop: $("#okta_domain").offset().top
-    }, 1000);   
+    var translation = $translate.instant([
+      'tab_portalsetting_social_login_okta_domain_invalid',
+      'tab_portalsetting_social_login_okta_domain_empty',
+      'tab_portalsetting_social_login_okta_client_id_empty',
+      'tab_portalsetting_social_login_okta_group_id_empty',
+      'tab_portalsetting_social_login_okta_api_key_empty',
+    ]);
+    $('#socialLogin-options').form({
+      okta_domain: {
+        identifier: 'okta_domain',
+        rules: [
+          {
+            type: 'empty',
+            prompt: translation.tab_portalsetting_social_login_okta_domain_empty
+        },
+        {
+          type: 'url',
+          prompt: translation.tab_portalsetting_social_login_okta_domain_invalid,
+        }
+      ]
+      },
+      okta_groupId: {
+        identifier: 'okta_groupId',
+        rules: [{
+          type: 'empty',
+          prompt: translation.tab_portalsetting_social_login_okta_group_id_empty
+        }]
+      },
+      okta_clientId: {
+        identifier: 'okta_clientId',
+        rules: [{
+          type: 'empty',
+          prompt: translation.tab_portalsetting_social_login_okta_client_id_empty
+        }]
+      },
+      okta_apiKey: {
+        identifier: 'okta_apiKey',
+        rules: [{
+          type: 'empty',
+          prompt: translation.tab_portalsetting_social_login_okta_api_key_empty
+        }]
+      },
+    }, {
+      inline: true,
+      onFailure: function() {
+        $('html, body').animate({
+          scrollTop: $(".field.error").offset().top
+        }, 1000);
+      }
+    }).form('validate form');
     return false;
   }
 

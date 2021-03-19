@@ -81,8 +81,8 @@ app.service('PledgeService', function(Restangular, $translate) {
         } else {
           resolve(successful_pledge);
         }
-      }).catch(function(){
-        reject()
+      }).catch(function(error){
+        reject(error)
       });
     });
   }

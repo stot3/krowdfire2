@@ -14,7 +14,7 @@
             <h2 class="ui header center aligned" translate>campaign_page_notstarted_message</h2>
           </div>
           <div class="campaign-action" ng-if="campaign != null && user.id == campaign.managers[0].id || user.person_type_id == 1">
-            <a ng-href="getstarted/{{campaign_id}}" class="ui button">Edit Campaign</a>
+            <a ng-href="getstarted/{{campaign_id}}" class="ui button" translate>campaign_page_edit_campaign</a>
           </div>
         </div>
       </div>
