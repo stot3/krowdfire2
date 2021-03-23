@@ -120,7 +120,7 @@
                       <span class="text">{{translate("campaign_page_share_button")}}</span>
                       <div class="menu">
                         <div class="item">
-                          <div class="a2a_kit a2a_kit_size_32 a2a_default_style" [attr.data-a2a-url]="a2aUrl">
+                          <div class="a2a_kit a2a_kit_size_32 a2a_default_style" [attr.data-a2a-url]="a2aUrl" [attr.data-a2a-title]="a2aTitle">
                             <a class="sm-link a2a_dd" href="https://www.addtoany.com/share"></a>
                             <a class="sm-link a2a_button_facebook"></a>
                             <a class="sm-link a2a_button_twitter"></a>
@@ -916,14 +916,14 @@
                     <a class="item" *ngIf="currentPaymentLoginTab != 'express' && (contributeBehaviour == 5 || contributeBehaviour == 6 || contributeBehaviour == 7 || contributeBehaviour == 8)" (click)="setContributeType(CONTRIBUTION_TYPE_EXPRESS); setCurrentLoginTab('express')"
                       TabUnselectedFontColor>{{translate("campaign_page_express_tab")}}</a>
                   </div>
-                  <div class="account-info-tab ui active" *ngIf="isLoginTab && (contributeBehaviour == 1 || contributeBehaviour == 3 || contributeBehaviour == 6 || contributeBehaviour == 8)">
-                    <div *ngIf="contributionType == CONTRIBUTION_TYPE_LOGIN">
+                  <div class="account-info-tab ui active" [hidden]="!(isLoginTab && (contributeBehaviour == 1 || contributeBehaviour == 3 || contributeBehaviour == 6 || contributeBehaviour == 8))">
+                    <div [hidden]="!(contributionType == CONTRIBUTION_TYPE_LOGIN)">
                       <div class="ui negative message" *ngIf="!socialLogin && !isLoggedInSuccessful">
                         <div class="content">
                           {{logginErrorMessage}}
                         </div>
                       </div>
-                      <login-form *ngIf="isContributionView" (onSuccess)="onLoginSuccess($event)" (onFailed)="onLoginFailed($event)" [isContributePage]=true></login-form>
+                      <login-form [hidden]="!(isContributionView)" (onSuccess)="onLoginSuccess($event)" (onFailed)="onLoginFailed($event)" [isContributePage]=true></login-form>
                     </div>
                   </div>
                   <div class="account-info-tab ui" *ngIf="isRegisterTab && (contributeBehaviour == 1 || contributeBehaviour == 3 || contributeBehaviour == 6 || contributeBehaviour == 8)">

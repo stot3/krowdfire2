@@ -86,6 +86,8 @@ export class AppComponent implements OnInit {
             ? document.referrer
             : document.location.href;
 
+  a2aTitle: String = document.title;
+
   userInfo: Object = {
     "first_name": "",
     "last_name": "",
@@ -308,6 +310,7 @@ export class AppComponent implements OnInit {
     toggle: false
   };
   socialLogin: Object = {toggle: false};
+
   constructor( @Inject(CampaignService) campaignService: CampaignService, @Inject(TranslationService) private translationService: TranslationService, @Inject(UserService) userService: UserService, @Inject(StripeService) stripeService: StripeService, @Inject(PledgeService) pledgeService: PledgeService, @Inject(SettingsService) settingsService: SettingsService, private elementRef: ElementRef, private domSanitization: DomSanitizer, private http: Http, private cPipe: CurrencyPipe, private dPipe: DecimalPipe, private sPipe:CurrencySymbolNumberPipe) {
     
     //getting new Default and preferred lang
@@ -352,6 +355,12 @@ export class AppComponent implements OnInit {
       if (UtilService.widgetProp["campaignid"]) {
         UtilService.setCampaignID(UtilService.widgetProp["campaignid"]);
       }
+      this.a2aUrl = UtilService.widgetProp["shareurl"]
+      ? UtilService.widgetProp["shareurl"]
+      : this.a2aUrl
+
+      this.a2aTitle = UtilService.widgetProp["sharetitle"] || document.title;
+
     } else {
       console.error("app_local.js is not set up properly");
     }
@@ -359,6 +368,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+
     if (window["widgetHost"] && window["DefaultPreferredLang"]) {
       if (UtilService.widgetProp["campaignid"]) {
         this.mSettingsService.getAllSettings().subscribe(

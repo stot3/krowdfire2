@@ -264,6 +264,12 @@ input#okta-signin-password {
   background: url(../img/icons/login/linkedin_logo.png) no-repeat 10px, #0077b5;
   border: none;
 }
+.social-auth-microsoft-button{
+  padding: .78571em 1.5em !important;
+}
+.social-auth-apple-button{
+  padding: .78571em 1.5em !important;
+}
 #okta-sign-in .social-auth-linkedin-button:hover {
   background-color: #0077b5;
   background: url(../img/icons/login/linkedin_logo.png) no-repeat 10px,-webkit-linear-gradient(left,#04659a 50px,#0077b5 0);
@@ -287,7 +293,7 @@ input#okta-signin-password {
 }
 #okta-widget-login-page #okta-sign-in.auth-container.main-container {
   background-color: #fff;
-  box-shadow: 0 0 0 1px rgb(39 41 43 / 15%), 0 1px 2px 0 rgb(0 0 0 / 5%) !important; 
+  box-shadow: 0 0 0 1px rgba(39, 41, 43, 15%), 0 1px 2px 0 rgba(0, 0, 0, 5%) !important; 
   border:none;
   border-radius: .2857rem;
 }
