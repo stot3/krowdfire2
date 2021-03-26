@@ -2300,7 +2300,7 @@
 
                     <div class="ui fluid form field raise_mode_fee">
                       <label translate>tab_portalsetting_Campaign_RaiseMode_transaction_fee</label>
-                      <input ng-model="public_settings.site_campaign_raise_modes.pledge_processing.transaction_fee[mode.id]" ng-disabled="public_settings.site_payment_gateway == 3">
+                      <input ng-model="public_settings.site_campaign_raise_modes.pledge_processing.transaction_fee[mode.id]" ng-disabled="public_settings.site_payment_gateway == 3 || public_settings.site_campaign_fee_direct_transaction">
                       <span class="percentage-symbol">%</span>
                     </div>
 

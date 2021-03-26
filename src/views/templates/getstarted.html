@@ -855,7 +855,7 @@
               </div>
             </div>
 
-            <div class="formbg ui two column stackable grid" ng-if="isCampaignPercetangeEnabled" ng-class="{'revision-active' : enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id == 2, 'optional-field': !public_settings.site_campaign_percentage_required, 'required-field': public_settings.site_campaign_percentage_required}">
+            <div class="formbg ui two column stackable grid" ng-if="isCampaignPercetangeEnabled && !direct_transaction" ng-class="{'revision-active' : enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id == 2, 'optional-field': !public_settings.site_campaign_percentage_required, 'required-field': public_settings.site_campaign_percentage_required}">
               <div class="five wide column" ng-if="!public_settings.site_campaign_percentage_required">
                 <h3 class="ui header">
                   <span translate>get_started_campaign_percentage</span>
