@@ -837,7 +837,6 @@
   "tab_portalsetting_social_login_okta_domain": "Okta Domain",
   "tab_portalsetting_social_login_okta_clientId": "Okta Client ID",
   "tab_portalsetting_social_login_okta_apiKey": "Okta API Key",
-  "tab_portalsetting_social_login_okta_groupId": "Okta Group ID",
   "tab_portalsetting_social_login_facebook": "Facebook",
   "tab_portalsetting_social_login_facebook_name": "Facebook Name",
   "tab_portalsetting_social_login_facebook_note": "For more detail, please visit <a href='https://www.thrinacia.com/blog?category=Tutorials'>Thrinacia Blog</a> for instruction.",

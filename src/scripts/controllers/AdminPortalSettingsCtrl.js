@@ -2807,8 +2807,7 @@ app.controller('AdminPortalSettingsCtrl', function($scope, $rootScope, $location
   $scope.validateOktaSettings = function() {
     if ($scope.public_settings.social_login.okta_domain 
       && $scope.public_settings.social_login.okta_clientId
-      && $scope.private_settings.social_login.okta_apiKey
-      && $scope.private_settings.social_login.okta_groupId){
+      && $scope.private_settings.social_login.okta_apiKey){
       if($scope.public_settings.social_login.okta_domain.indexOf("http://") == 0 || $scope.public_settings.social_login.okta_domain.indexOf("https://") == 0) {
         return true
       }
@@ -2833,13 +2832,6 @@ app.controller('AdminPortalSettingsCtrl', function($scope, $rootScope, $location
           prompt: translation.tab_portalsetting_social_login_okta_domain_invalid,
         }
       ]
-      },
-      okta_groupId: {
-        identifier: 'okta_groupId',
-        rules: [{
-          type: 'empty',
-          prompt: translation.tab_portalsetting_social_login_okta_group_id_empty
-        }]
       },
       okta_clientId: {
         identifier: 'okta_clientId',
@@ -3046,7 +3038,6 @@ app.controller('AdminPortalSettingsCtrl', function($scope, $rootScope, $location
       if($scope.private_settings.social_login){
         privateSettings.social_login = {
           okta_apiKey: $scope.private_settings.social_login.okta_apiKey,
-          okta_groupId: $scope.private_settings.social_login.okta_groupId,
         }
       }
 
