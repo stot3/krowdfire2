@@ -87,7 +87,7 @@ app.service('VideoLinkService', function($sce, RESOURCE_REGIONS) {
 
       if ((settings.mute && settings.mute == true) ||
         (settings.thumbnail && settings.thumbnail == true)) {
-        vimeo_link += "&background=1";
+        vimeo_link += "&muted=1";
       }
       if (settings.autoplay == true) {
         vimeo_link += "&autoplay=1";
