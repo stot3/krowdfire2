@@ -25,5 +25,7 @@
   "explore_at": "at",
   "explore_search_bycampaignid": "Search By Campaign ID",
   "explore_search_bydescripton": "Search By Description",
+  "explore_custom_status" : "Campaign Progress",
+  "explore_search_statuses_all" : "All Campaign Progress",
   "campaign_card_funded_goal_label": "Funded of"
 }

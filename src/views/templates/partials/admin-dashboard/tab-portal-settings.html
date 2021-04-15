@@ -3210,6 +3210,10 @@
                     <p></p>
                     <div class="ui input fluid">
                       <br>
+                      <input type="text" id="currentUploadeFileLabel" ng-model="currentUploadFile.label" placeholder="{{'tab_portalsetting_campaign_state_label_placeholder' | translate}}" />
+                    </div>                    
+                    <div class="ui input fluid">
+                      <br>
                       <input type="text" ng-model="currentUploadFile.tooltip" placeholder="{{'tab_portalsetting_campaign_state_tool_tip_placeholder' | translate}}" />
                     </div>
                     </p>
@@ -3246,10 +3250,14 @@
                         <div ng-if="!(campaignFile.tooltip && campaignFile.tooltip != '')" class="header" ng-bind-html="campaignFile.title"></div>
                         <!-- THIS COMMENT IS FOR TOOLTIP -->
                         <div ng-if="campaignFile.tooltip && campaignFile.tooltip != ''" class="header" sui-popup data-content="{{campaignFile.tooltip}}" data-position="bottom center" ng-bind-html="campaignFile.title"></div>
-                        <!-- THIS COMMENT IS FOR TOOLTIP -->
+                        <!-- THIS COMMENT IS FOR DESCRIPTION -->
                         <div class="description">
                           <p ng-bind="campaignFile.description"></p>
                         </div>
+                        <!-- THIS COMMENT IS FOR LABEL -->
+                        <div class="label">
+                          <p ng-bind="campaignFile.label"></p>
+                        </div>                        
                         <div class="extra">
                           <a ng-href="{{server + '/image/campaign_progress_status/' + campaignFile.path}}" target="_blank" translate="campaign_setup_file_view"></a>
                           <a href="" translate="campaign_setup_file_delete" ng-click="removeFileFromSetting($index)"></a>

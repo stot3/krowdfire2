@@ -63,8 +63,4 @@ fontfamily (Optional): This defined the font family being used for the whole wid
 ## Atlas Deployment
 
 For every update in this widget, make sure to build everything then copy everything in the git repo root to a folder called "widget" in core webui repo under src folder.
-Folow the deployment procedure in the core webui repo for normal deployment process (gulp build, etc.)
-
-## Reach Deployment
-
-Build everything as normal, then copy folder called "production" into "src/widget/production" folder in the thrinacia-webui-reach git repo and also copy folder called "translations" into "src/widget/translations" folder in the thrinacia-webui-reach git repo if any translations were added. Do the gulp build and then adjust the vhost with new checksum and restart nginx. Make sure to do the gulp build.
+Follow the deployment procedure in the core webui repo for normal deployment process (gulp build, etc.)

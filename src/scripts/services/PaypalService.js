@@ -23,7 +23,7 @@ app.service('PaypalService', function($q, PortalSettingsService) {
             }
 
             var node = document.createElement('script'); 
-            node.src = 'https://www.paypal.com/sdk/js?client-id='+settings.public_setting.paypal_publishable_key+'&intent=capture&components=buttons&currency='+currency;
+            node.src = 'https://www.paypal.com/sdk/js?client-id='+settings.public_setting.paypal_publishable_key+'&intent=capture&components=buttons&disable-funding=credit&currency='+currency;
             node.type = 'text/javascript'; 
             node.async = true; 
             node.onload = function(){resolve(true)};

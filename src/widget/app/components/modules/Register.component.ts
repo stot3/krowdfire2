@@ -69,6 +69,38 @@ export class RegisterComponent {
     }
   }
 
+  /**
+   * Register user with provided info
+   */
+  paypalRegister(paypal_order_id) {
+    this.formValidationRegister();
+    this.registerInfo.inline_registration = this.isContributing;
+    if (this.isRegisterFormValid) {
+      this.mUserService.register(this.registerInfo).subscribe(
+        data => {
+          var eventData = {
+            "email": this.registerInfo.email,
+            "password": this.registerInfo.password,
+            "inline_token": data.inline_token,
+            "user_id": data.id,
+            "paypal_order_id": paypal_order_id
+          };
+          this.registerError = "";
+          this.onSuccess.emit(eventData);
+          if(!data.inline_token) {
+            this.registerSuccess = this.translate("campaign_register_success_text");
+          }
+        },
+        error => {
+          UtilService.logError(error);
+          this.registerSuccess = "";
+          this.displayError(error);
+          this.onFailed.emit(error);
+        }
+      );
+    }
+  }
+
   displayError(error) {
     error = error.json();
     if (error.hasOwnProperty("errors")) {

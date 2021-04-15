@@ -43,6 +43,7 @@ app.controller('ExploreCtrl', function ($timeout, $scope, $rootScope, CampaignSe
       "name": '',
       "description": '',
       "entry_status_id": '',
+      "entry_custom_status":''
     },
     "page_entries": 9,
     "page_limit": 100,
@@ -84,6 +85,7 @@ app.controller('ExploreCtrl', function ($timeout, $scope, $rootScope, CampaignSe
             $scope.campigns = VideoLinkService.proccessCampaigns($scope.campaigns);
           }
           var headers = success.headers();
+
           $scope.sortOrFilters.pagination.currentpage = headers['x-pager-current-page'];
           $scope.sortOrFilters.pagination.numpages = headers['x-pager-last-page'];
           $scope.sortOrFilters.pagination.nextpage = headers['x-pager-next-page'];
@@ -349,6 +351,28 @@ app.controller('ExploreCtrl', function ($timeout, $scope, $rootScope, CampaignSe
 
   }
 
+
+  $scope.updateProgressFilters = function (status) {
+    // if there is param
+   /* if (typeof $location.search().entry_custom_status == 'object') {
+      var custom_status = $location.search().entry_custom_status || [];
+    } else {
+      if ((typeof $location.search().entry_custom_status != 'unndefined') && $location.search().entry_custom_status.length > 0) {
+        $location.search('entry_custom_status', $location.search().entry_custom_status);
+      }
+    }
+    if ($location.search().entry_custom_status.length == 0)*/
+    if (status == "reset"){
+      $location.search('entry_custom_status', null);
+      $route.reload();
+    }else
+      $location.search('entry_custom_status', status);
+    if (!$scope.isDesktop) {
+      $scope.scrollToCampaignCards();
+    }
+
+  }
+
   $timeout(function () {
     $(window).resize(function () {
       $scope.isDesktopScreen();
@@ -506,6 +530,9 @@ app.controller('ExploreCtrl', function ($timeout, $scope, $rootScope, CampaignSe
     $scope.sortOrFilters.filters.location = params.location;
     $scope.sortOrFilters.filters.name = params.name;
     $scope.sortOrFilters.filters.description = params.description;
+    if (params.entry_custom_status){
+     $scope.sortOrFilters.filters.entry_custom_status = params.entry_custom_status;
+    }
     if (params.sort) {
       $scope.sortOrFilters.sort = params.sort;
     } else if ($scope.public_settings.exclude_ended_from_recent) {
@@ -538,6 +565,7 @@ app.controller('ExploreCtrl', function ($timeout, $scope, $rootScope, CampaignSe
 
   function updateCampaignListing() {
     updatePage();
+
     RestFullResponse.all('campaign').getList($scope.sortOrFilters).then(function (success) {
       // Set Selected dropdown if url params is defined
       if (typeof $routeParams.sort !== 'undefined') {
@@ -587,8 +615,16 @@ app.controller('ExploreCtrl', function ($timeout, $scope, $rootScope, CampaignSe
         });
       }
       $scope.campaigns = success.data;
-
+      $scope.statuses = new Array();
       angular.forEach($scope.campaigns, function (value, index) {
+        console.log('In the loop. with status ' + value.entry_custom_status);
+
+
+
+        $scope.statuses.push(value.entry_custom_status);
+           
+      
+       
         if (value.cities != null) {
           checkNative(value.cities[0]);
         }
@@ -610,6 +646,8 @@ app.controller('ExploreCtrl', function ($timeout, $scope, $rootScope, CampaignSe
           value.settings.master_progress_bar_hide = value.settings.progress_bar_hide;
         }
       });
+      console.log($scope.statuses);
+      //$scope.statuses = statuses;  
       if (success.data.length === 0) {
         $scope.noCampaign = true;
       } else {

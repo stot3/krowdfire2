@@ -27,6 +27,7 @@
             <a class="item" data-value="funded_amount" ng-click="updateSort('funded_amount')" translate="explore_search_least_funded"></a>
             <a class="item" data-value="*-funded_percentage" ng-click="updateSort('*-funded_percentage')" translate="explore_search_most_funded_percent"></a>
             <a class="item" data-value="*funded_percentage" ng-click="updateSort('*funded_percentage')" translate="explore_search_least_funded_percent"></a>
+            <a class="item" data-value="*entry_custom_status" ng-click="updateSort('*entry_custom_status')" translate="explore_custom_status"></a>            
             <a class="item" data-value="entry_id%77" ng-click="updateSort('entry_id%','random')" translate="explore_search_random"></a>
           </div>
         </div>
@@ -45,6 +46,7 @@
               translate="explore_search_most_funded_percent"></a>
             <a class="item" data-value="*funded_percentage_shipping_excluded" ng-click="updateSort('*funded_percentage_shipping_excluded')"
               translate="explore_search_least_funded_percent"></a>
+              <a class="item" data-value="*entry_custom_status" ng-click="updateSort('*entry_custom_status')" translate="explore_custom_status"></a>              
             <a class="item" data-value="entry_id%77" ng-click="updateSort('entry_id%','random')" translate="explore_search_random"></a>
           </div>
         </div>
@@ -93,6 +95,21 @@
               </div>
             </div>
           </div>
+          <div ng-show="!site_campaign_state_hide" class="cat-items">
+            <div class="mobile-collapsed header item title" ng-class="{'active': isDesktop}">
+              <i class="grid layout icon"></i>
+              <span translate="explore_custom_status"></span>
+              <i class="dropdown icon"></i>
+            </div>
+            <div class="mobile-collapsed content" ng-class="{'active': isDesktop}">
+              <a class="item" href ng-click="updateProgressFilters('reset')">
+                <div class="inner-item" translate="explore_search_statuses_all"></div>
+              </a>
+              <div class="item" ng-repeat="status in statuses">
+                <a class="inner-item" href="#" ng-bind="status" ng-class="{'active': sortOrFilters.filters.entry_custom_status.indexOf(status) > -1}" ng-click="updateProgressFilters(status)"></a>
+              </div>
+            </div>
+          </div>          
           <div class="mobile-collapsed location-sidebar-item header item title" ng-class="{'active': isDesktop}">
             <i class="map marker icon"></i>
             <span translate="explore_search_location"></span>

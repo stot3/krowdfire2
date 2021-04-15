@@ -120,4 +120,54 @@ export class PledgeService {
       });
     });
   }
+
+
+  /**
+   * Get Stripe account
+   * @return {Promise}
+   */
+   paypalPledge(pledgeInfo, campaign_id, paypal_order_id){
+
+    //make compatible with error handling in PledgeCampaignCtrl
+    var failed = {
+      data: {
+        code: 'payment_failed'
+      }
+    }
+
+    pledgeInfo.use_sca = 0;
+    pledgeInfo.paypal_order_id = paypal_order_id;
+
+    delete pledgeInfo.stripe_account_card_id
+
+    let postData = (url, data) => new Promise<any>((resolve, reject) =>{
+      let headers = {
+        'Content-type': 'application/json',
+      }
+      fetch(url, {
+        method: 'POST', 
+        headers,
+        credentials: 'include',
+        body: JSON.stringify(data)
+      }).then(res => {
+        if(!res.ok){
+          reject(failed);
+        }
+        resolve(res.json())
+      }).catch(error => {
+        reject(failed);
+      })
+    });
+
+   return new Promise((resolve, reject) => {
+      postData(ConstantsGlobal.getApiUrlCampaign()+campaign_id+'/pledge', pledgeInfo).then(
+        success => {
+        var successful_pledge: any = success;
+
+        resolve(successful_pledge);
+      }).catch(error => {
+        reject()
+      });
+    });
+  }
 }

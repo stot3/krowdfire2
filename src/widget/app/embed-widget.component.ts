@@ -22,9 +22,11 @@ import { CurrencyPipe } from '@angular/common';
 import { CurrencySymbolNumberPipe } from "./Pipe/CurrencySymbolNumber.pipe";
 import { DecimalPipe } from '@angular/common';
 import { Md5 } from 'ts-md5/dist/md5';
+import { connectableObservableDescriptor } from "rxjs/observable/ConnectableObservable";
 
 declare var Stripe: any;
 declare let jQuery: any;
+declare var paypal: any;
 
 export class GeneralLocalization extends NgLocalization {
   getPluralCategory(value: any) {
@@ -303,13 +305,17 @@ export class AppComponent implements OnInit {
   tip: any = {value: null, dollar_amount: 0, type: 'Dollar', name: ''};
   tipError: boolean = false;
   lowestAmount: any;
-  tipInfo: any;
+  tipInfo: any = "";
   contributeBehaviour: any;
   expressRegisterError: string;
   disclaimerMsg: any = {
     toggle: false
   };
   socialLogin: Object = {toggle: false};
+  paypalAdded: boolean = false;
+  paymentGateway: number = 1;
+  siteCurrency: any = "USD";
+  paypalPublishableKey: string = "";
 
   constructor( @Inject(CampaignService) campaignService: CampaignService, @Inject(TranslationService) private translationService: TranslationService, @Inject(UserService) userService: UserService, @Inject(StripeService) stripeService: StripeService, @Inject(PledgeService) pledgeService: PledgeService, @Inject(SettingsService) settingsService: SettingsService, private elementRef: ElementRef, private domSanitization: DomSanitizer, private http: Http, private cPipe: CurrencyPipe, private dPipe: DecimalPipe, private sPipe:CurrencySymbolNumberPipe) {
     
@@ -458,7 +464,17 @@ export class AppComponent implements OnInit {
               if(this.siteSettings.hasOwnProperty("social_login")) {
                 this.socialLogin = this.siteSettings['social_login'];
               }
+              if(this.siteSettings.hasOwnProperty("site_payment_gateway")) {
+                this.paymentGateway = this.siteSettings['site_payment_gateway'];
+              }
+              if(this.siteSettings.hasOwnProperty("site_campaign_fee_currency")) {
+                this.siteCurrency = this.siteSettings['site_campaign_fee_currency'];
+              }
+              if(this.siteSettings.hasOwnProperty("paypal_publishable_key")) {
+                this.paypalPublishableKey = this.siteSettings['paypal_publishable_key'];
+              }
               this.getCampaign();
+              this.getStripeChargeAmount();
             }
           },
           error => {
@@ -466,44 +482,9 @@ export class AppComponent implements OnInit {
             UtilService.logError(error);
           }
         );
-        this.mStripeService.getStripeChargeAmount().subscribe(
-          res => {
-            if(res[0]) {
-              this.lowestAmount = parseFloat(res[0].minimum_charge_amount);
-              if(typeof this.tipInfo === 'undefined' || this.tipInfo == null) {
-                this.tipInfo = res[0];
-              }
-            } else {
-              this.lowestAmount = 0.5;
-              if(this.mCampaign) {
-                if(typeof this.tipInfo === 'undefined' || this.tipInfo == null) {
-                  this.tipInfo = this.mCampaign.currencies[0];
-                }
 
-              }
-            }
-          },
-          error => UtilService.logError(error)
-        );
         if (this.personId) {
           this.getProfile();
-        }
-        if (this.authToken) {
-          this.mStripeService.getStripeAccount().subscribe(
-            res => {
-              if (res.length) {
-                StripeService.stripe_account_id = res[0]["stripe_account_id"];
-                this.stripe_account_id = res[0]["stripe_account_id"];
-                if (this.stripe_account_id) {
-                  this.isAddingCard = false;
-                }
-                this.getStripeAccountCard();
-                this.getUserAddress();
-                this.getUserPhone();
-              }
-            },
-            error => UtilService.logError(error)
-          );
         }
       }
 
@@ -709,6 +690,191 @@ export class AppComponent implements OnInit {
     );
   }
 
+  getStripeChargeAmount() {
+    if(this.paymentGateway == 1) {
+      this.mStripeService.getStripeChargeAmount().subscribe(
+        res => {
+          if(res[0]) {
+              this.lowestAmount = parseFloat(res[0].minimum_charge_amount);
+            if(typeof this.tipInfo === 'undefined' || this.tipInfo == null) {
+              this.tipInfo = res[0];
+            }
+          } else {
+            this.lowestAmount = 0.5;
+            if(this.mCampaign) {
+              if(typeof this.tipInfo === 'undefined' || this.tipInfo == null) {
+                this.tipInfo = this.mCampaign.currencies[0];
+              }
+            }
+          }
+        },
+        error => UtilService.logError(error)
+      );
+
+      if (this.authToken) {
+        this.mStripeService.getStripeAccount().subscribe(
+          res => {
+            if (res.length) {
+              StripeService.stripe_account_id = res[0]["stripe_account_id"];
+              this.stripe_account_id = res[0]["stripe_account_id"];
+              if (this.stripe_account_id) {
+                this.isAddingCard = false;
+              }
+              this.getStripeAccountCard();
+              this.getUserAddress();
+              this.getUserPhone();
+            }
+          },
+          error => UtilService.logError(error)
+        );
+      }
+    } else {
+      if(this.mCampaign) {
+        if(typeof this.tipInfo === 'undefined' || this.tipInfo == null) {
+          this.tipInfo = this.mCampaign.currencies[0];
+        }
+      }
+    }
+  }
+
+  loadPaypalScript(scriptUrl: string) {
+    return new Promise((resolve, reject) => {
+        const scriptElement = document.createElement('script')
+        scriptElement.src = scriptUrl
+        scriptElement.onload = resolve
+        document.body.appendChild(scriptElement)
+    })
+  }
+
+  /**
+   * Get campaign data through API
+   */
+  checkPaypalGateway() {
+    if(this.paypalAdded) {
+      return;
+    }
+    // Add Paypal sdk to page if client id is set and payment gateway is 3(paypal).
+    if(this.paymentGateway == 3 && this.paypalPublishableKey) {
+      var currency = "USD";
+      if(this.siteCurrency.length > 0) {
+        currency = this.siteCurrency[0].code_iso4217_alpha;
+      }
+      if(this.mCampaign.currencies.length > 0) {
+        currency = this.mCampaign.currencies[0].code_iso4217_alpha;
+      }
+
+      this.paypalAdded = true;
+
+      this.loadPaypalScript('https://www.paypal.com/sdk/js?client-id='+this.paypalPublishableKey+'&intent=capture&components=buttons&currency='+currency).then(() => {
+        let widget = this;
+
+          paypal.Buttons({
+                style: {
+                  layout: 'vertical',
+                  color:  'blue',
+                  shape:  'rect',
+                  label:  'paypal'
+                },
+                createOrder: function(data, actions) {
+                  var campaign_currency = "USD";
+                  if(widget.mCampaign.currencies.length > 0) {
+                    campaign_currency = widget.mCampaign.currencies[0].code_iso4217_alpha;
+                  }
+      
+                  var total = parseInt(widget.contribution["amount"]);
+                  var items = [
+                    {
+                      name: "Contribution",
+                      description: "Contribution towards " + widget.mCampaign.name + " campaign", 
+                      unit_amount: { currency_code: campaign_currency, value: widget.contribution["amount"]},
+                      quantity: "1",
+                      tax: { currency_code: campaign_currency, value: "0.00"},
+                    },
+                  ];
+      
+                  // Calculate discount
+                  if(widget.currentCoupon) {
+                    var discount_amount = 0;
+                    if(widget.currentCoupon.discount_amount > 0) {
+                      discount_amount = parseInt(widget.currentCoupon.discount_amount);
+                    }
+                    if(widget.currentCoupon.discount_percentage) {
+                      discount_amount = total*widget.currentCoupon.discount_percentage/100;
+                    }
+                  }
+      
+                  // Add tip
+                  if(widget.tip.dollar_amount) {
+                    total += parseInt(widget.tip.dollar_amount);
+                    items.push(
+                      {
+                        name: "Tip",
+                        description: "Platform tip via " + widget.mCampaign.name + " campaign",
+                        unit_amount: { currency_code: campaign_currency, value: widget.tip.dollar_amount},
+                        quantity: "1",
+                        tax: { currency_code: campaign_currency, value: "0.00"},
+                      }
+                    );
+                  }
+      
+                  var final_total = total;
+                  // Calculate discount
+                  if(widget.currentCoupon) {
+                    final_total -= discount_amount;
+                  }
+      
+                  var purchase_units = [
+                    {
+                      amount: { currency_code: campaign_currency, value: final_total,
+                        breakdown: {
+                          item_total: { currency_code: campaign_currency, value: total },
+                          discount: { currency_code: campaign_currency, value: 0 },
+                        }
+                      },
+                      items: items,
+                    }
+                  ];
+      
+                  // Add discount
+                  if(widget.currentCoupon) {
+                    purchase_units[0].amount.breakdown.discount = {
+                      currency_code: campaign_currency,
+                      value: discount_amount
+                    };
+                  }
+
+      
+                  return actions.order.create({
+                    purchase_units: purchase_units,
+                    application_context: {
+                          shipping_preference: "NO_SHIPPING"
+                    }
+                  });
+                },
+                onCancel: function (data) {
+                  // Show a cancel page, or return to cart
+                },
+                onError: function (err) {
+                  // For example, redirect to a specific error page
+                  // window.location.href = "/error";
+                },
+                onApprove: function(data, actions) {
+                  // This function captures the funds from the transaction.
+                  return actions.order.capture().then(function(details) {
+                    widget.paypalPreparePledge(details.id);
+                  });
+                },
+                onInit: function(data, actions)  {
+                  // Disable the buttons
+                  // actions.disable();
+                },
+                onClick: function() {
+                }
+              }).render('#paypal-button-container');
+      });
+    }
+  }
+
   /**
    * format campaign data for easier navigation through campaign object
    * @param  {Object} campaignData the campaign object from
@@ -734,6 +900,8 @@ export class AppComponent implements OnInit {
     campaign.progressID = "campaign" + campaign.id;
     campaign.description = this.domSanitization.bypassSecurityTrustHtml(campaign.description);
     this.mCampaign = campaign;
+
+    this.checkPaypalGateway();
 
     this.processCampaignSettings();
 
@@ -1334,6 +1502,11 @@ export class AppComponent implements OnInit {
 
   onRegisterContributionSuccess(data) {
     if (!jQuery(".form .field.error").length) {
+      if(data.paypal_order_id) {
+        this.pledgeParam["inline_token"] = data.inline_token;
+        this.paypalPledge(data.paypal_order_id);
+        return;
+      }
       this.loginEmail = data["email"];
       this.loginPassword = data["password"];
       this.isContributionSubmitting = true;
@@ -2064,7 +2237,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  formValidation() {
+  formValidation(paypal = false) {
     if (this.contributionType == this.CONTRIBUTION_TYPE_LOGIN) {
       this.formValidationLogin();
     }
@@ -2072,9 +2245,18 @@ export class AppComponent implements OnInit {
       this.formValidationGuestCheckout();
     }
     else if (this.contributionType == this.CONTRIBUTION_TYPE_REGISTER) {
-      this.isAddingCard = true;
+      if(!paypal) {
+        this.isAddingCard = true;
+      } else {
+        this.isAddingCard = false;
+      }
       this.formValidationRegister();
     } else if (this.contributionType == this.CONTRIBUTION_TYPE_EXPRESS) {
+      if(!paypal) {
+        this.isAddingCard = true;
+      } else {
+        this.isAddingCard = false;
+      }
       this.formValidationExpress();
     }
     jQuery.fn.form.settings.rules.amount_under_minimum = (value) => {
@@ -2284,6 +2466,54 @@ export class AppComponent implements OnInit {
 
   public stripeElementValidation(error: any): void {
     this.stripeElementError = error;
+  }
+
+  paypalRegister(paypal_order_id) {
+    this.submitErrorMessage = "";
+    this.isSubmitting = true;
+
+    this.formValidation(true);
+
+    if (!jQuery(".form .field.error").length && !this.isContributionSubmitting && !this.tipError) {
+      this.isContributionSubmitting = true;
+      this.pledgeParam["amount"] = this.totalAmount;
+      if (this.tip.dollar_amount && this.tip.dollar_amount != 0) {
+        this.pledgeParam["amount_tip"] = parseFloat(this.tip.dollar_amount).toFixed(2);
+        this.guestPledgeParam["amount_tip"] = parseFloat(this.tip.dollar_amount).toFixed(2);
+      }
+      if (this.contributionType == this.CONTRIBUTION_TYPE_REGISTER) {
+        if (this.registerComponent) {
+          this.registerComponent.paypalRegister(paypal_order_id);
+        }
+      }
+      else if(this.contributionType == this.CONTRIBUTION_TYPE_EXPRESS) {
+        const randomPassword = UtilService.generatePassword();
+        this.expressRegisterInfo.password = randomPassword;
+        this.expressRegisterInfo.password_confirm = randomPassword;
+        this.expressRegisterInfo.express_checkout = true;
+        this.mUserService.register(this.expressRegisterInfo).subscribe(
+          data => {
+            var eventData = {
+              "email": this.expressRegisterInfo.email,
+              "password": this.expressRegisterInfo.password,
+              "inline_token": data.inline_token,
+              "user_id": data.id
+            };
+            this.expressRegisterError = "";
+            // jQuery("#paypal-button-container").addClass("registration-complete");
+            this.pledgeParam["inline_token"] = data.inline_token;
+            this.paypalPledge(paypal_order_id);
+          },
+          error => {
+            let jsonError = error.json();
+            this.expressRegisterError = "campaign_express_register_api_" + jsonError.errors.email[0].code;
+            this.isContributionSubmitting = false;
+          }
+        );
+      }
+    } else {
+      this.scrollToError();
+    }
   }
 
   /**
@@ -2522,6 +2752,92 @@ export class AppComponent implements OnInit {
     } else {
       this.scrollToError();
     }
+  }
+
+
+  paypalPreparePledge(paypal_order_id) {
+    if(!this.personId) {
+      this.paypalRegister(paypal_order_id);
+    } else {
+      this.paypalPledge(paypal_order_id);
+    }
+  }
+
+  paypalPledge(paypal_order_id) {
+    this.mPledgeService.paypalPledge(this.pledgeParam, ConstantsGlobal.CAMPAIGN_ID, paypal_order_id).then(
+      success => {
+        let res: any = success;
+        if (typeof this.stripeElement.cardNumber !== 'undefined' && this.stripeElement.toggle) {
+          this.stripeElement.clearElements();
+        }
+        this.getCampaign();
+        if (this.authToken) {
+          this.getStripeAccountCard();
+          this.getUserAddress();
+          this.getUserPhone();
+          this.getAuthenticatedUserData();
+        }
+        else {
+          //Dont log in user if they express
+          if (this.contributionType != this.CONTRIBUTION_TYPE_EXPRESS) { 
+            this.mUserService.login(this.loginEmail, this.loginPassword).subscribe(
+              data => {
+                this.onLoginSuccess(data);
+                this.loadReferralCandyPopup();
+              },
+              error => {
+                this.onLoginFailed(error);
+              }
+            );
+          } else {
+            //Clear express
+            
+          }
+        }
+
+        this.isPledgingSuccess = true;
+        this.isContributionSubmitting = false;
+        this.isContributionView = false;
+
+        if (this.fbTrackingEnabled) {
+          this.loadFBPixel(this.fbId);
+        }
+        if (this.googleTrackingEnabled) {
+          this.loadGoogleAnalytics(this.gaId);
+        }
+      
+        if (this.referralCandyEnabled) {
+
+          this.referralCandyData["invoiceNumber"] = res.entry_backer_id;
+
+          if (this.contributionType == this.CONTRIBUTION_TYPE_EXPRESS) {
+            this.referralCandyData["email"] = this.expressRegisterInfo["email"];
+            this.referralCandyData["firstName"] = this.expressRegisterInfo["first_name"];
+            this.referralCandyData["lastName"] = this.expressRegisterInfo["last_name"];
+          } else if (this.contributionType == this.CONTRIBUTION_TYPE_LOGIN) {
+            this.referralCandyData["email"] = this.userInfo["email"];
+            this.referralCandyData["firstName"] = this.userInfo["first_name"];
+            this.referralCandyData["lastName"] = this.userInfo["last_name"];
+          }
+
+          this.referralCandyData["amount"] = this.pledgeParam["amount"];
+          this.referralCandyData["unixTimestamp"] = Math.floor(Date.now() / 1000);
+          this.referralCandyData["currencyCode"] = this.mCampaign.currencies[0].code_iso4217_alpha;
+
+          this.loadReferralCandyPopup();
+        }
+
+        this.resetPledgeParam();
+        this.campaignPledgeRedirect();
+        this.clearExpressForm();
+      },
+      error => {
+        this.pledgeError(error);
+        if (!this.authToken) {
+          this.switchToLogin();
+        }
+      }
+    );
   }
 
   pledge() {

@@ -1,4 +1,5 @@
 <div id="sedra-widget" *ngIf="mCampaign != undefined">
+  <!-- <script *ngIf="paymentGateway == 3 && paypalPublishableKey != ''" src="https://www.paypal.com/sdk/js?client-id={{paypalPublishableKey}}&intent=capture&components=buttons&currency={{siteCurrency}}"></script> -->
   <profile [userInfo]="userInfo" [profileResourceId]="profileResourceId" [settingDecimalOption]="settingDecimalOption" (onBackToCampaignPage)="onBackToCampaignPage($event)" (onUpdateUserInfo)="onUpdateUserInfo($event)" (onUpdateProfileResourceId)="onUpdateProfileResourceId($event)"
     *ngIf="isProfileShown"></profile>
   <div *ngIf="!isProfileShown">
@@ -929,8 +930,8 @@
                   <div class="account-info-tab ui" *ngIf="isRegisterTab && (contributeBehaviour == 1 || contributeBehaviour == 3 || contributeBehaviour == 6 || contributeBehaviour == 8)">
                     <div *ngIf="contributionType == CONTRIBUTION_TYPE_REGISTER">
                       <register-form (onSuccess)="onRegisterContributionSuccess($event)" (onFailed)="onRegisterFailed(data)" [isContributing]="true" [isHiddingCreateAccountButton]=true></register-form>
-                      <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_card_information_header")}}</h2>
-                      <card [ngClass]="{ 'error': stripeElementError }" [cardObj]="cardInfo" (error)="stripeElementValidation($event)" [isSubmitting]="isSubmitting" [stripeElement]="stripeElement"></card>
+                      <h2 class="ui dividing header" FontColor PaymentFontColor [hidden]="(paymentGateway != 1)">{{translate("campaign_page_card_information_header")}}</h2>
+                      <card [ngClass]="{ 'error': stripeElementError }" [cardObj]="cardInfo" (error)="stripeElementValidation($event)" [isSubmitting]="isSubmitting" [stripeElement]="stripeElement" [hidden]="(paymentGateway != 1)"></card>
                       <div class="address-info" *ngIf="isRewardShipping">
                         <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_shipping_information_header")}}</h2>
                         <address-form [addressObj]="addressInfo" (selectedCity)="selectAddress($event)"></address-form>
@@ -994,8 +995,8 @@
                       <div class="ui negative message" *ngIf="expressRegisterError">
                         {{translate(expressRegisterError)}}
                       </div>
-                      <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_card_information_header")}}</h2>
-                      <card [ngClass]="{ 'error': stripeElementError }" [cardObj]="cardInfo" (error)="stripeElementValidation($event)" [isSubmitting]="isSubmitting" [stripeElement]="stripeElement"></card>
+                      <h2 class="ui dividing header" FontColor PaymentFontColor [hidden]="(paymentGateway != 1)">{{translate("campaign_page_card_information_header")}}</h2>
+                      <card [ngClass]="{ 'error': stripeElementError }" [cardObj]="cardInfo" (error)="stripeElementValidation($event)" [isSubmitting]="isSubmitting" [stripeElement]="stripeElement" [hidden]="(paymentGateway != 1)"></card>
                       <div class="address-info" *ngIf="isRewardShipping">
                         <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_shipping_information_header")}}</h2>
                         <address-form [addressObj]="addressInfo" (selectedCity)="selectAddress($event)"></address-form>
@@ -1015,7 +1016,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="card-info" *ngIf="personId">
+                <div class="card-info" *ngIf="personId && paymentGateway == 1">
                   <h2 class="ui dividing header" FontColor PaymentFontColor>{{translate("campaign_page_card_information_header")}}</h2>
                   <card [ngClass]="{ 'error': stripeElementError }" [cardObj]="cardInfo" (error)="stripeElementValidation($event)" [isSubmitting]="isSubmitting" [stripeElement]="stripeElement" *ngIf="isAddingCard"></card>
                   <div class="credit-card-dropdown" *ngIf="!isAddingCard">
@@ -1253,7 +1254,7 @@
                   and
                   <a href="https://reach.thrinacia.com/privacy" target="_blank">Privacy Policy</a>
                 </p> -->
-                  <div class="ui grid two column stackable" *ngIf="!(contributionType == CONTRIBUTION_TYPE_LOGIN && !personId)">
+                  <div class="ui grid two column stackable" >
                     <div class="column">
                       <div class="ui dropdown selection fluid" ngSemantic>
                         <i class="icon dropdown"></i>
@@ -1267,7 +1268,8 @@
                     </div>
                     <div class="column">
                       <div class="button-wrap">
-                        <button class="submit-button ui green large fluid button" [ngClass]="{'loading disabled': isContributionSubmitting}" ThemeColor (click)="submitContribution()">{{translate("campaign_page_contribute_button")}}</button>
+                        <div id="paypal-button-container" [hidden]="(contributionType == CONTRIBUTION_TYPE_LOGIN && !personId)"></div>
+                        <button class="submit-button ui green large fluid button" [ngClass]="{'loading disabled': isContributionSubmitting}" ThemeColor (click)="submitContribution()" [hidden]="(contributionType == CONTRIBUTION_TYPE_LOGIN && !personId) || paymentGateway != 1">{{translate("campaign_page_contribute_button")}}</button>
                       </div>
                     </div>
                   </div>

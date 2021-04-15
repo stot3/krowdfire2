@@ -1576,6 +1576,7 @@ app.controller('AdminPortalSettingsCtrl', function($scope, $rootScope, $location
   $scope.currentUploadFile = {
     "title": "",
     "description": "",
+    "label" : "",
     "fileName": "",
     "icon": "file",
     "path": "",
@@ -1614,6 +1615,7 @@ app.controller('AdminPortalSettingsCtrl', function($scope, $rootScope, $location
         $scope.currentUploadFile.title = $scope.currentUploadFile.title ? $scope.currentUploadFile.title : success.data.name;
         $scope.currentUploadFile.fileName = success.data.name;
         $scope.currentUploadFile.path = success.data.path_external;
+        //$scope.currentUploadFile.label = success.data.label;
         setFileIconType(success.data.mime_type);
         $scope.isUploading = false;
       }, function(error) {
@@ -1629,7 +1631,9 @@ app.controller('AdminPortalSettingsCtrl', function($scope, $rootScope, $location
   $scope.addStateFile = function() {
     if ($("#currentUploadeFileTitleEditor").froalaEditor('codeView.isActive') && $("#currentUploadeFileTitleEditor").froalaEditor('codeView.get') != "") {
       $scope.currentUploadFile.title = $("#currentUploadeFileTitleEditor").froalaEditor('codeView.get');
+
     }
+   // $scope.currentUploadFile.label = $("#currentUploadeFileLabel").val();
     if ($scope.currentUploadFile.fileName) {
       if (!$scope.public_settings.site_campaign_state_settings) {
         $scope.public_settings.site_campaign_state_settings = [];
@@ -1643,6 +1647,7 @@ app.controller('AdminPortalSettingsCtrl', function($scope, $rootScope, $location
   function resetFileUpload() {
     $scope.currentUploadFile = {
       "title": "",
+      "label" : "",
       "fileName": "",
       "icon": "file",
       "path": "",

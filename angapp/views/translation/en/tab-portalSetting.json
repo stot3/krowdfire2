@@ -644,6 +644,7 @@
   "tab_portalsetting_campaign_state_note": "This option is used to define custom campaign progress status which will show on various campaign views when assigned to campaign. You can define multiple status entries here.",
   "tab_portalsetting_campaign_state_field_header": "Status Name",
   "tab_portalsetting_campaign_state_tool_tip_placeholder": "Enter your progress status tooltip text here",
+  "tab_portalsetting_campaign_state_label_placeholder" : "Enter the label for filters",
   "tab_portalsetting_campaign_state_toggle": "Activate Progress Status",
   "tab_portalsetting_campaign_state_file_add": "Add Status",
   "tab_portalsetting_campaign_state_file_upload": "No file uploaded",
