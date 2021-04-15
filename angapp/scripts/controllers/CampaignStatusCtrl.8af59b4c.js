@@ -1,1 +1,0 @@
-app.controller("CampaignStatusCtrl",["$scope","CreateCampaignService",function($scope,CreateCampaignService){$scope.campaign=CreateCampaignService}]);

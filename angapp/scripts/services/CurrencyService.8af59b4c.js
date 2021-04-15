@@ -1,1 +1,0 @@
-app.service("CurrencyService",["Restangular","PortalSettingsService",function(Restangular,PortalSettingsService){var currency_obj={getCurrency:function(callback){PortalSettingsService.getSettingsObj().then((function(success){callback(success.public_setting.site_campaign_fee_currency)}))}};return currency_obj}]);

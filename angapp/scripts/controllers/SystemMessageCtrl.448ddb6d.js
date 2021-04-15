@@ -1,0 +1,1 @@
+app.controller("SystemMessageCtrl",["$scope",function($scope){SystemMessageService.getSystemMessage().then((function(success){angular.forEach(success,(function(value){3==value.setting_type_id&&($scope.systemMessage=value.value)}))})),$scope.errorResponse=SystemMessageService.errorResponse}]);

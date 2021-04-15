@@ -1,1 +1,0 @@
-app.controller("AnalyticsCtrl",["$scope","$sce","PortalSettingsService",function($scope,$sce,PortalSettingsService){PortalSettingsService.getSettingsObj().then((function(success){success.public_setting.site_analytics_code&&"string"==typeof success.public_setting.site_analytics_code&&($scope.analyticsCode=$sce.trustAsHtml(success.public_setting.site_analytics_code))}))}]);
