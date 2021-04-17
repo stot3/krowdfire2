@@ -617,11 +617,11 @@ app.controller('ExploreCtrl', function ($timeout, $scope, $rootScope, CampaignSe
       $scope.campaigns = success.data;
       $scope.statuses = new Array();
       angular.forEach($scope.campaigns, function (value, index) {
-        console.log('In the loop. with status ' + value.entry_custom_status);
+        //console.log('In the loop. with status ' + value.entry_custom_status);
 
 
-
-        $scope.statuses.push(value.entry_custom_status);
+        if (value.entry_custom_status && $scope.statuses.indexOf(value.entry_custom_status) === -1)
+          $scope.statuses.push(value.entry_custom_status);
            
       
        
@@ -646,7 +646,7 @@ app.controller('ExploreCtrl', function ($timeout, $scope, $rootScope, CampaignSe
           value.settings.master_progress_bar_hide = value.settings.progress_bar_hide;
         }
       });
-      console.log($scope.statuses);
+     // console.log($scope.statuses);
       //$scope.statuses = statuses;  
       if (success.data.length === 0) {
         $scope.noCampaign = true;

@@ -705,7 +705,7 @@ app.controller('PledgeCampaignCtrl', function(
 
             // Add tip
             if($scope.tip.dollar_amount) {
-              total += $scope.tip.dollar_amount;
+              total += parseInt($scope.tip.dollar_amount);
               items.push(
                 {
                   name: "Tip",

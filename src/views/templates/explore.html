@@ -95,7 +95,7 @@
               </div>
             </div>
           </div>
-          <div ng-show="!site_campaign_state_hide" class="cat-items">
+          <div ng-show="public_settings.site_campaign_state_hide && statuses.length > 0" class="cat-items">
             <div class="mobile-collapsed header item title" ng-class="{'active': isDesktop}">
               <i class="grid layout icon"></i>
               <span translate="explore_custom_status"></span>

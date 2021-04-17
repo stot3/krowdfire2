@@ -155,6 +155,7 @@
   "site_new_platform_modal_please_click": "",
   "site_new_platform_modal_accept_all": "1. Would you like to capture all payments in single Stripe account?",
   "site_new_platform_modal_run_platform": "2. Would you like to run a marketplace platform and charge fees?",
+  "site_new_platform_modal_accept_all_paypal": "3. Would you like to capture all payments in single PayPal account?",
   "site_new_platform_modal_goto_payment_settings": "Open Payment Settings",
   "site_new_platform_modal_click_here": "Click Here"
 

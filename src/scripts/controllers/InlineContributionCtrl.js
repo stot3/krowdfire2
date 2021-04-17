@@ -161,7 +161,6 @@ app.controller('InlineContributionCtrl', function(
         }
       }
       // $scope.$emit('settings_loaded');
-      checkInitPaypal();
     },
     function(failed) {
       msg = {
@@ -441,6 +440,7 @@ app.controller('InlineContributionCtrl', function(
     }).then(function(success) {
       $scope.$emit("loading_finished");
       $scope.campaign = success;
+      checkInitPaypal();
       // change page title
       $rootScope.page_title = $scope.campaign.name ? $scope.campaign.name + ' - Inline Contribution' : 'Inline Contribution';
       $scope.campaign_loc = $scope.campaign.uri_paths[0].path;
@@ -498,7 +498,7 @@ app.controller('InlineContributionCtrl', function(
   // Check if payment gateway is PayPal and initialize the buttons.
   function checkInitPaypal() {
     if($scope.public_settings.site_payment_gateway == 3 && $scope.public_settings.paypal_publishable_key) {
-      PaypalService.init().then(function(){
+      PaypalService.init($scope.campaign).then(function(){
         paypal.Buttons({
           style: {
             layout: 'vertical',
@@ -536,7 +536,7 @@ app.controller('InlineContributionCtrl', function(
 
             // Add tip
             if($scope.tip.dollar_amount) {
-              total += $scope.tip.dollar_amount;
+              total += parseInt($scope.tip.dollar_amount);
               items.push(
                 {
                   name: "Tip",
