@@ -668,7 +668,7 @@ app.controller('AdminUsersCtrl', function ($scope, PortalSettingsService, $rootS
       // } else {
       //   $scope.formData.person_type_id = 2;
       // }
-      if ($scope.payment_gateway == 1) {
+      if ($scope.payment_gateway == 1 || $scope.payment_gateway == 3) {
         var data = {
           person_id: id,
           person_type_id: $scope.formData.person_type_id,

@@ -78,9 +78,9 @@
 										 class="caret down  icon"></i> </span></span>
 								</div>
 							</th>
-							<th class="two wide center mobile" ng-if="payment_gateway==1"></th>
+							<th class="two wide center mobile" ng-if="payment_gateway==1 || payment_gateway==3"></th>
 							<th class="one wide center mobile" ng-if="payment_gateway==2"></th>
-							<th class="three wide center" ng-click="sortUserName()" id="hoverbtn" ng-if="payment_gateway==1">
+							<th class="three wide center" ng-click="sortUserName()" id="hoverbtn" ng-if="payment_gateway==1 || payment_gateway==3">
 									<div class="th-action th-action-filter">
 								{{'tab_user_name'|translate}}
 								<span ng-show="showname"><span ng-hide="!namebtn"><i class="caret up icon"></i></span><span ng-hide="namebtn"><i
@@ -94,11 +94,11 @@
 										 class="caret down  icon"></i> </span></span>
 								</div>
 							</th>
-							<th class="three wide center" translate ng-if="payment_gateway==1"> tab_user_email </th>
+							<th class="three wide center" translate ng-if="payment_gateway==1 || payment_gateway==3"> tab_user_email </th>
 							<th class="two wide center" translate ng-if="payment_gateway==2"> tab_user_email </th>
 							<th class="two wide center" translate ng-if="payment_gateway==2"> tab_user_tracking_number </th>
 							<th class="two wide center" translate ng-if="payment_gateway==2"> tab_user_pid_no </th>
-							<th class="three wide center" translate ng-if="payment_gateway==1"> tab_user_usertype </th>
+							<th class="three wide center" translate ng-if="payment_gateway==1 || payment_gateway==3"> tab_user_usertype </th>
 							<th class="two wide center" translate ng-if="payment_gateway==2"> tab_user_usertype </th>
 							<th class="two wide center" ng-click="sortUserCreated()" id="hoverbtn">
 								<div class="th-action th-action-filter">
