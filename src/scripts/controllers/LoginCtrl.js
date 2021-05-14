@@ -89,8 +89,15 @@ app.controller('LoginCtrl', function($rootScope, $location, $scope, PortalSettin
       if (!$scope.formData.password) {
         $scope.formData.password = $('#login input[name="password"]').val();
       }
+    } else {
+      if (!$scope.formData.email) {
+        $scope.formData.email = $('#okta-signin-username').val();
+      }
+       if (!$scope.formData.password) {
+        $scope.formData.password = $('#okta-signin-password').val();
+      }
     }
-
+    
     Restangular.one('authenticate').customPOST($scope.formData).then(
       function(success) {
         console.log(success);
@@ -135,6 +142,9 @@ app.controller('LoginCtrl', function($rootScope, $location, $scope, PortalSettin
     if (requires_tfa) { //if the login endpoint demands tfa
 
       $scope.openModal('enter-2fa');
+      $scope.formData.email = $('#login input[name="email"]').val();
+      $scope.formData.password = $('#login input[name="password"]').val();
+      
       
     } else { //if the login is successful
       // clear messages
