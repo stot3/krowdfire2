@@ -702,7 +702,7 @@ app.controller('InlineContributionCtrl', function(
         
             if (!$scope.isContributionLayout1) {
               if ($scope.public_settings.site_tos_contribution_ui) {
-        
+
                 if (!$('.agreement input[type="checkbox"]').is(':checked')) {
                   $scope.tos_not_checked = true;
                   $rootScope.scrollToError();
@@ -3265,6 +3265,16 @@ app.controller('InlineContributionCtrl', function(
         $scope.valcheck = false;
       }
     }).form('validate form');
+
+    if ($scope.public_settings.site_tos_contribution_ui) {
+      if (!$('.agreement input[type="checkbox"]').is(':checked')) {
+        $scope.tos_not_checked = true;
+        $rootScope.scrollToError();
+        return;
+      } else {
+        $scope.tos_not_checked = false;
+      }
+    }
   }
 
   $scope.loginUser = function() {

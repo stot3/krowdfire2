@@ -3,6 +3,10 @@ app.controller('LoginCtrl', function($rootScope, $location, $scope, PortalSettin
   $scope.submit_once = false;
   $scope.formData = {};
   $scope.account = {};
+
+  $scope.translateText = function(text) {
+    return $translate.instant(text);
+  };
   var auth_scheme = AUTH_SCHEME[0];
   var url = redirectService.getUrl();
   var tmp_lst = url.split('/');
@@ -24,7 +28,7 @@ app.controller('LoginCtrl', function($rootScope, $location, $scope, PortalSettin
   });
 
   // Check valid login id
-  $scope.tos_login = false;
+  $scope.tos_login = true;
   PortalSettingsService.getSettings(true).then(function(success) {
     $rootScope.loginRedirect = null;
     $scope.val = success;
@@ -52,10 +56,6 @@ app.controller('LoginCtrl', function($rootScope, $location, $scope, PortalSettin
           $scope.site_payment_gateway = value.value;
         }
 
-
-        // if(value.name === ""){
-
-        // }
     });
 
     if ($scope.socialLogin === null || $scope.socialLogin === undefined){

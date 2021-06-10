@@ -1224,9 +1224,9 @@ app.controller('CreateCampaignCtrl', function($q, $location, $routeParams, $root
     if (files && files.length) {
       var file = files.pop();
       var endpoint = 'resource/file';
-      if ($scope.enableCampaignRevisions && $scope.campaign.entry_status_id == 2) {
-        endpoint = 'resource-revision/file';
-      }
+      // if ($scope.enableCampaignRevisions && $scope.campaign.entry_status_id == 2) {
+      //   endpoint = 'resource-revision/file';
+      // }
       Restangular.one('campaign', campaign_id).one(endpoint).customDELETE(file.id).then(function(success) {
         getCampaignHeaderImages();
       });

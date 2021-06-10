@@ -1096,7 +1096,7 @@
               </tfoot>
             </table>
           </div>
-          <div class="agreement ui form" ng-hide="guestOption == 1">
+          <div class="agreement ui form" ng-show="public_settings.site_tos_contribution_ui">
             <div class="ui red pointing error right label" ng-show="tos_not_checked && !agreed" translate="">please_confirm_tos</div>
             <div class="ui checkbox" ng-model="agreed" ng-class="{'has-error': tos_not_checked && !agreed}" id="termcheck">
               <input type="checkbox" id="terms">

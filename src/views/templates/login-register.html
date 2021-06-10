@@ -88,6 +88,9 @@
                     if (oktaCtrlScope === undefined || oktaCtrlScope.public_settings === undefined || oktaCtrlScope.public_settings() === undefined) return;
                     clearInterval(interval);
                     const loginCtrlScope = angular.element($('#loginContainer')).scope();
+                    if (!!loginCtrlScope.val) return;
+                    clearInterval(interval);
+
                     var forgotPassword = loginCtrlScope.forgotPassword;
                     const oktaBaseConfig = {idps: [],
                       idpDisplay: "SECONDARY",
@@ -128,6 +131,43 @@
                       });
                       signIn.on('ready', async function (context) {
                         const oktaCtrlScope = angular.element($('#widget-container')).scope();
+                        const loginCtrlScope = angular.element($('#loginContainer')).scope();
+
+                        if(loginCtrlScope.tos_login) {
+                          const tosCheckboxContainer = $(`<div class="custom-checkbox ${loginCtrlScope.login_tos_not_checked && !loginCtrlScope.agreed ? 'has-error' : ''}" id="termcheck" style="margin-bottom: 1rem;">
+                            <input type="checkbox" id="terms1">
+                            <label for="terms1" style="text-align: center; font-size: 13px;">${loginCtrlScope.translateText('pledge_campaign_checkbox')}
+                              <a href="tos" target="_blank" style="color: #009fda;"><em> ${loginCtrlScope.translateText('pledge_campaign_term_service')}</em></a>
+                              <a href="privacy" target="_blank" style="color: #009fda;"><em> ${loginCtrlScope.translateText('pledge_campaign_privacy')}</em></a>
+                              ${loginCtrlScope.translateText('ampersand')}
+                              <a href="cookies" target="_blank" style="color: #009fda;"><em> ${loginCtrlScope.translateText('cookies_policy_text')}</em></a>
+                            </label>
+                          </div>`);
+                          tosCheckboxContainer.appendTo("#widget-container .o-form-fieldset-container");
+                          
+                          if(!loginCtrlScope.agreed && loginCtrlScope.tos_login && loginCtrlScope.submit_once) {
+                            $(`<div class="field error">
+                                <div class="ui red prompt pointing top label">${loginCtrlScope.translateText('please_confirm_tos')}</div>
+                              </div>`).insertAfter(tosCheckboxContainer);
+                          }
+
+                          const tosCheckbox = $('#widget-container #terms1');
+                          tosCheckbox.click(function(e) {
+                            document.querySelector('#widget-container label[for="terms1"]').classList.toggle('checked');
+                          })
+
+                          $('#widget-container label[for="terms1"]').mouseover(function(e) {
+                            if(!e.currentTarget.classList.contains('hover')) {
+                              e.currentTarget.classList.toggle('hover')
+                            }
+                          })
+                          $('#widget-container label[for="terms1"]').mouseout(function(e) {
+                            if(e.currentTarget.classList.contains('hover')) {
+                              e.currentTarget.classList.toggle('hover')
+                            }
+                          })
+                        }
+                        
                         $('label[for=okta-signin-username]').text(await oktaCtrlScope.translate('login_page_email'))
                         $("#okta-signin-submit").attr("type", "button");
                         $("#okta-signin-submit").click(oktaFormSubmit);
@@ -153,6 +193,14 @@
                     async function oktaFormSubmit(){
                       const loginCtrl = angular.element($('#loginContainer')).scope();
                       const oktaCtrlScope = angular.element($('#widget-container')).scope();
+                      if(loginCtrl.tos_login) {
+                        const checkbox = document.querySelector('#widget-container #terms1');
+                        if(!checkbox.checked) {
+                          $(".o-form-error-container").replaceWith(`<div class="o-form-error-container o-form-has-errors" data-se="o-form-error-container"><div><div class="okta-form-infobox-error infobox infobox-error" role="alert"><span class="icon error-16"></span><p>Please confirm the Terms of Service.</p></div></div></div>`);
+                          return;
+                        }
+                      }
+
                       try {
                         const res = await loginCtrl.submit();
                         if (res !== undefined && res.success === 0) {
@@ -169,6 +217,7 @@
                     }
                   }, 100);
               </script>
+              
               </div>
             </div>
           </div>
