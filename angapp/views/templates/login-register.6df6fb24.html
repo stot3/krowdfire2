@@ -1,0 +1,133 @@
+<div class="mainbody-wrap" translate-cloak ng-cloak><div class="ui page grid"><div class="ui column"><div class="ui center aligned two column stackable grid" ng-controller="LoginCtrl"><div class="twelve wide column"><div class="ui success message twelve wide column" ng-show="emailconfirmed">{{ 'email_sent' | translate }}</div><div class="ui success message twelve wide column" ng-show="wrongemail">{{ 'wrong_email_sent' | translate }}</div><div ng-show="confirmation.confirmed" class="ui success message twelve wide column">{{'account_confirmed' | translate }}</div><div ng-show="confirmation.errors" class="ui error message twelve wide column"><i class="close icon" ng-click="confirmation.errors = null;"></i><ul ng-repeat="error in confirmation.errors"><li ng-repeat="item in error">{{item.message}}</li></ul></div></div><div class="six wide column" ng-show="(socialLogin !== null && socialLogin === false) || socialLoginFail"><div><div name="login_form" class="ui login form segment" id="login" ng-submit="submit()" ng-show="socialLogin === false || socialLoginFail"><div><a class="ui primary button" ng-href="{{loginRedirect.link}}" ng-show="loginRedirectShow"><span ng-bind="loginRedirect.text"></span></a><div ng-show="!loginRedirectShow"><div class="top-head"><h3 class="ui header" translate>login_page_login</h3><div ng-show="login_successful" class="ui positive message" id="loginmessage">{{login_message}}</div><div ng-show="formData.errors" class="ui negative message"><i class="close icon" ng-click="formData.errors = null;"></i><div class="header" translate id="floginmessage">login_page_loginfailed</div>{{invalid_cred}}</div></div><div class="field"><label translate>login_page_email</label><input type="email" name="email" placeholder="{{'login_page_email' | translate}}" ng-model="formData.email"></div><div class="field"><label translate>login_page_password</label><input type="password" name="password" placeholder="{{'login_page_password' | translate}}" ng-minlength="6" ng-model="formData.password"></div><a href="" class="forgot-password" ng-click="forgotPassword()" ng-show="isAccSetEnabled" translate>login_page_forgot_password</a><div class="agreement ui checkbox" ng-model="agreed" ng-class="{'has-error': login_tos_not_checked && !agreed}" id="termcheck" style="margin-top: 1rem" ng-show="tos_login"><input type="checkbox" id="terms"><label for="terms">{{'pledge_campaign_checkbox' | translate}} <a href="tos" target="_blank"><em>{{'pledge_campaign_term_service' | translate}}</em></a> <a href="privacy" target="_blank"><em>{{'pledge_campaign_privacy' | translate}}</em></a> {{'ampersand' | translate}} <a href="cookies" target="_blank"><em>{{'cookies_policy_text' | translate}}</em></a></label></div><div class="field error" ng-show="!agreed && tos_login && submit_once"><div class="ui red prompt pointing top label" translate>please_confirm_tos</div></div><div class="ui basic login-register-btn segment"><button class="ui fluid login submit button" ng-class="{'loading disabled': loading}" id="loginButton" translate>login_page_buttontext</button></div></div></div></div></div></div><div class="six wide column" ng-show="socialLogin !== null && socialLogin === true && !socialLoginFail"><div ng-show="socialLogin" style="margin-bottom: 5rem"><div id="okta-widget-login-page" ng-controller="OktaRegisterCtrl" ng-show="socialLogin"><div id="widget-container" ng-controller="OktaRegisterCtrl" ng-show="socialLogin"><script>let interval = setInterval(function() {
+                    const oktaCtrlScope = angular.element($('#widget-container')).scope();
+                    if (oktaCtrlScope === undefined || oktaCtrlScope.public_settings === undefined || oktaCtrlScope.public_settings() === undefined) return;
+                    clearInterval(interval);
+                    const loginCtrlScope = angular.element($('#loginContainer')).scope();
+                    if (!!loginCtrlScope.val) return;
+                    clearInterval(interval);
+
+                    var forgotPassword = loginCtrlScope.forgotPassword;
+                    const oktaBaseConfig = {idps: [],
+                      idpDisplay: "SECONDARY",
+                      helpLinks: {
+                        forgotPassword: 'javascript:angular.element($("#loginContainer")).scope().forgotPassword()'
+                      },
+                      authParams: {
+                      },
+                    }
+                    if (oktaCtrlScope.oktaConfig === undefined || oktaCtrlScope.oktaConfig === null){
+                      return;
+                    }
+                    var config = {...oktaCtrlScope.oktaConfig, ...oktaBaseConfig};
+                    const settings = oktaCtrlScope.public_settings()
+                    config.baseUrl = settings.okta_domain
+                    config.clientId = settings.okta_clientId
+                    if (settings.providers){
+                      for(const [provider, {toggle, idpId}] of Object.entries(settings.providers)){
+                        if (toggle === true){
+                          config.idps.push({type: provider.toUpperCase(), id: idpId})
+                        }
+                      }
+                    }
+                    let signIn = {};
+                    try { 
+                      signIn = angular.element($('#widget-container')).scope().oktaSignIn(config)
+                      signIn.renderEl({ el: '#widget-container' }).then(async function(res) {
+                          if (res.status === 'SUCCESS') {
+                            const accessToken = res.tokens.accessToken.value;
+                            const idToken = res.tokens.idToken.value;
+                            const oktaId = res.tokens.idToken.claims.sub;
+                            const email = res.tokens.idToken.claims.email;
+                            const password = "test"; // TODO
+                            const validateResult = await angular.element($('#widget-container')).scope().validate(idToken);
+                            const loginCtrl = angular.element($('#loginContainer')).scope();
+                          } else {
+                          }
+                      });
+                      signIn.on('ready', async function (context) {
+                        const oktaCtrlScope = angular.element($('#widget-container')).scope();
+                        const loginCtrlScope = angular.element($('#loginContainer')).scope();
+
+                        if(loginCtrlScope.tos_login) {
+                          const tosCheckboxContainer = $(`<div class="custom-checkbox ${loginCtrlScope.login_tos_not_checked && !loginCtrlScope.agreed ? 'has-error' : ''}" id="termcheck" style="margin-bottom: 1rem;">
+                            <input type="checkbox" id="terms1">
+                            <label for="terms1" style="text-align: center; font-size: 13px;">${loginCtrlScope.translateText('pledge_campaign_checkbox')}
+                              <a href="tos" target="_blank" style="color: #009fda;"><em> ${loginCtrlScope.translateText('pledge_campaign_term_service')}</em></a>
+                              <a href="privacy" target="_blank" style="color: #009fda;"><em> ${loginCtrlScope.translateText('pledge_campaign_privacy')}</em></a>
+                              ${loginCtrlScope.translateText('ampersand')}
+                              <a href="cookies" target="_blank" style="color: #009fda;"><em> ${loginCtrlScope.translateText('cookies_policy_text')}</em></a>
+                            </label>
+                          </div>`);
+                          tosCheckboxContainer.appendTo("#widget-container .o-form-fieldset-container");
+                          
+                          if(!loginCtrlScope.agreed && loginCtrlScope.tos_login && loginCtrlScope.submit_once) {
+                            $(`<div class="field error">
+                                <div class="ui red prompt pointing top label">${loginCtrlScope.translateText('please_confirm_tos')}</div>
+                              </div>`).insertAfter(tosCheckboxContainer);
+                          }
+
+                          const tosCheckbox = $('#widget-container #terms1');
+                          tosCheckbox.click(function(e) {
+                            document.querySelector('#widget-container label[for="terms1"]').classList.toggle('checked');
+                          })
+
+                          $('#widget-container label[for="terms1"]').mouseover(function(e) {
+                            if(!e.currentTarget.classList.contains('hover')) {
+                              e.currentTarget.classList.toggle('hover')
+                            }
+                          })
+                          $('#widget-container label[for="terms1"]').mouseout(function(e) {
+                            if(e.currentTarget.classList.contains('hover')) {
+                              e.currentTarget.classList.toggle('hover')
+                            }
+                          })
+                        }
+                        
+                        $('label[for=okta-signin-username]').text(await oktaCtrlScope.translate('login_page_email'))
+                        $("#okta-signin-submit").attr("type", "button");
+                        $("#okta-signin-submit").click(oktaFormSubmit);
+                        $('#okta-signin-username').keyup(function(event) {
+                          if (event.which === 13) {
+                            event.preventDefault();
+                            oktaFormSubmit();
+                          }
+                        });
+                        $('#okta-signin-password').keyup(function(event) {
+                          if (event.which === 13) {
+                            event.preventDefault();
+                            oktaFormSubmit();
+                          }
+                        });
+                      });
+                    } catch (error) {
+                      // load default if okta init fails
+                      angular.element($('#login')).scope().socialLoginFail = true;
+                      angular.element($('#login')).scope().$apply();
+                    }
+
+                    async function oktaFormSubmit(){
+                      const loginCtrl = angular.element($('#loginContainer')).scope();
+                      const oktaCtrlScope = angular.element($('#widget-container')).scope();
+                      if(loginCtrl.tos_login) {
+                        const checkbox = document.querySelector('#widget-container #terms1');
+                        if(!checkbox.checked) {
+                          $(".o-form-error-container").replaceWith(`<div class="o-form-error-container o-form-has-errors" data-se="o-form-error-container"><div><div class="okta-form-infobox-error infobox infobox-error" role="alert"><span class="icon error-16"></span><p>Please confirm the Terms of Service.</p></div></div></div>`);
+                          return;
+                        }
+                      }
+
+                      try {
+                        const res = await loginCtrl.submit();
+                        if (res !== undefined && res.success === 0) {
+                          console.log("Internal user not found. Attempting Okta endpoint")
+                          const okta_result = await angular.element($('#widget-container')).scope().validate();
+                          if (okta_result.authenticated !== undefined && okta_result.authenticated !== 1) {
+                            throw { error: "Authentication through Okta backend endpoint failed", okta_result };
+                          }
+                        }
+                      } catch (e) {
+                        const errorMsg = await oktaCtrlScope.translate("login_page_invalid_credentials");
+                        $(".o-form-error-container").replaceWith(`<div class="o-form-error-container o-form-has-errors" data-se="o-form-error-container"><div><div class="okta-form-infobox-error infobox infobox-error" role="alert"><span class="icon error-16"></span><p>${errorMsg}</p></div></div></div>`)
+                      }
+                    }
+                  }, 100);</script></div></div></div></div><div class="six wide column" ng-show="socialLogin !== null"><div name="register_form" class="ui register form segment" id="register" ng-controller="RegisterCtrl"><a class="ui primary button" ng-href="{{registerRedirect.link}}" ng-if="registerRedirectShow"><span ng-bind="registerRedirect.text"></span></a><div ng-if="!registerRedirectShow"><div class="top-head"><h3 class="ui header">{{'login_register_header' | translate}} {{$root.site_company}}?</h3><p translate>login_register_message</p><div ng-show="formData.successful && !formData.errors" class="ui success message">{{registration_processing}}</div><div ng-show="formData.errors" class="ui negative message"><i class="close icon" ng-click="formData.errors = null;"></i><div class="header" translate id="loginfailed">login_register_failed</div>{{error_messgae}}</div></div><div class="field"><label translate>login_register_fname</label><input type="text" name="first_name" placeholder="{{'login_register_fname'  | translate}} " ng-model="formData.first_name"></div><div class="field"><label translate>login_register_lname</label><input type="text" name="last_name" placeholder="{{'login_register_lname'  | translate}} " ng-model="formData.last_name"></div><div class="field"><label translate>login_register_email</label><input type="email" name="email" placeholder="{{'login_register_email' | translate}}" ng-model="formData.email" id="loginemail"></div><div class="field"><label translate>login_register_password</label><input type="password" id="registerpass" name="password" placeholder="{{'login_register_password' | translate}} " ng-minlength="6" ng-model="formData.password"></div><div class="field"><label translate>login_register_confirm_password</label><input type="password" name="password_confirm" placeholder="{{'login_register_confirm_password'  | translate}}" data-match="formData.password" ng-model="formData.password_confirm"></div><div class="field" ng-if="public_settings.site_campaign_enable_organization_name"><label translate>organization_name_label</label><input type="text" name="organization_name" placeholder="{{'organization_name_label'  | translate}}" ng-model="organization_name.value"></div><div class="field" ng-if="public_settings.site_campaign_enable_organization_name"><label translate>ein_field_label</label><input type="text" name="ein" placeholder="{{'ein_field_label'  | translate}}" ng-model="organization_name.ein"></div><div class="field" ng-show="public_settings.site_campaign_personal_section_custom.length >0" ng-repeat="field in pcustom" ng-if="public_settings.site_campaign_personal_section_enhanced && (field.profile_setting_register_show || field.register_show)"><div class="field" ng-if="field.option === 'Text'"><label translate>{{field.name}}</label><input type="text" name="{{field.identifier}}" ng-model="field.value" placeholder="{{field.placeholder}}"></div><div class="field" ng-if="field.option === 'Dropdown'"><label translate>{{field.name}}</label><div class="ui fluid selection dropdown menu-selector" style="margin-top:8px"><input type="hidden" name="{{field.identifier}}"><div class="default text" ng-if="!field.placeholder">{{'register_custom_field_dropdown_placeholder' | translate}}</div><div class="default text" ng-if="field.placeholder">{{field.placeholder}}</div><i class="dropdown icon"></i><div class="menu"><div class="item" ng-repeat="options in field.dropdown_array" ng-click="customFieldDropdown(options, field)">{{options | translate}}</div></div></div></div></div><div class="field" ng-show="public_settings.site_campaign_personal_section_custom.length >0" ng-repeat="field in pcustom" ng-if="public_settings.site_campaign_personal_section_enhanced && (field.profile_setting_register_show || field.register_show) && field.option === 'Date'"><label translate>tab_portalsetting_fixed_duration_set_start</label><quick-datepicker ng-model="field.value" disable-clear-button="true" date-format="EEEE, yyyy/MM/d" placeholder="{{get_started_funding_startdate_placeholder}}"></quick-datepicker></div><div class="agreement ui checkbox" ng-model="agreed" ng-class="{'has-error':register_tos_not_checked && !agreed}" id="termcheck" style="margin-top: 1rem" ng-show="tos_register"><input type="checkbox" id="terms"><label for="terms">{{'pledge_campaign_checkbox' | translate}} <a href="tos" target="_blank"><em>{{'pledge_campaign_term_service' | translate}}</em></a> <a href="privacy" target="_blank"><em>{{'pledge_campaign_privacy' | translate}}</em></a> {{'ampersand' | translate}} <a href="cookies" target="_blank"><em>{{'cookies_policy_text' | translate}}</em></a></label></div><div class="field error" ng-show="!agreed && tos_register && submit_once"><div class="ui red prompt pointing top label" translate>please_confirm_tos</div></div><div class="ui basic login-register-btn segment"><button class="ui fluid blue register submit button" ng-class="{'loading disabled': loading}" ng-click="submit()" translate id="registerbutton">login_register_create_account</button></div></div></div></div></div></div></div></div><div id="loginContainer" class="ui small modal forgot-password-modal" ng-controller="LoginCtrl" ng-show="isAccSetEnabled"><i class="close icon"></i><div class="header"><h3 class="ui header" translate>login_page_forgotpassword_modal</h3></div><div class="content"><p translate>login_page_forgotpassword_modal_enter_email</p><div class="ui form basic segment email"><div class="field"><input autocomplete="off" type="text" name="email" placeholder="{{'login_page_forgotpassword_modal_enter_email_messgae' | translate}}" ng-model="account.email"></div></div></div><div class="actions"><div class="ui positive button" ng-click="resetPassword()" translate>login_page_reset_password</div><div class="ui positive button" ng-click="reconfirm()" translate>login_page_resend_activation_link</div></div></div><div class="ui modal small" id="enter-2fa" ng-controller="LoginCtrl"><i class="close icon" ng-click="cancelSubmit()"></i><div class="header"><h3 class="ui blue header" translate>tab_security_setting_enter_password_title</h3></div><div class="content"><p translate>tab_security_enter_code</p><form id="code-form" class="ui form"><div class="three fields"><div class="field"><input ng-model="formData.code" name="code" class="ui" type="text"></div></div></form><br><p translate>tab_security_recovery_explanation</p><strong><p translate>tab_security_recovery_explanation_emphasis</p></strong></div><div class="actions"><div class="ui negative button" ng-click="cancelSubmit()" translate>tab_security_setting_cancel_setup</div><div class="ui positive button" ng-click="submitWithTFA()" translate>tab_security_setting_continue</div></div></div>
