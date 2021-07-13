@@ -1,5 +1,5 @@
 app.constant('API_URL', {
-  url: "https://arcadia.thrinacia.com",
+  url: "https://your.thrinacia.website.com",
   loc: '/service/restv1/',
   identity_proxy_url: "http://localhost:8000"
 });  
@@ -20,6 +20,6 @@ app.constant("CDN", {
 
 // Widget settings
 app.constant('SEDRA', {
-  url : "https://thrinacia-webui-v1.devwalk.com",
+  url : "https://your.thrinacia.website.com",
   loc: ''
 } );

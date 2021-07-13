@@ -73,12 +73,7 @@ app.config(function($routeProvider, $locationProvider, RestangularProvider, $htt
             controller: 'UserProfileCtrl',
             title: 'campaign_step_profile_page_title'
         })
-        .when('/api-docs', { // DELETE
-            templateUrl: 'views/templates/api-docs.html',
-            controller: 'ApiDocsCtrl',
-            title: 'API Docs',
-            reloadOnSearch: false,
-        })
+
         .when('/admin/dashboard', { // Control panel, user management
             templateUrl: 'views/templates/portal-setting.html',
             controller: 'PortalSettingCtrl',

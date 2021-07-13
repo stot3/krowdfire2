@@ -124,9 +124,9 @@ app.run(function($sce, $http, $window, $rootScope, $route, $location, $templateC
 
     if (typeof(current) !== 'undefined') {
       $templateCache.remove(current.templateUrl);
-      if (current.$$route && current.$$route.originalPath == '/api-docs') {
-        $('#api-menu').remove();
-      }
+      // if (current.$$route && current.$$route.originalPath == '/api-docs') {
+      //   $('#api-menu').remove();
+      // }
     }
     $('.ui.sidebar').sidebar('hide');
 
