@@ -3818,7 +3818,6 @@ app.controller('AdminPortalSettingsCtrl', function($scope, $rootScope, $location
   }
 
   $scope.savePayPal = function() {
-    console.log("savePaypal");
     msg = {
       'loading': true,
       'loading_message': 'saving_settings'

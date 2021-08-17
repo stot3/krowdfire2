@@ -86,7 +86,8 @@ app.controller('CampaignStepCtrl', function($location, CampaignSettingsService, 
     }
 
     if ($scope.public_settings.site_enable_advanced_widget) {
-      if ($scope.payment_gateway == 2) {
+      if ($scope.payment_gateway == 2 || 
+          $scope.payment_gateway == 3 ) {
         if ($scope.master_reward_show) {
           $scope.step_class = 'six column';
           if (!$scope.profile_show) {
@@ -124,7 +125,8 @@ app.controller('CampaignStepCtrl', function($location, CampaignSettingsService, 
         }
       }
     } else {
-      if ($scope.payment_gateway == 2) {
+      if ($scope.payment_gateway == 2 || 
+          $scope.payment_gateway == 3) {
         if ($scope.master_reward_show) {
           $scope.step_class = 'five column';
           if (!$scope.profile_show) {

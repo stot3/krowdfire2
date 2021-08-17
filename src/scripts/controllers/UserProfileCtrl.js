@@ -91,6 +91,9 @@ app.controller('UserProfileCtrl', function($q, $route, $routeParams, $rootScope,
     if ($scope.bankFormEnabled) {
       $scope.nextStepUrl = "complete-funding/" + $routeParams.campaign_id;
     }
+    if ($scope.public_settings.site_payment_gateway == 3) {
+      $scope.nextStepUrl = "campaign-preview/" + $routeParams.campaign_id;
+    }
     $scope.default_country = success.public_setting.site_theme_default_shipping_country;
     $scope.alt_shipping = success.public_setting.site_theme_alt_shipping_layout;
     // Check alternative shipping setting

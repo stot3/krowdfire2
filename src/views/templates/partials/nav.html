@@ -68,7 +68,7 @@
             <a class="item" ng-class="{active: $location.path() === '/profile-setting'}" href="profile-setting" translate>
 							navbar_profilesetting
 						</a>
-            <a class="item" ng-if="enabledContribution" ng-class="{active: $location.path() === '/payment-setting'}" href="payment-setting" translate ng-hide="payment_gateway==2">
+            <a class="item" ng-if="enabledContribution && public_setting.site_payment_gateway == 1" ng-class="{active: $location.path() === '/payment-setting'}" href="payment-setting" translate ng-hide="payment_gateway==2">
 							navbar_paymentsetting
 						</a>
             <a ng-if="User.isLoggedIn()" class="item" ng-click="setLoggedOut()" translate>navbar_logout</a>

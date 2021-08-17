@@ -818,7 +818,7 @@
   "tab_portalsetting_campaign_verification_disable": "Disable Trulioo Verification",
   "tab_portalsetting_campaign_verification_enable": "Enable Trulioo Verification",
   "tab_portalsetting_social_login": "Social Login",
-  "tab_portalsetting_social_login_note": "Enable Social Login for inline contribution and user login. Please note that this feature only works on Scale or Enterprise plan. You also need to contact us to request for this feature to be fully enabled on the backend.",
+  "tab_portalsetting_social_login_note": "Enable Social Login for inline contribution and user login. Learn how to enable this feature by reading <a href='https://www.thrinacia.com/blog/post/using-okta-for-social-sign-on'> this blog article.</a>",
   "tab_portalsetting_social_login_disable": "Disable Social Login",
   "tab_portalsetting_social_login_enable": "Enable Social Login",
   "tab_portalsetting_social_login_choices_note": "Enable Okta Identity Providers",

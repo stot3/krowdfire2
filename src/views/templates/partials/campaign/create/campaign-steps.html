@@ -26,7 +26,7 @@
 		<i class="checkmark sign icon" ng-if="validateProfileStep()"></i>
 		</a>
     </div>
-    <div ng-class="{'active': path === 'complete-funding', 'disabled' : enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id == 2}" class="setup column" id="fundingoptn" ng-if="contributionEnabled && payment_gateway != 2 && !(isStepFundingDelayed && !campaign.ever_published) && !(direct_transaction && !bankFormEnabled)">
+    <div ng-class="{'active': path === 'complete-funding', 'disabled' : enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id == 2}" class="setup column" id="fundingoptn" ng-if="contributionEnabled && payment_gateway != 2 && payment_gateway != 3 && !(isStepFundingDelayed && !campaign.ever_published) && !(direct_transaction && !bankFormEnabled)">
       <a class="step-link" ng-href="complete-funding/{{campaign_entry_id}}{{revisionIdParam}}" disable-link="enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id == 2"><span translate>campaign_step_funding</span>
 			<i class="checkmark sign icon" ng-if="validateFundingStep()"></i>
 		</a>

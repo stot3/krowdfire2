@@ -34,6 +34,7 @@
   "site_email_notification_register_admin": "Account Registration - Administrator Notification",
   "site_email_notification_register_user": "Account Registration - User Notification",
   "site_email_notification_stream_update": "Campaign Update Update - Backer Notification",
+  "site_email_notification_website_contact": " Contact Form Notification - Administrator Notification",
   "site_email_notification_saved_successfully": "Email notification has been saved successfully.",
   "site_email_notification_error": "Email notification error.",
   "site_email_notification_pledge_direct_processing_success_campaign_manager": "Campaign Pledge Direct Processing - Campaign Manager Success",

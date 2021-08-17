@@ -60,8 +60,6 @@ app.controller('PledgeCampaignCtrl', function(
     $rootScope.charity = {};
   }
 
-  console.log($scope.user);
-
   $scope.chosenPhoneNumberId = "";
   $scope.failed_submit = false;
   $scope.phoneInfo = {
@@ -667,6 +665,7 @@ app.controller('PledgeCampaignCtrl', function(
   // Check if payment gateway is PayPal and initialize the buttons.
   function checkInitPaypal() {
     if($scope.public_settings.site_payment_gateway == 3 && $scope.public_settings.paypal_publishable_key) {
+
       PaypalService.init($scope.campaign).then(function(){
         paypal.Buttons({
           style: {
@@ -681,11 +680,16 @@ app.controller('PledgeCampaignCtrl', function(
               campaign_currency = $scope.campaign.currencies[0].code_iso4217_alpha;
             }
 
+            var description = "Thank you for your contribution.";
+            if($scope.rname) {
+              description += " Reward Selected: " + $scope.rname;
+            }
+
             var total = parseInt($scope.campaignFundingGoal.value);
             var items = [
               {
-                name: "Contribution",
-                description: "Contribution towards " + $scope.campaign.name + " campaign", 
+                name: "Contribution towards " + $scope.campaign.name,
+                description: description,
                 unit_amount: { currency_code: campaign_currency, value: $scope.campaignFundingGoal.value},
                 quantity: "1",
                 tax: { currency_code: campaign_currency, value: "0.00"},
@@ -2997,9 +3001,6 @@ app.controller('PledgeCampaignCtrl', function(
     }).then(function(success) {
 
       rcData.hash = success.signature;
-
-      console.log(success);
-      console.log(rcData);
 
       var popsicle = 
           '<div id="refcandy-popsicle" data-app-id="'+appId+'" data-fname="'+rcData.firstName+'" data-lname="'+rcData.lastName+'" data-email="'+rcData.email+'" data-amount="'+rcData.amount+'" data-currency="'+rcData.currencyCode+'" data-timestamp="'+rcData.unixTimestamp+'" data-external-reference-id="'+rcData.invoiceNumber+'" data-signature="'+rcData.hash+'"></div>'+

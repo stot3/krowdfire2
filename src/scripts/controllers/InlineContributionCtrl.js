@@ -512,11 +512,16 @@ app.controller('InlineContributionCtrl', function(
               campaign_currency = $scope.campaign.currencies[0].code_iso4217_alpha;
             }
 
+            var description = "Thank you for your contribution.";
+            if($scope.rname) {
+              description += " Reward Selected: " + $scope.rname;
+            }
+
             var total = parseInt($scope.campaignFundingGoal.value);
             var items = [
               {
-                name: "Contribution",
-                description: "Contribution Description", 
+                name: "Contribution towards " + $scope.campaign.name,
+                description: description,
                 unit_amount: { currency_code: campaign_currency, value: $scope.campaignFundingGoal.value},
                 quantity: "1",
                 tax: { currency_code: campaign_currency, value: "0.00"},

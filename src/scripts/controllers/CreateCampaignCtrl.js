@@ -724,7 +724,7 @@ app.controller('CreateCampaignCtrl', function($q, $location, $routeParams, $root
         if (stripe.length) {
           $scope.campaign.stripe_account_id = stripe[0].id;
         }
-        if ($scope.public_settings.hasOwnProperty('site_campaign_fee_direct_transaction') && $scope.public_settings.site_campaign_fee_direct_transaction) {
+        if ($scope.public_settings.hasOwnProperty('site_campaign_fee_direct_transaction') && $scope.public_settings.site_campaign_fee_direct_transaction && $scope.payment_gateway == 1) {
           $scope.campaign.stripe_account_id = null;
         }
       });

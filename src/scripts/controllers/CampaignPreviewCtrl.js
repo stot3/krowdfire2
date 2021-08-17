@@ -190,7 +190,7 @@ app.controller('CampaignPreviewCtrl', function($timeout, $interval, $location, $
 
       Restangular.one('campaign', $scope.campaign_id).one('ever_published').customGET().then(function(success) {
 
-        $scope.fundingExist = $scope.direct_transaction && $scope.user.person_type_id != 1 || !$scope.contributionEnabled || $scope.isStepFundingDelayed && !success.ever_published;
+        $scope.fundingExist = $scope.direct_transaction && $scope.payment_gateway == 1 && $scope.user.person_type_id != 1 || !$scope.contributionEnabled || $scope.isStepFundingDelayed && !success.ever_published;
 
         if ($scope.public_settings.site_enable_advanced_widget) {
           $scope.backUrl = "campaign-widget/" + $routeParams.campaign_id;
@@ -633,7 +633,7 @@ app.controller('CampaignPreviewCtrl', function($timeout, $interval, $location, $
         });
       }
 
-      if (!$scope.direct_transaction) {
+      if (!$scope.direct_transaction && $scope.payment_gateway == 1) {
         // check if the campaign has stripe account
         Restangular.one('campaign', id).one('stripe-account').customGET().then(function(success) {
           if (success && success.length) {
@@ -991,7 +991,7 @@ app.controller('CampaignPreviewCtrl', function($timeout, $interval, $location, $
       }
     }
     var campaign = $scope.campaign;
-    if ($scope.direct_transaction || ($scope.payment_gateway == 2) || ($scope.public_settings.site_campaign_country_funding_step && $scope.campaign.settings.country_bank_form)) {
+    if ($scope.direct_transaction || ($scope.payment_gateway == 2) || ($scope.payment_gateway == 3) || ($scope.public_settings.site_campaign_country_funding_step && $scope.campaign.settings.country_bank_form)) {
       campaign.stripe_account_id = -1;
     }
 
@@ -1258,17 +1258,16 @@ app.controller('CampaignPreviewCtrl', function($timeout, $interval, $location, $
   }
 
   function checkFunding() {
-    if ($scope.public_settings.site_campaign_country_funding_step && $scope.campaign.settings.country_bank_form) {
+    if ($scope.public_settings.site_campaign_country_funding_step && $scope.campaign.settings.country_bank_form && $scope.payment_gateway == 1) {
       if ($scope.campaign.settings.bank) {
-
         return "StripePlaceHolder";
       } else {
-
+        
         return false;
       }
     }
-
-    if ($scope.contributionEnabled) {
+    
+    if ($scope.contributionEnabled && $scope.payment_gateway == 1) {
       if (isStepFundingDelayed) {
         if ($scope.campaign.ever_published) {
           return $scope.campaign.stripe_account_id;

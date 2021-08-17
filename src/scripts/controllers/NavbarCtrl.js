@@ -113,7 +113,6 @@ app.controller('NavbarCtrl', function ($location, $route, $scope, $rootScope, Re
     $scope.stickyMenu = success.public_setting.site_theme_sticky_menu;
     $scope.enabledContribution = success.public_setting.site_campaign_contributions;
 
-
   });
 
   // page reload
