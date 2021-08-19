@@ -1172,11 +1172,10 @@ app.controller('UserProfileCtrl', function($q, $route, $routeParams, $rootScope,
       }
 
       $scope.savePersonAttributes($scope.manager.person_id, customFieldData);
-
       if ($scope.campaign.profile_type_id == 2) {
         $scope.phoneInfo.number = $scope.business_number;
         // select from existing
-        if ($scope.company_selected && $scope.companyFormToggle == true) {
+        if ($scope.company_selected && $scope.companyFormToggle == true && $scope.campaign.business_organizations !== null) {
 
           if ($scope.company.name) {
             $scope.company_selected['name'] = $scope.company.name;
@@ -1235,11 +1234,19 @@ app.controller('UserProfileCtrl', function($q, $route, $routeParams, $rootScope,
           });
         }
         // add new company
-        else if ($scope.companyFormToggle == false) {
-          var data = {
-            person_id: $scope.manager.id,
-            name: $scope.newCompany.name,
-            description: $scope.newCompany.description
+        else {
+          if ($scope.companyFormToggle == false) {
+            var data = {
+              person_id: $scope.manager.id,
+              name: $scope.newCompany.name,
+              description: $scope.newCompany.description
+            }
+          } else {
+            var data = {
+              person_id: $scope.manager.id,
+              name: $scope.company.name,
+              description: $scope.company.description
+            }
           }
 
           // Parameters to be used for modifying image info
@@ -1251,83 +1258,53 @@ app.controller('UserProfileCtrl', function($q, $route, $routeParams, $rootScope,
             business_organization_id: $scope.company_selected,
             resource_content_type: 'image'
           }
-          if ($scope.companyFormToggle == false) {
-            Restangular.one('account/business').customPOST(data).then(function(success) {
-              data = {
-                business_organization_id: [success.id],
-                profile_type_id: $scope.campaign.profile_type_id,
-                toggle_profile_type_view_advance: $scope.campaign.toggle_profile_type_view_advance
-              }
-              $scope.phoneInfo.business_organization_id = success.id;
-              $scope.baddress.business_organization_id = success.id;
-              $scope.phoneInfo.person_id = paramID.person_id;
-              $scope.baddress.person_id = paramID.person_id;
-              Restangular.one('campaign', $routeParams.campaign_id).customPUT(data).then(function(success) {
-                CreateCampaignService.cacheIn(success.plain());
-              });
-              // After saving new company is done, change to existing company option
-              $scope.companyFormToggle = true;
-              $scope.company.description = $scope.newCompany.description;
-              $scope.company.name = $scope.newCompany.name;
-              $scope.newCompany = {};
-              $scope.companies.push(success);
-              // Save the current selected company id
-              $scope.company_selected = success.business_organization_id;
-
-              //Save Business Link
-              saveBusinessLinks($scope.company_selected, selectedProtocols);
-
-              if ($scope.baddress.city_id && $scope.baddress.street1 != undefined && $scope.baddress.screet1 != "") {
-                Restangular.one('account/address').customPOST($scope.baddress).then(function(success) {
-                  $scope.address_ID = success.id;
-                });
-              }
-              if ($scope.business_number && $scope.business_number != undefined && $scope.business_number != "") {
-                Restangular.one('account/phone-number').customPOST($scope.phoneInfo).then(function(success) {
-                  //checkNumber($scope.company_selected);
-                });
-              }
-              if ($scope.businessImage.length != 0) {
-                $scope.businessImage = [];
-                $scope.modifyBusinessImage(imageFiles, fileParam);
-              }
-
-            }, function(failure) {
-              msg = {
-                'header': failure.data.message
-              }
-              $rootScope.floatingMessage = msg;
-              $scope.hideFloatingMessage();
-            });
-          } else {
-            //Update existing business after uploading image
-            $scope.baddress.business_organization_id = $scope.company_selected;
-            $scope.phoneInfo.business_organization_id = $scope.company_selected;
-            $scope.baddress.person_id = paramID.person_id;
+          Restangular.one('account/business').customPOST(data).then(function(success) {
+            data = {
+              business_organization_id: [success.id],
+              profile_type_id: $scope.campaign.profile_type_id,
+              toggle_profile_type_view_advance: $scope.campaign.toggle_profile_type_view_advance
+            }
+            $scope.phoneInfo.business_organization_id = success.id;
+            $scope.baddress.business_organization_id = success.id;
             $scope.phoneInfo.person_id = paramID.person_id;
-            Restangular.one('account/business', $scope.company_selected).customPUT(data).then(function(success) {
-              if ($scope.address_ID && $scope.baddress.city_id && $scope.baddress.street1 != undefined && $scope.baddress.mail_code != undefined) {
-                Restangular.one('account/address', $scope.address_ID).customPUT($scope.baddress);
-              } else if ($scope.baddress.city_id && $scope.baddress.street1 != undefined && $scope.baddress.mail_code != undefined) {
-                $scope.baddress.business_organization_id = $scope.company_selected;
-                Restangular.one('account/address').customPOST($scope.baddress).then(function(success) {
-                  $scope.address_ID = success.id;
-                });
-              }
-              if ($scope.businessnumber) {
-                Restangular.one('account/phone-number', $scope.bphone_number_id).customPUT($scope.phoneInfo);
-                $scope.businessnumber = true;
-              } else if ($scope.business_number != undefined && $scope.business_number != "") {
-                Restangular.one('account/phone-number').customPOST($scope.phoneInfo);
-              }
-            }, function(failure) {
-              msg = {
-                'header': failure.data.message
-              }
-              $rootScope.floatingMessage = msg;
-              $scope.hideFloatingMessage();
+            $scope.baddress.person_id = paramID.person_id;
+            Restangular.one('campaign', $routeParams.campaign_id).customPUT(data).then(function(success) {
+              CreateCampaignService.cacheIn(success.plain());
             });
-          }
+            // After saving new company is done, change to existing company option
+            $scope.companyFormToggle = true;
+            $scope.company.description = $scope.newCompany.description;
+            $scope.company.name = $scope.newCompany.name;
+            $scope.newCompany = {};
+            $scope.companies.push(success);
+            // Save the current selected company id
+            $scope.company_selected = success.business_organization_id;
+
+            //Save Business Link
+            saveBusinessLinks($scope.company_selected, selectedProtocols);
+
+            if ($scope.baddress.city_id && $scope.baddress.street1 != undefined && $scope.baddress.screet1 != "") {
+              Restangular.one('account/address').customPOST($scope.baddress).then(function(success) {
+                $scope.address_ID = success.id;
+              });
+            }
+            if ($scope.business_number && $scope.business_number != undefined && $scope.business_number != "") {
+              Restangular.one('account/phone-number').customPOST($scope.phoneInfo).then(function(success) {
+                //checkNumber($scope.company_selected);
+              });
+            }
+            if ($scope.businessImage.length != 0) {
+              $scope.businessImage = [];
+              $scope.modifyBusinessImage(imageFiles, fileParam);
+            }
+
+          }, function(failure) {
+            msg = {
+              'header': failure.data.message
+            }
+            $rootScope.floatingMessage = msg;
+            $scope.hideFloatingMessage();
+          });
         }
 
       }
