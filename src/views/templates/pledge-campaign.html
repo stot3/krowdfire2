@@ -565,7 +565,7 @@
                 <div ng-if="userCompanies.length != 0">
                   <div class="ui form user-company-form">
                     <div class="field">
-                      <div class="ui selection fluid dropdown number-select">
+                      <div class="ui selection fluid dropdown">
                         <div class="default text" translate="pledge_campaign_company_dropdown">
                         </div>
                         <input type="hidden" name="company_value">
@@ -691,9 +691,9 @@
             </div>
           </div>
 
-          <h2 ng-if="!site_stripe_tokenization_settings.toggle" class="ui inverted top attached header" translate> pledge_campaign_payment_info </h2>
+          <h2 ng-if="!site_stripe_tokenization_settings.toggle && payment_gateway == 1" class="ui inverted top attached header" translate>pledge_campaign_payment_info </h2>
           <div ng-if="!site_stripe_tokenization_settings.toggle" class="campaign-bg ui middle attached basic segment">
-            <div class="formbg ui two column stackable grid" ng-if="payment_gateway==1">
+            <div class="formbg ui two column stackable grid" ng-if="payment_gateway == 1">
               <div class="ui corner red label" data-content="Required Field" sui-popup="">
                 <i class="white asterisk icon"></i>
               </div>
@@ -865,9 +865,9 @@
           </div>
 
           <!-- START -->
-          <h2 ng-if="site_stripe_tokenization_settings.toggle" class="ui inverted top attached header" translate>pledge_campaign_payment_info</h2>
+          <h2 ng-if="site_stripe_tokenization_settings.toggle && payment_gateway == 1" class="ui inverted top attached header" translate>pledge_campaign_payment_info</h2>
           <div ng-if="site_stripe_tokenization_settings.toggle" class="campaign-bg ui middle attached basic segment">
-            <div class="formbg ui two column stackable grid" ng-if="payment_gateway==1">
+            <div class="formbg ui two column stackable grid" ng-if="payment_gateway == 1">
               <div class="ui corner red label" data-content="Required Field" sui-popup="">
                 <i class="white asterisk icon"></i>
               </div>

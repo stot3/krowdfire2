@@ -222,6 +222,7 @@ app.controller('InlineContributionCtrl', function(
 
   $scope.tip = { value: null, dollar_amount: 0, type: 'Dollar', name: '' };
   $scope.tipTypeError = false;
+  $scope.business_id = null;
 
   // get portal settings guest options
   PortalSettingsService.getSettingsObj().then(function(success) {
@@ -618,7 +619,18 @@ app.controller('InlineContributionCtrl', function(
           onApprove: function(data, actions) {
             // This function captures the funds from the transaction.
             return actions.order.capture().then(function(details) {
-              paypalPledge(details.id);
+              if ($scope.acceptExtraPledgeData) {
+                if ($scope.selectedAccountType == 'Organization' && !$scope.selectedCompany) {
+                  Restangular.one('account/business').customPOST($scope.businessSelected).then(function(success) {
+                    $scope.business_id = success.business_organization_id;
+                    paypalPledge(details.id);
+                  });
+                } else {
+                  paypalPledge(details.id);
+                }
+              } else {
+                paypalPledge(details.id);
+              }
             });
           },
           onInit: function(data, actions)  {
@@ -904,31 +916,45 @@ app.controller('InlineContributionCtrl', function(
             }
           }
 
-          var businessRequest = null;
           var businessPromises = [];
 
+          // if ($scope.acceptExtraPledgeData) {
+          //   //Check Selected Account Type - Organization
+          //   if ($scope.selectedAccountType == 'Organization') {
+          //     //Check if need to make a new one
+          //     if (!$scope.selectedCompany) {
+          //       businessRequest = Restangular.one('account/business').customPOST($scope.businessSelected).then(function(success) {
+          //         businessData.business_id = success.business_organization_id;
+          //         attachBusinessToAddressPhone(businessData.business_id, businessPromises, $scope.address, $scope.phoneInfo, businessData);
+          //       });
+          //     }
+
+          //     //No need to make a new one
+          //     if ($scope.selectedCompany) {
+          //       attachBusinessToAddressPhone($scope.selectedCompany.business_organization_id, businessPromises, $scope.address, $scope.phoneInfo, businessData, promises, pledgeAttributes);
+          //     }
+          //   }
+
+          //   if ($scope.selectedAccountType == 'Individual') {
+          //     attachBusinessToAddressPhone(null, businessPromises, $scope.address, $scope.phoneInfo, businessData, promises, pledgeAttributes);
+          //   }
+          //   return;
+          // }
           if ($scope.acceptExtraPledgeData) {
-
-            //Check Selected Account Type - Organization
             if ($scope.selectedAccountType == 'Organization') {
-              //Check if need to make a new one
               if (!$scope.selectedCompany) {
-                businessRequest = Restangular.one('account/business').customPOST($scope.businessSelected).then(function(success) {
-                  businessData.business_id = success.business_organization_id;
-                  attachBusinessToAddressPhone(businessData.business_id, businessPromises, $scope.address, $scope.phoneInfo, businessData);
-                });
+                addAddressPhoneNumber($scope.business_id, businessPromises, $scope.address, $scope.phoneInfo, true);
               }
-
-              //No need to make a new one
-              if ($scope.selectedCompany) {
-                attachBusinessToAddressPhone($scope.selectedCompany.business_organization_id, businessPromises, $scope.address, $scope.phoneInfo, businessData, promises, pledgeAttributes);
+              else if ($scope.selectedCompany) {
+                addAddressPhoneNumber($scope.selectedCompany.business_organization_id, businessPromises, $scope.address, $scope.phoneInfo, true);
               }
             }
-
-            if ($scope.selectedAccountType == 'Individual') {
-              attachBusinessToAddressPhone(null, businessPromises, $scope.address, $scope.phoneInfo, businessData, promises, pledgeAttributes);
+            else if ($scope.selectedAccountType == 'Individual') {
+              addAddressPhoneNumber(null, businessPromises, $scope.address, $scope.phoneInfo, true);
             }
-            return;
+          } else {
+            //Just Pledge
+            addAddressPhoneNumber(null, businessPromises, $scope.address, $scope.phoneInfo, false);
           }
 
           //Just Pledge

@@ -692,7 +692,7 @@
               </div>
             </div>
           </div>
-          <h2 class="section-header ui inverted top attached header" ng-hide="guestOption == 1" translate> guest_contribution_payment_info </h2>
+          <h2 class="section-header ui inverted top attached header" ng-hide="guestOption == 1" ng-if="payment_gateway == 1" translate> guest_contribution_payment_info </h2>
           <div class="campaign-bg ui middle attached basic segment" ng-hide="guestOption == 1 ">
             <div class="formbg ui two column stackable grid" ng-if="payment_gateway == 1">
               <div class="ui corner red label" data-content="Required Field" sui-popup="">
