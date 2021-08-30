@@ -410,7 +410,6 @@ app.controller('AdminCampaignsCtrl', function ($q, $rootScope, CampaignSettingsS
       anonymous_contribution_partial: '',
       shipping_address_id: '',
       phone_number_id: '',
-      use_widgetmakr: '',
       email_notify: $scope.email_notify,
       reference_no: $scope.user.cheque_ref
     };
@@ -450,6 +449,10 @@ app.controller('AdminCampaignsCtrl', function ($q, $rootScope, CampaignSettingsS
           $scope.public_set[value.name] = value.value;
           if ($scope.public_set.site_payment_gateway == 2) {
             $scope.pdata.use_widgetmakr = 1;
+          }
+          if ($scope.public_set.site_payment_gateway == 3) {
+            $scope.pdata.use_paypal = 1;
+            $scope.pdata.paypal_order_id = 0;
           }
         }
       });
