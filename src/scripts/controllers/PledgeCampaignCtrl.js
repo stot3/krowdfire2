@@ -665,250 +665,247 @@ app.controller('PledgeCampaignCtrl', function(
 
   // Check if payment gateway is PayPal and initialize the buttons.
   function checkInitPaypal() {
-    if($scope.public_settings.site_payment_gateway == 3 && $scope.public_settings.paypal_publishable_key) {
+    PaypalService.init($scope.campaign).then(function(){
+      paypal.Buttons({
+        style: {
+          layout: 'vertical',
+          color:  'blue',
+          shape:  'rect',
+          label:  'paypal'
+        },
+        createOrder: function(data, actions) {
+          var campaign_currency = "USD";
+          if($scope.campaign.currencies.length > 0) {
+            campaign_currency = $scope.campaign.currencies[0].code_iso4217_alpha;
+          }
 
-      PaypalService.init($scope.campaign).then(function(){
-        paypal.Buttons({
-          style: {
-            layout: 'vertical',
-            color:  'blue',
-            shape:  'rect',
-            label:  'paypal'
-          },
-          createOrder: function(data, actions) {
-            var campaign_currency = "USD";
-            if($scope.campaign.currencies.length > 0) {
-              campaign_currency = $scope.campaign.currencies[0].code_iso4217_alpha;
+          var description = "Thank you for your contribution.";
+          if($scope.rname) {
+            description += " Reward Selected: " + $scope.rname;
+          }
+
+          var total = parseInt($scope.campaignFundingGoal.value);
+          var items = [
+            {
+              name: "Contribution towards " + $scope.campaign.name,
+              description: description,
+              unit_amount: { currency_code: campaign_currency, value: $scope.campaignFundingGoal.value},
+              quantity: "1",
+              tax: { currency_code: campaign_currency, value: "0.00"},
+            },
+          ];
+
+          // Calculate discount
+          if($scope.currentCoupon) {
+            var discount_amount = 0;
+            if($scope.currentCoupon.discount_amount > 0) {
+              discount_amount = parseInt($scope.currentCoupon.discount_amount);
             }
-
-            var description = "Thank you for your contribution.";
-            if($scope.rname) {
-              description += " Reward Selected: " + $scope.rname;
+            if($scope.currentCoupon.discount_percentage) {
+              discount_amount = total*$scope.currentCoupon.discount_percentage/100;
             }
+          }
 
-            var total = parseInt($scope.campaignFundingGoal.value);
-            var items = [
+          // Add tip
+          if($scope.tip.dollar_amount) {
+            total += parseInt($scope.tip.dollar_amount);
+            items.push(
               {
-                name: "Contribution towards " + $scope.campaign.name,
-                description: description,
-                unit_amount: { currency_code: campaign_currency, value: $scope.campaignFundingGoal.value},
+                name: "Tip",
+                description: "Platform tip via " + $scope.campaign.name + " campaign",
+                unit_amount: { currency_code: campaign_currency, value: $scope.tip.dollar_amount},
                 quantity: "1",
                 tax: { currency_code: campaign_currency, value: "0.00"},
-              },
-            ];
-
-            // Calculate discount
-            if($scope.currentCoupon) {
-              var discount_amount = 0;
-              if($scope.currentCoupon.discount_amount > 0) {
-                discount_amount = parseInt($scope.currentCoupon.discount_amount);
               }
-              if($scope.currentCoupon.discount_percentage) {
-                discount_amount = total*$scope.currentCoupon.discount_percentage/100;
-              }
-            }
+            );
+          }
 
-            // Add tip
-            if($scope.tip.dollar_amount) {
-              total += parseInt($scope.tip.dollar_amount);
-              items.push(
-                {
-                  name: "Tip",
-                  description: "Platform tip via " + $scope.campaign.name + " campaign",
-                  unit_amount: { currency_code: campaign_currency, value: $scope.tip.dollar_amount},
-                  quantity: "1",
-                  tax: { currency_code: campaign_currency, value: "0.00"},
-                }
-              );
-            }
+          var final_total = total;
+          // Calculate discount
+          if($scope.currentCoupon) {
+            final_total -= discount_amount;
+          }
 
-            var final_total = total;
-            // Calculate discount
-            if($scope.currentCoupon) {
-              final_total -= discount_amount;
-            }
-
-            var purchase_units = [
-              {
-                amount: { currency_code: campaign_currency, value: final_total,
-                  breakdown: {
-                    item_total: { currency_code: campaign_currency, value: total },
-                  }
-                },
-                items: items,
-              }
-            ];
-
-            // Add discount
-            if($scope.currentCoupon) {
-              purchase_units[0].amount.breakdown.discount = {
-                currency_code: campaign_currency,
-                value: discount_amount
-              };
-            }
-
-            var prefill_email = "";
-            var prefill_first_name = "";
-            var prefill_last_name = "";
-
-            if ($scope.user.email) {
-              prefill_email = $scope.user.email;
-            }
-
-            if ($scope.user.first_name) {
-              prefill_first_name = $scope.user.first_name;
-            }
-
-            if ($scope.user.last_name) {
-              prefill_last_name = $scope.user.last_name;
-            }
-
-            return actions.order.create({
-              purchase_units: purchase_units,
-              payer: {
-                email_address: prefill_email,
-                name: {
-                  given_name: prefill_first_name,
-                  surname: prefill_last_name,
+          var purchase_units = [
+            {
+              amount: { currency_code: campaign_currency, value: final_total,
+                breakdown: {
+                  item_total: { currency_code: campaign_currency, value: total },
                 }
               },
-              application_context: {
-                    shipping_preference: "NO_SHIPPING"
+              items: items,
+            }
+          ];
+
+          // Add discount
+          if($scope.currentCoupon) {
+            purchase_units[0].amount.breakdown.discount = {
+              currency_code: campaign_currency,
+              value: discount_amount
+            };
+          }
+
+          var prefill_email = "";
+          var prefill_first_name = "";
+          var prefill_last_name = "";
+
+          if ($scope.user.email) {
+            prefill_email = $scope.user.email;
+          }
+
+          if ($scope.user.first_name) {
+            prefill_first_name = $scope.user.first_name;
+          }
+
+          if ($scope.user.last_name) {
+            prefill_last_name = $scope.user.last_name;
+          }
+
+          return actions.order.create({
+            purchase_units: purchase_units,
+            payer: {
+              email_address: prefill_email,
+              name: {
+                given_name: prefill_first_name,
+                surname: prefill_last_name,
               }
-            });
-          },
-          onCancel: function (data) {
-            // Show a cancel page, or return to cart
-          },
-          onError: function (err) {
-            // For example, redirect to a specific error page
-            // window.location.href = "/error";
-          },
-          onApprove: function(data, actions) {
-            // This function captures the funds from the transaction.
-            return actions.order.capture().then(function(details) {
-              if ($scope.acceptExtraPledgeData) {
-                if ($scope.selectedAccountType == 'Organization' && !$scope.selectedCompany) {
-                  Restangular.one('account/business').customPOST($scope.businessSelected).then(function(success) {
-                    $scope.business_id = success.business_organization_id;
-                    paypalPledge(details.id);
-                  });
-                } else {
+            },
+            application_context: {
+                  shipping_preference: "NO_SHIPPING"
+            }
+          });
+        },
+        onCancel: function (data) {
+          // Show a cancel page, or return to cart
+        },
+        onError: function (err) {
+          // For example, redirect to a specific error page
+          // window.location.href = "/error";
+        },
+        onApprove: function(data, actions) {
+          // This function captures the funds from the transaction.
+          return actions.order.capture().then(function(details) {
+            if ($scope.acceptExtraPledgeData) {
+              if ($scope.selectedAccountType == 'Organization' && !$scope.selectedCompany) {
+                Restangular.one('account/business').customPOST($scope.businessSelected).then(function(success) {
+                  $scope.business_id = success.business_organization_id;
                   paypalPledge(details.id);
-                }
+                });
               } else {
                 paypalPledge(details.id);
               }
-            });
-          },
-          onInit: function(data, actions)  {
-            // Disable the buttons
-            actions.disable();
-      
-            // Listen for changes to the checkbox
-            document.querySelector('.agreement input[type="checkbox"]')
-            .addEventListener('change', function(event) {
-              // Enable or disable the button when it is checked or unchecked
-              if (event.target.checked)  {
-                actions.enable();
-              } else  {
-                actions.disable();
-              }
-            });
-          },
-          onClick: function()  {
-            var translation = $translate.instant(['pledge_campaign_selectcity_error', 'pledge_campaign_selectsubcountry_error']);
-            $scope.valcheck = true;
-            if (!$scope.selectedSubcountry.selected) {
+            } else {
+              paypalPledge(details.id);
+            }
+          });
+        },
+        onInit: function(data, actions)  {
+          // Disable the buttons
+          actions.disable();
+    
+          // Listen for changes to the checkbox
+          document.querySelector('.agreement input[type="checkbox"]')
+          .addEventListener('change', function(event) {
+            // Enable or disable the button when it is checked or unchecked
+            if (event.target.checked)  {
+              actions.enable();
+            } else  {
+              actions.disable();
+            }
+          });
+        },
+        onClick: function()  {
+          var translation = $translate.instant(['pledge_campaign_selectcity_error', 'pledge_campaign_selectsubcountry_error']);
+          $scope.valcheck = true;
+          if (!$scope.selectedSubcountry.selected) {
+            $('.select-error').remove();
+            $('#select-subcountry').append('<div class="select-error ui red pointing prompt label transition visible">' + translation.pledge_campaign_selectsubcountry_error + '</div>');
+            $('#select-subcountry').addClass('error');
+          }
+          
+          if (!$('#select-city .select2-container').hasClass('select2-container-disabled')) {
+            if (!$scope.selectedCity.selected && !$scope.site_campaign_alt_city_input_toggle) {
               $('.select-error').remove();
-              $('#select-subcountry').append('<div class="select-error ui red pointing prompt label transition visible">' + translation.pledge_campaign_selectsubcountry_error + '</div>');
-              $('#select-subcountry').addClass('error');
-            }
-            
-            if (!$('#select-city .select2-container').hasClass('select2-container-disabled')) {
-              if (!$scope.selectedCity.selected && !$scope.site_campaign_alt_city_input_toggle) {
-                $('.select-error').remove();
-                $('#select-city').append('<div class="select-error ui red pointing prompt label transition visible">' + translation.pledge_campaign_selectcity_error + '</div>');
-                $('#select-city').addClass('error');
-              }
-            }
-            
-            if ($scope.tippingOptions.toggle) {
-              $scope.tipValidation();
-            }
-            
-            if ($scope.public_settings.site_campaign_reward_attributes_required) {
-              attributesValidation();
-            }
-            if ($scope.pledgeReplace && $scope.requiresShipping && $scope.public_settings.site_campaign_reward_phone_required) {
-              if ($scope.toggle.newNumber) {
-                phoneNumberValidation();
-              } else {
-                newPhoneNumberValidation();
-              }
-            }
-            if (typeof $scope.pledgeindex == "number" && $scope.public_settings.site_campaign_reward_phone_required && $scope.shippingOption && $scope.shippingOption.length && !$scope.pledgeReplace) {
-              if ($scope.toggle.newNumber) {
-                phoneNumberValidation();
-              } else {
-                newPhoneNumberValidation();
-              }
-            }
-            if (!$scope.pledgeReplace) {
-              $scope.contributeAmountValidation();
-            } else if (!$scope.pledgeReplace && $scope.pledgeAmount) {
-              $scope.contributeAmountValidation();
-            } else if ($scope.pledgeReplace && $scope.pledgeAmount) {
-              $scope.contributeAmountValidation();
-            }
-            
-            if ($scope.toggle.newAddress) {
-              $scope.chooseAddressFormValidation();
-            } else {
-              $scope.newAddressFormValidation();
-            }
-            
-            if ($scope.acceptExtraPledgeData) {
-              
-              if ($scope.selectedAccountType == 'Organization') {
-                if ($scope.toggle.newCompany) {
-                  $scope.chooseBusinessFormValidation();
-                } else {
-                  $scope.newBusinessFormValidation();
-                }
-              }
-              
-              if ($scope.toggle.newNumber) {
-                phoneNumberValidation();
-              } else {
-                newPhoneNumberValidation();
-              }
-            }
-        
-            if (!$scope.isContributionLayout1) {
-              if ($scope.public_settings.site_tos_contribution_ui) {
-        
-                if (!$('.agreement input[type="checkbox"]').is(':checked')) {
-                  $scope.tos_not_checked = true;
-                  $rootScope.scrollToError();
-                  return;
-                } else {
-                  $scope.tos_not_checked = false;
-                }
-              }
-            }
-        
-            if ($scope.valcheck) {
-              $rootScope.scrollToError();
-              // actions.enable();
-            } else {
-              // actions.disable();
-              document.querySelector('#error').classList.remove('hidden');
+              $('#select-city').append('<div class="select-error ui red pointing prompt label transition visible">' + translation.pledge_campaign_selectcity_error + '</div>');
+              $('#select-city').addClass('error');
             }
           }
-        }).render('#paypal-button-container');
-      })
-    }
+          
+          if ($scope.tippingOptions.toggle) {
+            $scope.tipValidation();
+          }
+          
+          if ($scope.public_settings.site_campaign_reward_attributes_required) {
+            attributesValidation();
+          }
+          if ($scope.pledgeReplace && $scope.requiresShipping && $scope.public_settings.site_campaign_reward_phone_required) {
+            if ($scope.toggle.newNumber) {
+              phoneNumberValidation();
+            } else {
+              newPhoneNumberValidation();
+            }
+          }
+          if (typeof $scope.pledgeindex == "number" && $scope.public_settings.site_campaign_reward_phone_required && $scope.shippingOption && $scope.shippingOption.length && !$scope.pledgeReplace) {
+            if ($scope.toggle.newNumber) {
+              phoneNumberValidation();
+            } else {
+              newPhoneNumberValidation();
+            }
+          }
+          if (!$scope.pledgeReplace) {
+            $scope.contributeAmountValidation();
+          } else if (!$scope.pledgeReplace && $scope.pledgeAmount) {
+            $scope.contributeAmountValidation();
+          } else if ($scope.pledgeReplace && $scope.pledgeAmount) {
+            $scope.contributeAmountValidation();
+          }
+          
+          if ($scope.toggle.newAddress) {
+            $scope.chooseAddressFormValidation();
+          } else {
+            $scope.newAddressFormValidation();
+          }
+          
+          if ($scope.acceptExtraPledgeData) {
+            
+            if ($scope.selectedAccountType == 'Organization') {
+              if ($scope.toggle.newCompany) {
+                $scope.chooseBusinessFormValidation();
+              } else {
+                $scope.newBusinessFormValidation();
+              }
+            }
+            
+            if ($scope.toggle.newNumber) {
+              phoneNumberValidation();
+            } else {
+              newPhoneNumberValidation();
+            }
+          }
+      
+          if (!$scope.isContributionLayout1) {
+            if ($scope.public_settings.site_tos_contribution_ui) {
+      
+              if (!$('.agreement input[type="checkbox"]').is(':checked')) {
+                $scope.tos_not_checked = true;
+                $rootScope.scrollToError();
+                return;
+              } else {
+                $scope.tos_not_checked = false;
+              }
+            }
+          }
+      
+          if ($scope.valcheck) {
+            $rootScope.scrollToError();
+            // actions.enable();
+          } else {
+            // actions.disable();
+            document.querySelector('#error').classList.remove('hidden');
+          }
+        }
+      }).render('#paypal-button-container');
+    })
   }
 
   function paypalPledge(paypal_order_id) {
