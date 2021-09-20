@@ -115,7 +115,7 @@
                       }
                     }
                     let signIn = {};
-                    try { 
+                    try {
                       signIn = angular.element($('#widget-container')).scope().oktaSignIn(config)
                       signIn.renderEl({ el: '#widget-container' }).then(async function(res) {
                           if (res.status === 'SUCCESS') {

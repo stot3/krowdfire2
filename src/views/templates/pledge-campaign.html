@@ -335,15 +335,22 @@
                   </div>
                 </div>
 
-                <div class="anonymous-contribution-checkbox ui checkbox" ng-model="selectedContributionAnon.toggle" ng-show="(anonymousContributionTypeOnly && contributionTypeRadio) || (anonymousContributionTypeOnly && !contributionTypeRadio)">
+                <div class="anonymous-contribution-checkbox ui checkbox" ng-model="selectedContributionAnon.toggle" ng-show="(anonymousContributionTypeOnly && contributionTypeRadio) || (anonymousContributionTypeOnly && !contributionTypeRadio)" ng-if="!forceAnonymousPledge">
                   <input type="checkbox">
                   <label translate> pledge_campaign_anon_contribution_only_label </label>
+                </div>
+                <div class="anonymous-contribution-checkbox ui checkbox" ng-model="selectedContributionAnon.toggle" ng-show="((anonymousContributionTypeOnly && contributionTypeRadio) || (anonymousContributionTypeOnly && !contributionTypeRadio)) && !forceAnonymousPledge" ng-if="forceAnonymousPledge">
+                  <input type="checkbox" checked>
+                  <label translate> pledge_campaign_anon_contribution_only_label </label>
+                </div>
+                <div class="anonymous-contribution-checkbox ui checkbox" ng-model="selectedContributionAnon.toggle" ng-show="((anonymousContributionTypeOnly && contributionTypeRadio) || (anonymousContributionTypeOnly && !contributionTypeRadio)) && forceAnonymousPledge" ng-if="forceAnonymousPledge">
+                  {{'contribution_type_fullyanon' | translate}}
                 </div>
               </div>
               <!-- NON REPLACEMENT END -->
               <div class="five wide column left-col" ng-show="contributionTypeRadio && !anonymousContributionTypeOnly">
                 <h3 class="ui header" translate>pledge_campaign_contribution_type</h3>
-                <p translate>
+                <p translate ng-if="!forceAnonymousPledge">
                   pledge_campaign_contribution_type_note
                 </p>
               </div>
@@ -352,12 +359,15 @@
 
                 <div class="ui two column stackable grid pledge-amount">
 
-                  <div class="eight wide column your-pledge">
+                  <div class="eight wide your-pledge" ng-class="{'column': !forceAnonymousPledge}">
                     <div class="grouped inline fields">
                       <div class="field" ng-repeat="type in contribution">
-                        <div class="ui radio checkbox" ng-if="$first" ng-click="contributionSelected(type)">
-                          <input type="radio" name="contribution_types" checked="checked">
+                        <div class="ui radio checkbox" ng-hide="forceAnonymousPledge" ng-if="$first" ng-click="contributionSelected(type)">
+                          <input type="radio"name="contribution_types" checked="checked">
                           <label>{{type.name | translate }}</label>
+                        </div>
+                        <div class="ui radio checkbox" ng-hide="!forceAnonymousPledge" ng-if="$first">
+                          {{type.name | translate }}
                         </div>
                         <div class="ui radio checkbox" ng-if="!$first" ng-click="contributionSelected(type)">
                           <input type="radio" name="contribution_types">
@@ -1643,7 +1653,7 @@
 
                 <div class="contribution-type" ng-show="contributionTypeRadio && !anonymousContributionTypeOnly">
                   <h3 class="ui header" translate>pledge_campaign_contribution_type</h3>
-                  <p translate>
+                  <p translate ng-if="!forceAnonymousPledge">
                     pledge_campaign_contribution_type_note
                   </p>
                   <div class="grouped inline fields">

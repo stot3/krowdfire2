@@ -192,26 +192,36 @@
                       </div>
                     </div>
                   </div>
-                  <div class="anonymous-contribution-checkbox ui checkbox" ng-model="$parent.selecteContributionAnon" ng-show="(anonymousContributionTypeOnly && contributionTypeRadio) || (anonymousContributionTypeOnly && !contributionTypeRadio)">
+                  <div class="anonymous-contribution-checkbox ui checkbox" ng-model="$parent.selecteContributionAnon" ng-show="(anonymousContributionTypeOnly && contributionTypeRadio) || (anonymousContributionTypeOnly && !contributionTypeRadio)" ng-if="!forceAnonymousPledge">
                     <input type="checkbox">
                     <label translate> pledge_campaign_anon_contribution_only_label </label>
+                  </div>
+                  <div class="anonymous-contribution-checkbox ui checkbox" ng-model="$parent.selecteContributionAnon" ng-show="((anonymousContributionTypeOnly && contributionTypeRadio) || (anonymousContributionTypeOnly && !contributionTypeRadio)) && !forceAnonymousPledge" ng-if="forceAnonymousPledge">
+                    <input type="checkbox" checked>
+                    <label translate> pledge_campaign_anon_contribution_only_label </label>
+                  </div>
+                  <div class="anonymous-contribution-checkbox ui checkbox" ng-model="$parent.selecteContributionAnon" ng-show="((anonymousContributionTypeOnly && contributionTypeRadio) || (anonymousContributionTypeOnly && !contributionTypeRadio)) && forceAnonymousPledge" ng-if="forceAnonymousPledge">
+                    {{'contribution_type_fullyanon' | translate}}
                   </div>
                 </div>
 
                 <div class="five wide column left-col" ng-show="(guestOption == 2 || guestOption ==4) && contributionTypeRadio  && !anonymousContributionTypeOnly">
                   <h3 class="ui header" translate>guest_contribution_type</h3>
-                  <p translate>
+                  <p translate ng-if="!forceAnonymousPledge">
                     guest_contribution_type_note
                   </p>
                 </div>
                 <div class="eleven wide column right-col" ng-show="(guestOption == 2 || guestOption ==4) && contributionTypeRadio  && !anonymousContributionTypeOnly">
                   <div class="ui two column stackable grid pledge-amount">
-                    <div class="eight wide column your-pledge">
+                    <div class="eight wide your-pledge" ng-class="{'column': !forceAnonymousPledge}">
                       <div class="grouped inline fields">
                         <div class="field" ng-repeat="type in contribution">
-                          <div class="ui radio checkbox" ng-if="$first" ng-click="contributionSelected(type)">
+                          <div class="ui radio checkbox" ng-if="$first" ng-hide="forceAnonymousPledge" ng-click="contributionSelected(type)">
                             <input type="radio" name="contribution_types" checked="checked">
                             <label>{{type.name | translate }}</label>
+                          </div>
+                          <div class="ui radio checkbox" ng-if="$first" ng-hide="!forceAnonymousPledge" >
+                            {{type.name | translate }}
                           </div>
                           <div class="ui radio checkbox" ng-if="!$first" ng-click="contributionSelected(type)">
                             <input type="radio" name="contribution_types">
@@ -1252,7 +1262,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="anonymous-contribution-checkbox ui checkbox" ng-model="$parent.selecteContributionAnon" ng-show="(anonymousContributionTypeOnly && contributionTypeRadio) || (anonymousContributionTypeOnly && !contributionTypeRadio)">
+                  <div class="anonymous-contribution-checkbox ui checkbox" ng-model="$parent.selecteContributionAnon" ng-show="(anonymousContributionTypeOnly && contributionTypeRadio) || (anonymousContributionTypeOnly && !contributionTypeRadio)" ng-if="!forceAnonymousPledge">
                     <input type="checkbox">
                     <label translate> pledge_campaign_anon_contribution_only_label </label>
                   </div>
