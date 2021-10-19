@@ -248,10 +248,6 @@ app.controller('InlineContributionCtrl', function(
     if (typeof $scope.tippingOptions === 'undefined' || $scope.tippingOptions == null) {
       $scope.tippingOptions = { toggle: false };
     }
-    //Defined and Turned on
-    if ($scope.tippingOptions.hasOwnProperty('toggle') && $scope.tippingOptions.toggle) {
-      setUpTipping();
-    }
 
     if (typeof $scope.site_stripe_tokenization_settings === 'undefined' || $scope.site_stripe_tokenization_settings == null) {
       $scope.site_stripe_tokenization_settings = {
@@ -322,7 +318,6 @@ app.controller('InlineContributionCtrl', function(
   });
 
   function setUpTipping() {
-
     Restangular.one('account/stripe/charge-amount').customGET().then(function(success) {
       if (success[0]) {
         $scope.lowestAmount = parseFloat(success[0].minimum_charge_amount);
@@ -491,6 +486,10 @@ app.controller('InlineContributionCtrl', function(
       $rootScope.campaign_path = $scope.campaign.uri_paths[0].path;
       setShippingVar();
 
+      //Defined and Turned on
+      if ($scope.tippingOptions.hasOwnProperty('toggle') && $scope.tippingOptions.toggle) {
+        setUpTipping();
+      }
     });
 
   }
@@ -541,7 +540,7 @@ app.controller('InlineContributionCtrl', function(
 
           // Add tip
           if($scope.tip.dollar_amount) {
-            total += parseInt($scope.tip.dollar_amount);
+            total = (parseFloat(total) + parseFloat($scope.tip.dollar_amount)).toFixed(2);
             items.push(
               {
                 name: "Tip",
@@ -758,6 +757,8 @@ app.controller('InlineContributionCtrl', function(
           password_confirm: $scope.accountInfo.password_confirm,
           inline_registration: true, // do not send confirmation email
         };
+        $scope.paypalLoginEmail = $scope.accountInfo.email;
+        $scope.paypalLoginPass = $scope.accountInfo.password;
       }
 
       //Express Checkout
@@ -773,6 +774,8 @@ app.controller('InlineContributionCtrl', function(
           inline_registration: true, // do not send cofirmation email
           express_checkout: true
         };
+        $scope.paypalLoginEmail = $scope.express.email;
+        $scope.paypalLoginPass = rdm_pw;
       }
 
       Restangular.one('register').customPOST(data).then(function(success) {
@@ -1047,6 +1050,18 @@ app.controller('InlineContributionCtrl', function(
               }
               $rootScope.floatingMessage = msg;
               $scope.hideFloatingMessage();
+
+              var data = {
+                email: $scope.paypalLoginEmail,
+                password: $scope.paypalLoginPass,
+              };
+
+              // login user after successful pledge
+              Restangular.one('authenticate').customPOST(data).then(function(success) {
+                // Set logged in without redirect
+                UserService.setLoggedIn(success, true);
+              });
+
               // display a thank you note
               $('.pledge-thank-you')
                 .modal({
@@ -2347,8 +2362,12 @@ app.controller('InlineContributionCtrl', function(
     //If toggle on, create a credit card token
     if ($scope.site_stripe_tokenization_settings.toggle) {
 
-      $scope.stripeExtraDetails.name = data.first_name + ' ' + data.last_name;
-      if ($scope.pledgeLevel && $scope.campaign.pledges[$scope.pledgeindex].shipping) {
+      $scope.stripeExtraDetails.name = $scope.accountInfo.first_name + ' ' + $scope.accountInfo.last_name;
+      if($scope.guestOption == 4 ){
+        $scope.stripeExtraDetails.name = $scope.express.fname + ' ' + $scope.express.lname;
+      }
+      if (($scope.pledgeLevel && $scope.campaign.pledges[$scope.pledgeindex].shipping) || 
+      $scope.acceptExtraPledgeData) {
         $scope.stripeExtraDetails.address_line1 = $scope.address.street1;
       }
 
@@ -3390,6 +3409,8 @@ app.controller('InlineContributionCtrl', function(
       $location.path(path);
     } else if ($scope.guestOption == 4) { //Express Checkout Redirect
       $location.path(path);
+    } else { 
+      $location.path(path);
     }
   }
 
@@ -3855,7 +3876,7 @@ app.controller('InlineContributionCtrl', function(
       } else {
         value.dollar_amount = value.value;
       }
-      if($scope.combineTip){
+      if(!$scope.combineTip){
         if (value.dollar_amount < $scope.lowestAmount) {
           value.dollar_amount += $scope.lowestAmount;
         }

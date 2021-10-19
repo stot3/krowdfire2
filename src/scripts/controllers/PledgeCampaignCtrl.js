@@ -251,11 +251,6 @@ app.controller('PledgeCampaignCtrl', function(
       $scope.tippingOptions = { toggle: false };
     }
 
-    //Defined and Turned on
-    if ($scope.tippingOptions.hasOwnProperty('toggle') && $scope.tippingOptions.toggle) {
-      setUpTipping();
-    }
-
     if ($scope.anonymousContributionTypeOnly) {
       $scope.selecteContribution = false;
     } else {
@@ -285,7 +280,6 @@ app.controller('PledgeCampaignCtrl', function(
   });
 
   function setUpTipping() {
-
     Restangular.one('account/stripe/charge-amount').customGET().then(function(success) {
       if (success[0]) {
         $scope.lowestAmount = parseFloat(success[0].minimum_charge_amount);
@@ -549,6 +543,11 @@ app.controller('PledgeCampaignCtrl', function(
           getCountries();
         }
 
+        //Defined and Turned on
+        if ($scope.tippingOptions.hasOwnProperty('toggle') && $scope.tippingOptions.toggle) {
+          setUpTipping();
+        }
+
         $scope.$emit('settings_loaded');
       },
       function(failure) {
@@ -708,7 +707,7 @@ app.controller('PledgeCampaignCtrl', function(
 
           // Add tip
           if($scope.tip.dollar_amount) {
-            total += parseInt($scope.tip.dollar_amount);
+            total = (parseFloat(total) + parseFloat($scope.tip.dollar_amount)).toFixed(2);
             items.push(
               {
                 name: "Tip",
@@ -2186,7 +2185,6 @@ app.controller('PledgeCampaignCtrl', function(
     //Check for Stripe Tokenization Toggle - Don't create token if Card Selected
     //Attach credit card token to $scope.creditCard if Stripe Tokenization
     if ($scope.site_stripe_tokenization_settings.toggle && !$scope.toggle.selectedCard) {
-
       //Create Token
       $scope.stripe.createToken($scope.cardNumberElement, $scope.stripeExtraDetails).then(function(result) {
         if (result.error) {
@@ -2260,19 +2258,42 @@ app.controller('PledgeCampaignCtrl', function(
     //Resolve Address/Phone
     if (businessPromises && businessPromises.length) {
       return $q.all(businessPromises).then(function(resolved) {
-        // loop through the results and find value
-        angular.forEach(resolved, function(value) {
-          if (value.address_id) {
-            businessData.address_id = value.address_id;
-            $scope.selectedAddressID = value.address_id;
-          }
-          if (value.phone_number_id) {
-            businessData.phone_id = value.phone_number_id;
-            $scope.chosenPhoneNumberId = value.phone_number_id;
-          }
-        });
+        // Update address data
+        Restangular.one('account').one('address').get().then(function(address) {
+          var city, country, street;
+          angular.forEach(address.personal, function(value, key, obj) {
+            //Exit if you find a primary address
+            if (value.primary_address) {
+              city = value.city;
+              country = value.country;
+              street = value.street1;
+              return;
+            }
+            //If no primary address found, take the last address
+            city = value.city;
+            country = value.country;
+            street = value.street1;
+          });
 
-        return generateTokenOrPledge(promises, pledgeAttributes, businessData);
+          $scope.stripeExtraDetails.address_city = city;
+          $scope.stripeExtraDetails.address_country = country;
+          $scope.stripeExtraDetails.address_line1 = street;
+          $scope.stripeExtraDetails.name = $scope.user.first_name + ' ' + $scope.user.last_name;
+
+          // loop through the results and find value
+          angular.forEach(resolved, function(value) {
+            if (value.address_id) {
+              businessData.address_id = value.address_id;
+              $scope.selectedAddressID = value.address_id;
+            }
+            if (value.phone_number_id) {
+              businessData.phone_id = value.phone_number_id;
+              $scope.chosenPhoneNumberId = value.phone_number_id;
+            }
+          });
+
+          return generateTokenOrPledge(promises, pledgeAttributes, businessData);
+        });
       });
     }
     generateTokenOrPledge(promises, pledgeAttributes, businessData);
@@ -2936,7 +2957,6 @@ app.controller('PledgeCampaignCtrl', function(
       } else {
         value.dollar_amount = value.value;
       }
-
       if(!$scope.combineTip){
         if (value.dollar_amount < $scope.lowestAmount) {
           value.dollar_amount += $scope.lowestAmount;

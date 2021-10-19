@@ -1597,11 +1597,14 @@ app.controller('CreateCampaignCtrl', function($q, $location, $routeParams, $root
   }
 
   $scope.campaignMaxContributionValidation = function() {
+    if($scope.campaign.settings.max_contribution === null) {
+      return true;
+    }
     // $.fn.form.settings.rules.max_number = function (value) {
     //   if (!isNaN($scope.campaign.settings.max_contribution)) {
-    //     $scope.valcheck = $scope.valcheck && true;
+    //     return true;
     //   } else {
-    //     $scope.valcheck = $scope.valcheck && false;
+    //     return false;
     //   }
     // }
     var translation = $translate.instant(['get_started_campaign_max_nan']);
