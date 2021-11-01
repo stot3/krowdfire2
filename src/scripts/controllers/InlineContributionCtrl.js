@@ -516,7 +516,7 @@ app.controller('InlineContributionCtrl', function(
             description += " Reward Selected: " + $scope.rname;
           }
 
-          var total = parseInt($scope.campaignFundingGoal.value);
+          var total = parseFloat($scope.campaignFundingGoal.value);
           var items = [
             {
               name: "Contribution towards " + $scope.campaign.name,
@@ -540,12 +540,14 @@ app.controller('InlineContributionCtrl', function(
 
           // Add tip
           if($scope.tip.dollar_amount) {
-            total = (parseFloat(total) + parseFloat($scope.tip.dollar_amount)).toFixed(2);
+            $scope.tip.rounded_amount = parseFloat($scope.tip.dollar_amount).toFixed(2);
+            total = parseFloat(total) + parseFloat($scope.tip.rounded_amount);
+            total = total.toFixed(2);
             items.push(
               {
                 name: "Tip",
                 description: "Tip Description",
-                unit_amount: { currency_code: campaign_currency, value: $scope.tip.dollar_amount},
+                unit_amount: { currency_code: campaign_currency, value: $scope.tip.rounded_amount},
                 quantity: "1",
                 tax: { currency_code: campaign_currency, value: "0.00"},
               }
