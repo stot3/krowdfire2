@@ -189,6 +189,7 @@ app.controller('LoginCtrl', function($rootScope, $location, $scope, PortalSettin
           }
         });
       }
+      
       $('.ui.modal').modal('hide');
     }
   }
@@ -248,6 +249,7 @@ app.controller('LoginCtrl', function($rootScope, $location, $scope, PortalSettin
       },
       function(failure) { // If the login request fails, set the errors returned from the server
         // clear messages
+        console.log(failure)
         $scope.formData.errors = null;
         $rootScope.login_successful = null;
         $scope.formData.errors = failure.data.errors;

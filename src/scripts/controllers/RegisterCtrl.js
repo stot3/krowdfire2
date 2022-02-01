@@ -1,12 +1,10 @@
-app.controller('RegisterCtrl', function($scope, $rootScope, $location, Restangular, PortalSettingsService, UserService, $translate, $translatePartialLoader) {
-
+app.controller('RegisterCtrl', function($scope, $rootScope, $location, Restangular, PortalSettingsService, UserService, $translate, $translatePartialLoader, $routeParams) {
   $scope.tos_register = false;
   $scope.submit_once = false;
   $scope.organization_name = {};
-
   PortalSettingsService.getSettings(true).then(function(success) {
-
     // get public settings
+
     $scope.public_settings = {};
     // loop and categorize the response data. put them into object
     angular.forEach(success, function(value) {
@@ -14,7 +12,6 @@ app.controller('RegisterCtrl', function($scope, $rootScope, $location, Restangul
         $scope.public_settings[value.name] = value.value;
       }
     });
-
     $scope.val = success;
     $rootScope.registerRedirect = null;
     angular.forEach($scope.val, function(value) {
@@ -166,44 +163,44 @@ app.controller('RegisterCtrl', function($scope, $rootScope, $location, Restangul
           }]
         }
       };
-
-      if ($scope.public_settings.site_campaign_personal_section_custom && $scope.pcustom) {
-        if ($scope.public_settings.site_campaign_personal_section_custom.length > 0) {
-          angular.forEach($scope.pcustom, function(value, key) {
-            if (value.required && !value.validate) {
-              var customValidate = {
-                identifier: value.identifier,
-                rules: [{
-                  type: 'empty',
-                  prompt: $scope.custom_field_empty
-                }]
-              }
-              $scope.form_validation['customField' + key] = customValidate;
-            } else if(!value.required && value.validate) {
-              var customValidate = {
-                identifier: value.identifier,
-                rules: [{
-                    type: 'regexCustomValidation[' + value.validate + ']',
-                    prompt: $scope.custom_field_validate
-                }]
-              }
-              $scope.form_validation['customField' + key] = customValidate;
-            } else if(value.required && value.validate) {
-              var customValidate = {
-                identifier: value.identifier,
-                rules: [{
+        if ($scope.public_settings.site_campaign_personal_section_custom && $scope.pcustom) {
+          if ($scope.public_settings.site_campaign_personal_section_custom.length > 0) {
+            angular.forEach($scope.pcustom, function(value, key) {
+              if (value.required && !value.validate) {
+                var customValidate = {
+                  identifier: value.identifier,
+                  rules: [{
                     type: 'empty',
                     prompt: $scope.custom_field_empty
-                  }, {
-                    type: 'regexCustomValidation[' + value.validate + ']',
-                    prompt: $scope.custom_field_validate
                   }]
+                }
+                $scope.form_validation['customField' + key] = customValidate;
+              } else if(!value.required && value.validate) {
+                var customValidate = {
+                  identifier: value.identifier,
+                  rules: [{
+                      type: 'regexCustomValidation[' + value.validate + ']',
+                      prompt: $scope.custom_field_validate
+                  }]
+                }
+                $scope.form_validation['customField' + key] = customValidate;
+              } else if(value.required && value.validate) {
+                var customValidate = {
+                  identifier: value.identifier,
+                  rules: [{
+                      type: 'empty',
+                      prompt: $scope.custom_field_empty
+                    }, {
+                      type: 'regexCustomValidation[' + value.validate + ']',
+                      prompt: $scope.custom_field_validate
+                    }]
+                }
+                $scope.form_validation['customField' + key] = customValidate;
               }
-              $scope.form_validation['customField' + key] = customValidate;
-            }
-          });
+            });
+          }
         }
-      }
+      
 
       // semantic form validation
       $('.ui.register.form').form($scope.form_validation, {
@@ -294,8 +291,13 @@ app.controller('RegisterCtrl', function($scope, $rootScope, $location, Restangul
     if (custom_fields) {
       $scope.formData.attributes = JSON.stringify(custom_fields);
     }
-
-    Restangular.one('register').customPOST($scope.formData).then(
+    if (typeof $routeParams.campaign_id == 'undefined'){
+      $scope.formData.errors = [{ "message" : "You must be invited to create a campaign"}]
+    }
+    Promise.all([
+      UserService.setInvitationInformation($scope.formData.email, $routeParams.campaign_id, $routeParams.campaign_name),
+      Restangular.one('register').customPOST($scope.formData)
+    ]).then(
       function(success) {
         //($scope.showMess);
         if ($scope.showMess) {
@@ -340,6 +342,7 @@ app.controller('RegisterCtrl', function($scope, $rootScope, $location, Restangul
         $scope.loading = false;
       },
       function(failure) { // If the register request fails, set the errors returned from the server
+        console.log(failure)
         $scope.formData.errors = failure.data.errors;
         $scope.formData.successful = null;
         $scope.errcode = $scope.formData.errors.email[0].code;

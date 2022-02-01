@@ -46,7 +46,6 @@
       </div>
     </div>
   </div>
-  <div ng-if="homepageCustomHtmlBlock" html-render html="homepageCustomHtmlBlock.html" class="fr-view" id="homepage-custom-html-block"></div>
 
   <div class="promo-wrap" ng-if="home_page_text.middle_header || hasCategory">
     <div class="ui center aligned basic segment">
@@ -182,9 +181,7 @@
                 <div id="progress-status" ng-if="public_settings.site_campaign_state_hide">
                   <div ng-if="campaign.settings.state_current">
                     <div class="center aligned">
-                      <!-- regular title without tool tip -->
                       <h4 ng-if="!(campaign.settings.state_current.tooltip && campaign.settings.state_current.tooltip != '')" class="status-title" ng-bind-html="campaign.settings.state_current.title"></h4>
-                      <!-- THIS COMMENT IS FOR TOOLTIP -->
                       <h4 ng-if="campaign.settings.state_current.tooltip && campaign.settings.state_current.tooltip != ''" class="status-title" sui-popup data-content="{{campaign.settings.state_current.tooltip}}" data-position="bottom center" ng-bind-html="campaign.settings.state_current.title"></h4>
                       <img class="ui image" ng-if="!public_settings.site_campaign_state_card_image_omit" ng-src="{{server + '/image/campaign_progress_status/' + campaign.settings.state_current.path}}" alt="state_image">
                     </div>
@@ -318,9 +315,7 @@
                 <div id="progress-status" ng-if="public_settings.site_campaign_state_hide">
                   <div ng-if="campaign.settings.state_current">
                     <div class="center aligned">
-                      <!-- regular title without tool tip -->
                       <h4 ng-if="!(campaign.settings.state_current.tooltip && campaign.settings.state_current.tooltip != '')" class="status-title" ng-bind-html="campaign.settings.state_current.title"></h4>
-                      <!-- THIS COMMENT IS FOR TOOLTIP -->
                       <h4 ng-if="campaign.settings.state_current.tooltip && campaign.settings.state_current.tooltip != ''" class="status-title" sui-popup data-content="{{campaign.settings.state_current.tooltip}}" data-position="bottom center" ng-bind-html="campaign.settings.state_current.title"></h4>
 
                       <img class="ui image" ng-if="!public_settings.site_campaign_state_card_image_omit" ng-src="{{server + '/image/campaign_progress_status/' + campaign.settings.state_current.path}}" alt="state_image"></img>
@@ -407,7 +402,6 @@
             <div class="sub header" ng-style="bottom_banner_paragraph_color" ng-bind="home_page_text.bottom_banner.middle_column.paragraph"></div>
           </div>
         </div>
-        <!-- column end -->
 
         <div class="lm-column column" ng-if="home_page_text.bottom_banner.right_column.display">
           <div class="icon-header ui medium icon header">
@@ -439,7 +433,6 @@
     </div>
   </div>
 
-  <!-- LOGO -->
   <div class="partner-logos" ng-if="public_settings.logo_links.length > 0">
     <div class="ui page grid">
       <div class="column">
@@ -454,5 +447,47 @@
         </div>
       </div>
     </div>
+  </div> 
+  <div class="ui modal" id="requestModal">
+    <i class="close icon"></i>
+    <div class="align-box-center content">
+      <div class="position-relative image align-box-center place-center">
+        <img src="images/Mailing-List.png">
+        <h1 style="position: absolute; bottom: 40%; background-color: #FFFFFF; width:80%;text-align: center; border:#000000 solid 1px">Get Your Invitation</h1>
+      </div>
+      <form class="align-box-center">
+        <div class="ui input focus">
+          <input placeholder="Email" style="width:100%; margin-bottom: 0.5rem" type="email" ng-model="email">
+        </div>
+        <button type="submit" class="accent-button" ng-click="sendInvitationRequest(email)">
+          Request Invitation
+        </button>
+      </form>
+    </div>
   </div>
+  <div class="ui modal" id="successModal">
+    <i class="close icon"></i>
+    <div class="header">
+      <h1>Request Received</h1>
+    </div>
+    <div class="align-box-center content">
+      <h3>Our Team will respond with the provided email.</h3>
+      <button class="accent-button" ng-click="hideSuccessModal()">
+          Close Dialog
+      </button>
+    </div>
+    
+  </div>
+  <div class="ui modal" id="errorModal">
+      <i class="close icon"></i>
+      <div class="header">
+        <h1>Request Failed</h1>
+      </div>
+      <div class="align-box-center content">
+        <h3>{{invitationError}}</h3>
+      </div>
+      <button ng-click="hideSuccessModal()">
+        Close Dialog
+      </button>
+    </div>
 </div>

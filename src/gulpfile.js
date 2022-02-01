@@ -23,7 +23,7 @@ var connect = require("gulp-connect");
 var argv = require('yargs').argv;
 
 var fileObject = {};
-var devPort = 5000;
+var devPort = 5002;
 var distPort = 5001;
 var distPath = "../angapp";
 

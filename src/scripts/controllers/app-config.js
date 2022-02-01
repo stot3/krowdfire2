@@ -31,6 +31,10 @@ app.config(function($routeProvider, $locationProvider, RestangularProvider, $htt
             templateUrl: 'views/templates/login-register.html',
             title: 'Login'
         })
+        .when('/login/:campaign_id/:campaign_name', { // Login page
+            templateUrl: 'views/templates/login-register.html',
+            title: 'Login'
+        })
         .when('/getstarted/:campaign_id?', { // Campaign editing page
             templateUrl: 'views/templates/getstarted.html',
             controller: 'CreateCampaignCtrl',
@@ -48,11 +52,12 @@ app.config(function($routeProvider, $locationProvider, RestangularProvider, $htt
             title: 'Explore',
             reloadOnSearch: false // Ensure updating explore page filter params doesn't cause reload
         })
-        // .when('/campaign/:campaign_id/:campaign_name?', { // Detailed campaign view
-        // 	templateUrl: 'views/templates/campaign.html',
-        // 	controller: 'CampaignCtrl',
-        // 	reloadOnSearch: false
-        // })
+        /* .when('/campaign/:campaign_id/:campaign_name?', { // Detailed campaign view
+         	templateUrl: 'views/templates/campaign.html',
+        	controller: 'CampaignCtrl',
+            title: "campaign_view",
+         	reloadOnSearch: false
+         })*/
         .when('/campaign-setup/:campaign_id', { // Campaign edit (creation continued)
             templateUrl: 'views/templates/campaign-setup.html',
             controller: 'CreateCampaignCtrl',
@@ -178,6 +183,17 @@ app.config(function($routeProvider, $locationProvider, RestangularProvider, $htt
             controller: 'StartCtrl',
             title: 'Start Your Project'
         })
+        /* creator invite*/
+        .when('/ignite-creator/:campaign_id', {
+            templateUrl: 'views/templates/ignite-your-fire.html',
+            controller: 'CreatorInviteCtrl',
+            title: "Ignite Your Fire"
+        })
+        /* how-it-works */
+        .when('/about-krowdfire', { 
+            templateUrl: 'views/templates/about-krowdfire.html',
+            title: 'About Krowdfire'
+        })
         /* campaign preview */
         .when('/campaign-preview/:campaign_id', {
             templateUrl: 'views/templates/campaign-preview.html',
@@ -230,6 +246,11 @@ app.config(function($routeProvider, $locationProvider, RestangularProvider, $htt
             controller: 'EmbedViewsCtrl',
             title: 'Card View',
         })
+        .when('/success-and-insurance-policy', {
+            templateUrl: 'views/templates/success-and-insurance-policy.html',
+            controller: 'InsurancePolicyController',
+            title: "Campaign Success and Insurance Policy"
+        })
         .when('/testings', {
             templateUrl: 'views/templates/api.html',
             controller: 'ApiCtrl',
@@ -260,6 +281,12 @@ app.config(function($routeProvider, $locationProvider, RestangularProvider, $htt
         })
         .when('/!1', {
             redirectTo: '/',
+        })
+        //To the donate page
+        .when('/donate', {
+            templateUrl: 'views/templates/donate.html',
+            controller: "DonateCtrl",
+            title: "Give To KrowdFire"
         })
         .otherwise({
             resolve: {

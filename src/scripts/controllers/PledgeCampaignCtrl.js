@@ -17,7 +17,8 @@ app.controller('PledgeCampaignCtrl', function(
   $sce,
   $timeout,
   PHONE_TYPE,
-  SOCIAL_SHARING_OPTIONS
+  SOCIAL_SHARING_OPTIONS,
+  DonateService
 ) {
 
   var msg;
@@ -1855,6 +1856,7 @@ app.controller('PledgeCampaignCtrl', function(
       }, {
         inline: true,
         onSuccess: function() {
+
           $scope.valcheck = $scope.valcheck && true;
         },
         onFailure: function() {
@@ -2576,6 +2578,7 @@ app.controller('PledgeCampaignCtrl', function(
     // wait until all the above requests return promises and got resolved
     $q.all(promises).then(function(resolved) {
       // loop through the results and find value
+      
       angular.forEach(resolved, function(value) {
         if (value.cards) {
           $scope.selectedCardID = value.cards[0].stripe_account_card_id;
@@ -2732,6 +2735,7 @@ app.controller('PledgeCampaignCtrl', function(
             // $scope.cardExpiryElement.clear();
             // $scope.cardCvcElement.clear();
           }
+          UserService.setPaidStatus($scope.user.email)
           // display a thank you note
           $('.pledge-thank-you')
             .modal({

@@ -1,4 +1,21 @@
 app.controller('StartCtrl', function ($location, CampaignSettingsService, $scope, $rootScope, CreateCampaignService, Restangular, UserService, StripeService, CurrencyService, PortalSettingsService, $translatePartialLoader, $translate) {
+  //We have to check and see if the user paid first
+  if (!UserService.isLoggedIn()) {
+    $location.path('/');
+}
+UserService.getPaidGuard().then(
+    function(data){
+        if(data != true){
+            $location.path('/');
+        }
+    }
+)
+.catch(
+    function(err){
+        console.error(err)
+        $location.path('/');
+    }
+)
 
   // initiate the campaign
   $scope.campaign = {};

@@ -1,0 +1,67 @@
+<section class="ignite-your-fire place-center ">
+    <img style="object-fit: cover; height:100%; grid-area: 1/1/2/2;" src="https://krowd.atlas.thrinacia.com/api/static/images/portal/ed/3d/26/B8D22B60-45D3-11EC-9F75-00C79B719BCB-image-a27d0982111b2cee5d4da0be45ba35c4bd29c7f4b037055cfe768505d49e637d.png" data-resource_content_type_id="3" data-path_external="portal/ed/3d/26/B8D22B60-45D3-11EC-9F75-00C79B719BCB-image-a27d0982111b2cee5d4da0be45ba35c4bd29c7f4b037055cfe768505d49e637d.png" data-resource_content_type="image" data-name="Screen Shot 2021-10-18 at 8.09.18 PM.png" data-file_type_id="4" data-created="2021-11-14 21:20:18.877811-08" data-id="58" data-category_id="null" data-mime_type="image/png" data-region_id="1" data-file_type="PNG Image" data-extension="png" data-modified="2021-11-14 21:20:18.877811-08" data-disabled="0" data-category_name="null" data-resource_type="file" data-region_resource_id="58" data-file_id="71" data-description="PNG Image File" style="width: 300%;" class="fr-fic fr-dib">
+    <div class="grid-row close-gaps-2" style="grid-area: 1/1/2/2;z-index: 2;">
+        <div class="ui blue progress" style="width:100%;" id="invitedParticipants" data-value="0" data-total="6">
+            <div class="bar">
+                <div class="progress"></div>
+            </div>
+            <div class="label" style="color:#FFFFFF;">Invited Participants</div>
+        </div>
+        <form name="creator-invite" class="grid-row close-gaps-2 form-surface" ng-submit="sendEmails(emails)">
+            <div class="grid-column align-start justify-between">
+                <h3 style="margin-right: 0.5rem;">Ignite Your Fire</h3>
+                <i class="close icon align-left"></i>
+            </div>
+            <ol>
+                <li>
+                    <div class="ui input">
+                        <input type="text" name="email_1" ng-model="emails.email1" placeholder="Email Address">
+                        <input type="text" name="name_1" ng-model="emails.name1" placeholder="Invitee's Name">
+                    </div>
+                </li>
+                <li>
+                    <div class="ui input">
+                        <input type="text" name="email_2" ng-model="emails.email2" placeholder="Email Address">
+                        <input type="text" name="name_2" ng-model="emails.name2" placeholder="Invitee's Name">
+
+                    </div>
+                </li>
+                <li>
+                    <div class="ui input">
+                        <input type="text" name="email_3" ng-model="emails.email3" placeholder="Email Address">
+                        <input type="text" name="name_3" ng-model="emails.name3" placeholder="Invitee's Name">
+                    </div>
+                </li>
+                <li>
+                    <div class="ui input">
+                        <input type="text" name="email_4" ng-model="emails.email4" placeholder="Email Address">
+                        <input type="text" name="name_4" ng-model="emails.name4" placeholder="Invitee's Name">
+                    </div>
+                </li>
+                <li>
+                    <div class="ui input">
+                        <input type="text" name="email_5" ng-model="emails.email5" placeholder="Email Address">
+                        <input type="text" name="name_5" ng-model="emails.name5" placeholder="Invitee's Name">
+                    </div>
+                </li>
+                <li>
+                    <div class="ui input">
+                        <input type="text" name="email_6" ng-model="emails.email6" placeholder="Email Address">
+                        <input type="text" name="name_6" ng-model="emails.name6" placeholder="Invitee's Name">
+                    </div>
+                </li>
+            </ol>
+
+            <button style="margin-top:1rem" class="accent-button" type="submit">&nbsp;Follow </button>
+        </form>
+    </div>
+</section>
+<div class="ui modal" id="invitationSuccess">
+    <div class="grid-row gap-2 place-center">
+        <h1>Success</h1>
+        <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="150px" viewBox="0 0 24 24" width="150px" fill="#67A3D9"><g><rect fill="none" height="24" width="24" x="0"/><path d="M12,19c0-3.87,3.13-7,7-7c1.08,0,2.09,0.25,3,0.68V6c0-1.1-0.9-2-2-2H4C2.9,4,2,4.9,2,6v12c0,1.1,0.9,2,2,2h8.08 C12.03,19.67,12,19.34,12,19z M4,6l8,5l8-5v2l-8,5L4,8V6z M17.34,22l-3.54-3.54l1.41-1.41l2.12,2.12l4.24-4.24L23,16.34L17.34,22z"/></g></svg>
+        <span>You have successfully ignited your campaign! Support other campaigns or invite some other ones. </span>
+        <button class="close accent-button">Invite Others to Participate</button>
+        <button class="accent-button" href="/explore">Explore Other Campaigns</button>
+    </div>
+ </div>

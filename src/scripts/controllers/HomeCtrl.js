@@ -1,4 +1,4 @@
-app.controller('HomeCtrl', function ($timeout, $scope, $route, $rootScope, $location, CampaignSettingsService, $translatePartialLoader, $translate, CreateCampaignService, Restangular, RESOURCE_REGIONS, PortalSettingsService, RequestCacheService, TimeStatusService, $sce, VideoLinkService, UserService, $q, RestFullResponse) {
+app.controller('HomeCtrl', function ($timeout, $scope, $route, $rootScope, $location, CampaignSettingsService, $translatePartialLoader, $translate, CreateCampaignService, Restangular, RESOURCE_REGIONS, InvitationService, PortalSettingsService, RequestCacheService, TimeStatusService, $sce, VideoLinkService, UserService, $q, RestFullResponse) {
   var nativeLookup;
   //Thrinacia home page
   $scope.RESOURCE_REGIONS = RESOURCE_REGIONS;
@@ -65,7 +65,47 @@ app.controller('HomeCtrl', function ($timeout, $scope, $route, $rootScope, $loca
   var arr_count = 0;
   var categoryId = [];
   var newar = [];
+  //This is to launch our modal from our homescreen
 
+  $scope.openInvitationPopUp = function(){
+    $('#requestModal.ui.modal').modal('show');
+  };
+
+  $scope.hideInvitationPopUp = function(){
+    $('#requestModal.ui.modal').modal('hide')
+  };
+  $scope.hideSuccessModal = function(){
+    $('#successModal.ui.modal').modal('hide')
+  }
+  $scope.hideErrorModal = function(){
+    $('#errorModal.ui.modal').modal('hide')
+  }
+  var openInvitationRequestSuccessModal = function(){
+
+    $('#successModal.ui.modal').modal('show')
+  };
+  var openInvitationRequestErrorModal = function(){
+    $('#errorModal.ui.modal').modal('show')
+  }
+  var setInvitationError = function(invitationError){
+    this.invitationError = invitationError
+    this.openInvitationRequestErrorModal()
+  }
+  
+  /*$scope.sendInvitationRequest = function(email){
+    InvitationService.requestInvitation(email).then(
+      function(){
+        openInvitationRequestSuccessModal()
+      }
+    ).catch(
+      function(invError){
+        console.log(invError)
+        setInvitationError(invError)
+      }
+    )
+  };*/
+  $scope.email = "";
+  $scope.invitationError = "";
   PortalSettingsService.getSettingsObj().then(function (success) {
 
     $scope.home_page_text = success.public_setting.site_home_page_text;
@@ -289,6 +329,7 @@ app.controller('HomeCtrl', function ($timeout, $scope, $route, $rootScope, $loca
       checkLoader();
     },
     function (failure) {
+      console.error(failure)
       $msg = {
         'header': failure.data.message,
       }

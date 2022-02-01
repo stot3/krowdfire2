@@ -1038,7 +1038,7 @@ app.controller('CampaignPreviewCtrl', function($timeout, $interval, $location, $
         $scope.confirmNotice = true;
         $scope.loadingText = false;
         if ($scope.isLastStep) {
-          window.location.href = "/" + $scope.cpath;
+          window.location.href = "/ignite-creator" + $scope.cpath;
         }
 
         // $scope.errorNotice = "ERROR MESSAGE";

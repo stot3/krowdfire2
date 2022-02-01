@@ -3,7 +3,8 @@ app.service('UserService', function($location, $http, $browser, APIRegister, ipC
     email: '',
     first_name: '',
     last_name: '',
-    auth_token: ''
+    auth_token: '',
+    subscribed: false
   }
 
   User.updateUserData = function(data) {
@@ -11,6 +12,67 @@ app.service('UserService', function($location, $http, $browser, APIRegister, ipC
     copyObjectProperties(data, User);
     ipCookie('current.user', User, { expires: 1440, expirationUnit: 'minutes', path: '/' }); // Update the cookie data or new User data will be overwritten
   }
+
+ User.getPaidStatus = function(email){
+    return $http.post('https://us-central1-sistrunk-software.cloudfunctions.net/getProfile', {email: email}, {headers: {"Content-Type": "application/json"}})
+    .catch(
+        function(err){ 
+            console.error(err)
+        }
+    )
+}
+User.setInvitationInformation = function(email, campaign_id, campaign_name){
+  return $http.post('https://us-central1-sistrunk-software.cloudfunctions.net/saveInvitation', {email: email, campaign_id: campaign_id, campaign_name: campaign_name}, {headers: {"Content-Type": "application/json"}})
+  .catch(
+    function(err){ 
+        console.error(err)
+    }
+  )
+}
+User.getPaidGuard = function(){
+  return $http.post('https://us-central1-sistrunk-software.cloudfunctions.net/getProfile', {email: User.email}, {headers: {"Content-Type": "application/json"}})
+    .then(
+      function(hasPaid){ 
+        if(hasPaid.data.info.paid === true){
+          return true
+        }
+        else{
+          return false
+        }
+      }
+    )
+    .catch(
+        function(err){ 
+            console.error(err)
+        }
+    )
+}
+  User.setPaidStatus= function(email){
+    return $http.post('https://us-central1-sistrunk-software.cloudfunctions.net/userPaid', {email: email}, {headers: {"Content-Type": "application/json"}}).catch(
+        function(err){ 
+            console.error(err)
+        }
+    )
+}
+
+User.getMatchingCampaign = function(campaign_name, campaign_id){
+  return $http.post('https://us-central1-sistrunk-software.cloudfunctions.net/getProfile', {email: User.email}, {headers: {"Content-Type": "application/json"}})
+    .then(
+      function(hasPaid){ 
+        if(hasPaid.data.info.inviterInformation.campaign_name == campaign_name && hasPaid.data.info.inviterInformation.campaign_id == campaign_id){
+          return true
+        }
+        else{
+          return false
+        }
+      }
+    )
+    .catch(
+        function(err){ 
+            return err
+        }
+    )
+}
 
   function copyObjectProperties(srcObj, destObj) {
     for (var key in srcObj) {
@@ -43,7 +105,26 @@ app.service('UserService', function($location, $http, $browser, APIRegister, ipC
     var url = redirectService.getUrl();
     if (redirect == false) {
       if (url && url != '/login' && url.split("/")[1] != 'register' && url.split('/')[1] != 'authenticate') {
-        $location.path(url);
+        User.getPaidStatus(data.email).then(
+          function(status){
+            const paid = status.data.info.paid
+            if(paid === true)
+            {
+          
+              $location.url("/start");
+            }
+            else{
+              const campaign_id = status.data.info.inviterInformation.campaign_id;
+              const campaign_name = status.data.info.inviterInformation.campaign_name;
+              $location.url(`/campaign/${campaign_id}/${campaign_name}`)
+            }
+          }
+        ).catch( 
+          function(err){
+            console.error(err)
+            $location.path('/login')
+          }
+        )
       } else {
         $location.path('/');
       }
@@ -87,5 +168,20 @@ app.service('UserService', function($location, $http, $browser, APIRegister, ipC
     }
 
   }
+  User.showInvitationModal = function(){
+    const payModal = $('#payModal.ui.modal').modal({
+      closeable: true,
+      allowMultiple:false,
+      blurring: true,
+      detachable:false,
+      dimmerSettings:{
+        closeable:true
+      }
+    }).modal('show'); 
+  }
+  User.hideInvitationModal = function(){
+    return $('#payModal.ui.modal').modal('hide')
+  }
   return User;
-});
+})
+;

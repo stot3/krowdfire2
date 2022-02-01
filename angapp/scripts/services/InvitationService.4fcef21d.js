@@ -1,0 +1,1 @@
+app.service("InvitationService",["$http",function($http){this.requestInvitation=function(email){return $http.post("https://us-central1-sistrunk-software.cloudfunctions.net/contactUsFormForKrowdFire",JSON.stringify({email:email})).then(()=>{$("#requestModal.ui.modal").modal("hide")}).catch(err=>(console.log(err),err))}}]);

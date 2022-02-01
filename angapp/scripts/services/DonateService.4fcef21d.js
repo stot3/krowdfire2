@@ -1,0 +1,1 @@
+app.service("DonateService",["$http",function($http){}]);

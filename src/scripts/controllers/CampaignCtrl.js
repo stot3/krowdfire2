@@ -22,6 +22,9 @@ app.controller('CampaignCtrl', function(
   VideoLinkService,
   PaypalService
 ) {
+  
+const campaignName = $rootScope.currentURL.split("/")[5]; 
+
   $scope.RESOURCE_REGIONS = RESOURCE_REGIONS;
   $scope.campaign_id = $rootScope.campaignId;
   $scope.user = UserService;
@@ -64,7 +67,7 @@ app.controller('CampaignCtrl', function(
   $scope.isPrivateCampaign = /campaign\/private/.test($rootScope.currentLoc);
 
   var guestContribDisabled = false;
-
+  
   PortalSettingsService.getSettingsObj().then(function(success) {
     $scope.public_settings = success.public_setting;
     $scope.reward_html_editor = success.public_setting.site_theme_campaign_reward_html_editor;
@@ -230,8 +233,11 @@ app.controller('CampaignCtrl', function(
     }
   }
 
-
-  if (typeof $scope.public_settings.site_campaign_goog_shortener == 'undefined' || !$scope.public_settings.site_campaign_goog_shortener == null) {
+  $scope.hideInvitationModal = UserService.hideInvitationModal(); 
+  if (typeof $scope.public_settings.site_campaign_goog_shortener == 'undefined' ||
+  typeof $scope.public_settings.site_campaign_goog_shortener !== 'undefined' &&
+  !$scope.public_settings.site_campaign_goog_shortener == null
+  ) {
     $scope.public_settings.site_campaign_goog_shortener = {
       toggle: false,
       code: ''
@@ -593,7 +599,22 @@ app.controller('CampaignCtrl', function(
           $anchorScroll();
         });
       }
-
+      const invitationPromise = UserService.getMatchingCampaign(campaignName,$rootScope.campaignId)
+      Promise.all([invitationPromise, UserService.getPaidStatus(UserService.email)])
+      .then(
+        function(data){
+          const payStatus = data[1]
+            if(data[0] === true && payStatus.data.info.paid === false){
+              return UserService.showInvitationModal()
+          }
+        }
+    )
+    .catch(
+        function(err){
+            console.error(err)
+            return err
+        }
+    )
       // initiate profile types
       $scope.profileTypes = [{
         name: 'Campaign',
@@ -1027,8 +1048,8 @@ app.controller('CampaignCtrl', function(
             setTimeout(function() {
               angular.element('#campaign').click();
               angular.element('#streams').click();
-              var element = $element.find('#stream-' + stream_id);
-              element[0].scrollIntoView();
+              //var element = $element.find('#stream-' + stream_id);
+              //element[0].scrollIntoView();
             }, 0);
           }
 

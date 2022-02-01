@@ -1,0 +1,157 @@
+<div class="ui basic segment">
+    <div class="ui grid stackable two column">
+        <div class="column">
+            <img src="https://krowd.atlas.thrinacia.com/api/static/images/portal/ba/06/e5/93713C76-3C55-11EC-A8A6-3FEC9B719BCB-image-748cd6529b0cd97edd96f7ce7f03aed4ed202a4603dfd5f2dfb6a28350334ee8.png"
+                data-id="17" data-description="PNG Image File" data-resource_type="file" data-resource_content_type="image" data-file_type="PNG Image"
+                data-mime_type="image/png" data-file_type_id="4" data-category_id="null" data-path_external="portal/ba/06/e5/93713C76-3C55-11EC-A8A6-3FEC9B719BCB-image-748cd6529b0cd97edd96f7ce7f03aed4ed202a4603dfd5f2dfb6a28350334ee8.png"
+                data-extension="png" data-file_id="30" data-region_resource_id="17" data-disabled="0" data-category_name="null"
+                data-created="2021-11-02 20:24:38.549331-07" data-resource_content_type_id="3" data-region_id="1" data-name="Hands - Show.png"
+                data-modified="2021-11-02 20:24:38.549331-07" style="width: 50%;" class="fr-fic fr-dib">
+        </div>
+        <div class="column">
+
+            <h1>Be A Fundraiser</h1>
+
+            <p>To become a Fundraiser for your own KROWDFIRE Campaign, you must first donate to the Campaign you were invited
+                to support. This donation makes you eligible to do that.</p>
+            <strong>Your Donation is $75. That amount has been entered here:</strong>
+            <div class="column">
+                <strong style="font-size:4rem;color:#67A3D9;font-weight:bold;">$75</strong>
+            </div>
+            <!--<div style="margin:0px 0px 14px 0px;">
+                <button class="ui button" ng-click="capture()">
+                    <div style="display:grid; grid-auto-flow:column; place-items: center;">
+
+                        <h3 style="
+    margin: 0px 1rem 0px 0px;">Donate with</h3>
+                        <img src="https://krowd.atlas.thrinacia.com/api/static/images/portal/bf/4a/2d/01B96C78-3DD5-11EC-A328-3FEC9B719BCB-image-a971572912d00ba8cee9a320541285afaa8a4e4496c37f4d2a5e4b78bd3f1fe0.png"
+                            data-resource_type="file" data-id="19" data-description="PNG Image File" data-mime_type="image/png"
+                            data-category_id="null" data-file_type_id="4" data-resource_content_type="image" data-file_type="PNG Image"
+                            data-path_external="portal/bf/4a/2d/01B96C78-3DD5-11EC-A328-3FEC9B719BCB-image-a971572912d00ba8cee9a320541285afaa8a4e4496c37f4d2a5e4b78bd3f1fe0.png"
+                            data-region_resource_id="19" data-extension="png" data-file_id="32" data-disabled="0" data-category_name="null"
+                            data-created="2021-11-04 18:09:21.192003-07" data-region_id="1" data-resource_content_type_id="3"
+                            data-name="PP_Acceptance_Marks_for_LogoCenter_76x48.png" data-modified="2021-11-04 18:09:21.192003-07"
+                            class="fr-fic fr-dib">
+                    </div>
+                </button>
+            </div>-->
+            <div>
+                    <div ng-if="!toggle.newCard && !site_stripe_tokenization_settings.toggle" ng-init="initStripePayment()">
+                            <form class="ui form credit-card-form">
+                              <div class="field">
+                                <label translate> pledge_campaign_creditcard_card_number </label>
+                                <input name="card_number" type="text" placeholder="{{'pledge_campaign_creditcard_card_number'| translate}}" ng-model="creditCard.number" ng-change="checkCardType()" class="creditCardNumber">
+                              </div>
+        
+                              <div class="two fields">
+                                <div class="expdate-field-wrap field">
+                                  <input name="exp_date" type="hidden">
+                                  <div class="two fields">
+                                    <div class="exp-date-field field">
+                                      <label translate>pledge_campaign_payment_expiration_month</label>
+                                      <input name="card_exp_month" type="text" class="exp-date" placeholder="{{'pledge_campaign_creditcard_month_placeholder'| translate }}" ng-model="creditCard.exp_month" numbers-only maxlength="2">
+                                    </div>
+                                    <div class="exp-date-field field">
+                                      <label translate>pledge_campaign_payment_expiration_year</label>
+                                      <input name="card_exp_year" type="text" class="exp-date" placeholder="{{'pledge_campaign_creditcard_year_placeholder'| translate }}" ng-model="creditCard.exp_year" numbers-only maxlength="2">
+                                    </div>
+        
+                                  </div>
+                                </div>
+        
+                                <div class="cvc-field-wrap four wide field">
+                                  <label> {{'pledge_campaign_creditcard_cvc'|translate}}
+                                    <i class="info circle icon" data-content="{{'pledge_campaign_creditcard_cvc_note'| translate }}"
+                                      sui-popup></i>
+                                  </label>
+                                  <input name="card_cvc" placeholder="{{'pledge_campaign_creditcard_cvc_placeholder'| translate }}" type="text" class="cvv-code cardCVC" ng-model="creditCard.cvc" numbers-only>
+                                </div>
+                              </div>
+                              <button class="ui button" ng-click="capture()">
+                                    <div class="ui container">
+                                        <div style="display:grid; grid-auto-flow:column; place-items: center;">
+                                            <div style="
+                    margin: 0px 1rem 0px 0px;">
+                
+                                                <h3>Donate with</h3>
+                                            </div>
+                                            <div class="six wide column">
+                                                <img src="https://krowd.atlas.thrinacia.com/api/static/images/portal/98/c4/13/355A2120-3DD6-11EC-82C9-3EEC9B719BCB-image-abd641c7e9d289c42e04d937588837eebd80b4770b313a008a9d482235e309fd.png"
+                                                    data-path_external="portal/98/c4/13/355A2120-3DD6-11EC-82C9-3EEC9B719BCB-image-abd641c7e9d289c42e04d937588837eebd80b4770b313a008a9d482235e309fd.png"
+                                                    data-description="PNG Image File" data-id="20" data-resource_type="file" data-resource_content_type="image"
+                                                    data-file_type="PNG Image" data-file_type_id="4" data-category_id="null" data-mime_type="image/png"
+                                                    data-resource_content_type_id="3" data-region_id="1" data-modified="2021-11-04 18:17:56.947055-07"
+                                                    data-name="credit-card-solid 1.png" data-file_id="33" data-extension="png" data-region_resource_id="20"
+                                                    data-created="2021-11-04 18:17:56.947055-07" data-disabled="0" data-category_name="null"
+                                                    class="fr-fic fr-dib" style="width: 72px;">
+                                            </div>
+                
+                                            
+                                        </div>
+                                    </div>
+                                </button>
+                            </form>
+                          </div>
+                          <!-- credit card info section -->
+                          <div ng-if="!toggle.newCard && site_stripe_tokenization_settings.toggle" ng-init="initStripeElement()">
+                            <form id="payment-form" class="ui form credit-card-form stripe-elements-form">
+        
+                              <div class="two fields">
+                                <div class="field">
+                                  <label translate> pledge_campaign_creditcard_card_number </label>
+                                  <div id="card-number-element-wrap">
+                                    <i class="pf pf-credit-card" id="brand-icon"></i>
+                                    <div id="card-number-element"></div>
+                                  </div>
+                                </div>
+                                <div class="field"></div>
+                              </div>
+        
+                              <div class="two fields">
+                                <div class="three wide field">
+                                  <label translate> pledge_campaign_creditcard_card_expiry_date </label>
+                                  <div id="card-expiry-element"></div>
+                                </div>
+                                <div class="four wide field">
+                                  <label id="cvc"> {{'pledge_campaign_creditcard_cvc'| translate}}
+                                    <i class="info circle icon" data-content="{{'pledge_campaign_creditcard_cvc_note'| translate }}"
+                                      sui-popup></i>
+                                  </label>
+                                  <div id="card-cvc-element"></div>
+                                </div>
+                              </div>
+        
+                              <div id="card-errors" role="alert"></div>
+        
+                              <!-- <button>Submit Payment</button> -->
+                              <button class="ui button" ng-click="submit()">
+                                    <div class="ui container">
+                                        <div style="display:grid; grid-auto-flow:column; place-items: center;">
+                                            <div style="
+                    margin: 0px 1rem 0px 0px;">
+                
+                                                <h3>Donate with</h3>
+                                            </div>
+                                            <div class="six wide column">
+                                                <img src="https://krowd.atlas.thrinacia.com/api/static/images/portal/98/c4/13/355A2120-3DD6-11EC-82C9-3EEC9B719BCB-image-abd641c7e9d289c42e04d937588837eebd80b4770b313a008a9d482235e309fd.png"
+                                                    data-path_external="portal/98/c4/13/355A2120-3DD6-11EC-82C9-3EEC9B719BCB-image-abd641c7e9d289c42e04d937588837eebd80b4770b313a008a9d482235e309fd.png"
+                                                    data-description="PNG Image File" data-id="20" data-resource_type="file" data-resource_content_type="image"
+                                                    data-file_type="PNG Image" data-file_type_id="4" data-category_id="null" data-mime_type="image/png"
+                                                    data-resource_content_type_id="3" data-region_id="1" data-modified="2021-11-04 18:17:56.947055-07"
+                                                    data-name="credit-card-solid 1.png" data-file_id="33" data-extension="png" data-region_resource_id="20"
+                                                    data-created="2021-11-04 18:17:56.947055-07" data-disabled="0" data-category_name="null"
+                                                    class="fr-fic fr-dib" >
+                                            </div>
+                
+                                            
+                                        </div>
+                                    </div>
+                                </button> 
+                            </form>
+                          </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
