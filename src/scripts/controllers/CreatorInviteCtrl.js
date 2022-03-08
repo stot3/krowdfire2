@@ -1,7 +1,9 @@
 app.controller('CreatorInviteCtrl', function($scope, UserService, CreatorInviteService, CreateCampaignService, $routeParams){
-    $scope.emails = { }; 
+    $scope.emails = { };
     $scope.campaign_id = $routeParams.campaign_id;
     $scope.loading = 'not started';  
+    $scope.inviteesTables = [
+    ]
     $('#invitedParticipants').progress(
         {
             total: 6,
@@ -10,19 +12,35 @@ app.controller('CreatorInviteCtrl', function($scope, UserService, CreatorInviteS
                 success: '{total} invited particpants'
             }
         }
-        )
+    )
     CreateCampaignService.load($routeParams.campaign_id)
     .then(
         data => {
-            $scope.campaign_name = data.name
-            
+                $scope.campaign_name = data.name
         }
     )  
     .catch( 
         (error) => { console.error(error)}
     )
+    UserService.getProfile().then(
+        (profile) => {
+            const inviterInformation = profile.data.info.invitedFundraisers;
+           if(inviterInformation !== undefined){
+               for(let email in inviterInformation){
+                   $scope.inviteesTables.push({email: email})
+               }
+           }
+        }
+    )
+    .catch( 
+        (err) => { 
+            console.error(err)
+        }
+    )
     $scope.sendEmails = function(emails){
         let sendObj = emails; 
+        sendObj[`campaign_id`] = $routeParams.campaign_id
+        sendObj[`campaign_name`] = $scope.campaign_name
         $scope.loading = 'started'; 
 
         if($scope.loading === 'started')
@@ -30,30 +48,22 @@ app.controller('CreatorInviteCtrl', function($scope, UserService, CreatorInviteS
             return UserService.getPaidStatus(UserService.email)
             .then(
                 (response) => { 
-                    for(let person = 1; person <7; person++){
-                        if(emails[`email${person}`] !== undefined && emails[`name${person}`] !== undefined){
-                            if(emails[`email${person}`] !== "" && emails[`name${person}`] !== ""){
-                                
-                                if(person % 2 === 0){
-                                    sendObj[`campaign_id${person}`] = $routeParams.campaign_id
-                                    sendObj[`campaign_name${person}`] = $scope.campaign_name
-                                }
-                                else{
-                                    sendObj[`campaign_id${person}`] = response.data.info.inviterInformation.campaign_id
-                                    sendObj[`campaign_name${person}`] = response.data.info.inviterInformation.campaign_name
-                                }
-                            }
-                        }
-                    }
                     sendObj.uid = response.data.info.id
-                    CreatorInviteService.sendEmails(sendObj)
+                    return CreatorInviteService.sendEmails(sendObj)
                     .then( (invitationResponse) => {
-                    if(invitationResponse.data.info.code === "email/successfulSend"){
-                        $('#invitedParticipants').progress('increment', parseInt(invitationResponse.data.info.successfulSends))
-                    }
-                    $scope.loading = 'finished'
+                        if(invitationResponse.data.info.code === "email/successfulSend"){
+                            $('#invitedParticipants').progress('increment', parseInt(invitationResponse.data.info.successfulSends))
+                        }
+                        $scope.loading = 'finished';
+                        $scope.inviteesTables = []
+                        const invited = invitationResponse.data.info.invitedFundraisers;
+                        for(let email in invited ){
+                            $scope.inviteesTables.push({email: email})
+                        }
+
                     })
                     .catch( (err) => {
+                        console.error(err)
                     }) 
                     
                 }
@@ -67,5 +77,12 @@ app.controller('CreatorInviteCtrl', function($scope, UserService, CreatorInviteS
         
         //CreatorInviteService.sendEmails($scope.emails)
     }
+    $scope.removeInviter = function(idx){
+    }
+    $scope.resendInvitation = function(){}
+    $scope.removeFromInviteesTable = function(idx){
+        $scope.loading = 'loading';
+        //$scope.inviteesTables.splice(idx, 1)
+    }    
     
 })

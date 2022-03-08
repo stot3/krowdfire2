@@ -55,6 +55,7 @@
               <h5 class="ui header"> {{'footer_page_needhelp' | translate}} </h5>
               <div class="ui link list">
                 <a class="item" ng-repeat="link in rightMenu" ng-href="{{findPageAndLink(link).path}}" my-target="{{link.id}}" target="_self">{{findPageAndLink(link).name}}</a>
+                <a class="item" href="mailto:support@krowdfire.com">Contact</a>
               </div>
             </div>
             <div class="footer-col footer-third column" ng-if="left_category.length" ng-show="hasCategory">

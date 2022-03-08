@@ -6,13 +6,11 @@
       <div class="navlogo left menu">
 
         <a href="{{site_logo_link}}" id="logo" ng-cloak>
-          <img ng-src="{{logoUrl}}" width="320" height="80">
+          <img src="images/Krowdfire-logo.gif" width="640" height="187">
         </a>
       </div>
       <a href class="item mobile-menu right" ng-click="showMobileSidebar()"><i class="large content icon"></i></a>
     </div>
-
-    <!-- COLLAPSE -->
     <div class="nav-collapse">
       <div class="nav-main-left left menu menu-items">
           <a ng-if="!checkForSubMenu(page)" ng-class="{active: $location.path() == '/' + page.path}" ng-repeat-start="page in headerMenu" class="item" ng-href="{{page.path}}" my-target="{{page.id}}" ng-bind="page.name" target="_self">
@@ -24,12 +22,31 @@
             <!-- {{page.name}} -->
             <i class="dropdown icon"></i>
             <div class="child-menu-dropdown menu">
-              <a ng-repeat="link in page.subpages" ng-href="{{link.path}}" class="item" ng-class="{active: $location.path() == '/' + link.path}" my-target="{{link.id}}" ng-bind="link.name" target="_self"></a>
+              <a ng-repeat="link in page.subpages" ng-href="{{link.path}}"  class="navigation-item w-nav-link" ng-class="{active: $location.path() == '/' + link.path}" my-target="{{link.id}}" ng-bind="link.name" target="_self">
+              </a>
             </div>
           </div>
 
       </div>
+    </div>
+    <!-- COLLAPSE -->
+    <div class="nav-collapse">
+      <!--<div class="nav-main-left left menu menu-items">
+          <a ng-if="!checkForSubMenu(page)" ng-class="{active: $location.path() == '/' + page.path}" ng-repeat-start="page in headerMenu" class="item" ng-href="{{page.path}}" my-target="{{page.id}}" ng-bind="page.name" target="_self">
+            <i class="dropdown icon" ng-if="checkForSubMenu(page)"></i>
+          </a>
 
+          <div ng-repeat-end ng-if="checkForSubMenu(page)" class="ui pointing dropdown link item menu-dropdown">
+            <a ng-href="{{page.path}}"  ng-class="{active: $location.path() == '/' + page.path}" my-target="{{page.id}}" ng-bind="page.name" target="_self"></a>
+            <!-- {{page.name}} 
+            <i class="dropdown icon"></i>
+            <div class="child-menu-dropdown menu">
+              <a ng-repeat="link in page.subpages" ng-href="{{link.path}}" class="item" ng-class="{active: $location.path() == '/' + link.path}" my-target="{{link.id}}" ng-bind="link.name" target="_self"></a>
+            </div>
+          </div>
+
+      </div>-->
+      
       <!-- MENU RIGHT -->
       <div class="nav-main-right right menu">
 

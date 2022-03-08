@@ -2504,7 +2504,7 @@
       </div>
     </div>
 
-    <div class="ui three column stackable grid contribution">
+    <div class="ui four column stackable grid contribution">
       <div class="left-col six wide column">
         <div class="contribution-header" translate>pledge_campaign_reward_desc</div>
         <div class="data" ng-if="!pledgeReplace">
@@ -2558,19 +2558,18 @@
           </div>
         </div>
       </div>
-      <div class="left-col four wide column" ng-if="tip.dollar_amount && tip.dollar_amount != 0">
+      <div class="left-col seven wide column" ng-if="tip.dollar_amount && tip.dollar_amount != 0">
         <div class="contribution-header" translate>pledge_campaign_amount_contributed</div>
         <div class="data">
           <div ng-if="!pledgeReplace" class="data-text" ng-bind-html="totalAmount | formatCurrency:campaign.currencies[0].code_iso4217_alpha:public_setting.site_campaign_decimal_option"></div>
         </div>
       </div>
-      <div class="left-col three wide column" ng-if="tip.dollar_amount && tip.dollar_amount != 0">
-        <div class="contribution-header" translate>pledge_campaign_tip_amount</div>
+      <!--<div class="left-col three wide column" ng-if="tip.dollar_amount && tip.dollar_amount != 0">
+        <div class="contribution-header"> </div>
         <div class="data">
           <div class="data-text" ng-bind-html="tip.dollar_amount | formatCurrency:tipInfo.code_iso4217_alpha:public_setting.site_campaign_decimal_option"></div>
-        </div>
       </div>
-    </div>
+    </div>-->
 
     <div id="sm-share-wrap" class="ui basic segment" ng-if="is_sharing_available">
       <h2 class="share-label ui header" translate>pledge_campaign_no_share_your_ contribution</h2>

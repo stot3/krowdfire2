@@ -25,7 +25,7 @@
         <i class="delete icon" ng-click="removeNote('funding_goal')" ng-if="note.funding_goal"></i>
       </div>
       <div class="notes" ng-class="{'has-note ui basic segment' : note.funding_goal}" ng-click="addNotes('campaign_review_funding_goal_note_title', 'funding_goal')">
-        <div class="item r-mode" ng-if="!hideRaiseMode">
+        <!--<div class="item r-mode" ng-if="!hideRaiseMode">
           <strong class="c-raise-mode">
             <div class="ui label black" translate>campaign_pledge_raise_mode</div>
             <span ng-if="campaign.raise_mode_id == 1" translate>campaign_pledge_all_nothing </span>
@@ -59,7 +59,7 @@
               <span ng-hide="!dateInPast(campaign.ends,campaign.seconds_remaining)"> {{duration}} {{dtype | translate}}</span>
             </div>
           </div>
-        </div>
+        </div>-->
         <div class="item item-progress" ng-if="!progressHide">
           <div class="bar-progress ui indicating progress" data-percent="{{temp = campaign.funded_amount / (campaign.funding_goal || 1) * 100; temp >= 100 ? 100 : temp < 1 ? 0 : temp}}">
             <div class="bar"></div>
@@ -233,6 +233,14 @@
       <span ng-bind-html=" minamount| formatCurrency:campaign.currencies[0].code_iso4217_alpha:public_setting.site_campaign_decimal_option"></span>
     </div>
   </a>
+  <!--<a class="fluid ui massive button contribute-button desktop-only" ng-class="{disabled : dateInPast(campaign.ends,campaign.seconds_remaining) || campaign.entry_status_id != 2 || thresholdallowedbtn || campaign.campaign_started=='f'}" ng-if="!(dateInPast(campaign.ends,campaign.seconds_remaining) || campaign.entry_status_id != 2 || thresholdallowedbtn || campaign.campaign_started=='f') || !hideThisContribButton"
+    ng-click="dateInPast(campaign.ends,campaign.seconds_remaining) || campaign.entry_status_id != 2 || thresholdallowedbtn|| miniContributeReward()" id="pledgelink" ng-show=" !campaign.pledges || public_settings.site_theme_campaign_min_button_show ||campaign.entry_status_id == 10 || campaign.entry_status_id == 1">
+    <span ng-show="!customText.toggle">Be a Fundraiser</span>
+    <span ng-show="customText.toggle">{{contribution}}</span>
+    <div class="ui label" style="background: none;" ng-show="!public_settings.site_theme_campaign_hide_min_contribute_message">{{'campaign_pledge_campaign_contribute_minimum'| translate}}
+      <span ng-bind-html=" minamount| formatCurrency:campaign.currencies[0].code_iso4217_alpha:public_setting.site_campaign_decimal_option"></span>
+    </div>
+  </a>-->
 
   <div id="sm-share-wrap" class="desktop-only ui basic segment center aligned" ng-if="is_sharing_available && moveSharingButtonsToSidebar">
     <div class="specific-share-buttons" ng-if="displayOnlyFbTwitterEmailShare">

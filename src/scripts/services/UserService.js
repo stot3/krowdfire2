@@ -182,6 +182,10 @@ User.getMatchingCampaign = function(campaign_name, campaign_id){
   User.hideInvitationModal = function(){
     return $('#payModal.ui.modal').modal('hide')
   }
+  User.getProfile = function(email){
+   return $http.post("https://us-central1-sistrunk-software.cloudfunctions.net/getProfile", {email: User.email}) 
+  }
+  
   return User;
 })
 ;

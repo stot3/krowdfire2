@@ -165,7 +165,10 @@ STRIPE CONNECT BUTTON
   .main-menu.ui.inverted.menu .nav-wrap {
     width: 100%;
     margin: 0 auto;
-    padding: 0 1rem; }
+    padding: 30px 50px;
+    display:flex;
+    justify-content: space-between;
+  }
     .main-menu.ui.inverted.menu .nav-wrap .nav-header {
       margin: 0 -1rem; }
     .main-menu.ui.inverted.menu .nav-wrap .item {
@@ -5344,7 +5347,11 @@ body.loading .loader-modal {
   /*Navigation*/
   .nav-collapse .item.collapsible .menu.transition {
     left: 0 !important;
-    border-radius: 0; }
+    border-radius: 0;
+    width: 100%;
+    display:flex;
+    justify-content: end;
+   }
 
   #custom-content .ui.pointing.secondary.menu a.item {
     display: block;

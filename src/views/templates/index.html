@@ -1,493 +1,609 @@
 <div id="front-page" ng-cloak>
-  <div class="custom-html-block" ng-if="home_page_text.main_banner.display=='html'">
-    <div html-render html="home_page_text.main_banner.html" class="fr-view"></div>
-  </div>
-  <div id="topbanner-main" ng-show="home_page_text.main_banner.display=='text'">
-    <div class="banner-media-content">
-
-      <div id="video-wrapper" ng-show="site_theme_banner_is_image==false" ng-class="{'video-video-tag':site_theme_banner_video_link_type=='custom', 'video-iframe-tag' :site_theme_banner_video_link_type=='vimeo' || site_theme_banner_video_link_type=='youtube'}">
-        <div class="video-banner">
-          <youtube-video ng-if="site_theme_banner_video_link_type=='youtube'" video-id="{{site_theme_banner_video_link}}" id="ytplayer" autoplay="true" mute="{{site_theme_banner_video_mute}}" modest-branding="true"></youtube-video>
-          <iframe id="vimeoplayer" allow="autoplay;" ng-if="site_theme_banner_video_link_type=='vimeo'" ng-src="{{site_theme_banner_video_link}}" frameborder="0"></iframe>
-          <video ng-if="site_theme_banner_video_link_type=='custom'" ng-attr-muted="{{site_theme_banner_video_mute ? '' : undefined}}" id="custom-video-player" loop autoplay>
-            <source ng-src="{{site_theme_banner_video_link}}" type="video/mp4"></source>
-          </video>
-        </div>
+  <main class="grid-row text-center container">
+    <section class="grid-row center p-30">
+      <div>
+        <img src="images/Krowdfire-logo.gif" width="647px" height="auto">
+        <h1>
+          <strong>Our Algorithm Advantage Optimizes Your Crowdfunding Success</strong>
+        </h1>
       </div>
-      <div ng-class="{'hide-desktop': site_theme_banner_is_image==false}" id="bgimage-wrapper" class="masthead column" ng-controller="mastheadCtrl"></div>
-    </div>
+    </section>
+    <div>
+      <!--<section class="p-30 grid-row center">
+        <div class="w-50 p-20 grid-row center">
+          <h3>
+            <strong>Who Can Benefit From Having A KROWDFIRE Campaign?</strong>
+          </h3>
+          <div class="grid-column justify-center gap-2">
+            <div class="grid-row justify-center">
+              <svg class="rad-circle" xmlns="http://www.w3.org/2000/svg" width="118.78px" viewBox="0 0 112.5 112.5" height="auto" version="1.0"><defs><clipPath id="a"><path d="M 0 0 L 112.003906 0 L 112.003906 112.003906 L 0 112.003906 Z M 0 0"/></clipPath><clipPath id="b"><path d="M 11.25 13.386719 L 101.25 13.386719 L 101.25 98.886719 L 11.25 98.886719 Z M 11.25 13.386719"/></clipPath></defs><g clip-path="url(#a)"><path fill="#FFF" d="M 0 0 L 112.5 0 L 112.5 472.5 L 0 472.5 Z M 0 0"/><path fill="#FFF" d="M 0 0 L 112.5 0 L 112.5 112.5 L 0 112.5 Z M 0 0"/><path d="M 0 0 L 112.5 0 L 112.5 112.5 L 0 112.5 Z M 0 0"/></g><path fill="#66C6E4" d="M 24.679688 45.652344 C 24.679688 45.988281 24.617188 46.308594 24.488281 46.621094 C 24.359375 46.929688 24.175781 47.203125 23.9375 47.4375 C 23.699219 47.675781 23.425781 47.859375 23.117188 47.984375 C 22.808594 48.113281 22.484375 48.179688 22.148438 48.179688 C 21.8125 48.179688 21.488281 48.113281 21.179688 47.984375 C 20.871094 47.859375 20.597656 47.675781 20.359375 47.4375 C 20.121094 47.203125 19.9375 46.929688 19.808594 46.621094 C 19.679688 46.308594 19.617188 45.988281 19.617188 45.652344 C 19.617188 45.316406 19.679688 44.996094 19.808594 44.6875 C 19.9375 44.378906 20.121094 44.105469 20.359375 43.867188 C 20.597656 43.632812 20.871094 43.449219 21.179688 43.320312 C 21.488281 43.191406 21.8125 43.128906 22.148438 43.128906 C 22.484375 43.128906 22.808594 43.191406 23.117188 43.320312 C 23.425781 43.449219 23.699219 43.632812 23.9375 43.867188 C 24.175781 44.105469 24.359375 44.378906 24.488281 44.6875 C 24.617188 44.996094 24.679688 45.316406 24.679688 45.652344 Z M 24.679688 45.652344"/><path fill="#66C6E4" d="M 22.359375 49.511719 L 21.867188 49.511719 C 19.898438 49.511719 18.210938 50.492188 17.226562 51.964844 C 18.351562 53.578125 20.179688 54.628906 22.359375 54.628906 C 24.328125 54.628906 26.15625 53.648438 27.28125 52.246094 C 26.226562 50.632812 24.46875 49.511719 22.359375 49.511719 Z M 22.359375 49.511719"/><path fill="#66C6E4" d="M 92.953125 45.652344 C 92.953125 45.988281 92.890625 46.308594 92.761719 46.621094 C 92.632812 46.929688 92.449219 47.203125 92.210938 47.4375 C 91.972656 47.675781 91.699219 47.859375 91.390625 47.984375 C 91.082031 48.113281 90.757812 48.179688 90.421875 48.179688 C 90.085938 48.179688 89.761719 48.113281 89.453125 47.984375 C 89.144531 47.859375 88.871094 47.675781 88.632812 47.4375 C 88.394531 47.203125 88.210938 46.929688 88.082031 46.621094 C 87.953125 46.308594 87.890625 45.988281 87.890625 45.652344 C 87.890625 45.316406 87.953125 44.996094 88.082031 44.6875 C 88.210938 44.378906 88.394531 44.105469 88.632812 43.867188 C 88.871094 43.632812 89.144531 43.449219 89.453125 43.320312 C 89.761719 43.191406 90.085938 43.128906 90.421875 43.128906 C 90.757812 43.128906 91.082031 43.191406 91.390625 43.320312 C 91.699219 43.449219 91.972656 43.632812 92.210938 43.867188 C 92.449219 44.105469 92.632812 44.378906 92.761719 44.6875 C 92.890625 44.996094 92.953125 45.316406 92.953125 45.652344 Z M 92.953125 45.652344"/><path fill="#66C6E4" d="M 90.632812 49.511719 L 90.140625 49.511719 C 88.171875 49.511719 86.484375 50.492188 85.5 51.964844 C 86.625 53.578125 88.453125 54.628906 90.632812 54.628906 C 92.601562 54.628906 94.429688 53.648438 95.554688 52.246094 C 94.570312 50.632812 92.742188 49.511719 90.632812 49.511719 Z M 90.632812 49.511719"/><g clip-path="url(#b)"><path fill="#66C6E4" d="M 90.421875 37.9375 C 84.445312 37.9375 79.59375 42.777344 79.59375 48.738281 C 79.59375 49.441406 79.664062 50.070312 79.804688 50.773438 L 66.09375 55.191406 C 64.617188 51.753906 61.453125 49.300781 57.65625 48.738281 L 57.65625 34.921875 C 62.789062 34.082031 66.796875 29.59375 66.796875 24.191406 C 66.796875 18.230469 61.945312 13.394531 55.96875 13.394531 C 49.992188 13.394531 45.140625 18.230469 45.140625 24.191406 C 45.140625 29.734375 49.429688 34.363281 54.914062 34.921875 L 54.914062 48.597656 C 50.976562 49.019531 47.671875 51.542969 46.125 55.050781 L 32.835938 50.773438 C 32.976562 50.140625 33.046875 49.441406 33.046875 48.738281 C 32.976562 42.777344 28.125 37.9375 22.078125 37.9375 C 16.101562 37.9375 11.25 42.777344 11.25 48.808594 C 11.25 54.769531 16.101562 59.609375 22.078125 59.609375 C 26.367188 59.609375 30.09375 57.085938 31.851562 53.507812 L 45.28125 57.855469 C 45.210938 58.347656 45.140625 58.90625 45.140625 59.46875 C 45.140625 62.695312 46.546875 65.640625 48.867188 67.605469 L 40.78125 78.683594 C 39.234375 77.84375 37.40625 77.28125 35.507812 77.28125 C 29.53125 77.28125 24.679688 82.121094 24.679688 88.082031 C 24.679688 94.042969 29.53125 98.882812 35.507812 98.882812 C 41.484375 98.882812 46.335938 94.042969 46.335938 88.082031 C 46.335938 85.066406 45.070312 82.261719 43.03125 80.296875 L 51.257812 69.078125 C 52.734375 69.777344 54.351562 70.199219 56.039062 70.199219 C 57.867188 70.199219 59.625 69.707031 61.101562 68.9375 L 69.398438 80.296875 C 67.359375 82.261719 66.09375 84.996094 66.09375 88.011719 C 66.09375 93.972656 70.945312 98.8125 76.921875 98.8125 C 82.898438 98.8125 87.75 93.972656 87.75 88.011719 C 87.75 82.050781 82.898438 77.210938 76.921875 77.210938 C 75.023438 77.210938 73.195312 77.703125 71.578125 78.613281 L 63.421875 67.324219 C 65.53125 65.359375 66.9375 62.554688 66.9375 59.398438 C 66.9375 58.90625 66.867188 58.417969 66.796875 57.925781 L 80.648438 53.4375 C 82.40625 57.085938 86.132812 59.609375 90.421875 59.609375 C 96.398438 59.609375 101.25 54.769531 101.25 48.808594 C 101.25 42.777344 96.398438 37.9375 90.421875 37.9375 Z M 22.078125 56.804688 C 17.648438 56.804688 14.0625 53.15625 14.0625 48.808594 C 14.0625 44.460938 17.648438 40.742188 22.078125 40.742188 C 26.507812 40.742188 30.09375 44.320312 30.09375 48.738281 C 30.09375 53.15625 26.507812 56.804688 22.078125 56.804688 Z M 43.523438 88.152344 C 43.523438 92.570312 39.9375 96.148438 35.507812 96.148438 C 31.078125 96.148438 27.492188 92.570312 27.492188 88.152344 C 27.492188 83.734375 31.078125 80.15625 35.507812 80.15625 C 39.867188 80.085938 43.523438 83.734375 43.523438 88.152344 Z M 85.007812 88.152344 C 85.007812 92.570312 81.421875 96.148438 76.992188 96.148438 C 72.5625 96.148438 68.976562 92.570312 68.976562 88.152344 C 68.976562 83.734375 72.5625 80.15625 76.992188 80.15625 C 81.421875 80.085938 85.007812 83.734375 85.007812 88.152344 Z M 47.953125 24.191406 C 47.953125 19.773438 51.539062 16.199219 55.96875 16.199219 C 60.398438 16.199219 63.984375 19.773438 63.984375 24.191406 C 63.984375 28.613281 60.398438 32.1875 55.96875 32.1875 C 51.539062 32.257812 47.953125 28.613281 47.953125 24.191406 Z M 56.039062 67.464844 C 51.609375 67.464844 48.023438 63.886719 48.023438 59.46875 C 48.023438 55.050781 51.609375 51.472656 56.039062 51.472656 C 60.46875 51.472656 64.054688 55.050781 64.054688 59.46875 C 64.054688 63.886719 60.46875 67.464844 56.039062 67.464844 Z M 90.421875 56.804688 C 85.992188 56.804688 82.40625 53.226562 82.40625 48.808594 C 82.40625 44.390625 85.992188 40.742188 90.421875 40.742188 C 94.851562 40.742188 98.4375 44.320312 98.4375 48.738281 C 98.4375 53.15625 94.851562 56.804688 90.421875 56.804688 Z M 90.421875 56.804688"/></g><path fill="#66C6E4" d="M 58.5 21.109375 C 58.5 21.441406 58.4375 21.765625 58.308594 22.074219 C 58.179688 22.382812 57.996094 22.65625 57.757812 22.894531 C 57.519531 23.128906 57.246094 23.3125 56.9375 23.441406 C 56.628906 23.566406 56.304688 23.632812 55.96875 23.632812 C 55.632812 23.632812 55.308594 23.566406 55 23.441406 C 54.691406 23.3125 54.417969 23.128906 54.179688 22.894531 C 53.941406 22.65625 53.757812 22.382812 53.628906 22.074219 C 53.5 21.765625 53.4375 21.441406 53.4375 21.109375 C 53.4375 20.773438 53.5 20.449219 53.628906 20.140625 C 53.757812 19.832031 53.941406 19.558594 54.179688 19.324219 C 54.417969 19.085938 54.691406 18.902344 55 18.773438 C 55.308594 18.648438 55.632812 18.582031 55.96875 18.582031 C 56.304688 18.582031 56.628906 18.648438 56.9375 18.773438 C 57.246094 18.902344 57.519531 19.085938 57.757812 19.324219 C 57.996094 19.558594 58.179688 19.832031 58.308594 20.140625 C 58.4375 20.449219 58.5 20.773438 58.5 21.109375 Z M 58.5 21.109375"/><path fill="#66C6E4" d="M 61.03125 27.699219 C 60.117188 26.085938 58.289062 24.964844 56.179688 24.964844 L 55.6875 24.964844 C 53.71875 24.964844 52.03125 25.945312 51.046875 27.417969 C 52.171875 29.03125 54 30.085938 56.179688 30.085938 C 58.148438 30.085938 59.90625 29.171875 61.03125 27.699219 Z M 61.03125 27.699219"/><path fill="#66C6E4" d="M 79.523438 84.996094 C 79.523438 85.332031 79.460938 85.652344 79.332031 85.960938 C 79.203125 86.269531 79.019531 86.542969 78.78125 86.78125 C 78.542969 87.019531 78.269531 87.199219 77.960938 87.328125 C 77.652344 87.457031 77.328125 87.519531 76.992188 87.519531 C 76.65625 87.519531 76.332031 87.457031 76.023438 87.328125 C 75.714844 87.199219 75.441406 87.019531 75.203125 86.78125 C 74.964844 86.542969 74.78125 86.269531 74.652344 85.960938 C 74.523438 85.652344 74.460938 85.332031 74.460938 84.996094 C 74.460938 84.660156 74.523438 84.339844 74.652344 84.03125 C 74.78125 83.71875 74.964844 83.449219 75.203125 83.210938 C 75.441406 82.972656 75.714844 82.792969 76.023438 82.664062 C 76.332031 82.535156 76.65625 82.472656 76.992188 82.472656 C 77.328125 82.472656 77.652344 82.535156 77.960938 82.664062 C 78.269531 82.792969 78.542969 82.972656 78.78125 83.210938 C 79.019531 83.449219 79.203125 83.71875 79.332031 84.03125 C 79.460938 84.339844 79.523438 84.660156 79.523438 84.996094 Z M 79.523438 84.996094"/><path fill="#66C6E4" d="M 77.132812 93.972656 C 79.101562 93.972656 80.929688 92.992188 82.054688 91.589844 C 81.070312 89.976562 79.3125 88.851562 77.203125 88.851562 L 76.710938 88.851562 C 74.742188 88.851562 73.054688 89.835938 72.070312 91.308594 C 73.195312 92.921875 75.023438 93.972656 77.132812 93.972656 Z M 77.132812 93.972656"/><path fill="#66C6E4" d="M 38.039062 84.996094 C 38.039062 85.332031 37.976562 85.652344 37.847656 85.960938 C 37.71875 86.269531 37.535156 86.542969 37.296875 86.78125 C 37.058594 87.019531 36.785156 87.199219 36.476562 87.328125 C 36.167969 87.457031 35.84375 87.519531 35.507812 87.519531 C 35.171875 87.519531 34.847656 87.457031 34.539062 87.328125 C 34.230469 87.199219 33.957031 87.019531 33.71875 86.78125 C 33.480469 86.542969 33.296875 86.269531 33.167969 85.960938 C 33.039062 85.652344 32.976562 85.332031 32.976562 84.996094 C 32.976562 84.660156 33.039062 84.339844 33.167969 84.03125 C 33.296875 83.71875 33.480469 83.449219 33.71875 83.210938 C 33.957031 82.972656 34.230469 82.792969 34.539062 82.664062 C 34.847656 82.535156 35.171875 82.472656 35.507812 82.472656 C 35.84375 82.472656 36.167969 82.535156 36.476562 82.664062 C 36.785156 82.792969 37.058594 82.972656 37.296875 83.210938 C 37.535156 83.449219 37.71875 83.71875 37.847656 84.03125 C 37.976562 84.339844 38.039062 84.660156 38.039062 84.996094 Z M 38.039062 84.996094"/><path fill="#66C6E4" d="M 35.71875 88.851562 L 35.226562 88.851562 C 33.257812 88.851562 31.570312 89.835938 30.585938 91.308594 C 31.710938 92.921875 33.539062 93.972656 35.71875 93.972656 C 37.6875 93.972656 39.515625 92.992188 40.640625 91.589844 C 39.585938 89.976562 37.828125 88.851562 35.71875 88.851562 Z M 35.71875 88.851562"/><path fill="#66C6E4" d="M 58.570312 56.3125 C 58.570312 56.648438 58.507812 56.96875 58.378906 57.277344 C 58.25 57.589844 58.066406 57.859375 57.828125 58.097656 C 57.589844 58.335938 57.316406 58.515625 57.007812 58.644531 C 56.699219 58.773438 56.375 58.835938 56.039062 58.835938 C 55.703125 58.835938 55.378906 58.773438 55.070312 58.644531 C 54.761719 58.515625 54.488281 58.335938 54.25 58.097656 C 54.011719 57.859375 53.828125 57.589844 53.699219 57.277344 C 53.570312 56.96875 53.507812 56.648438 53.507812 56.3125 C 53.507812 55.976562 53.570312 55.65625 53.699219 55.347656 C 53.828125 55.039062 54.011719 54.765625 54.25 54.527344 C 54.488281 54.289062 54.761719 54.109375 55.070312 53.980469 C 55.378906 53.851562 55.703125 53.789062 56.039062 53.789062 C 56.375 53.789062 56.699219 53.851562 57.007812 53.980469 C 57.316406 54.109375 57.589844 54.289062 57.828125 54.527344 C 58.066406 54.765625 58.25 55.039062 58.378906 55.347656 C 58.507812 55.65625 58.570312 55.976562 58.570312 56.3125 Z M 58.570312 56.3125"/><path fill="#66C6E4" d="M 56.320312 60.171875 L 55.828125 60.171875 C 53.859375 60.171875 52.171875 61.152344 51.1875 62.625 C 52.3125 64.238281 54.140625 65.289062 56.320312 65.289062 C 58.289062 65.289062 60.117188 64.308594 61.242188 62.90625 C 60.1875 61.292969 58.359375 60.171875 56.320312 60.171875 Z M 56.320312 60.171875"/></svg>
+              <caption>A Small Business</caption>
+            </div>
+            <div class="grid-row justify-center">
+              <svg class="rad-circle" xmlns="http://www.w3.org/2000/svg" width="118.78px" viewBox="0 0 112.5 112.5" height="118.78px" version="1.0"><defs><clipPath id="a"><path d="M 0 0 L 112.003906 0 L 112.003906 112.003906 L 0 112.003906 Z M 0 0"/></clipPath><clipPath id="b"><path d="M 51.878906 83.304688 L 61.179688 83.304688 L 61.179688 92.648438 L 51.878906 92.648438 Z M 51.878906 83.304688"/></clipPath><clipPath id="c"><path d="M 80 53 L 90.582031 53 L 90.582031 57 L 80 57 Z M 80 53"/></clipPath><clipPath id="d"><path d="M 21.582031 53 L 32 53 L 32 57 L 21.582031 57 Z M 21.582031 53"/></clipPath><clipPath id="e"><path d="M 54 19.898438 L 59 19.898438 L 59 30 L 54 30 Z M 54 19.898438"/></clipPath></defs><g clip-path="url(#a)"><path fill="#FFF" d="M 0 0 L 112.5 0 L 112.5 112.5 L 0 112.5 Z M 0 0"/><path d="M 0 0 L 112.5 0 L 112.5 112.5 L 0 112.5 Z M 0 0"/></g><path fill="#ECC10C" d="M 73.988281 54.59375 C 73.988281 44.695312 66.160156 36.671875 56.507812 36.671875 C 46.855469 36.671875 39.03125 44.695312 39.03125 54.59375 C 39.03125 60.121094 41.46875 65.0625 45.300781 68.347656 C 46.238281 70.25 47.175781 72.554688 47.449219 74.613281 C 48.046875 79.117188 56.507812 78.617188 56.507812 78.617188 C 56.507812 78.617188 64.96875 79.117188 65.566406 74.613281 C 65.839844 72.554688 66.777344 70.25 67.714844 68.347656 C 71.546875 65.0625 73.988281 60.121094 73.988281 54.59375"/><path fill="#F29211" d="M 62.828125 65.0625 C 61.496094 65.0625 60.417969 63.980469 60.417969 62.640625 C 60.417969 61.300781 61.496094 60.214844 62.828125 60.214844 C 64.160156 60.214844 65.238281 61.300781 65.238281 62.640625 C 65.238281 63.980469 64.160156 65.0625 62.828125 65.0625 Z M 60.160156 65.09375 L 60.234375 64.316406 C 60.425781 64.613281 60.664062 64.875 60.945312 65.09375 Z M 52.074219 65.09375 C 52.339844 64.882812 52.574219 64.636719 52.761719 64.351562 L 52.835938 65.09375 Z M 47.777344 62.640625 C 47.777344 61.300781 48.855469 60.214844 50.1875 60.214844 C 51.519531 60.214844 52.597656 61.300781 52.597656 62.640625 C 52.597656 63.980469 51.519531 65.0625 50.1875 65.0625 C 48.855469 65.0625 47.777344 63.980469 47.777344 62.640625 Z M 62.828125 59.539062 C 61.125 59.539062 59.742188 60.925781 59.742188 62.640625 C 59.742188 62.65625 59.746094 62.675781 59.746094 62.691406 L 59.507812 65.09375 L 53.484375 65.09375 L 53.261719 62.851562 C 53.269531 62.78125 53.273438 62.710938 53.273438 62.640625 C 53.273438 60.925781 51.890625 59.539062 50.1875 59.539062 C 48.484375 59.539062 47.101562 60.925781 47.101562 62.640625 C 47.101562 64.355469 48.484375 65.742188 50.1875 65.742188 L 52.898438 65.742188 L 54.175781 78.632812 L 54.820312 78.566406 L 53.550781 65.742188 L 59.445312 65.742188 L 58.171875 78.566406 L 58.816406 78.632812 L 60.09375 65.742188 L 62.332031 65.742188 L 62.332031 65.699219 C 62.492188 65.726562 62.660156 65.742188 62.828125 65.742188 C 64.535156 65.742188 65.914062 64.355469 65.914062 62.640625 C 65.914062 60.925781 64.535156 59.539062 62.828125 59.539062"/><g clip-path="url(#b)"><path fill="#32435B" d="M 61.136719 87.949219 C 61.160156 90.519531 59.105469 92.625 56.550781 92.648438 C 53.992188 92.667969 51.902344 90.601562 51.878906 88.03125 C 51.855469 85.460938 53.910156 83.359375 56.46875 83.335938 C 59.023438 83.3125 61.117188 85.378906 61.136719 87.949219"/></g><path fill="#BDC2C5" d="M 63.773438 77.429688 L 63.773438 87.691406 C 63.773438 88.960938 62.75 89.992188 61.484375 89.992188 L 51.53125 89.992188 C 50.269531 89.992188 49.242188 88.960938 49.242188 87.691406 L 49.242188 77.429688 L 63.773438 77.429688"/><path fill="#EFF4F4" d="M 61.964844 85.636719 L 51.054688 85.636719 C 49.667969 85.636719 48.542969 86.152344 48.542969 86.789062 C 48.542969 87.40625 49.597656 87.90625 50.925781 87.9375 C 50.964844 87.9375 51.007812 87.941406 51.054688 87.941406 L 61.964844 87.941406 C 62.007812 87.941406 62.050781 87.9375 62.09375 87.9375 C 63.421875 87.90625 64.472656 87.40625 64.472656 86.789062 C 64.472656 86.152344 63.351562 85.636719 61.964844 85.636719"/><path fill="#EFF4F4" d="M 61.964844 82.496094 L 51.054688 82.496094 C 49.667969 82.496094 48.542969 83.011719 48.542969 83.648438 C 48.542969 84.265625 49.597656 84.769531 50.925781 84.800781 C 50.964844 84.800781 51.007812 84.800781 51.054688 84.800781 L 61.964844 84.800781 C 62.007812 84.800781 62.050781 84.800781 62.09375 84.800781 C 63.421875 84.769531 64.472656 84.265625 64.472656 83.648438 C 64.472656 83.011719 63.351562 82.496094 61.964844 82.496094"/><path fill="#EFF4F4" d="M 61.964844 79.359375 L 51.054688 79.359375 C 49.667969 79.359375 48.542969 79.875 48.542969 80.507812 C 48.542969 81.125 49.597656 81.628906 50.925781 81.660156 C 50.964844 81.660156 51.007812 81.660156 51.054688 81.660156 L 61.964844 81.660156 C 62.007812 81.660156 62.050781 81.660156 62.09375 81.660156 C 63.421875 81.628906 64.472656 81.125 64.472656 80.507812 C 64.472656 79.875 63.351562 79.359375 61.964844 79.359375"/><path fill="#ECC10C" d="M 80.859375 76.855469 L 76.582031 72.367188 C 76.039062 71.796875 75.085938 71.828125 74.449219 72.441406 C 73.835938 73.035156 73.746094 73.953125 74.234375 74.527344 C 74.25 74.542969 74.265625 74.5625 74.285156 74.582031 L 78.558594 79.070312 C 78.574219 79.085938 78.59375 79.105469 78.609375 79.121094 C 79.160156 79.636719 80.074219 79.585938 80.691406 78.992188 C 81.328125 78.382812 81.402344 77.421875 80.859375 76.855469"/><g clip-path="url(#c)"><path fill="#ECC10C" d="M 88.910156 53.0625 L 82.128906 53.304688 C 81.269531 53.332031 80.597656 54.074219 80.628906 54.957031 C 80.65625 55.8125 81.335938 56.492188 82.164062 56.503906 C 82.1875 56.503906 82.214844 56.503906 82.242188 56.503906 L 89.023438 56.261719 C 89.050781 56.261719 89.078125 56.257812 89.105469 56.257812 C 89.925781 56.1875 90.558594 55.460938 90.527344 54.605469 C 90.496094 53.722656 89.773438 53.03125 88.910156 53.0625"/></g><path fill="#ECC10C" d="M 78.402344 30.28125 L 73.394531 34.882812 C 72.761719 35.46875 72.726562 36.472656 73.320312 37.125 C 73.894531 37.757812 74.847656 37.828125 75.484375 37.300781 C 75.503906 37.28125 75.523438 37.265625 75.546875 37.246094 L 80.550781 32.644531 C 80.574219 32.625 80.59375 32.605469 80.609375 32.589844 C 81.191406 31.996094 81.203125 31.035156 80.628906 30.402344 C 80.035156 29.75 79.039062 29.695312 78.402344 30.28125"/><path fill="#ECC10C" d="M 31.304688 76.960938 L 35.578125 72.472656 C 36.121094 71.902344 37.078125 71.9375 37.710938 72.550781 C 38.328125 73.140625 38.417969 74.058594 37.929688 74.636719 C 37.910156 74.652344 37.894531 74.671875 37.878906 74.6875 L 33.605469 79.175781 C 33.585938 79.195312 33.570312 79.210938 33.554688 79.230469 C 33.003906 79.746094 32.085938 79.695312 31.472656 79.101562 C 30.835938 78.488281 30.761719 77.53125 31.304688 76.960938"/><g clip-path="url(#d)"><path fill="#ECC10C" d="M 23.25 53.167969 L 30.03125 53.410156 C 30.890625 53.441406 31.566406 54.183594 31.535156 55.066406 C 31.503906 55.921875 30.824219 56.597656 30 56.613281 C 29.972656 56.613281 29.945312 56.613281 29.917969 56.613281 L 23.136719 56.371094 C 23.109375 56.371094 23.082031 56.367188 23.058594 56.367188 C 22.234375 56.292969 21.605469 55.570312 21.632812 54.714844 C 21.664062 53.832031 22.390625 53.140625 23.25 53.167969"/></g><path fill="#ECC10C" d="M 33.757812 30.386719 L 38.765625 34.992188 C 39.402344 35.574219 39.4375 36.578125 38.84375 37.230469 C 38.269531 37.863281 37.316406 37.9375 36.675781 37.410156 C 36.65625 37.390625 36.636719 37.375 36.617188 37.355469 L 31.609375 32.75 C 31.589844 32.734375 31.570312 32.714844 31.550781 32.695312 C 30.972656 32.105469 30.957031 31.140625 31.53125 30.511719 C 32.125 29.859375 33.121094 29.800781 33.757812 30.386719"/><g clip-path="url(#e)"><path fill="#ECC10C" d="M 54.863281 21.507812 L 54.96875 28.332031 C 54.984375 29.195312 55.707031 29.886719 56.585938 29.875 C 57.4375 29.859375 58.125 29.191406 58.15625 28.359375 C 58.15625 28.335938 58.15625 28.308594 58.15625 28.28125 L 58.046875 21.457031 C 58.046875 21.429688 58.046875 21.402344 58.042969 21.375 C 57.988281 20.546875 57.28125 19.898438 56.429688 19.914062 C 55.550781 19.929688 54.847656 20.640625 54.863281 21.507812"/></g></svg>        
+              <caption>A Business Startup</caption>
+            </div>
+            <div class="grid-row justify-center">
+              <img class="rad-circle" src="images/heart.svg">
+              <caption>A Personal Project</caption>
+            </div>
+            <div class="grid-row justify-center">
+              <img class="rad-circle" src="images/charitable-cause.svg">
+              <caption>A Charitable Cause</caption>
+            </div>
+          </div>
+          <a href="campaign-examples" class="accent-button w-100">Click here for personal campaign examples</a>
+        </div>
+      
+        <blockquote>
+          <strong class="warn">“To change something, build a new model that makes the existing model obsolete” -R. Buckminster Fuller</strong>
 
-    <div class="banner-content">
-      <div class="banner-content-grid ui page grid" ng-style="blockAlignmentStyle">
-        <div class="column">
+        </blockquote>
+      </section>-->
+      <section id="cards-section" class="cards-section wf-section">
+        <h3 class="heading-11"><strong>Who Can Benefit From Having A KROWDFIRE Campaign?</strong></h3>
+        <div class="centered-container w-container">
+          <div class="cards-grid-container-2">
+            <div id="w-node-_910d1192-6924-67b3-8650-9f0822654499-878e1744">
+              <div class="cards-image-mask"><img src="images/13_1.svg" alt="" class="cards-image"></div>
+              <h5 class="heading-38">A Small Business</h5>
+            </div>
+            <div id="w-node-_910d1192-6924-67b3-8650-9f08226544a0-878e1744">
+              <div class="cards-image-mask"><img src="images/16_1.svg" alt="" class="cards-image"></div>
+              <h5 id="w-node-_910d1192-6924-67b3-8650-9f08226544a3-878e1744" class="heading-39">A Business Startup</h5>
+            </div>
+            <div id="w-node-_910d1192-6924-67b3-8650-9f08226544a7-878e1744">
+              <div class="cards-image-mask"><img src="images/15.svg" alt="" class="cards-image"></div>
+              <h5 id="w-node-_910d1192-6924-67b3-8650-9f08226544aa-878e1744" class="heading-40">A Personal Project</h5>
+            </div>
+            <div id="w-node-_9c3cae1d-dd00-da75-e71b-218181211c50-878e1744">
+              <div class="cards-image-mask"><img src="images/17.svg" alt="" class="cards-image"></div>
+              <h5 id="w-node-_9c3cae1d-dd00-da75-e71b-218181211c53-878e1744" class="heading-41">A Charitable Cause</h5>
+            </div>
+          </div>
+          <a href="/campaign-examples" class="accent-button">Click Here For Personal Campaign Examples</a>
+        </div>
+        <blockquote class="block-quote-2"><strong>“To change something, build a <em>new model</em> that makes the existing model obsolete”<br>-R. Buckminster Fuller</strong></blockquote>
+      </section>
+      <div class="custom-html-block" ng-if="home_page_text.main_banner.display=='html'">
+        <div html-render html="home_page_text.main_banner.html" class="fr-view"></div>
+      </div>
+      <div id="topbanner-main" ng-show="home_page_text.main_banner.display=='text'">
+        <div class="banner-media-content">
+          <h3 class="heading-12">
+            <strong>How To Raise Significantly More Donations For Your Campaign Using Our Powerful And Exclusive Algorithm Advantage.</strong>
 
-          <h1 class="header-title-one ui inverted huge header" ng-style="main_banner_font_color" ng-if="home_page_text.main_banner.header_one" ng-bind="home_page_text.main_banner.header_one"></h1>
-          <h2 class="header-title-two ui inverted header" ng-style="main_banner_font_color" ng-if="home_page_text.main_banner.header_two" ng-bind="home_page_text.main_banner.header_two"></h2>
-          <p class="header-description" ng-style="main_banner_font_color" ng-if="home_page_text.main_banner.paragraph" ng-bind="home_page_text.main_banner.paragraph"></p>
-
-          <div class="masthead-button-wrap" ng-controller="CampaignStatusCtrl">
-
-            <a href="{{home_page_text.main_banner.button_text_link}}" ng-if="home_page_text.main_banner.display_button && !hideStartCampaignPage">
-              <div class="ui large masthead-button right labeled icon button" ng-if="!(campaign.entry_id && (campaign.entry_status_id == 1 || campaign.entry_status_id == 3)) && !hideStartButton">
-                <span ng-bind="home_page_text.main_banner.button_text"></span> <i class="right long arrow icon"></i>
+            </h3>
+          <div id="video-wrapper" ng-show="site_theme_banner_is_image==false" ng-class="{'video-video-tag':site_theme_banner_video_link_type=='custom', 'video-iframe-tag' :site_theme_banner_video_link_type=='vimeo' || site_theme_banner_video_link_type=='youtube'}">
+            <div class="video-banner">
+              <youtube-video ng-if="site_theme_banner_video_link_type=='youtube'" video-id="{{site_theme_banner_video_link}}" id="ytplayer" mute="{{site_theme_banner_video_mute}}" modest-branding="true" controls="true"></youtube-video>
+              <iframe id="vimeoplayer" allow="autoplay;" ng-if="site_theme_banner_video_link_type=='vimeo'" ng-src="{{site_theme_banner_video_link}}" frameborder="0"></iframe>
+              <video ng-if="site_theme_banner_video_link_type=='custom'" ng-attr-muted="{{site_theme_banner_video_mute ? '' : undefined}}" id="custom-video-player" loop autoplay>
+                <source ng-src="{{site_theme_banner_video_link}}" type="video/mp4"></source>
+              </video>
+            </div>
+          </div>
+          <div ng-class="{'hide-desktop': site_theme_banner_is_image==false}" id="bgimage-wrapper" class="masthead column" ng-controller="mastheadCtrl"></div>
+        </div>
+        <!--<div class="banner-content">
+          <div class="banner-content-grid ui page grid" ng-style="blockAlignmentStyle">
+            <div class="column">
+    
+              <h1 class="header-title-one ui inverted huge header" ng-style="main_banner_font_color" ng-if="home_page_text.main_banner.header_one" ng-bind="home_page_text.main_banner.header_one"></h1>
+              <h2 class="header-title-two ui inverted header" ng-style="main_banner_font_color" ng-if="home_page_text.main_banner.header_two" ng-bind="home_page_text.main_banner.header_two"></h2>
+              <p class="header-description" ng-style="main_banner_font_color" ng-if="home_page_text.main_banner.paragraph" ng-bind="home_page_text.main_banner.paragraph"></p>
+    
+              <div class="masthead-button-wrap" ng-controller="CampaignStatusCtrl">
+    
+                <a href="{{home_page_text.main_banner.button_text_link}}" ng-if="home_page_text.main_banner.display_button && !hideStartCampaignPage">
+                  <div class="ui large masthead-button right labeled icon button" ng-if="!(campaign.entry_id && (campaign.entry_status_id == 1 || campaign.entry_status_id == 3)) && !hideStartButton">
+                    <span ng-bind="home_page_text.main_banner.button_text"></span> <i class="right long arrow icon"></i>
+                  </div>
+                </a>
+                <a ng-click="goToCampaignCreation()" ng-if="home_page_text.main_banner.display_button && hideStartCampaignPage">
+                  <div class="ui large masthead-button right labeled icon button" ng-if="!(campaign.entry_id && (campaign.entry_status_id == 1 || campaign.entry_status_id == 3)) && !hideStartButton">
+                    <span ng-bind="home_page_text.main_banner.button_text"></span> <i class="right long arrow icon"></i>
+                  </div>
+                </a>
+    
+                <a href="getstarted/{{campaign.entry_id}}" class="ui large masthhead-button right labeled teal icon button" ng-if="campaign.entry_id&& (campaign.entry_status_id == 1 || campaign.entry_status_id == 3)">
+                  <span translate="index_continue_project"></span> <i class="right long arrow icon"></i>
+                </a>
               </div>
-            </a>
-            <a ng-click="goToCampaignCreation()" ng-if="home_page_text.main_banner.display_button && hideStartCampaignPage">
-              <div class="ui large masthead-button right labeled icon button" ng-if="!(campaign.entry_id && (campaign.entry_status_id == 1 || campaign.entry_status_id == 3)) && !hideStartButton">
-                <span ng-bind="home_page_text.main_banner.button_text"></span> <i class="right long arrow icon"></i>
-              </div>
-            </a>
+            </div>
+          </div>
+        </div>-->
+      </div>
+      <div class="grid-row center p-20 .link">
+        <a id="video-transcript-link" href="video-transcript">
+          <strong>Click here for video transcript</strong>
+        </a>
+      </div>
 
-            <a href="getstarted/{{campaign.entry_id}}" class="ui large masthhead-button right labeled teal icon button" ng-if="campaign.entry_id&& (campaign.entry_status_id == 1 || campaign.entry_status_id == 3)">
-              <span translate="index_continue_project"></span> <i class="right long arrow icon"></i>
-            </a>
+      <div class="divider"></div>
+      <section id="cards-section" class="cards-section wf-section">
+        <div class="centered-container w-container">
+          <h3 class="heading-4"><strong>Here Is How KROWDFIRE Works In 4 Easy Steps  </strong></h3>
+          <div class="cards-grid-container-2">
+            <div id="w-node-_71e49f12-b07f-934f-eddd-f2f278ad5a6c-878e1744">
+              <h1 class="heading-18">#1</h1>
+              <div class="cards-image-mask"><img src="images/Donate.svg" alt="" class="cards-image"></div>
+              <h5 class="heading-19">Donate To A Campaign</h5>
+            </div>
+            <div id="w-node-_71e49f12-b07f-934f-eddd-f2f278ad5a71-878e1744">
+              <h1 class="heading-20">#2</h1>
+              <div class="cards-image-mask"><img src="images/Create-Campaign.svg" alt="" class="cards-image"></div>
+              <h5 id="w-node-_71e49f12-b07f-934f-eddd-f2f278ad5a74-878e1744" class="heading-21">Create Your Campaign</h5>
+            </div>
+            <div id="w-node-_71e49f12-b07f-934f-eddd-f2f278ad5a76-878e1744">
+              <h1 class="heading-23">#3</h1>
+              <div class="cards-image-mask"><img src="images/12.svg" alt="" class="cards-image"></div>
+              <h5 id="w-node-_71e49f12-b07f-934f-eddd-f2f278ad5a79-878e1744" class="heading-22">Build Your Network of Supporters</h5>
+            </div>
+            <div id="w-node-_71e49f12-b07f-934f-eddd-f2f278ad5a7b-878e1744">
+              <h1 class="heading-25">#4</h1>
+              <div class="cards-image-mask"><img src="images/2_1.svg" alt="" class="cards-image"></div>
+              <h5 class="heading-24">Accept Instant Donations</h5>
+            </div>
+          </div>
+          <div class="div-block-5">
+            <div class="text-block-5"><strong class="bold-text">If you are a Walk-In Visitor,</strong>
+              <a href="/how-krowdfire-works"><strong class="bold-text-2">Click Here </strong></a><strong>to learn how to become a Supporter or Fundraiser</strong>
+            </div>
           </div>
         </div>
+      </section>
+      <section id="call-to-action" class="call-to-action wf-section" style="margin: 20px 0px;">
+        <div class="centered-container w-container">
+          <h2 class="heading-17"><strong>***Important***</strong></h2>
+          <h2 class="heading-17"><strong>Learn The Details Of How KROWDFIRE Works</strong></h2>
+          <a href="/how-krowdfire-works" class="accent-button">Click here to learn more</a>
+        </div>
+      </section>
+      <div class="promo-wrap" ng-if="home_page_text.middle_header || hasCategory">
+        <div class="ui center aligned basic segment">
+          <h1 class="ui header" ng-style="middle_font_color">{{home_page_text.middle_header}}</h1>
+          <a ng-href="explore?category={{category.id}}" ng-repeat="category in categories | orderBy:'display_priority'" class="ui random-color item large label" ng-if="!category.parent_category_id" ng-show="hasCategory" ng-bind="category.name">
+          </a>
+        </div>
       </div>
-    </div>
-  </div>
-
-  <div class="promo-wrap" ng-if="home_page_text.middle_header || hasCategory">
-    <div class="ui center aligned basic segment">
-      <h1 class="ui header" ng-style="middle_font_color">{{home_page_text.middle_header}}</h1>
-      <a ng-href="explore?category={{category.id}}" ng-repeat="category in categories | orderBy:'display_priority'" class="ui random-color item large label" ng-if="!category.parent_category_id" ng-show="hasCategory" ng-bind="category.name">
-      </a>
-    </div>
-  </div>
-
-  <div class="campaign-list-wrap">
-    <div id="feat-campaign-wrap" class="front-campaign-list" ng-show="featuredcampaigns.length && campaign_display && (home_page_text.titles.top_show || home_page_text.titles.top_show==null)">
-      <div class="ui four column stackable page grid campaign-list-items">
-        <h2 class="campaign-section-title ui left aligned header">
-          <div>
-            <i class="star icon"></i>
-            <span ng-bind="home_page_text.titles.top_title"></span>
-          </div>
-        </h2>
-        <div class="campaign-thumb sixteen wide mobile eight wide tablet four wide computer column" ng-repeat="campaign in featuredcampaigns">
-          <a class="ui fluid card campaign-card" ng-href="{{campaign.uri_paths[0].path}}">
-            <div set-video-thumb-height class="image">
-              <div ng-show="campaign.featured" ng-if="!campaign.settings.featured_star_hide" class="feat-indicator ui right corner blue label">
+    
+      <div class="campaign-list-wrap">
+        <div id="feat-campaign-wrap" class="front-campaign-list" ng-show="featuredcampaigns.length && campaign_display && (home_page_text.titles.top_show || home_page_text.titles.top_show==null)">
+          <div class="ui four column stackable page grid campaign-list-items">
+            <h2 class="campaign-section-title ui left aligned header center">
+              <div>
                 <i class="star icon"></i>
+                <span ng-bind="home_page_text.titles.top_title"></span>
               </div>
-              <div campaign-place-holder class="video-container" ng-if="campaign.thumbnail_video_link && public_settings.site_campaign_allow_thumbnail_video" ng-class="{'video-video-tag':campaign.thumbnail_video_type=='custom', 'video-iframe-tag' :campaign.thumbnail_video_type=='vimeo' || campaign.thumbnail_video_type=='youtube'}">
-                <div class="video-thumbnail">
-                  <div class="video-overlay"></div>
-                  <youtube-video ng-if="campaign.thumbnail_video_type=='youtube'" video-id="{{campaign.thumbnail_video_link}}" id="featured-ytplayer-{{campaign.id}}" autoplay="true" mute="true" modest-branding="true"></youtube-video>
-                  <iframe id="vimeoplayer" ng-if="campaign.thumbnail_video_type=='vimeo'" ng-src="{{campaign.thumbnail_video_link}}" frameborder="0"></iframe>
-                  <video ng-if="campaign.thumbnail_video_type=='custom'" muted id="custom-video-player" loop autoplay>
+            </h2>
+            <div class="campaign-thumb sixteen wide mobile eight wide tablet four wide computer column" ng-repeat="campaign in featuredcampaigns">
+              <a class="ui fluid card campaign-card" ng-href="{{campaign.uri_paths[0].path}}">
+                <div set-video-thumb-height class="image">
+                  <div ng-show="campaign.featured" ng-if="!campaign.settings.featured_star_hide" class="feat-indicator ui right corner blue label">
+                    <i class="star icon"></i>
+                  </div>
+                  <div campaign-place-holder class="video-container" ng-if="campaign.thumbnail_video_link && public_settings.site_campaign_allow_thumbnail_video" ng-class="{'video-video-tag':campaign.thumbnail_video_type=='custom', 'video-iframe-tag' :campaign.thumbnail_video_type=='vimeo' || campaign.thumbnail_video_type=='youtube'}">
+                    <div class="video-thumbnail">
+                      <div class="video-overlay"></div>
+                      <youtube-video ng-if="campaign.thumbnail_video_type=='youtube'" video-id="{{campaign.thumbnail_video_link}}" id="featured-ytplayer-{{campaign.id}}" autoplay="true" mute="true" modest-branding="true"></youtube-video>
+                      <iframe id="vimeoplayer" ng-if="campaign.thumbnail_video_type=='vimeo'" ng-src="{{campaign.thumbnail_video_link}}" frameborder="0"></iframe>
+                      <video ng-if="campaign.thumbnail_video_type=='custom'" muted id="custom-video-player" loop autoplay>
+                        <source ng-src="{{campaign.thumbnail_video_link}}" type="video/mp4"></source>
+                      </video>
+                    </div>
+                  </div>
+                  <img campaign-place-holder ng-if="!campaign.thumbnail_video_link || !public_settings.site_campaign_allow_thumbnail_video" ng-repeat="file in campaign.files | filter:{region_id: RESOURCE_REGIONS.campaign.thumbnail} | orderBy:'-file_id' | limitTo: 1" ng-if="campaign.files[0].path_external"
+                    ng-src="{{server + '/image/campaign_thumbnail_xl/' + file.path_external}}" class="ui image" />
+                  <img src="images/placeholder-images/placeholder_campaign_thumb.png" class="placeholder-img ui image" />
+                </div>
+    
+                <div class="campaign-desc content">
+                  <div class="header name campaign-title" ng-bind="campaign.name"></div>
+                  <div class="campaign-creator ui ribbon label" ng-hide="public_settings.site_campaign_hide_creator_info" ng-if="!isCardLabelSwitch && !isHideCampaignCardCreatorCategory">
+                    <div ng-show="(campaign.profile_type_id == 1 || !(campaign.profile_type_id == 2 && campaign.business_organizations != null))"><span translate="index_by"></span> {{campaign.managers[0].first_name + " " + campaign.managers[0].last_name | limitTo : 20}}
+                      <span ng-if="(campaign.managers[0].first_name.length + campaign.managers[0].last_name.length) > 20">...</span>
+                    </div>
+                    <div ng-show="(campaign.profile_type_id == 2 && campaign.business_organizations != null)">
+                      <span translate="index_by"></span>
+                      <span ng-bind="campaign.business_organizations[0].name"></span>
+                    </div>
+                  </div>
+                  <div class="campaign-category ui ribbon label" ng-if="isCardLabelSwitch && campaign.categories && !isHideCampaignCardCreatorCategory">
+                    <span ng-repeat="category in campaign.categories">{{category.name}}{{$last ? '' : ', '}}</span>
+                  </div>
+                  <div ng-init="getTimeZoneAbbr(campaign)" class="campaign-created meta" ng-show="campaign.campaign_started=='f' && campaign.ever_published && campaign.starts_date_time != null">
+                    <span ng-hide="isISODate">
+                      {{'Starts_on'|translate}}&nbsp;{{campaign.starts_date_time | formatDate:"MMM DD YYYY"}} {{'index_at' | translate}} {{campaign.starts_date_time | formatDate:"h:mm A"}} {{campaign.timezoneText}}
+                    </span>
+                    <span ng-show="isISODate">
+                      {{'Starts_on'|translate}}&nbsp;{{campaign.starts_date_time | formatDate:"YYYY/MM/DD"}} {{'index_at' | translate}} {{campaign.starts_date_time | formatDate:"H:mm"}}
+                    </span>
+                  </div>
+                  <div class="campaign-created meta" ng-show="campaign.campaign_started=='t' && campaign.ever_published">
+                    <div ng-if="dateInPast(campaign.ends,campaign.seconds_remaining)" style="float:left;" translate="index_closed"></div>
+    
+                    <div ng-if="dateInPast(campaign.ends,campaign.seconds_remaining) && (campaign.days_remaining * -1) > 1 ">
+                      <span ng-bind="campaign.days_remaining_inclusive * -1"></span>
+                      <span translate="{{days_text}}"></span>
+                    </div>
+    
+                    <div ng-if="dateInPast(campaign.ends,campaign.seconds_remaining) && (campaign.days_remaining * -1) == 1 ">
+                      <span ng-bind="campaign.days_remaining_inclusive * -1"></span>
+                      <span translate="{{day_text}}"></span>
+                    </div>
+    
+                    <div ng-show="!campaign.settings.days_to_go_hide" ng-if="!dateInPast(campaign.ends,campaign.seconds_remaining) && campaign.days_remaining > 1 ">
+                      <span ng-bind="campaign.days_remaining_inclusive"></span>
+                      <span translate="{{rdays_text}}"></span>
+                    </div>
+    
+                    <div ng-show="!campaign.settings.days_to_go_hide" ng-if="!dateInPast(campaign.ends,campaign.seconds_remaining) && campaign.days_remaining == 1 ">
+                      <span ng-bind="campaign.hours_remaining_inclusive"></span>
+                      <span translate="{{rhour_text}}"></span>
+                    </div>
+    
+                    <div ng-if="dateInPast(campaign.ends,campaign.seconds_remaining) && campaign.days_remaining  == 0 && (campaign.hours_remaining * -1) > 1">
+                      <span ng-bind="campaign.hours_remaining_inclusive * -1"></span>
+                      <span translate="{{hours_text}}"></span>
+                    </div>
+                    <div ng-if="dateInPast(campaign.ends,campaign.seconds_remaining) && campaign.days_remaining  == 0 && (campaign.hours_remaining * -1) == 1 ">
+                      <span ng-bind="campaign.minutes_remaining_inclusive * -1"></span>
+                      <span translate="{{minute_text}}"></span>
+                    </div>
+    
+                    <div ng-show="!campaign.settings.days_to_go_hide" ng-if="!dateInPast(campaign.ends,campaign.seconds_remaining) && campaign.days_remaining == 0 && campaign.hours_remaining > 1 ">
+                      <span ng-bind="campaign.hours_remaining_inclusive"></span>
+                      <span translate="{{rhours_text}}"></span>
+                    </div>
+    
+                    <div ng-show="!campaign.settings.days_to_go_hide" ng-if="!dateInPast(campaign.ends,campaign.seconds_remaining) && campaign.days_remaining == 0 && campaign.hours_remaining == 1 ">
+                      <span ng-bind="campaign.minutes_remaining_inclusive"></span>
+                      <span translate="{{rminute_text}}"></span>
+                    </div>
+                    <div ng-if="dateInPast(campaign.ends,campaign.seconds_remaining) && campaign.days_remaining == 0 && campaign.hours_remaining == 0 && (campaign.minutes_remaining *-1) > 1">
+                      <span ng-bind="campaign.minutes_remaining_inclusive * -1"></span>
+                      <span translate="{{minutes_text}}"></span>
+                    </div>
+                    <div ng-if="dateInPast(campaign.ends,campaign.seconds_remaining) && campaign.days_remaining == 0 &&campaign.hours_remaining == 0 && (campaign.minutes_remaining *-1) == 1 ">
+                      <span ng-bind="campaign.minutes_remaining * -1"></span>
+                      <span translate="{{minute_text}}"></span>
+                    </div>
+    
+                    <div ng-show="!campaign.settings.days_to_go_hide" ng-if="!dateInPast(campaign.ends,campaign.seconds_remaining) && campaign.days_remaining == 0 &&campaign.hours_remaining == 0 && campaign.minutes_remaining > 1 ">
+                      <span ng-bind="campaign.minutes_remaining_inclusive"></span>
+                      <span translate="{{rminutes_text}}"></span>
+                    </div>
+                    <div ng-show="!campaign.settings.days_to_go_hide" ng-if="!dateInPast(campaign.ends,campaign.seconds_remaining) && campaign.days_remaining == 0 &&campaign.hours_remaining == 0 && campaign.minutes_remaining == 1 ">
+                      <span ng-bind="campaign.minutes_remaining"></span>
+                      <span translate="{{rminute_text}}"></span>
+                    </div>
+    
+                    <div ng-show="campaign.ends_date_time == null" ng-if="!public_settings.site_campaign_end_hide" class="item f-duration" translate='Continuous_Campaign'></div>
+    
+                  </div>
+    
+                  <div class="description" html-render html=campaign.blurb></div>
+                </div>
+    
+                <!--<div class="campaign-card-footer">
+                  <div class="campaign-stats">
+                    <div class="bar-progress ui indicating progress" ng-if="!(campaign.settings.master_progress_bar_hide)" data-percent="{{temp = campaign.funded_amount / (campaign.funding_goal || 1) * 100; temp >= 100 ? 100 : temp < 1 ? 0 : temp}}">
+                      <div class="bar"></div>
+                    </div>
+                    <div id="progress-status" ng-if="public_settings.site_campaign_state_hide">
+                      <div ng-if="campaign.settings.state_current">
+                        <div class="center aligned">
+                          <h4 ng-if="!(campaign.settings.state_current.tooltip && campaign.settings.state_current.tooltip != '')" class="status-title" ng-bind-html="campaign.settings.state_current.title"></h4>
+                          <h4 ng-if="campaign.settings.state_current.tooltip && campaign.settings.state_current.tooltip != ''" class="status-title" sui-popup data-content="{{campaign.settings.state_current.tooltip}}" data-position="bottom center" ng-bind-html="campaign.settings.state_current.title"></h4>
+                          <img class="ui image" ng-if="!public_settings.site_campaign_state_card_image_omit" ng-src="{{server + '/image/campaign_progress_status/' + campaign.settings.state_current.path}}" alt="state_image">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="funded-amount" ng-if="!campaign.settings.master_progress_bar_hide && isCampaignCardBackers">
+                      <span>{{campaign.funded_amount / (campaign.funding_goal || 1) * 100 | number: 0}}%</span>
+                      <span translate='index_funded' ng-if="!displayGoalAmountOnCampaignCard"></span>
+                      <span ng-if="displayGoalAmountOnCampaignCard">{{'campaign_card_funded_goal_label' | translate}} {{campaign.funding_goal | formatCurrency:campaign.currencies[0].code_iso4217_alpha:public_setting.site_campaign_decimal_option}}</span>
+                    </div>
+                    <div class="card-amount-meta">
+                      <div class="pledged-amount">
+                        <span ng-bind-html="campaign.funded_amount | formatCurrency:campaign.currencies[0].code_iso4217_alpha:public_setting.site_campaign_decimal_option"></span>
+                        <span ng-bind="campaign.currencies[0].code_iso4217_alpha"></span>
+                        <span translate="index_pledged"></span>
+                      </div>
+                      <div class="funded-amount" ng-if="!campaign.settings.master_progress_bar_hide && !isCampaignCardBackers">
+                        <span>{{campaign.funded_amount / (campaign.funding_goal || 1) * 100 | number: 0}}%</span>
+                        <span translate='index_funded' ng-if="!displayGoalAmountOnCampaignCard"></span>
+                        <span ng-if="displayGoalAmountOnCampaignCard">{{'campaign_card_funded_goal_label' | translate}} {{campaign.funding_goal | formatCurrency:campaign.currencies[0].code_iso4217_alpha:public_setting.site_campaign_decimal_option}}</span>
+                      </div>
+                      <div class="backers-amount" ng-if="isCampaignCardBackers && campaign.total_backers">
+                        <span>{{campaign.total_backers}}</span>
+                        <span ng-if="campaign.total_backers <= 1" translate="index_backers"></span>
+                        <span ng-if="campaign.total_backers > 1" translate="index_backers_plural"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>-->
+              </a>
+              <div class="campaign-location" ng-if="campaign.cities">
+                <i class="map marker icon"></i><span ng-repeat="city in campaign.cities | limitTo:1" ng-bind='city.city_full'></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="ui large centered inline active text loader" ng-show="loadingFeatured" ng-class="{'active': loadingFeatured}">Loading</div>
+          <div class="btn-wrap ui center aligned basic segment" id="featureDiscovered" ng-show="!loadingFeatured" ng-click="loadMoreFeaturedCampaigns()" ng-if="infiniteScroller.featured && !(totalEntriesFeatured == featuredcampaigns.length)">
+            <div class="ui large button view-more-btn" translate='infinite_scroller_button_label'></div>
+          </div>
+        </div>
+        <div ng-show="featuredcampaigns.length && recentcampaigns.length && home_page_text.titles.top_show &&campaign_display && home_page_text.titles.bottom_show" class="ui home divider">
+        </div>
+    
+        <div id="recent-campaign-wrap" class="front-campaign-list" ng-show="recentcampaigns.length && campaign_display && (home_page_text.titles.bottom_show || home_page_text.titles.bottom_show==null)">
+          <div class="ui four column stackable page grid campaign-list-items">
+            <h2 class="campaign-section-title ui left aligned header center">
+              <div>
+                <i class="time icon"></i>
+                <span ng-bind="home_page_text.titles.bottom_title"></span>
+              </div>
+            </h2>
+    
+            <div class="campaign-thumb sixteen wide mobile eight wide tablet four wide computer column" ng-repeat="campaign in recentcampaigns | limitTo: entriesPerType">
+              <a class="ui fluid card campaign-card" ng-href="{{campaign.uri_paths[0].path}}">
+                <div set-video-thumb-height class="image">
+                  <div class="recent-indicator ui right corner blue label" ng-if="!dateInPast(campaign.ends,campaign.seconds_remaining)">
+                    <div class="text" translate="index_new"></div>
+                  </div>
+                  <div class="recent-indicator ui right corner red label" ng-if="dateInPast(campaign.ends,campaign.seconds_remaining)">
+                    <div class="text" ng-bind="campaign_status_corner_closed"></div>
+                  </div>
+                  <div campaign-place-holder class="video-container" ng-if="campaign.thumbnail_video_link && public_settings.site_campaign_allow_thumbnail_video" ng-class="{'video-video-tag':campaign.thumbnail_video_type=='custom', 'video-iframe-tag' :campaign.thumbnail_video_type=='vimeo' || campaign.thumbnail_video_type=='youtube'}">
+                    <div class="video-thumbnail">
+                      <div class="video-overlay"></div>
+                      <youtube-video ng-if="campaign.thumbnail_video_type=='youtube'" video-id="{{campaign.thumbnail_video_link}}" id="recent-ytplayer-{{campaign.id}}" autoplay="true" mute="true" modest-branding="true"></youtube-video>
+                      <iframe id="vimeoplayer" ng-if="campaign.thumbnail_video_type=='vimeo'" ng-src="{{campaign.thumbnail_video_link}}" frameborder="0"></iframe>
+                      <video ng-if="campaign.thumbnail_video_type=='custom'" muted id="custom-video-player" loop autoplay>
                     <source ng-src="{{campaign.thumbnail_video_link}}" type="video/mp4"></source>
                   </video>
-                </div>
-              </div>
-              <img campaign-place-holder ng-if="!campaign.thumbnail_video_link || !public_settings.site_campaign_allow_thumbnail_video" ng-repeat="file in campaign.files | filter:{region_id: RESOURCE_REGIONS.campaign.thumbnail} | orderBy:'-file_id' | limitTo: 1" ng-if="campaign.files[0].path_external"
-                ng-src="{{server + '/image/campaign_thumbnail_xl/' + file.path_external}}" class="ui image" />
-              <img src="images/placeholder-images/placeholder_campaign_thumb.png" class="placeholder-img ui image" />
-            </div>
-
-            <div class="campaign-desc content">
-              <div class="header name campaign-title" ng-bind="campaign.name"></div>
-              <div class="campaign-creator ui ribbon label" ng-hide="public_settings.site_campaign_hide_creator_info" ng-if="!isCardLabelSwitch && !isHideCampaignCardCreatorCategory">
-                <div ng-show="(campaign.profile_type_id == 1 || !(campaign.profile_type_id == 2 && campaign.business_organizations != null))"><span translate="index_by"></span> {{campaign.managers[0].first_name + " " + campaign.managers[0].last_name | limitTo : 20}}
-                  <span ng-if="(campaign.managers[0].first_name.length + campaign.managers[0].last_name.length) > 20">...</span>
-                </div>
-                <div ng-show="(campaign.profile_type_id == 2 && campaign.business_organizations != null)">
-                  <span translate="index_by"></span>
-                  <span ng-bind="campaign.business_organizations[0].name"></span>
-                </div>
-              </div>
-              <div class="campaign-category ui ribbon label" ng-if="isCardLabelSwitch && campaign.categories && !isHideCampaignCardCreatorCategory">
-                <span ng-repeat="category in campaign.categories">{{category.name}}{{$last ? '' : ', '}}</span>
-              </div>
-              <div ng-init="getTimeZoneAbbr(campaign)" class="campaign-created meta" ng-show="campaign.campaign_started=='f' && campaign.ever_published && campaign.starts_date_time != null">
-                <span ng-hide="isISODate">
-									{{'Starts_on'|translate}}&nbsp;{{campaign.starts_date_time | formatDate:"MMM DD YYYY"}} {{'index_at' | translate}} {{campaign.starts_date_time | formatDate:"h:mm A"}} {{campaign.timezoneText}}
-								</span>
-                <span ng-show="isISODate">
-									{{'Starts_on'|translate}}&nbsp;{{campaign.starts_date_time | formatDate:"YYYY/MM/DD"}} {{'index_at' | translate}} {{campaign.starts_date_time | formatDate:"H:mm"}}
-								</span>
-              </div>
-              <div class="campaign-created meta" ng-show="campaign.campaign_started=='t' && campaign.ever_published">
-                <div ng-if="dateInPast(campaign.ends,campaign.seconds_remaining)" style="float:left;" translate="index_closed"></div>
-
-                <div ng-if="dateInPast(campaign.ends,campaign.seconds_remaining) && (campaign.days_remaining * -1) > 1 ">
-                  <span ng-bind="campaign.days_remaining_inclusive * -1"></span>
-                  <span translate="{{days_text}}"></span>
-                </div>
-
-                <div ng-if="dateInPast(campaign.ends,campaign.seconds_remaining) && (campaign.days_remaining * -1) == 1 ">
-                  <span ng-bind="campaign.days_remaining_inclusive * -1"></span>
-                  <span translate="{{day_text}}"></span>
-                </div>
-
-                <div ng-show="!campaign.settings.days_to_go_hide" ng-if="!dateInPast(campaign.ends,campaign.seconds_remaining) && campaign.days_remaining > 1 ">
-                  <span ng-bind="campaign.days_remaining_inclusive"></span>
-                  <span translate="{{rdays_text}}"></span>
-                </div>
-
-                <div ng-show="!campaign.settings.days_to_go_hide" ng-if="!dateInPast(campaign.ends,campaign.seconds_remaining) && campaign.days_remaining == 1 ">
-                  <span ng-bind="campaign.hours_remaining_inclusive"></span>
-                  <span translate="{{rhour_text}}"></span>
-                </div>
-
-                <div ng-if="dateInPast(campaign.ends,campaign.seconds_remaining) && campaign.days_remaining  == 0 && (campaign.hours_remaining * -1) > 1">
-                  <span ng-bind="campaign.hours_remaining_inclusive * -1"></span>
-                  <span translate="{{hours_text}}"></span>
-                </div>
-                <div ng-if="dateInPast(campaign.ends,campaign.seconds_remaining) && campaign.days_remaining  == 0 && (campaign.hours_remaining * -1) == 1 ">
-                  <span ng-bind="campaign.minutes_remaining_inclusive * -1"></span>
-                  <span translate="{{minute_text}}"></span>
-                </div>
-
-                <div ng-show="!campaign.settings.days_to_go_hide" ng-if="!dateInPast(campaign.ends,campaign.seconds_remaining) && campaign.days_remaining == 0 && campaign.hours_remaining > 1 ">
-                  <span ng-bind="campaign.hours_remaining_inclusive"></span>
-                  <span translate="{{rhours_text}}"></span>
-                </div>
-
-                <div ng-show="!campaign.settings.days_to_go_hide" ng-if="!dateInPast(campaign.ends,campaign.seconds_remaining) && campaign.days_remaining == 0 && campaign.hours_remaining == 1 ">
-                  <span ng-bind="campaign.minutes_remaining_inclusive"></span>
-                  <span translate="{{rminute_text}}"></span>
-                </div>
-                <div ng-if="dateInPast(campaign.ends,campaign.seconds_remaining) && campaign.days_remaining == 0 && campaign.hours_remaining == 0 && (campaign.minutes_remaining *-1) > 1">
-                  <span ng-bind="campaign.minutes_remaining_inclusive * -1"></span>
-                  <span translate="{{minutes_text}}"></span>
-                </div>
-                <div ng-if="dateInPast(campaign.ends,campaign.seconds_remaining) && campaign.days_remaining == 0 &&campaign.hours_remaining == 0 && (campaign.minutes_remaining *-1) == 1 ">
-                  <span ng-bind="campaign.minutes_remaining * -1"></span>
-                  <span translate="{{minute_text}}"></span>
-                </div>
-
-                <div ng-show="!campaign.settings.days_to_go_hide" ng-if="!dateInPast(campaign.ends,campaign.seconds_remaining) && campaign.days_remaining == 0 &&campaign.hours_remaining == 0 && campaign.minutes_remaining > 1 ">
-                  <span ng-bind="campaign.minutes_remaining_inclusive"></span>
-                  <span translate="{{rminutes_text}}"></span>
-                </div>
-                <div ng-show="!campaign.settings.days_to_go_hide" ng-if="!dateInPast(campaign.ends,campaign.seconds_remaining) && campaign.days_remaining == 0 &&campaign.hours_remaining == 0 && campaign.minutes_remaining == 1 ">
-                  <span ng-bind="campaign.minutes_remaining"></span>
-                  <span translate="{{rminute_text}}"></span>
-                </div>
-
-                <div ng-show="campaign.ends_date_time == null" ng-if="!public_settings.site_campaign_end_hide" class="item f-duration" translate='Continuous_Campaign'></div>
-
-              </div>
-
-              <div class="description" html-render html=campaign.blurb></div>
-            </div>
-
-            <div class="campaign-card-footer">
-              <div class="campaign-stats">
-                <div class="bar-progress ui indicating progress" ng-if="!(campaign.settings.master_progress_bar_hide)" data-percent="{{temp = campaign.funded_amount / (campaign.funding_goal || 1) * 100; temp >= 100 ? 100 : temp < 1 ? 0 : temp}}">
-                  <div class="bar"></div>
-                </div>
-                <div id="progress-status" ng-if="public_settings.site_campaign_state_hide">
-                  <div ng-if="campaign.settings.state_current">
-                    <div class="center aligned">
-                      <h4 ng-if="!(campaign.settings.state_current.tooltip && campaign.settings.state_current.tooltip != '')" class="status-title" ng-bind-html="campaign.settings.state_current.title"></h4>
-                      <h4 ng-if="campaign.settings.state_current.tooltip && campaign.settings.state_current.tooltip != ''" class="status-title" sui-popup data-content="{{campaign.settings.state_current.tooltip}}" data-position="bottom center" ng-bind-html="campaign.settings.state_current.title"></h4>
-                      <img class="ui image" ng-if="!public_settings.site_campaign_state_card_image_omit" ng-src="{{server + '/image/campaign_progress_status/' + campaign.settings.state_current.path}}" alt="state_image">
                     </div>
                   </div>
+                  <img campaign-place-holder ng-if="!campaign.thumbnail_video_link" ng-repeat="file in campaign.files | filter:{region_id: RESOURCE_REGIONS.campaign.thumbnail} | orderBy:'-file_id' | limitTo: 1" ng-if="campaign.files[0].path_external" ng-src="{{server + '/image/campaign_thumbnail_xl/' + file.path_external}}"
+                    class="ui image" />
+                  <img src="images/placeholder-images/placeholder_campaign_thumb.png" class="placeholder-img ui image" />
                 </div>
-                <div class="funded-amount" ng-if="!campaign.settings.master_progress_bar_hide && isCampaignCardBackers">
-                  <span>{{campaign.funded_amount / (campaign.funding_goal || 1) * 100 | number: 0}}%</span>
-                  <span translate='index_funded' ng-if="!displayGoalAmountOnCampaignCard"></span>
-                  <span ng-if="displayGoalAmountOnCampaignCard">{{'campaign_card_funded_goal_label' | translate}} {{campaign.funding_goal | formatCurrency:campaign.currencies[0].code_iso4217_alpha:public_setting.site_campaign_decimal_option}}</span>
-                </div>
-                <div class="card-amount-meta">
-                  <div class="pledged-amount">
-                    <span ng-bind-html="campaign.funded_amount | formatCurrency:campaign.currencies[0].code_iso4217_alpha:public_setting.site_campaign_decimal_option"></span>
-                    <span ng-bind="campaign.currencies[0].code_iso4217_alpha"></span>
-                    <span translate="index_pledged"></span>
-                  </div>
-                  <div class="funded-amount" ng-if="!campaign.settings.master_progress_bar_hide && !isCampaignCardBackers">
-                    <span>{{campaign.funded_amount / (campaign.funding_goal || 1) * 100 | number: 0}}%</span>
-                    <span translate='index_funded' ng-if="!displayGoalAmountOnCampaignCard"></span>
-                    <span ng-if="displayGoalAmountOnCampaignCard">{{'campaign_card_funded_goal_label' | translate}} {{campaign.funding_goal | formatCurrency:campaign.currencies[0].code_iso4217_alpha:public_setting.site_campaign_decimal_option}}</span>
-                  </div>
-                  <div class="backers-amount" ng-if="isCampaignCardBackers && campaign.total_backers">
-                    <span>{{campaign.total_backers}}</span>
-                    <span ng-if="campaign.total_backers <= 1" translate="index_backers"></span>
-                    <span ng-if="campaign.total_backers > 1" translate="index_backers_plural"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-          <div class="campaign-location" ng-if="campaign.cities">
-            <i class="map marker icon"></i><span ng-repeat="city in campaign.cities | limitTo:1" ng-bind='city.city_full'></span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="ui large centered inline active text loader" ng-show="loadingFeatured" ng-class="{'active': loadingFeatured}">Loading</div>
-      <div class="btn-wrap ui center aligned basic segment" id="featureDiscovered" ng-show="!loadingFeatured" ng-click="loadMoreFeaturedCampaigns()" ng-if="infiniteScroller.featured && !(totalEntriesFeatured == featuredcampaigns.length)">
-        <div class="ui large button view-more-btn" translate='infinite_scroller_button_label'></div>
-      </div>
-    </div>
-    <div ng-show="featuredcampaigns.length && recentcampaigns.length && home_page_text.titles.top_show &&campaign_display && home_page_text.titles.bottom_show" class="ui home divider">
-    </div>
-
-    <div id="recent-campaign-wrap" class="front-campaign-list" ng-show="recentcampaigns.length && campaign_display && (home_page_text.titles.bottom_show || home_page_text.titles.bottom_show==null)">
-      <div class="ui four column stackable page grid campaign-list-items">
-        <h2 class="campaign-section-title ui left aligned header">
-          <div>
-            <i class="time icon"></i>
-            <span ng-bind="home_page_text.titles.bottom_title"></span>
-          </div>
-        </h2>
-
-        <div class="campaign-thumb sixteen wide mobile eight wide tablet four wide computer column" ng-repeat="campaign in recentcampaigns | limitTo: entriesPerType">
-          <a class="ui fluid card campaign-card" ng-href="{{campaign.uri_paths[0].path}}">
-            <div set-video-thumb-height class="image">
-              <div class="recent-indicator ui right corner blue label" ng-if="!dateInPast(campaign.ends,campaign.seconds_remaining)">
-                <div class="text" translate="index_new"></div>
-              </div>
-              <div class="recent-indicator ui right corner red label" ng-if="dateInPast(campaign.ends,campaign.seconds_remaining)">
-                <div class="text" ng-bind="campaign_status_corner_closed"></div>
-              </div>
-              <div campaign-place-holder class="video-container" ng-if="campaign.thumbnail_video_link && public_settings.site_campaign_allow_thumbnail_video" ng-class="{'video-video-tag':campaign.thumbnail_video_type=='custom', 'video-iframe-tag' :campaign.thumbnail_video_type=='vimeo' || campaign.thumbnail_video_type=='youtube'}">
-                <div class="video-thumbnail">
-                  <div class="video-overlay"></div>
-                  <youtube-video ng-if="campaign.thumbnail_video_type=='youtube'" video-id="{{campaign.thumbnail_video_link}}" id="recent-ytplayer-{{campaign.id}}" autoplay="true" mute="true" modest-branding="true"></youtube-video>
-                  <iframe id="vimeoplayer" ng-if="campaign.thumbnail_video_type=='vimeo'" ng-src="{{campaign.thumbnail_video_link}}" frameborder="0"></iframe>
-                  <video ng-if="campaign.thumbnail_video_type=='custom'" muted id="custom-video-player" loop autoplay>
-                <source ng-src="{{campaign.thumbnail_video_link}}" type="video/mp4"></source>
-              </video>
-                </div>
-              </div>
-              <img campaign-place-holder ng-if="!campaign.thumbnail_video_link" ng-repeat="file in campaign.files | filter:{region_id: RESOURCE_REGIONS.campaign.thumbnail} | orderBy:'-file_id' | limitTo: 1" ng-if="campaign.files[0].path_external" ng-src="{{server + '/image/campaign_thumbnail_xl/' + file.path_external}}"
-                class="ui image" />
-              <img src="images/placeholder-images/placeholder_campaign_thumb.png" class="placeholder-img ui image" />
-            </div>
-
-            <div class="campaign-desc content">
-              <div class="campaign-title header" ng-bind='campaign.name'></div>
-              <div class="campaign-creator ui ribbon label" ng-hide="public_settings.site_campaign_hide_creator_info" ng-if="!isCardLabelSwitch && !isHideCampaignCardCreatorCategory">
-                <span ng-show="(campaign.profile_type_id ==1 || !(campaign.profile_type_id == 2 && campaign.business_organizations != null))">{{'index_by' | translate}} {{campaign.managers[0].first_name + " " + campaign.managers[0].last_name | limitTo : 20}}
-									<span ng-if="(campaign.managers[0].first_name.length + campaign.managers[0].last_name.length) > 20">...</span>
-                </span>
-                <div ng-show="(campaign.profile_type_id == 2 && campaign.business_organizations != null)">
-                  <span translate="index_by"></span>
-                  <span ng-bind="campaign.business_organizations[0].name"></span>
-                </div>
-              </div>
-              <div class="campaign-category ui ribbon label" ng-if="isCardLabelSwitch && campaign.categories && !isHideCampaignCardCreatorCategory">
-                <span ng-repeat="category in campaign.categories">{{category.name}}{{$last ? '' : ', '}}</span>
-              </div>
-              <div ng-init="getTimeZoneAbbr(campaign)" class="campaign-created meta" ng-show="campaign.campaign_started=='f' && campaign.ever_published && campaign.starts_date_time != null">
-                <span ng-hide="isISODate">
-									{{'Starts_on'|translate}}&nbsp;{{campaign.starts_date_time | formatDate:"MMM DD YYYY"}} {{'index_at' | translate}} {{campaign.starts_date_time | formatDate:"h:mm A"}} {{campaign.timezoneText}}
-								</span>
-                <span ng-show="isISODate">
-									{{'Starts_on'|translate}}&nbsp;{{campaign.starts_date_time | formatDate:"YYYY/MM/DD"}} {{'index_at' | translate}} {{campaign.starts_date_time | formatDate:"H:mm"}}
-								</span>
-              </div>
-              <div class="campaign-created meta" ng-show="campaign.campaign_started=='t' && campaign.ever_published">
-                <div ng-if="dateInPast(campaign.ends,campaign.seconds_remaining)" style="float:left;" translate="index_closed"></div>
-                <div ng-show="campaign.ends_date_time != null && campaign.days_remaining < 0" ng-init="getTime(campaign)">
-                  <span ng-bind="campaign.days_remaining_inclusive * -1"></span>
-                  <span translate="{{days_text}}"></span>
-                </div>
-                <div ng-show="campaign.ends_date_time != null && campaign.days_remaining == 0" ng-init="getTime(campaign)">
-                  <div ng-show="campaign.seconds_remaining > 0 || campaign.seconds_remaining == 0">
-                    <span ng-bind="campaign.hours_remaining_inclusive"></span>
-                    <span translate="{{rhours_text}}"></span>
-                  </div>
-                  <div ng-show="campaign.seconds_remaining < 0">
-                    <span ng-bind="campaign.hours_remaining_inclusive * -1"></span>
-                    <span translate="{{rhours_text}}"></span>
-                  </div>
-                </div>
-                <div ng-show="campaign.ends_date_time != null && campaign.days_remaining > 0" ng-init="getTime(campaign)">
-                  <span ng-bind="campaign.days_remaining_inclusive"></span>
-                  <span translate="{{rdays_text}}"></span>
-                </div>
-                <div ng-show="campaign.ends_date_time == null" ng-if="!public_settings.site_campaign_end_hide" class="item f-duration" translate="Continuous_Campaign"></div>
-              </div>
-              <div class="description" html-render html=campaign.blurb>
-              </div>
-            </div>
-            <div class="campaign-card-footer">
-              <div class="campaign-stats">
-                <div class="ui bar-progress indicating progress" ng-if="!(campaign.settings.master_progress_bar_hide)" data-percent="{{temp = campaign.funded_amount / (campaign.funding_goal || 1) * 100; temp >= 100 ? 100 : temp < 1 ? 0 : temp}}">
-                  <div class="bar"></div>
-                </div>
-                <div id="progress-status" ng-if="public_settings.site_campaign_state_hide">
-                  <div ng-if="campaign.settings.state_current">
-                    <div class="center aligned">
-                      <h4 ng-if="!(campaign.settings.state_current.tooltip && campaign.settings.state_current.tooltip != '')" class="status-title" ng-bind-html="campaign.settings.state_current.title"></h4>
-                      <h4 ng-if="campaign.settings.state_current.tooltip && campaign.settings.state_current.tooltip != ''" class="status-title" sui-popup data-content="{{campaign.settings.state_current.tooltip}}" data-position="bottom center" ng-bind-html="campaign.settings.state_current.title"></h4>
-
-                      <img class="ui image" ng-if="!public_settings.site_campaign_state_card_image_omit" ng-src="{{server + '/image/campaign_progress_status/' + campaign.settings.state_current.path}}" alt="state_image"></img>
-                    </div>
-                  </div>
-                </div>
-                <div class="funded-amount" ng-if="!campaign.settings.master_progress_bar_hide && isCampaignCardBackers">
-                  <span>{{campaign.funded_amount / (campaign.funding_goal || 1) * 100 | number: 0}}%</span>
-                  <span translate='index_funded' ng-if="!displayGoalAmountOnCampaignCard"></span>
-                  <span ng-if="displayGoalAmountOnCampaignCard">{{'campaign_card_funded_goal_label' | translate}} {{campaign.funding_goal | formatCurrency:campaign.currencies[0].code_iso4217_alpha:public_setting.site_campaign_decimal_option}}</span>
-                </div>
-                <div class="card-amount-meta">
-                  <div class="pledged-amount">
-                    <span ng-bind-html="campaign.funded_amount | formatCurrency:campaign.currencies[0].code_iso4217_alpha:public_setting.site_campaign_decimal_option"></span>
-                    <span ng-bind="campaign.currencies[0].code_iso4217_alpha"></span>
-                    <span translate='index_pledged'></span>
-                  </div>
-                  <div class="funded-amount" ng-if="!campaign.settings.master_progress_bar_hide && !isCampaignCardBackers">
-                    <span>{{campaign.funded_amount / (campaign.funding_goal || 1) * 100 | number: 0}}%</span>
-                    <span translate='index_funded' ng-if="!displayGoalAmountOnCampaignCard"></span>
-                    <span ng-if="displayGoalAmountOnCampaignCard">{{'campaign_card_funded_goal_label' | translate}} {{campaign.funding_goal | formatCurrency:campaign.currencies[0].code_iso4217_alpha:public_setting.site_campaign_decimal_option}}</span>
-                  </div>
-                  <div class="backers-amount" ng-if="isCampaignCardBackers && campaign.total_backers">
-                    <span>{{campaign.total_backers}}</span>
-                    <span ng-if="campaign.total_backers <= 1" translate="index_backers"></span>
-                    <span ng-if="campaign.total_backers > 1" translate="index_backers_plural"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-          <div class="campaign-location" ng-if="campaign.cities">
-            <i class="map marker icon"></i><span ng-repeat="city in campaign.cities | limitTo:1" ng-bind='city.city_full'></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="btn-wrap ui center aligned basic segment" ng-show="!infiniteScroller.recent">
-        <a href="explore" class="ui large button view-more-btn" translate='index_view_more'></a>
-      </div>
-
-      <div>
-        <div class="ui large centered inline active text loader" ng-show="loadingActive" ng-class="{'active': loadingActive}">Loading</div>
-        <div class="btn-wrap ui center aligned basic segment" id="recentDiscovered" ng-show="!loadingActive" ng-click="loadMoreRecentCampaigns()" ng-if="infiniteScroller.recent && !(totalEntriesRecent == recentcampaigns.length)">
-          <div class="ui large button view-more-btn" translate='infinite_scroller_button_label'></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="msg-container" ng-cloak ng-show="featuredcampaigns.length==0 && recentcampaigns.length==0 && no_campaign_message">
-    <div class="ui page grid">
-      <div class="column">
-        <div class="ui warning message">
-          <div class="header ui center aligned" ng-bind-html="no_campaign_message"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="learnmore-wrap" ng-if="home_page_text.bottom_banner.display=='text'">
-    <div class="lm-header ui page grid">
-      <div class="center aligned column">
-        <h2 class="ui header" ng-style="bottom_banner_top_header_color" ng-bind="home_page_text.bottom_banner.header_top"></h2>
-        <p ng-style="bottom_banner_paragraph_color" ng-bind="home_page_text.bottom_banner.paragraph"></p>
-      </div>
-    </div>
-
-    <div class="lm-grid-wrap">
-      <div class="lm-column-grid ui center aligned three column stackable page grid">
-        <div class="lm-column column" ng-if="home_page_text.bottom_banner.left_column.display">
-          <div class="icon-header ui medium icon header">
-            <i class="{{home_page_text.bottom_banner.left_column.icon_class}}"></i>
-            <span ng-style="bottom_banner_column_header_font_style">{{home_page_text.bottom_banner.left_column.header}}</span>
-            <div class="sub header" ng-style="bottom_banner_paragraph_color" ng-bind="home_page_text.bottom_banner.left_column.paragraph"></div>
-          </div>
-        </div>
-
-        <div class="lm-column column" ng-if="home_page_text.bottom_banner.middle_column.display">
-          <div class="icon-header ui medium icon header">
-            <i class="{{home_page_text.bottom_banner.middle_column.icon_class}}"></i>
-            <span ng-style="bottom_banner_column_header_font_style">{{home_page_text.bottom_banner.middle_column.header}}</span>
-            <div class="sub header" ng-style="bottom_banner_paragraph_color" ng-bind="home_page_text.bottom_banner.middle_column.paragraph"></div>
-          </div>
-        </div>
-
-        <div class="lm-column column" ng-if="home_page_text.bottom_banner.right_column.display">
-          <div class="icon-header ui medium icon header">
-            <i class="{{home_page_text.bottom_banner.right_column.icon_class}}"></i>
-            <span ng-style="bottom_banner_column_header_font_style">{{home_page_text.bottom_banner.right_column.header}}</span>
-            <div class="sub header" ng-style="bottom_banner_paragraph_color" ng-bind="home_page_text.bottom_banner.right_column.paragraph"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="lm-footer ui page grid">
-      <div class="center aligned column">
-        <h3 class="ui header" ng-style="bottom_banner_bottom_header_color" ng-bind="home_page_text.bottom_banner.header_bottom"></h3>
-        <div ng-if="learn_more_display_button" class="btn-wrap">
-          <a href="{{home_page_text.bottom_banner.learn_more_button_text_link}}" class="redirect-button ui large right labeled icon button">
-            <span ng-bind="home_page_text.bottom_banner.learn_more_button_text"></span> <i class="question icon"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div ng-if="home_page_text.bottom_banner.display=='html'">
-    <div class="ui page grid">
-      <div class="ui column">
-        <div html-render html="home_page_text.bottom_banner.html" class="fr-view"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="partner-logos" ng-if="public_settings.logo_links.length > 0">
-    <div class="ui page grid">
-      <div class="column">
-        <h2 class="ui header center aligned partner-logos-title" translate="index_partnership_title"></h2>
-        <div class="partner-logos-grid ui centered six column stackable grid">
-          <div class="column" ng-repeat="link in public_settings.logo_links">
-            <img ng-if="!link.url" class="company-logo ui image" src="{{server}}/image/site_logo_320x80/{{link.image_link}}" alt="{{link.url}}">
-            <a ng-if="link.url" target="_blank" href="{{link.url}}">
-              <img ng-if="link.image_link" class="company-logo ui image" src="{{server}}/image/site_logo_320x80/{{link.image_link}}" alt="{{link.url}}">
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> 
-  <div class="ui modal" id="requestModal">
-    <i class="close icon"></i>
-    <div class="align-box-center content">
-      <div class="position-relative image align-box-center place-center">
-        <img src="images/Mailing-List.png">
-        <h1 style="position: absolute; bottom: 40%; background-color: #FFFFFF; width:80%;text-align: center; border:#000000 solid 1px">Get Your Invitation</h1>
-      </div>
-      <form class="align-box-center">
-        <div class="ui input focus">
-          <input placeholder="Email" style="width:100%; margin-bottom: 0.5rem" type="email" ng-model="email">
-        </div>
-        <button type="submit" class="accent-button" ng-click="sendInvitationRequest(email)">
-          Request Invitation
-        </button>
-      </form>
-    </div>
-  </div>
-  <div class="ui modal" id="successModal">
-    <i class="close icon"></i>
-    <div class="header">
-      <h1>Request Received</h1>
-    </div>
-    <div class="align-box-center content">
-      <h3>Our Team will respond with the provided email.</h3>
-      <button class="accent-button" ng-click="hideSuccessModal()">
-          Close Dialog
-      </button>
-    </div>
     
-  </div>
-  <div class="ui modal" id="errorModal">
-      <i class="close icon"></i>
-      <div class="header">
-        <h1>Request Failed</h1>
+                <div class="campaign-desc content">
+                  <div class="campaign-title header" ng-bind='campaign.name'></div>
+                  <div class="campaign-creator ui ribbon label" ng-hide="public_settings.site_campaign_hide_creator_info" ng-if="!isCardLabelSwitch && !isHideCampaignCardCreatorCategory">
+                    <span ng-show="(campaign.profile_type_id ==1 || !(campaign.profile_type_id == 2 && campaign.business_organizations != null))">{{'index_by' | translate}} {{campaign.managers[0].first_name + " " + campaign.managers[0].last_name | limitTo : 20}}
+                      <span ng-if="(campaign.managers[0].first_name.length + campaign.managers[0].last_name.length) > 20">...</span>
+                    </span>
+                    <div ng-show="(campaign.profile_type_id == 2 && campaign.business_organizations != null)">
+                      <span translate="index_by"></span>
+                      <span ng-bind="campaign.business_organizations[0].name"></span>
+                    </div>
+                  </div>
+                  <div class="campaign-category ui ribbon label" ng-if="isCardLabelSwitch && campaign.categories && !isHideCampaignCardCreatorCategory">
+                    <span ng-repeat="category in campaign.categories">{{category.name}}{{$last ? '' : ', '}}</span>
+                  </div>
+                  <div ng-init="getTimeZoneAbbr(campaign)" class="campaign-created meta" ng-show="campaign.campaign_started=='f' && campaign.ever_published && campaign.starts_date_time != null">
+                    <span ng-hide="isISODate">
+                      {{'Starts_on'|translate}}&nbsp;{{campaign.starts_date_time | formatDate:"MMM DD YYYY"}} {{'index_at' | translate}} {{campaign.starts_date_time | formatDate:"h:mm A"}} {{campaign.timezoneText}}
+                    </span>
+                    <span ng-show="isISODate">
+                      {{'Starts_on'|translate}}&nbsp;{{campaign.starts_date_time | formatDate:"YYYY/MM/DD"}} {{'index_at' | translate}} {{campaign.starts_date_time | formatDate:"H:mm"}}
+                    </span>
+                  </div>
+                  <div class="campaign-created meta" ng-show="campaign.campaign_started=='t' && campaign.ever_published">
+                    <div ng-if="dateInPast(campaign.ends,campaign.seconds_remaining)" style="float:left;" translate="index_closed"></div>
+                    <div ng-show="campaign.ends_date_time != null && campaign.days_remaining < 0" ng-init="getTime(campaign)">
+                      <span ng-bind="campaign.days_remaining_inclusive * -1"></span>
+                      <span translate="{{days_text}}"></span>
+                    </div>
+                    <div ng-show="campaign.ends_date_time != null && campaign.days_remaining == 0" ng-init="getTime(campaign)">
+                      <div ng-show="campaign.seconds_remaining > 0 || campaign.seconds_remaining == 0">
+                        <span ng-bind="campaign.hours_remaining_inclusive"></span>
+                        <span translate="{{rhours_text}}"></span>
+                      </div>
+                      <div ng-show="campaign.seconds_remaining < 0">
+                        <span ng-bind="campaign.hours_remaining_inclusive * -1"></span>
+                        <span translate="{{rhours_text}}"></span>
+                      </div>
+                    </div>
+                    <div ng-show="campaign.ends_date_time != null && campaign.days_remaining > 0" ng-init="getTime(campaign)">
+                      <span ng-bind="campaign.days_remaining_inclusive"></span>
+                      <span translate="{{rdays_text}}"></span>
+                    </div>
+                    <div ng-show="campaign.ends_date_time == null" ng-if="!public_settings.site_campaign_end_hide" class="item f-duration" translate="Continuous_Campaign"></div>
+                  </div>
+                  <div class="description" html-render html=campaign.blurb>
+                  </div>
+                </div>
+                <div class="campaign-card-footer">
+                  <div class="campaign-stats">
+                    <div class="ui bar-progress indicating progress" ng-if="!(campaign.settings.master_progress_bar_hide)" data-percent="{{temp = campaign.funded_amount / (campaign.funding_goal || 1) * 100; temp >= 100 ? 100 : temp < 1 ? 0 : temp}}">
+                      <div class="bar"></div>
+                    </div>
+                    <div id="progress-status" ng-if="public_settings.site_campaign_state_hide">
+                      <div ng-if="campaign.settings.state_current">
+                        <div class="center aligned">
+                          <h4 ng-if="!(campaign.settings.state_current.tooltip && campaign.settings.state_current.tooltip != '')" class="status-title" ng-bind-html="campaign.settings.state_current.title"></h4>
+                          <h4 ng-if="campaign.settings.state_current.tooltip && campaign.settings.state_current.tooltip != ''" class="status-title" sui-popup data-content="{{campaign.settings.state_current.tooltip}}" data-position="bottom center" ng-bind-html="campaign.settings.state_current.title"></h4>
+    
+                          <img class="ui image" ng-if="!public_settings.site_campaign_state_card_image_omit" ng-src="{{server + '/image/campaign_progress_status/' + campaign.settings.state_current.path}}" alt="state_image"></img>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="funded-amount" ng-if="!campaign.settings.master_progress_bar_hide && isCampaignCardBackers">
+                      <span>{{campaign.funded_amount / (campaign.funding_goal || 1) * 100 | number: 0}}%</span>
+                      <span translate='index_funded' ng-if="!displayGoalAmountOnCampaignCard"></span>
+                      <span ng-if="displayGoalAmountOnCampaignCard">{{'campaign_card_funded_goal_label' | translate}} {{campaign.funding_goal | formatCurrency:campaign.currencies[0].code_iso4217_alpha:public_setting.site_campaign_decimal_option}}</span>
+                    </div>
+                    <div class="card-amount-meta">
+                      <div class="pledged-amount">
+                        <span ng-bind-html="campaign.funded_amount | formatCurrency:campaign.currencies[0].code_iso4217_alpha:public_setting.site_campaign_decimal_option"></span>
+                        <span ng-bind="campaign.currencies[0].code_iso4217_alpha"></span>
+                        <span translate='index_pledged'></span>
+                      </div>
+                      <div class="funded-amount" ng-if="!campaign.settings.master_progress_bar_hide && !isCampaignCardBackers">
+                        <span>{{campaign.funded_amount / (campaign.funding_goal || 1) * 100 | number: 0}}%</span>
+                        <span translate='index_funded' ng-if="!displayGoalAmountOnCampaignCard"></span>
+                        <span ng-if="displayGoalAmountOnCampaignCard">{{'campaign_card_funded_goal_label' | translate}} {{campaign.funding_goal | formatCurrency:campaign.currencies[0].code_iso4217_alpha:public_setting.site_campaign_decimal_option}}</span>
+                      </div>
+                      <div class="backers-amount" ng-if="isCampaignCardBackers && campaign.total_backers">
+                        <span>{{campaign.total_backers}}</span>
+                        <span ng-if="campaign.total_backers <= 1" translate="index_backers"></span>
+                        <span ng-if="campaign.total_backers > 1" translate="index_backers_plural"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <div class="campaign-location" ng-if="campaign.cities">
+                <i class="map marker icon"></i><span ng-repeat="city in campaign.cities | limitTo:1" ng-bind='city.city_full'></span>
+              </div>
+            </div>
+          </div>
+    
+          <div class="btn-wrap ui center aligned basic segment" ng-show="!infiniteScroller.recent">
+            <a href="explore" class="ui large button view-more-btn" translate='index_view_more'></a>
+          </div>
+    
+          <div>
+            <div class="ui large centered inline active text loader" ng-show="loadingActive" ng-class="{'active': loadingActive}">Loading</div>
+            <div class="btn-wrap ui center aligned basic segment" id="recentDiscovered" ng-show="!loadingActive" ng-click="loadMoreRecentCampaigns()" ng-if="infiniteScroller.recent && !(totalEntriesRecent == recentcampaigns.length)">
+              <div class="ui large button view-more-btn" translate='infinite_scroller_button_label'></div>
+            </div>
+          </div>
+    
+        </div>
       </div>
-      <div class="align-box-center content">
-        <h3>{{invitationError}}</h3>
+    
+      <div class="msg-container" ng-cloak ng-show="featuredcampaigns.length==0 && recentcampaigns.length==0 && no_campaign_message">
+        <div class="ui page grid">
+          <div class="column">
+            <div class="ui warning message">
+              <div class="header ui center aligned" ng-bind-html="no_campaign_message"></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <button ng-click="hideSuccessModal()">
-        Close Dialog
-      </button>
-    </div>
+    
+      <!--<div id="learnmore-wrap" ng-if="home_page_text.bottom_banner.display=='text'">
+        <div class="lm-header ui page grid">
+          <div class="center aligned column">
+            <h2 class="ui header" ng-style="bottom_banner_top_header_color" ng-bind="home_page_text.bottom_banner.header_top"></h2>
+            <p ng-style="bottom_banner_paragraph_color" ng-bind="home_page_text.bottom_banner.paragraph"></p>
+          </div>
+        </div>
+    
+        <div class="lm-grid-wrap">
+          <div class="lm-column-grid ui center aligned three column stackable page grid">
+            <div class="lm-column column" ng-if="home_page_text.bottom_banner.left_column.display">
+              <div class="icon-header ui medium icon header">
+                <i class="{{home_page_text.bottom_banner.left_column.icon_class}}"></i>
+                <span ng-style="bottom_banner_column_header_font_style">{{home_page_text.bottom_banner.left_column.header}}</span>
+                <div class="sub header" ng-style="bottom_banner_paragraph_color" ng-bind="home_page_text.bottom_banner.left_column.paragraph"></div>
+              </div>
+            </div>
+    
+            <div class="lm-column column" ng-if="home_page_text.bottom_banner.middle_column.display">
+              <div class="icon-header ui medium icon header">
+                <i class="{{home_page_text.bottom_banner.middle_column.icon_class}}"></i>
+                <span ng-style="bottom_banner_column_header_font_style">{{home_page_text.bottom_banner.middle_column.header}}</span>
+                <div class="sub header" ng-style="bottom_banner_paragraph_color" ng-bind="home_page_text.bottom_banner.middle_column.paragraph"></div>
+              </div>
+            </div>
+    
+            <div class="lm-column column" ng-if="home_page_text.bottom_banner.right_column.display">
+              <div class="icon-header ui medium icon header">
+                <i class="{{home_page_text.bottom_banner.right_column.icon_class}}"></i>
+                <span ng-style="bottom_banner_column_header_font_style">{{home_page_text.bottom_banner.right_column.header}}</span>
+                <div class="sub header" ng-style="bottom_banner_paragraph_color" ng-bind="home_page_text.bottom_banner.right_column.paragraph"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="lm-footer ui page grid">
+          <div class="center aligned column">
+            <h3 class="ui header" ng-style="bottom_banner_bottom_header_color" ng-bind="home_page_text.bottom_banner.header_bottom"></h3>
+            <div ng-if="learn_more_display_button" class="btn-wrap">
+              <a href="{{home_page_text.bottom_banner.learn_more_button_text_link}}" class="redirect-button ui large right labeled icon button">
+                <span ng-bind="home_page_text.bottom_banner.learn_more_button_text"></span> <i class="question icon"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>-->
+    
+      <div ng-if="home_page_text.bottom_banner.display=='html'">
+        <div class="ui page grid">
+          <div class="ui column">
+            <div html-render html="home_page_text.bottom_banner.html" class="fr-view"></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="partner-logos" ng-if="public_settings.logo_links.length > 0">
+        <div class="ui page grid">
+          <div class="column">
+            <h2 class="ui header center aligned partner-logos-title" translate="index_partnership_title"></h2>
+            <div class="partner-logos-grid ui centered six column stackable grid">
+              <div class="column" ng-repeat="link in public_settings.logo_links">
+                <img ng-if="!link.url" class="company-logo ui image" src="{{server}}/image/site_logo_320x80/{{link.image_link}}" alt="{{link.url}}">
+                <a ng-if="link.url" target="_blank" href="{{link.url}}">
+                  <img ng-if="link.image_link" class="company-logo ui image" src="{{server}}/image/site_logo_320x80/{{link.image_link}}" alt="{{link.url}}">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+      <div class="ui modal" id="requestModal">
+        <i class="close icon"></i>
+        <div class="align-box-center content">
+          <div class="position-relative image align-box-center place-center">
+            <img src="images/Mailing-List.png">
+            <h1 style="position: absolute; bottom: 40%; background-color: #FFFFFF; width:80%;text-align: center; border:#000000 solid 1px">Get Your Invitation</h1>
+          </div>
+          <form class="align-box-center">
+            <div class="ui input focus">
+              <input placeholder="Email" style="width:100%; margin-bottom: 0.5rem" type="email" ng-model="email">
+            </div>
+            <button type="submit" class="accent-button" ng-click="sendInvitationRequest(email)">
+              Request Invitation
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="ui modal" id="successModal">
+        <i class="close icon"></i>
+        <div class="header">
+          <h1>Request Received</h1>
+        </div>
+        <div class="align-box-center content">
+          <h3>Our Team will respond with the provided email.</h3>
+          <button class="accent-button" ng-click="hideSuccessModal()">
+              Close Dialog
+          </button>
+        </div>
+        
+      </div>
+      <div class="ui modal" id="errorModal">
+          <i class="close icon"></i>
+          <div class="header">
+            <h1>Request Failed</h1>
+          </div>
+          <div class="align-box-center content">
+            <h3>{{invitationError}}</h3>
+          </div>
+          <button ng-click="hideSuccessModal()">
+            Close Dialog
+          </button>
+        </div>
+  </main>
+
+ 
 </div>

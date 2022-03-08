@@ -18,6 +18,10 @@ app.config(function($routeProvider, $locationProvider, RestangularProvider, $htt
             templateUrl: 'views/templates/index.html',
             controller: 'HomeCtrl'
         })
+        .when('/signup/:campaign_id/:campaign_name', {//seperating login and registration into two seperate pages
+            templateUrl: 'views/templates/signup.html',
+            title: "Register"
+        })
         .when('/register/confirm/:validation_token?', { // Confirm registration
             templateUrl: 'views/templates/login-register.html',
             controller: 'RegConfirmCtrl',

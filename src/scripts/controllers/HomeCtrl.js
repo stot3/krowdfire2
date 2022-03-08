@@ -610,7 +610,7 @@ app.controller('HomeCtrl', function ($timeout, $scope, $route, $rootScope, $loca
 
       $('#topbanner-main #video-wrapper').css('height', screenHeight);
     } else if (screenWidth > maxScreenSize) {
-      $('#topbanner-main #video-wrapper').css('height', '800px');
+      $('#topbanner-main #video-wrapper').css('height', 'auto');
     }
   }
 
