@@ -75,6 +75,7 @@
             </div>
             <a ng-if="User.person_type_id != 2" class="item" ng-click="navItem()" ng-class="{active: $location.path() === '/admin/dashboard' && $location.hash() !== 'subscription-settings'}" href="/admin/dashboard/" translate> navbar_adminstrator</a>
             <a ng-if="User.campaign_manager && !hideCampaignNav" class="item" ng-class="{active: $location.path() === '/campaign-manager'}" href="campaign-manager" translate> navbar_mytitle </a>
+            <a class="item" ng-class="{active: $location.path() === '/start'}" href="start">Start New Campaign</a>
             <a ng-if="User.campaign_backer" class="item" ng-class="{active: $location.path() === '/pledge-history'}" href="pledge-history" translate> navbar_mycontribution </a>
             <a class="item" ng-class="{active: $location.path() === 'message-center'}" href="message-center" translate>navbar_mymessage</a>
             <div class="header">

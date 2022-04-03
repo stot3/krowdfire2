@@ -88,9 +88,6 @@ app.controller('CreateCampaignCtrl', function($q, $location, $routeParams, $root
   $scope.run_mode = true;
   $scope.sub_country_ids = [];
   $scope.runMode = [{
-    name: "Time_Based_Campaign",
-    id: 1
-  }, {
     name: "Continuous_Campaign",
     id: 2
   }];
@@ -1496,22 +1493,12 @@ app.controller('CreateCampaignCtrl', function($q, $location, $routeParams, $root
       },
       goal: {
         identifier: 'goal',
-        rules: [{
-            type: 'empty',
-            prompt: translation.get_started_fundingmoney_input
-          },
-          {
-            type: 'lessThanInteger[goal]',
-            prompt: translation.get_started_fundingmoney_input
-          }
+        rules: [
         ]
       },
       runtime_days: {
         identifier: 'runtime_days',
-        rules: [{
-          type: 'empty',
-          prompt: translation.get_started_funding_numberdays_note
-        }]
+        rules: []
 
       },
     }
@@ -1529,12 +1516,10 @@ app.controller('CreateCampaignCtrl', function($q, $location, $routeParams, $root
     if (!$scope.hideCampaignBlurbField || typeof $scope.isRemoveRaiseMode == 'undefined') {
       basicsFormObj.funding_mode = {
         identifier: 'funding_mode',
-        rules: [{
-          type: 'empty',
-          prompt: translation.get_started_funding_mode_note
-        }]
+        rules: []
       };
     }
+    console.log(basicsFormObj)
 
     $('.campaign-basics-form.ui.form').form(basicsFormObj, {
       inline: true,
@@ -1699,7 +1684,7 @@ app.controller('CreateCampaignCtrl', function($q, $location, $routeParams, $root
       $scope.valcheck = $scope.valcheck && false;
     }
 
-    if (!$('#start-date-field .quickdate').hasClass('startdate-selected')) {
+    /*if (!$('#start-date-field .quickdate').hasClass('startdate-selected')) {
       $('#start-date-field .select-error').remove();
       $('#start-date-field').append('<div class="select-error ui red pointing prompt label transition visible">' + translation.campaign_basics_selectstartdate_prompt + '</div>');
       $('#start-date-field').addClass('error');
@@ -1711,7 +1696,7 @@ app.controller('CreateCampaignCtrl', function($q, $location, $routeParams, $root
       $('#end-date-field').append('<div class="select-error ui red pointing prompt label transition visible">' + translation.campaign_basics_select_end_date_prompt + '</div>');
       $('#end-date-field').addClass('error');
       $scope.valcheck = $scope.valcheck && false;
-    }
+    }*/
 
     if ($scope.invalidVideo) {
       $('#campaign-video .select-error').remove();

@@ -2,9 +2,10 @@ app.controller('InsurancePolicyController', function($location, $scope, UserServ
     if (!UserService.isLoggedIn()) {
         $location.path('login');
     }
-    UserService.getPaidGuard().then(
+    UserService.getProfile().then(
         function(data){
-            if(data != true){
+            const paid = data.data.info.paid
+            if(paid != true){
                 $location.path('login');
             }
         }
@@ -20,4 +21,28 @@ app.controller('InsurancePolicyController', function($location, $scope, UserServ
     $scope.goToCampaignStart = function(){
         $location.url('/start')
     };
+    $scope.saveCampaignSuccess = function(){
+        return UserService.getProfile().then(
+            () => {
+                UserService.saveCampaignSuccess()
+                .then( 
+                    () => { 
+                        $location.path('campaign-manager')
+                    }
+                )
+                .catch(
+                    err => {
+                        console.error(err)
+                    }
+                )
+            }
+        ) 
+        .catch(
+            err => {
+                console.error(err)
+            }
+        ) 
+
+        
+    }
 })

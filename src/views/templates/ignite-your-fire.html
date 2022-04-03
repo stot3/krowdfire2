@@ -51,7 +51,7 @@
                 </li>
             </ol>
 
-            <button style="margin-top:1rem" class="accent-button" type="submit">&nbsp;Follow </button>
+            <button style="margin-top:1rem" class="accent-button" type="submit">&nbsp;Invite </button>
         </form>
         <div class="mdc-card grid-row m-2-0">
             <div class="mdc-data-table p-16">
@@ -59,6 +59,13 @@
                 <header class="p-20 grid-row justify-center">
                     <h3>Your Pick Six</h3>
                 </header>
+                <div ng-if="loading !== false">
+                    <span class="text-center" for="pickSixProgress">
+                        {{loading}}
+                    </span>
+                    <progress id="pickSixProgress" style="width:100%">
+                    </progress>
+                </div>
                 <table class="mdc-data-table__table">
                     <thead>
                         <tr class="mdc-data-table__header-row">
@@ -75,7 +82,55 @@
                                 {{invitees.email}}
                             </td>
                             <td class="mdc-data-table__cell">
-                                <span>Donation Pending</span>
+                                <span ng-class="{'green-text': invitees.status === 'Donation Paid'}">{{invitees.status}}</span>
+                            </td>
+                            <td class="mdc-data-table__cell">
+                                <div class="mdc-touch-target-wrapper">
+                                    <div id="demo-menu" class="ui dropdown item">
+                                        <button class="dropdown icon">
+                                        </button>
+                                        <div class="menu">
+                                            <a class="item">Resend Invitation</a>
+                                            <a class="item" ng-click="removeFromInviteesTable($index)">Revoke Invitation</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>   
+                </table>
+            </div>
+        </div>
+        <div ng-if="campaignInviteesLen > 0" class="mdc-card grid-row m-2-0">
+            <div class="mdc-data-table p-16">
+                <div class="mdc-data-table__table-container"></div>
+                <header class="p-20 grid-row justify-center">
+                    <h3>{{campaign_name}}'s Invited Fundraisers</h3>
+                </header>
+                <div ng-if="loading !== false">
+                    <span class="text-center" for="pickSixProgress">
+                        {{loading}}
+                    </span>
+                    <progress id="pickSixProgress" style="width:100%">
+                    </progress>
+                </div>
+                <table class="mdc-data-table__table">
+                    <thead>
+                        <tr class="mdc-data-table__header-row">
+                            <th class="mdc-data-table__header-cell">#</th>
+                            <th class="mdc-data-table__header-cell">Email Address</th>
+                            <th class="mdc-data-table__header-cell">Invitation Status</th>
+                            <th class="mdc-data-table__header-cell">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="mdc-data-table__content">
+                        <tr ng-repeat="invitees in campaignInvitees" class="mdc-data-table__row">
+                            <td class="mdc-data-table__cell mdc-data-table__cell--numeric">{{$index + 1}}.</td>
+                            <td class="mdc-data-table__cell">
+                                {{invitees.email}}
+                            </td>
+                            <td class="mdc-data-table__cell">
+                                <span ng-class="{'green-text': invitees.status === 'Donation Paid'}">{{invitees.status}}</span>
                             </td>
                             <td class="mdc-data-table__cell">
                                 <div class="mdc-touch-target-wrapper">
@@ -105,3 +160,25 @@
         <button class="accent-button" href="/explore">Explore Other Campaigns</button>
     </div>
  </div>
+ <div class="card ui modal justify-center" id="completeSuccessWorkshop">
+     <div class="justify-center flex-start">
+        <div class="grid-row place-center text-center" style="max-width: 500px;">
+            <h1>Complete The Success and Insurance Policy Workshop</h1>
+            <img src="images/stop.png" alt="stop">
+            <p>You must complete and scknoledge the completion of the  success and inurtance policy workshop. Click the button below complete the success and insurance workshop.</p>
+            <a class="accent-button" href="/success-and-insurance-policy">Go to Success and Insurance Workshop</a>
+        </div>
+     </div>
+ </div>
+ <div class="card ui modal" id="completeSubmit">
+    <div class="justify-center flex-start">
+        <div class="grid-row place-center">
+            <h1 class="mat-typography">Pick Six Complete</h1>
+            <img class="pick-six-pic" height="100px" width="100%" src="images/Congratulations.png">
+            <p>Your campaign is on it’s way to success. Your six participants have successfully contributed to the platform.</p>
+            <p>All other invitees from here on out will donate to your campaign only</p>
+            <button class="accent-button" ng-click="closeCompleteSubmit()">Back To Invitations</button>
+        </div>
+    </div>
+</div>
+ 

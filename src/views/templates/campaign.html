@@ -103,7 +103,7 @@
                       </strong>
                     </div>
 
-                    <!--<div class="item item-backer">
+                    <div class="item item-backer">
                       <div class="item item-value">
                         <span class="c-value">{{backer_length}}</span>
                       </div>
@@ -125,7 +125,7 @@
                             {{duration}} {{dtype | translate}}</span>
                         </em>
                       </div>
-                    </div>-->
+                    </div>
 
                     <div class="item item-progress" ng-if="!(progressHide)">
                       <div class="bar-progress ui indicating progress" data-percent="{{temp = campaign.funded_amount / (campaign.funding_goal || 1) * 100; temp >= 100 ? 100 : temp < 1 ? 0 : temp}}">
@@ -957,10 +957,10 @@
           </div>
           <div class="ui small modal" id="payModal">
             <div class="header">
-              <h1>Your inviter's campaign</h1>
+              <h1>Donation Campaign</h1>
             </div>
             <div class="align-box-center content actions">
-              <h3>This is the campaign that has invited you to join Krowdfire. Donate to this campaign, to receive access to our platform.</h3>
+              <h3>This is the designated campaign to which you should donate.</h3>
               <button class="ui accent-button button close">
                   Close Dialog
               </button>

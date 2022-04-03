@@ -295,7 +295,7 @@ app.controller('RegisterCtrl', function($scope, $rootScope, $location, Restangul
       $scope.formData.errors = [{ "message" : "You must be invited to create a campaign"}]
     }
     Promise.all([
-      UserService.setInvitationInformation($scope.formData.email, $routeParams.campaign_id, $routeParams.campaign_name),
+      UserService.setInvitationInformation($scope.formData.email, $routeParams.campaign_id, $routeParams.campaign_name, $routeParams.uid),
       Restangular.one('register').customPOST($scope.formData)
     ]).then(
       function(success) {
@@ -325,7 +325,7 @@ app.controller('RegisterCtrl', function($scope, $rootScope, $location, Restangul
         if ($scope.public_settings.site_auto_approve_new_users) {
           Restangular.all('authenticate').post($scope.userData).then(function(logInData) {
             UserService.setLoggedIn(logInData, true);
-            $location.path('/');
+            $location.path('/login');
 
             if (UserService.isLoggedIn()) {
               //Send Extra Fields To Attributes
@@ -357,6 +357,10 @@ app.controller('RegisterCtrl', function($scope, $rootScope, $location, Restangul
             $scope.error_messgae = value;
           });
         }
+      }
+    ).catch(
+      (error) => {
+        console.log(error)
       }
     );
   }

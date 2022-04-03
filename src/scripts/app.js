@@ -545,7 +545,6 @@ app.controller('MainCtrl', ['$scope', '$location', 'UserService', 'Restangular',
           User.setLoggedOut();
         }
       });
-      console.log($rootScope.okta_tokens)
     }
 
     $rootScope.removeFloatingMessage = function() {

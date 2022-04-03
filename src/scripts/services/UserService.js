@@ -4,7 +4,8 @@ app.service('UserService', function($location, $http, $browser, APIRegister, ipC
     first_name: '',
     last_name: '',
     auth_token: '',
-    subscribed: false
+    subscribed: false,
+    uid: ''
   }
 
   User.updateUserData = function(data) {
@@ -21,8 +22,8 @@ app.service('UserService', function($location, $http, $browser, APIRegister, ipC
         }
     )
 }
-User.setInvitationInformation = function(email, campaign_id, campaign_name){
-  return $http.post('https://us-central1-sistrunk-software.cloudfunctions.net/saveInvitation', {email: email, campaign_id: campaign_id, campaign_name: campaign_name}, {headers: {"Content-Type": "application/json"}})
+User.setInvitationInformation = function(email, campaign_id, campaign_name, inviterUid){
+  return $http.post('https://us-central1-sistrunk-software.cloudfunctions.net/saveInvitation', {email: email, campaign_id: campaign_id, campaign_name: campaign_name, inviterUid: inviterUid}, {headers: {"Content-Type": "application/json"}})
   .catch(
     function(err){ 
         console.error(err)
@@ -47,8 +48,8 @@ User.getPaidGuard = function(){
         }
     )
 }
-  User.setPaidStatus= function(email){
-    return $http.post('https://us-central1-sistrunk-software.cloudfunctions.net/userPaid', {email: email}, {headers: {"Content-Type": "application/json"}}).catch(
+  User.setPaidStatus= function(email, inviterUid){
+    return $http.post('https://us-central1-sistrunk-software.cloudfunctions.net/userPaid', {email: email, inviterUid: inviterUid}, {headers: {"Content-Type": "application/json"}}).catch(
         function(err){ 
             console.error(err)
         }
@@ -105,24 +106,30 @@ User.getMatchingCampaign = function(campaign_name, campaign_id){
     var url = redirectService.getUrl();
     if (redirect == false) {
       if (url && url != '/login' && url.split("/")[1] != 'register' && url.split('/')[1] != 'authenticate') {
-        User.getPaidStatus(data.email).then(
+        return User.getPaidStatus(data.email).then(
           function(status){
             const paid = status.data.info.paid
             if(paid === true)
             {
-          
-              $location.url("/start");
+              $location.path("/start");
+              return true
+            }
+            else if(paid === undefined){
+              $location.path("/");
+              return true
             }
             else{
               const campaign_id = status.data.info.inviterInformation.campaign_id;
               const campaign_name = status.data.info.inviterInformation.campaign_name;
-              $location.url(`/campaign/${campaign_id}/${campaign_name}`)
+              $location.url(`/campaign/${campaign_id}/${campaign_name}`);
+              return true
             }
           }
         ).catch( 
           function(err){
             console.error(err)
             $location.path('/login')
+            return err
           }
         )
       } else {
@@ -182,10 +189,19 @@ User.getMatchingCampaign = function(campaign_name, campaign_id){
   User.hideInvitationModal = function(){
     return $('#payModal.ui.modal').modal('hide')
   }
-  User.getProfile = function(email){
-   return $http.post("https://us-central1-sistrunk-software.cloudfunctions.net/getProfile", {email: User.email}) 
+  User.getProfile = function(){
+    return $http.post("https://us-central1-sistrunk-software.cloudfunctions.net/getProfile", {email: User.email})
+    .then( (profile) => {
+      User.uid = profile.data.info.id
+      return profile
+    })
   }
-  
+  User.updateInvitees = function(emails, uid){
+    return $http.post("https://us-central1-sistrunk-software.cloudfunctions.net/removeInvitation", {emails: emails, uid: User.uid})
+  }
+  User.saveCampaignSuccess = function(){
+    return $http.post("https://us-central1-sistrunk-software.cloudfunctions.net/setSuccessCampaign", {uid: User.uid})
+  }
   return User;
 })
 ;

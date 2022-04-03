@@ -501,7 +501,7 @@
 
           <h2 class="ui inverted top attached header" translate ng-show="isRemoveFundraise"> get_started_fundraising</h2>
           <div class="campaign-bg ui middle attached basic segment" ng-show="isRemoveFundraise">
-            <div class="formbg ui two column stackable grid required-field campaign-funding-goal-form-field" ng-if="!isFieldDisplayStacked" ng-class="{'revision-active' : enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id == 2}">
+            <!--<div class="formbg ui two column stackable grid required-field campaign-funding-goal-form-field" ng-if="!isFieldDisplayStacked" ng-class="{'revision-active' : enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id == 2}">
               <div class="ui corner red label">
                 <i class="white asterisk icon"></i>
               </div>
@@ -532,7 +532,7 @@
                           ng-attr-allow-decimal="true" numbers-only onkeydown="if (event.keyCode == 13) return false;">
                         <input ng-disabled="campaign.total_backers > 0 && user.person_type_id != 1 || (enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id == 2)" ng-if="public_setting.site_campaign_decimal_option == 2||public_setting.site_campaign_decimal_option == 3"
                           type="text" name="goal" ng-model="campaignFundingGoal.value" numbers-only onkeydown="if (event.keyCode == 13) return false;">
-                        <!-- ng-class="{'has-error': campaign.funding_goal <= 0}" -->
+                        <!-- ng-class="{'has-error': campaign.funding_goal <= 0}" 
                         <div ng-if="public_setting.site_campaign_decimal_option == 2" class="ui label" style="padding-top:1.5em;">.00</div>
                       </div>
                     </div>
@@ -565,7 +565,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div>-->
             <div class="formbg ui grid stacked-ui-field required-field" ng-show="isFieldDisplayStacked" ng-class="{'revision-active' : enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id == 2}">
               <div class="column">
                 <h3 class="ui header">
@@ -890,7 +890,7 @@
               </div>
             </div>
 
-            <div class="ui two column stackable formbg grid required-field campaign-duration-form-field" ng-if="!isFieldDisplayStacked" ng-class="{'revision-active' : enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id == 2}">
+            <!--<div class="ui two column stackable formbg grid required-field campaign-duration-form-field" ng-if="!isFieldDisplayStacked" ng-class="{'revision-active' : enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id == 2}">
               <div class="ui corner red label">
                 <i class="white asterisk icon"></i>
               </div>
@@ -919,7 +919,7 @@
 
                 <div class="field start-date" id="start-date-field" ng-show="(!public_settings.site_campaign_fixed_campaign_duration_enable && !public_settings.site_campaign_defaults.toggle) || user.person_type_id == 1">
                   <label> {{'get_started_funding_startdate'|translate}} ({{campaign.timezoneText}})</label>
-                  <!-- public_settings.site_theme_campaign_display_iso_date -->
+                  <!-- public_settings.site_theme_campaign_display_iso_date 
                   <quick-datepicker ng-class="{'startdate-selected' : campaign.starts_date_time}" ng-model="campaign.starts_date_time" disable-clear-button="true" date-format='EEEE, yyyy/MM/d' placeholder="{{get_started_funding_startdate_placeholder}}" date-filter="noPastDates"
                     ng-if="public_settings.site_theme_campaign_display_iso_date && (!public_settings.allow_admin_past_dates || !user.portal_admin)"></quick-datepicker>
 
@@ -932,7 +932,7 @@
                   <div class="disabled-overlay" ng-show="enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id == 2"></div>
                 </div>
 
-                <!-- Show start date only-->
+                <!-- Show start date only
                 <div class="field start-date" id="start-date-field" ng-show="(public_settings.site_campaign_fixed_campaign_duration_enable || public_settings.site_campaign_defaults.toggle) && user.person_type_id == 2">
                   <label> {{'get_started_funding_startdate'|translate}} ({{campaign.timezoneText}})</label>
                   <p>{{campaign.starts_date_time | formatDate:"MMM DD YYYY h:mm A"}}</p>
@@ -988,7 +988,7 @@
                   <p>{{campaign.ends_date_time | formatDate:"MMM DD YYYY h:mm A"}}</p>
                 </div>
               </div>
-            </div>
+            </div>-->
 
             <div class="ui formbg grid stacked-ui-field required-field campaign-duration-form-field" ng-if="isFieldDisplayStacked" ng-class="{'revision-active' : enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id == 2}">
 

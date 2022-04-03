@@ -96,7 +96,7 @@
   "Keep it All Funding Mode": "Keep it All Funding Mode",
   "get_started_run_mode": "Campaign Run Mode",
   "get_started_run_mode_note": "Choose between a time based campaign (An end date needs to be specified for the funding duration) or a continuous campaign (There will be no end date set and the campaign never ends).",
-  "get_started_default_run_mode": "Time Based Campaign",
+  "get_started_default_run_mode": "Continuous Campaign - No End Date",
   "get_started_campaign_percentage": "Campaign Percentage Fee",
   "get_started_campaign_percentage_message": "Set Campaign Percentage Fee here to overwrite the default portal Transaction Fee. Read more <a target='_blank' href='https://www.thrinacia.com/blog/post/setting-per-campaign-transaction-fee'>here.</a>",
   "get_started_campaign_percentage_not_set": "Using Default Portal Transaction Fee",

@@ -697,7 +697,7 @@ html body {
       background: #ffffff;
       position: relative; }
       html body.container #main-bg.sticky-menu-push {
-        padding-top: 65px; }
+        padding-top: 125px; }
         html body.container #main-bg.sticky-menu-push #custom-sticky-top {
           padding-top: 65px; }
         html body.container #main-bg.sticky-menu-push #api-menu {

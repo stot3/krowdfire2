@@ -18,7 +18,7 @@ app.config(function($routeProvider, $locationProvider, RestangularProvider, $htt
             templateUrl: 'views/templates/index.html',
             controller: 'HomeCtrl'
         })
-        .when('/signup/:campaign_id/:campaign_name', {//seperating login and registration into two seperate pages
+        .when('/signup/:campaign_id/:campaign_name/:uid', {//seperating login and registration into two seperate pages
             templateUrl: 'views/templates/signup.html',
             title: "Register"
         })

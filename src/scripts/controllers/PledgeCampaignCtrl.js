@@ -2735,16 +2735,41 @@ app.controller('PledgeCampaignCtrl', function(
             // $scope.cardExpiryElement.clear();
             // $scope.cardCvcElement.clear();
           }
-          UserService.setPaidStatus($scope.user.email)
-          // display a thank you note
+          UserService.getProfile()
+          .then(
+            (profile) => {
+              const inviterInformation = profile.data.info.inviterInformation.inviterUid
+              if(inviterInformation !== undefined)
+              {
+                return UserService.setPaidStatus($scope.user.email, inviterInformation)
+                .then(
+                  () => {
+                    console.log("Saved")
+                  }
+                )
+                .catch(
+                  (err) => { console.error(err)}
+                )
+
+              }
+              else{
+                console.error(new Error("User not Invited"))
+              }
+            }
+          )
+          .catch(
+            err => {console.error(err)}
+          )
           $('.pledge-thank-you')
-            .modal({
-              selector: {
-                close: '.actions .button',
-                deny: '.actions .negative, .actions .deny, .actions .cancel, .close'
-              },
-              closable: false
-            }).modal('show');
+                    .modal({
+                      selector: {
+                        close: '.actions .button',
+                        deny: '.actions .negative, .actions .deny, .actions .cancel, .close'
+                      },
+                      closable: false
+                    }).modal('show');
+          // display a thank you note
+         
 
           if (typeof $scope.campaign.settings != 'undefined' && $scope.campaign.contribution_redirect) {
             $timeout(function() {

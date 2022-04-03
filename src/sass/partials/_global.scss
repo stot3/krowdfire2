@@ -114,19 +114,11 @@
 
 html {
   body {
-    font-size: 100%;
-    font-family: 'Open Sans', sans-serif;
     margin: 0;
     padding: 0;
     min-width: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
-    img {
-      max-width: 100%;
-      width: auto;
-      height: auto;
-    }
 
     .ui.dropdown {
       & > .default {

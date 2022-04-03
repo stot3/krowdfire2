@@ -100,7 +100,6 @@ app.controller('LoginCtrl', function($rootScope, $location, $scope, PortalSettin
     
     Restangular.one('authenticate').customPOST($scope.formData).then(
       function(success) {
-        console.log(success);
 
         var rules = [
           {
