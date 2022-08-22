@@ -83,7 +83,7 @@ app.service('VideoLinkService', function($sce, RESOURCE_REGIONS) {
           video_id = video_id.substring(0, lastIndex);
         }
       }
-      var vimeo_link = "https://player.vimeo.com/video/" + video_id + "?&badge=0&loop=1&title=false&byline=false";
+      var vimeo_link = "https://player.vimeo.com/video/" + video_id + "?&badge=0&loop=0&title=false&byline=false";
 
       if ((settings.mute && settings.mute == true) ||
         (settings.thumbnail && settings.thumbnail == true)) {

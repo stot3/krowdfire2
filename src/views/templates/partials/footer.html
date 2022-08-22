@@ -48,33 +48,33 @@
             <div class="footer-col footer-first column" ng-if="leftMenu.length">
               <h5 class="ui header"> {{$root.site_company}} </h5>
               <div class="footer-links ui link list">
-                <a class="item" ng-repeat="link in leftMenu" ng-href="{{findPageAndLink(link).path}}" my-target="{{link.id}}" target="_self">{{findPageAndLink(link).name}}</a>
+                <a class="navigation-item item" ng-repeat="link in leftMenu" ng-href="{{findPageAndLink(link).path}}" my-target="{{link.id}}" target="_self">{{findPageAndLink(link).name}}</a>
               </div>
             </div>
             <div class="footer-col footer-second column" ng-if="rightMenu.length">
               <h5 class="ui header"> {{'footer_page_needhelp' | translate}} </h5>
               <div class="ui link list">
-                <a class="item" ng-repeat="link in rightMenu" ng-href="{{findPageAndLink(link).path}}" my-target="{{link.id}}" target="_self">{{findPageAndLink(link).name}}</a>
-                <a class="item" href="mailto:support@krowdfire.com">Contact</a>
+                <a class="navigation-item item" ng-repeat="link in rightMenu" ng-href="{{findPageAndLink(link).path}}" my-target="{{link.id}}" target="_self">{{findPageAndLink(link).name}}</a>
+                <a class="navigation-item item" href="mailto:support@krowdfire.com">Contact</a>
               </div>
             </div>
             <div class="footer-col footer-third column" ng-if="left_category.length" ng-show="hasCategory">
               <h5 class="ui header"> {{'footer_page_explore' | translate}} </h5>
               <div class="ui link list">
                 <a href="explore" class="item"> {{'footer_page_allcategory' | translate}}   </a>
-                <a ng-href="explore?category={{category.id}}" class="item" ng-repeat="category in left_category">{{category.name}}</a>
+                <a ng-href="explore?category={{category.id}}" class="navigation-item item" ng-repeat="category in left_category">{{category.name}}</a>
               </div>
             </div>
             <div class="footer-col footer-fourth column" ng-if="middle_category.length" ng-show="hasCategory">
               <h5 class="ui header" style="visibility:hidden;">&nbsp;</h5>
               <div class="ui link list">
-                <a ng-href="explore?category={{category.id}}" class="item" ng-repeat="category in middle_category">{{category.name}}</a>
+                <a ng-href="explore?category={{category.id}}" class="navigation-item item" ng-repeat="category in middle_category">{{category.name}}</a>
               </div>
             </div>
             <div class="footer-col footer-fifth  column" ng-if="right_category.length" ng-show="hasCategory">
               <h5 class="ui header" style="visibility:hidden;">&nbsp;</h5>
               <div class="ui link list">
-                <a ng-href="explore?category={{category.id}}" class="item" ng-repeat="category in right_category">{{category.name}}</a>
+                <a ng-href="explore?category={{category.id}}" class="navigation-item item" ng-repeat="category in right_category">{{category.name}}</a>
               </div>
             </div>
           </div>

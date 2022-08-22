@@ -2,7 +2,7 @@
   "pledge_campaign_by": "by",
   "pledge_campaign_main_header": "Contribution Summary",
   "pledge_campaign_confirm_reward": "Confirm Contribution",
-  "pledge_campaign_confirm_reward_note": "You can specify how much contribution you want to make. If a reward is specified, you can contribute as much as you want but not lower than the reward amount.",
+  "pledge_campaign_confirm_reward_note": "You can specify how much contribution you want to make",
   "pledge_campaign_enter_coupon": "Coupon Code",
   "pledge_campaign_apply": "Apply",
   "pledge_campaign_coupon_invalid": "Coupon code invalid, please try again",

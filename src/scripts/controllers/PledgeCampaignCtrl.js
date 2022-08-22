@@ -608,7 +608,14 @@ app.controller('PledgeCampaignCtrl', function(
     $rootScope.page_title = $scope.campaign.name ? $scope.campaign.name + ' - Contribution' : 'Contribution';
     $scope.campaign_loc = $scope.campaign.uri_paths[0].path;
     window.b = $scope.campaign_loc;
-
+    //changes minimum contribution for users who have matching invitation information
+    UserService.getMatchingCampaign($scope.campaign_loc.split("/")[2],$scope.campaign_id)
+    .then(
+      (userRecord) => { 
+        $scope.campaignFundingGoal.value = 75
+        $scope.pledgeAmount = 75;
+      }
+    )
     angular.forEach($scope.campaign.pledges, function(value, key) {
       if ($scope.pledgeLevel == value.pledge_level_id) {
         $scope.pledgeindex = count;
@@ -2741,14 +2748,15 @@ app.controller('PledgeCampaignCtrl', function(
               const inviterInformation = profile.data.info.inviterInformation.inviterUid
               if(inviterInformation !== undefined)
               {
-                return UserService.setPaidStatus($scope.user.email, inviterInformation)
+                return UserService.setPaidStatus($scope.user.email, inviterInformation, $scope.campaign_id)
                 .then(
                   () => {
                     console.log("Saved")
                   }
                 )
                 .catch(
-                  (err) => { console.error(err)}
+                  (err) => { 
+                    console.error(err)}
                 )
 
               }

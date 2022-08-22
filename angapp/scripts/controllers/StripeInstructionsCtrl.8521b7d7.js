@@ -1,0 +1,1 @@
+app.controller("StripeInstructionsCtrl",["$scope","$routeParams","CreateCampaignService",function($scope,$routeParams,CreateCampaignService){$scope.campaign={},$scope.nextStepUrl="complete-funding/"+$routeParams.campaign_id,$scope.backUrl="profile-setup/"+$routeParams.campaign_id}]);

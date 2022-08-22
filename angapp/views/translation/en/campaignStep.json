@@ -3,6 +3,7 @@
 	"campaign_step_basic": "Basics",
 	"campaign_step_detail": "Details",
 	"campaign_step_reward": "Rewards",
+	"campaign_step_stripe_instructions": "Overview of the Stripe Connection Process",
 	"campaign_step_profile": "Profile",
 	"campaign_step_funding": "Funding",
 	"campaign_step_preview": "Preview",

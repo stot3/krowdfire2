@@ -22,7 +22,6 @@ app.controller('CreatorInviteCtrl', function($scope, $location, UserService, Cre
     CreateCampaignService.load($routeParams.campaign_id)
     .then(
         data => {
-
                 $scope.campaign_name = data.name
                 $scope.campaign_pathname = data.uri_paths[0].path.split("/").pop()
                 return UserService.getProfile().then(
@@ -30,23 +29,30 @@ app.controller('CreatorInviteCtrl', function($scope, $location, UserService, Cre
                         const inviterInformation = profile.data.info.invitedFundraisers;
                         const successAndInsurancePolicy = profile.data.info.campaignSuccess;
                         const campaignInvitees = profile.data.info[`${data.name}_invitees`];
-                        const pickSixComplete = profile.data.info.congratulationsPickSixComplete;
+                        const pickSixComplete = profile.data.info[`congratulationsPickSixComplete_${$routeParams.campaign_id}`];
                         const userPaid = profile.data.info.paid;
-                        if(userPaid != undefined && userPaid === true){
+                        if(userPaid != undefined && userPaid !== true){
                             $location.path("")
                         }
                        if(inviterInformation !== undefined){
                            for(let email in inviterInformation){
                                if(email.startsWith(`${$routeParams.campaign_id}_`)){
-                                    const campaignEmail = email.split("_")[1];
-                                    $scope.campaignInvitees.push({email: campaignEmail, status: inviterInformation[email].status, dateAdded: inviterInformation[email].dateAdded})
-                                    $scope.campaignInviteesLen += 1; 
+                                   if(email.split("_").length === 2){
+                                        const campaignEmail = email.split("_")[1];
+                                        $scope.inviteesTables.push({email: campaignEmail, status: inviterInformation[email].status, dateAdded: inviterInformation[email].dateAdded})
+                                   }
+                                   else{
+                                        const campaignEmail = email.split("_")[1];
+                                        $scope.campaignInvitees.push({email: campaignEmail, status: inviterInformation[email].status, dateAdded: inviterInformation[email].dateAdded})
+                                        $scope.campaignInviteesLen += 1; 
+                                   }
+                                    
                                }
                                else{
-                                   if(email.split("_").length !== 3)
+                                   /*if(email.split("_").length !== 3)
                                     {
                                         $scope.inviteesTables.push({email: email, status: inviterInformation[email].status, dateAdded: inviterInformation[email].dateAdded})
-                                    }
+                                    }*/
                                }
                            }
                        }
@@ -79,6 +85,7 @@ app.controller('CreatorInviteCtrl', function($scope, $location, UserService, Cre
         let sendObj = emails; 
         sendObj[`campaign_id`] = $routeParams.campaign_id
         sendObj[`campaign_name`] = $scope.campaign_pathname
+        sendObj[`campaign_owner_name`] = `${UserService.first_name} ${UserService.last_name}`;
         $scope.loading = 'Saving Participants'; 
 
         if($scope.loading === 'Saving Participants')
@@ -101,13 +108,20 @@ app.controller('CreatorInviteCtrl', function($scope, $location, UserService, Cre
                         for(let email in invited ){
                             if(email.startsWith(`${$routeParams.campaign_id}_`))
                             {
+                                if(email.split("_").length === 2){
+                                    const campaignEmail = email.split("_")[1];
+                                    $scope.inviteesTables.push({email: campaignEmail, status: invited[email].status, dateAdded: invited[email].dateAdded })
+                                    //$scope.campaignInviteesLen += 1;
+                                }
+                                else{
+                                    const campaignEmail = email.split("_")[1];
+                                    $scope.campaignInvitees.push({email: campaignEmail, status: invited[email].status, dateAdded: invited[email].dateAdded })
+                                    $scope.campaignInviteesLen += 1;
+                                }
                                 
-                                const campaignEmail = email.split("_")[1];
-                                $scope.campaignInvitees.push({email: campaignEmail, status: invited[email].status, dateAdded: invited[email].dateAdded })
-                                $scope.campaignInviteesLen += 1;
                             }
                             else{
-                                $scope.inviteesTables.push({email: email, status: invited[email].status, dateAdded: invited[email].dateAdded })
+                                //$scope.inviteesTables.push({email: email, status: invited[email].status, dateAdded: invited[email].dateAdded })
                             }
                         }
 

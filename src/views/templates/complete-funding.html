@@ -31,7 +31,7 @@
         </div>
 
         <form class="campaign-creation-form startfunding-form ui form" name="startfunding-form">
-
+ 
           <h2 class="ui inverted top attached header" translate> complete_funding_fundingdetails </h2>
           <div class="campaign-bg ui middle attached basic segment">
             <div class="formbg ui two column stackable grid required-field campaign-funding-connect-form-field" ng-if="!isFieldDisplayStacked && !showCampaignbankForm">
@@ -39,6 +39,12 @@
                 <i class="white asterisk icon"></i>
               </div>
               <div class="five wide column">
+                <div>
+                  <strong translate>complete_funding_ein_explainer</strong>
+                  <a href="https://sa.www4.irs.gov/modiein/individual/index.jsp" style="display: inline-block;">
+                    <div>Click here</div>
+                  </a>
+                </div>
                 <h3 class="ui header">
                   <span translate>complete_funding_stripe_connection</span>
                   <span class="required-text" translate="campaign_creation_required_text"></span>

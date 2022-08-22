@@ -1,51 +1,90 @@
 <section class="ignite-your-fire place-center ">
     <img style="object-fit: cover; height:100%; grid-area: 1/1/2/2;" src="https://krowd.atlas.thrinacia.com/api/static/images/portal/ed/3d/26/B8D22B60-45D3-11EC-9F75-00C79B719BCB-image-a27d0982111b2cee5d4da0be45ba35c4bd29c7f4b037055cfe768505d49e637d.png" data-resource_content_type_id="3" data-path_external="portal/ed/3d/26/B8D22B60-45D3-11EC-9F75-00C79B719BCB-image-a27d0982111b2cee5d4da0be45ba35c4bd29c7f4b037055cfe768505d49e637d.png" data-resource_content_type="image" data-name="Screen Shot 2021-10-18 at 8.09.18 PM.png" data-file_type_id="4" data-created="2021-11-14 21:20:18.877811-08" data-id="58" data-category_id="null" data-mime_type="image/png" data-region_id="1" data-file_type="PNG Image" data-extension="png" data-modified="2021-11-14 21:20:18.877811-08" data-disabled="0" data-category_name="null" data-resource_type="file" data-region_resource_id="58" data-file_id="71" data-description="PNG Image File" style="width: 300%;" class="fr-fic fr-dib">
-    <div class="grid-row close-gaps-2" style="grid-area: 1/1/2/2;z-index: 2;">
+    <div class="grid-row close-gaps-2" style="grid-area: 1/1/2/2;z-index: 2">
         <div class="ui blue progress" style="width:100%;" id="invitedParticipants" data-value="0" data-total="6">
             <div class="bar">
                 <div class="progress"></div>
             </div>
-            <div class="label" style="color:#FFFFFF;">Invited Participants</div>
         </div>
-        <form name="creator-invite" class="grid-row close-gaps-2 form-surface" ng-submit="sendEmails(emails)">
+        <div style="color:#FFFFFF; text-align: center; margin-bottom: 1rem;">
+            <span>Discuss the following steps with an invitee before sending their invitations</span>
+        </div>
+        <div class="ignite-your-fire-grid-header">
+            <div class="flex-start flex-column align-center">
+                <img src="images/send-email.svg" width="150" height="150">
+                <p>Your invitee will be sent an email. Tell them to check their junk mail in case they did not recieve it.</p>
+            </div>
+            <div class="flex-start flex-column align-center">
+                <img src="images/confirm-email.svg" width="150" height="150">
+                <p>Confirm their email address through their email. If they had problems in step 1, make sure to check if they receive their confirmation.</p>
+            </div>
+            <div class="flex-start flex-column align-center">
+                <img src="images/signup.svg" width="150" height="150">
+                <p>Receive confirming email and take any action it requires.  (Where/How is someone sent to the designated campaign to donate?)</p>
+            </div>
+            <div class="flex-start flex-column align-center">
+                <img src="images/donate-campaign.svg" width="150" height="150">
+                <p>Donate to the campaign they are invited to.</p>
+            </div>
+            <div class="flex-start flex-column align-center">
+                <img src="images/start-campaign.svg" width="150" height="150">
+                <p>Your Invitee will be ready to start their campaign, they should be able to complete the process from there.</p>
+            </div>
+            <div class="flex-start flex-column align-center">
+                <img src="images/Reminder.svg" width="150" height="150">
+                <p>Remind your invitee that this invitation sequence can be found on the page, “How Krowdfire Works”. </p>
+            </div>
+        </div>
+        <form id="creator-invite-form" name="creator-invite" class="grid-row close-gaps-2 form-surface" ng-submit="sendEmails(emails)">
             <div class="grid-column align-start justify-center">
                 <h3 style="margin-right: 0.5rem;">Ignite Your Fire</h3>
             </div>
-            <ol>
+            <ol class="flex-start flex-column align-center">
                 <li>
                     <div class="ui input">
                         <input type="text" name="email_1" ng-model="emails.email1" placeholder="Email Address">
+                    </div>
+                    <div class="ui input">
                         <input type="text" name="name_1" ng-model="emails.name1" placeholder="Invitee's Name">
                     </div>
                 </li>
                 <li>
                     <div class="ui input">
                         <input type="text" name="email_2" ng-model="emails.email2" placeholder="Email Address">
+                    </div>
+                    <div class="ui input">
                         <input type="text" name="name_2" ng-model="emails.name2" placeholder="Invitee's Name">
-
                     </div>
                 </li>
                 <li>
                     <div class="ui input">
                         <input type="text" name="email_3" ng-model="emails.email3" placeholder="Email Address">
+                    </div>
+                    <div class="ui input">
                         <input type="text" name="name_3" ng-model="emails.name3" placeholder="Invitee's Name">
                     </div>
                 </li>
                 <li>
                     <div class="ui input">
                         <input type="text" name="email_4" ng-model="emails.email4" placeholder="Email Address">
+                    </div>
+                    <div class="ui input">
                         <input type="text" name="name_4" ng-model="emails.name4" placeholder="Invitee's Name">
                     </div>
                 </li>
                 <li>
                     <div class="ui input">
                         <input type="text" name="email_5" ng-model="emails.email5" placeholder="Email Address">
+                    </div>
+                    <div class="ui input">
                         <input type="text" name="name_5" ng-model="emails.name5" placeholder="Invitee's Name">
                     </div>
                 </li>
                 <li>
                     <div class="ui input">
                         <input type="text" name="email_6" ng-model="emails.email6" placeholder="Email Address">
+                    </div>
+                    <div class="ui input">
                         <input type="text" name="name_6" ng-model="emails.name6" placeholder="Invitee's Name">
                     </div>
                 </li>

@@ -25,7 +25,7 @@
         <i class="delete icon" ng-click="removeNote('funding_goal')" ng-if="note.funding_goal"></i>
       </div>
       <div class="notes" ng-class="{'has-note ui basic segment' : note.funding_goal}" ng-click="addNotes('campaign_review_funding_goal_note_title', 'funding_goal')">
-        <!--<div class="item r-mode" ng-if="!hideRaiseMode">
+        <div class="item r-mode" ng-if="!hideRaiseMode">
           <strong class="c-raise-mode">
             <div class="ui label black" translate>campaign_pledge_raise_mode</div>
             <span ng-if="campaign.raise_mode_id == 1" translate>campaign_pledge_all_nothing </span>
@@ -33,7 +33,7 @@
           </strong>
         </div>
 
-        <div class="item item-backer">
+        <div class="item item-backer" ng-if="!progressHide">
           <div class="item item-value">
             <span class="c-value">{{backer_length}}</span>
           </div>
@@ -44,7 +44,7 @@
           </div>
         </div>
 
-        <div class="item item-funded">
+        <div class="item item-funded" ng-if="!progressHide">
           <div class="item item-value" ng-if="campaign.funded_amount != null">
             <span class="c-value">
               <span ng-bind-html="campaign.funded_amount | formatCurrency:campaign.currencies[0].code_iso4217_alpha:public_setting.site_campaign_decimal_option"></span>
@@ -59,7 +59,7 @@
               <span ng-hide="!dateInPast(campaign.ends,campaign.seconds_remaining)"> {{duration}} {{dtype | translate}}</span>
             </div>
           </div>
-        </div>-->
+        </div>
         <div class="item item-progress" ng-if="!progressHide">
           <div class="bar-progress ui indicating progress" data-percent="{{temp = campaign.funded_amount / (campaign.funding_goal || 1) * 100; temp >= 100 ? 100 : temp < 1 ? 0 : temp}}">
             <div class="bar"></div>

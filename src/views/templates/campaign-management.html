@@ -93,7 +93,7 @@
                   <button class="ui small basic button" ng-if="campaignManagerTransactionHide(campaign)" ng-click="getTransecStats(campaign.id)" translate="campaign_management_transaction_button"></button>
                   <button class="ui small basic button" ng-if="campaignManagerHasEndDate(campaign)" ng-click="openExtendCampaignModal(campaign)" translate="campaign_management_extend_campaign_date_button"></button>
                   <a class="ui small basic button" href="success-and-insurance-policy">Campaign Success and Insurance Policy</a>
-                  <a class="ui small negative button" ng-href="ignite-creator/{{campaign.id}}">Invite Users</a>
+                  <a class="ui small negative button" ng-if="campaign.entry_status_id == '2'"ng-href="ignite-creator/{{campaign.id}}">Invite Fundraisers</a>
                 </div>
 
                 <div class="three wide right aligned column right-col" ng-show="campaign.entry_status_id != 11">

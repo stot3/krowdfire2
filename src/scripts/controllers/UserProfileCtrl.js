@@ -66,7 +66,7 @@ app.controller('UserProfileCtrl', function($q, $route, $routeParams, $rootScope,
     // $scope.displayLaunchCampaignOnStep4 = success.public_setting.site_campaign_creation_launch_campaign_on_step4;
     $scope.bankFormEnabled = $scope.public_settings.site_campaign_country_funding_step;
 
-    $scope.nextStepUrl = "complete-funding/" + $routeParams.campaign_id;
+    $scope.nextStepUrl = "stripe-instructions/" + $routeParams.campaign_id;
 
     if ($scope.public_settings.site_theme_campaign_show_reward_section) {
       if (($scope.hideAllCampaignRewardsFields || typeof $scope.hideAllCampaignRewardsFields !== 'undefined') && ($scope.showCampaignDescription || typeof $scope.hideAllCampaignRewardsFields !== 'undefined')) {

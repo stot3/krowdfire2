@@ -1491,15 +1491,9 @@ app.controller('CreateCampaignCtrl', function($q, $location, $routeParams, $root
           prompt: translation.get_started_titlemessage
         }]
       },
-      goal: {
-        identifier: 'goal',
-        rules: [
-        ]
-      },
       runtime_days: {
         identifier: 'runtime_days',
         rules: []
-
       },
     }
 
@@ -1519,7 +1513,6 @@ app.controller('CreateCampaignCtrl', function($q, $location, $routeParams, $root
         rules: []
       };
     }
-    console.log(basicsFormObj)
 
     $('.campaign-basics-form.ui.form').form(basicsFormObj, {
       inline: true,
@@ -1664,7 +1657,6 @@ app.controller('CreateCampaignCtrl', function($q, $location, $routeParams, $root
       $('#campaign-currency-field').addClass('error');
       $scope.valcheck = $scope.valcheck && false;
     }
-
     if (!$scope.currency_options) {;
       $('.select-error').remove();
       $('#campaign-currency-field').addClass('error');
@@ -1684,14 +1676,14 @@ app.controller('CreateCampaignCtrl', function($q, $location, $routeParams, $root
       $scope.valcheck = $scope.valcheck && false;
     }
 
-    /*if (!$('#start-date-field .quickdate').hasClass('startdate-selected')) {
+    if (!$('#start-date-field .quickdate').hasClass('startdate-selected')) {
       $('#start-date-field .select-error').remove();
       $('#start-date-field').append('<div class="select-error ui red pointing prompt label transition visible">' + translation.campaign_basics_selectstartdate_prompt + '</div>');
       $('#start-date-field').addClass('error');
       $scope.valcheck = $scope.valcheck && false;
     }
 
-    if (!$('#end-date-field .quickdate').hasClass('enddate-selected') && $scope.run_mode) {
+    /*if (!$('#end-date-field .quickdate').hasClass('enddate-selected') && $scope.run_mode) {
       $('#end-date-field .select-error').remove();
       $('#end-date-field').append('<div class="select-error ui red pointing prompt label transition visible">' + translation.campaign_basics_select_end_date_prompt + '</div>');
       $('#end-date-field').addClass('error');

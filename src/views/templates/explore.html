@@ -55,7 +55,7 @@
 
     <div id="explore-page" class="campaign-grid ui two column stackable page grid">
       <div class="left-col four wide column">
-        <div class="ui vertical accordion menu project-sidebar-list" ng-accord>
+        <div class="ui vertical accordion menu project-sidebar-list" style="display:block" ng-accord>
           <div class="search-sidebar-item header item">
             <i class="search icon"></i>
             <span translate="explore_search_campaignname"></span>
@@ -259,7 +259,7 @@
                   </span>
                 </div>
               </div>
-              <div class="campaign-card-footer">
+              <!--<div class="campaign-card-footer">
                 <div class="campaign-stats">
                   <div class="bar-progress ui indicating progress" ng-if="!campaign.settings.progress_bar_hide" data-percent="{{temp = campaign.funded_amount / (campaign.funding_goal || 1) * 100; temp >= 100 ? 100 : temp < 1 ? 0 : temp}}">
                     <div class="bar"></div>
@@ -267,10 +267,8 @@
                   <div id="progress-status" ng-if="public_settings.site_campaign_state_hide">
                     <div ng-if="campaign.settings.state_current">
                       <div class="center aligned">
-                        <!-- regular title without tool tip -->
                         <h4 ng-if="!(campaign.settings.state_current.tooltip && campaign.settings.state_current.tooltip != '')" class="status-title"
                           ng-bind-html="campaign.settings.state_current.title"></h4>
-                        <!-- THIS COMMENT IS FOR TOOLTIP -->
                         <h4 ng-if="campaign.settings.state_current.tooltip && campaign.settings.state_current.tooltip != ''" class="status-title"
                           sui-popup data-content="{{campaign.settings.state_current.tooltip}}" data-position="bottom center"
                           ng-bind-html="campaign.settings.state_current.title"></h4>
@@ -304,7 +302,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div>-->
             </a>
             <div class="campaign-location" ng-if="campaign.cities">
               <i class="map marker icon"></i><span ng-repeat="city in campaign.cities | limitTo:1" ng-bind="city.city_full"></span>

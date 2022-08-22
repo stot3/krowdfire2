@@ -40,7 +40,7 @@ app.service('PortalSettingsService', function($cacheFactory, Restangular) {
 				}
 			});
 			return portal_settings;
-		});
+		}).catch( err => { console.error(err)}) ;
 	};
 
 	this.savePublicSettings = function(data) {

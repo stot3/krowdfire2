@@ -32,11 +32,12 @@
 	"complete_funding_stripe_default":"Select an account",
 	"complete_funding_untitled_stripe_account": "Untitled Stripe Account",
 	"complete_funding_stripe_direct_transaction_enabled":"Direct Transaction Mode is on. Only admin can view this page.",
-	"complete_funding_stripe_connect_notes": "Connect your Stripe account to this campaign in order to receive your payments. <a href='https://www.thrinacia.com/blog/post/creating-a-campaign-and-connecting-your-stripe-account' target='_blank'>Click here</a> for more information about connecting your stripe account.",
+	"complete_funding_stripe_connect_notes": "Connect your Stripe account to this campaign in order to receive your payments. <a href='https://www.thrinacia.com/blog/post/creating-a-campaign-and-connecting-your-stripe-account' target='_blank'>Click here</a> for more information about connecting your stripe account. Stripe is set to automatically payout at the end of each day, unless otherwise specified.",
 	"complete_funding_stripe_connect_modal_title": "Warning",
 	"complete_funding_stripe_connect_modal_content": "Changing Stripe Settings on active post processing campaign with contributions could cause problems where your contributions won't get processed",
 	"complete_funding_stripe_connect_modal_confirm_button": "I Understand, Proceed",
-	"complete_funding_stripe_connect_reenable_button": "Change Stripe Settings"
+	"complete_funding_stripe_connect_reenable_button": "Change Stripe Settings",
+	"complete_funding_ein_explainer": "In order to complete Stripe setup, you must have an EIN"
 
 
 }

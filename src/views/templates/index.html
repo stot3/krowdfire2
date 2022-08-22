@@ -1,11 +1,9 @@
 <div id="front-page" ng-cloak>
   <main class="grid-row text-center container">
     <section class="grid-row center p-30">
-      <div>
-        <img src="images/Krowdfire-logo.gif" width="647px" height="auto">
-        <h1>
-          <strong>Our Algorithm Advantage Optimizes Your Crowdfunding Success</strong>
-        </h1>
+      <div class="container-3 w-container">
+        <img src="images/Krowdfire-logo.gif" alt="krowdfire-logo" class="image-2"> 
+        <h1 class="heading-5"><strong>Our Algorithm Advantage Optimizes Your Crowdfunding Success </strong></h1>
       </div>
     </section>
     <div>
@@ -63,7 +61,7 @@
           </div>
           <a href="/campaign-examples" class="accent-button">Click Here For Personal Campaign Examples</a>
         </div>
-        <blockquote class="block-quote-2"><strong>“To change something, build a <em>new model</em> that makes the existing model obsolete”<br>-R. Buckminster Fuller</strong></blockquote>
+        <blockquote class="block-quote-2">Any good <em>financial reason</em> is reason enough to have a KROWDFIRE Campaign of your own</blockquote>
       </section>
       <div class="custom-html-block" ng-if="home_page_text.main_banner.display=='html'">
         <div html-render html="home_page_text.main_banner.html" class="fr-view"></div>
@@ -72,13 +70,12 @@
         <div class="banner-media-content">
           <h3 class="heading-12">
             <strong>How To Raise Significantly More Donations For Your Campaign Using Our Powerful And Exclusive Algorithm Advantage.</strong>
-
-            </h3>
+          </h3>
           <div id="video-wrapper" ng-show="site_theme_banner_is_image==false" ng-class="{'video-video-tag':site_theme_banner_video_link_type=='custom', 'video-iframe-tag' :site_theme_banner_video_link_type=='vimeo' || site_theme_banner_video_link_type=='youtube'}">
             <div class="video-banner">
               <youtube-video ng-if="site_theme_banner_video_link_type=='youtube'" video-id="{{site_theme_banner_video_link}}" id="ytplayer" mute="{{site_theme_banner_video_mute}}" modest-branding="true" controls="true"></youtube-video>
-              <iframe id="vimeoplayer" allow="autoplay;" ng-if="site_theme_banner_video_link_type=='vimeo'" ng-src="{{site_theme_banner_video_link}}" frameborder="0"></iframe>
-              <video ng-if="site_theme_banner_video_link_type=='custom'" ng-attr-muted="{{site_theme_banner_video_mute ? '' : undefined}}" id="custom-video-player" loop autoplay>
+              <iframe id="vimeoplayer" ng-if="site_theme_banner_video_link_type=='vimeo'" ng-src="{{site_theme_banner_video_link}}" frameborder="0"></iframe>
+              <video ng-if="site_theme_banner_video_link_type=='custom'" ng-attr-muted="{{site_theme_banner_video_mute ? '' : undefined}}" id="custom-video-player" autoplay>
                 <source ng-src="{{site_theme_banner_video_link}}" type="video/mp4"></source>
               </video>
             </div>
@@ -147,8 +144,12 @@
             </div>
           </div>
           <div class="div-block-5">
-            <div class="text-block-5"><strong class="bold-text">If you are a Walk-In Visitor,</strong>
-              <a href="/how-krowdfire-works"><strong class="bold-text-2">Click Here </strong></a><strong>to learn how to become a Supporter or Fundraiser</strong>
+            <div class="text-block-5">
+              <strong>If you are a Walk-In Visitor,&nbsp;</strong>
+              <a href="/how-krowdfire-works">
+                <strong>Click Here</strong>
+              </a>
+              <strong>&nbsp;to learn how to become a Supporter or Fundraiser</strong>
             </div>
           </div>
         </div>
@@ -286,7 +287,7 @@
                   <div class="description" html-render html=campaign.blurb></div>
                 </div>
     
-                <!--<div class="campaign-card-footer">
+                <div class="campaign-card-footer">
                   <div class="campaign-stats">
                     <div class="bar-progress ui indicating progress" ng-if="!(campaign.settings.master_progress_bar_hide)" data-percent="{{temp = campaign.funded_amount / (campaign.funding_goal || 1) * 100; temp >= 100 ? 100 : temp < 1 ? 0 : temp}}">
                       <div class="bar"></div>
@@ -306,7 +307,7 @@
                       <span ng-if="displayGoalAmountOnCampaignCard">{{'campaign_card_funded_goal_label' | translate}} {{campaign.funding_goal | formatCurrency:campaign.currencies[0].code_iso4217_alpha:public_setting.site_campaign_decimal_option}}</span>
                     </div>
                     <div class="card-amount-meta">
-                      <div class="pledged-amount">
+                      <div class="pledged-amount" ng-if="!(campaign.settings.master_progress_bar_hide)">
                         <span ng-bind-html="campaign.funded_amount | formatCurrency:campaign.currencies[0].code_iso4217_alpha:public_setting.site_campaign_decimal_option"></span>
                         <span ng-bind="campaign.currencies[0].code_iso4217_alpha"></span>
                         <span translate="index_pledged"></span>
@@ -323,7 +324,7 @@
                       </div>
                     </div>
                   </div>
-                </div>-->
+                </div>
               </a>
               <div class="campaign-location" ng-if="campaign.cities">
                 <i class="map marker icon"></i><span ng-repeat="city in campaign.cities | limitTo:1" ng-bind='city.city_full'></span>

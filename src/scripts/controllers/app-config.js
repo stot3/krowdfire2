@@ -82,6 +82,11 @@ app.config(function($routeProvider, $locationProvider, RestangularProvider, $htt
             controller: 'UserProfileCtrl',
             title: 'campaign_step_profile_page_title'
         })
+        .when('/stripe-instructions/:campaign_id', {// John's special instructions
+            templateUrl: 'views/templates/campaign-stripe-instructions.html',
+            title: "Stripe Instructions",
+            controller: "StripeInstructionsCtrl"
+        })
 
         .when('/admin/dashboard', { // Control panel, user management
             templateUrl: 'views/templates/portal-setting.html',

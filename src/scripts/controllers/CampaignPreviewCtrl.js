@@ -1069,7 +1069,7 @@ app.controller('CampaignPreviewCtrl', function($timeout, $interval, $location, $
 
           // Toggle check for campaign step 1 with hidden required fields
           if ($scope.hideCampaignBlurbField && $scope.hideCampaignCategoryField && $scope.hideCampaignImageField) {
-            step1ReqField = (campaign.name && campaign.raise_mode_id && campaign.profile_type_id && campaign.funding_goal && campaign.currency_id) ? true : false;
+            step1ReqField = (campaign.name && campaign.raise_mode_id && campaign.profile_type_id && campaign.currency_id) ? true : false;
           } else if ($scope.hideCampaignImageField) {
             step1ReqField = (campaign.name && campaign.raise_mode_id && campaign.profile_type_id && campaign.blurb && campaign.categories && campaign.funding_goal && campaign.currency_id) ? true : false;
           } else if ($scope.hideCampaignBlurbField) {

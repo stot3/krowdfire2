@@ -555,7 +555,7 @@ const campaignName = $rootScope.currentURL.split("/")[5];
       return false;
     }
   }
-
+  $scope.getMatchingCampaign = false; 
   $scope.filterRewards = function() {
     var startindex = ($scope.rewardPagination.page - 1) * $scope.rewardPagination.page_entries;
     var endindex = startindex + $scope.rewardPagination.page_entries;
@@ -604,6 +604,7 @@ const campaignName = $rootScope.currentURL.split("/")[5];
       .then(
         function(data){
           const payStatus = data[1]
+          $scope.getMatchingCampaign = data[0]
             if(data[0] === true && payStatus.data.info.paid === false){
               return UserService.showInvitationModal()
           }

@@ -5,9 +5,10 @@
   <div class="menu-steps ui stackable grid" ng-class="step_class" id="menu_bar" ng-show="step_class">
 
     <div ng-class="{'active': path === 'getstarted'}" class="setup column">
-      <a class="step-link" ng-href="getstarted/{{campaign_entry_id}}{{revisionIdParam}}"><span translate>campaign_step_basic</span>
-			<i class="checkmark sign icon" ng-if="validateBasicStep()"></i>
-		</a>
+      <a class="step-link" ng-href="getstarted/{{campaign_entry_id}}{{revisionIdParam}}">
+        <span translate>campaign_step_basic</span>
+			  <i class="checkmark sign icon" ng-if="validateBasicStep()"></i>
+		  </a>
     </div>
 
     <div ng-class="{'active': path === 'campaign-setup'}" class="setup column">
@@ -22,9 +23,16 @@
 		</a>
     </div>
     <div ng-class="{'active': path === 'profile-setup', 'disabled' : enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id == 2}" class="setup column" ng-if="profile_show">
-      <a class="step-link" ng-href="profile-setup/{{campaign_entry_id}}{{revisionIdParam}}" disable-link="enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id == 2"><span translate>campaign_step_profile</span>
-		<i class="checkmark sign icon" ng-if="validateProfileStep()"></i>
-		</a>
+      <a class="step-link" ng-href="profile-setup/{{campaign_entry_id}}{{revisionIdParam}}" disable-link="enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id == 2">
+        <span translate>campaign_step_profile</span>
+		    <i class="checkmark sign icon" ng-if="validateProfileStep()"></i>
+		  </a>
+    </div>
+    <div ng-class="{'active': path === 'stripe-instructions', 'disabled' : enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id == 2}" class="setup column">
+      <a class="step-link" ng-href="stripe-instructions/{{campaign_entry_id}}{{revisionIdParam}}" disable-link="enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id == 2">
+        <span translate>campaign_step_stripe_instructions</span>
+        <i class="checkmark sign icon"></i>
+      </a>
     </div>
     <div ng-class="{'active': path === 'complete-funding', 'disabled' : enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id == 2}" class="setup column" id="fundingoptn" ng-if="contributionEnabled && payment_gateway != 2 && payment_gateway != 3 && !(isStepFundingDelayed && !campaign.ever_published) && !(direct_transaction && !bankFormEnabled)">
       <a class="step-link" ng-href="complete-funding/{{campaign_entry_id}}{{revisionIdParam}}" disable-link="enableCampaignRevisions && campaign.entry_status_id == 2 && user.person_type_id == 2"><span translate>campaign_step_funding</span>

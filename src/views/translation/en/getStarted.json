@@ -70,7 +70,7 @@
   "get_started_fundingreviewnote": "Review Note:",
   "get_started_fundingmoney_input": "Please specify funding goal",
   "get_started_fundingcurrency": "Select your currency:",
-  "get_started_fundingduration": "Campaign Funding Duration ",
+  "get_started_fundingduration": "Campaign Start Date ",
   "get_started_fundingdurationtext": "Decide how long fundraising for your project will run for.",
   "get_started_fundingduration_detail1": "We recommend that projects last 30 days or less, but campaigns can raise funds for up to 365 days. Shorter durations have higher success rates, and will create a helpful sense of urgency around your project.",
   "get_started_runmode_time_based": "Time Based Campaign",

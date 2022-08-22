@@ -48,8 +48,8 @@ User.getPaidGuard = function(){
         }
     )
 }
-  User.setPaidStatus= function(email, inviterUid){
-    return $http.post('https://us-central1-sistrunk-software.cloudfunctions.net/userPaid', {email: email, inviterUid: inviterUid}, {headers: {"Content-Type": "application/json"}}).catch(
+  User.setPaidStatus= function(email, inviterUid, campaignId){
+    return $http.post('https://us-central1-sistrunk-software.cloudfunctions.net/userPaid', {email: email, inviterUid: inviterUid, campaign_id: campaignId}, {headers: {"Content-Type": "application/json"}}).catch(
         function(err){ 
             console.error(err)
         }
